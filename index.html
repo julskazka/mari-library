@@ -612,6 +612,23 @@ body{background:
 #modal-screen .mari-world-warning p{color:#e4d5d7;font-size:13px;line-height:1.6}
 #modal-screen .world-modal-tools [data-mari-world-manage]{margin-left:8px}
 @media(max-width:640px){#modal-screen .world-modal-tools [data-mari-world-manage]{margin-left:0}#modal-screen .mari-world-form-actions .btn{width:100%;justify-content:center}}
+
+/* 2026-11-19: User-selected covers for custom book worlds */
+#worlds .custom-world.has-cover .custom-world-illustration{inset:0!important;top:0!important;right:0!important;width:100%!important;height:100%!important;opacity:1!important;pointer-events:none;z-index:0}
+#worlds .custom-world.has-cover .custom-world-illustration img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+#worlds .custom-world.has-cover:after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(180deg,rgba(16,23,37,.05) 15%,rgba(16,23,37,.25) 45%,rgba(16,23,37,.8) 100%)}
+#worlds .custom-world.has-cover .world-text{position:relative;z-index:2!important;background:linear-gradient(0deg,rgba(16,23,37,.85),rgba(16,23,37,.35) 60%,transparent)!important;text-shadow:0 2px 8px #101725}
+#modal-screen .mari-world-cover-field{margin-top:16px}
+#modal-screen .mari-world-cover-picker{display:grid;grid-template-columns:118px minmax(0,1fr);gap:14px;align-items:center;margin-top:9px}
+#modal-screen .mari-world-cover-preview{width:118px;min-height:136px;border:1px dashed rgba(237,201,164,.55);border-radius:12px;overflow:hidden;display:flex;align-items:center;justify-content:center;text-align:center;background:linear-gradient(145deg,#334258,#242c40);color:#ead6c6;font:12px/1.45 Georgia,serif;padding:10px}
+#modal-screen .mari-world-cover-preview img{width:100%;height:136px;object-fit:cover;border-radius:5px;margin:-10px}
+#modal-screen .mari-world-cover-controls{min-width:0;display:grid;justify-items:start;gap:9px}
+#modal-screen .mari-world-cover-controls input[type="file"]{max-width:100%;width:100%;font-size:12px;color:#f0dcd1}
+#modal-screen .mari-world-cover-controls input[type="file"]::file-selector-button{border:1px solid #e2c6ac66;border-radius:9px;background:#35435a;color:#f7e7db;padding:10px;margin-right:9px;cursor:pointer}
+#modal-screen .mari-world-cover-controls small{font:11px/1.5 system-ui;color:#cbbcca}
+#modal-screen [data-mari-world-remove-cover][hidden]{display:none!important}
+#modal-screen .mari-world-modal-cover{width:75px;height:92px;object-fit:cover;flex:none;border-radius:9px;border:1px solid #ead3ba88}
+@media(max-width:470px){#modal-screen .mari-world-cover-picker{grid-template-columns:88px minmax(0,1fr);gap:10px}#modal-screen .mari-world-cover-preview{width:88px;min-height:114px}#modal-screen .mari-world-cover-preview img{height:114px}#modal-screen .mari-world-modal-cover{width:60px;height:78px}}
 </style>
 </head>
 <body>
@@ -708,7 +725,7 @@ function renderBooks(){
  root.classList.toggle('compact-list',catalogMode==='list');
  $('#catalog-count').textContent=`На полке: ${result.length} ${plural(result.length,'история','истории','историй')} · показано ${visible.length}`;
  root.innerHTML=result.length?visible.map(b=>`<article class="book"><div class="book-figure"><button class="book-open" data-action="detail" data-id="${esc(b.id)}" aria-label="Открыть ${esc(b.title)}">${cover(b)}</button><button class="heart ${b.favorite?'on':''}" data-action="heart" data-id="${esc(b.id)}" title="${b.favorite?'Убрать из любимого':'Отметить любимой'}" aria-label="Любимое: ${esc(b.title)}">${ico('heart')}</button></div><button class="book-title" data-action="detail" data-id="${esc(b.id)}">${esc(b.title)}</button><p class="book-author">${esc(b.author)}</p><div class="book-bottom"><span class="book-tag">${statusName[b.status]||'Книга'}</span><span class="format-tag">${formatName[b.format]||'Не уточнён'}</span></div></article>`).join(''):`<div class="book-empty" style="grid-column:1/-1"><h3>На этой полке пока тихо…</h3><p>Не нашли книгу? Можно добавить её вместе с автором.</p><button class="btn primary small" data-action="add">${ico('plus')} Добавить книгу</button></div>`;
- const pager=$('#catalog-pagination');if(pager){pager.hidden=result.length<=pageSize;pager.innerHTML=result.length>pageSize?`<span>Ещё ${result.length-pageSize} из этой полки</span><button class="btn tonal small" data-action="more">Показать ещё ${Math.min(12,result.length-pageSize)}</button>`:'';}
+ const pager=$('#catalog-pagination');if(pager){pager.hidden=result.length<=pageSize;pager.innerHTML=result.length>pageSize?`<span>Ещё ${result.length-pageSize} из этой полки</span><button class="btn tonal small" data-action="more">Показать ещё ${Math.min(12,result.length-pageSize)}</button><button class="btn ghost small" data-action="show-all">Показать все ${result.length}</button>`:'';}
 }
 function monthCandidates(b){
  if(/^\d{4}-\d{2}-\d{2}$/.test(b.readAt||''))return [b.readAt.slice(0,7)];
@@ -744,12 +761,101 @@ function renderStarMap(){
 function renderAuthorSearch(){const el=$('#star-author-options'),q=norm($('#star-author-search')?.value||'');if(!el)return;const matching=allAuthors().filter(([a])=>q&&norm(a).includes(q)).slice(0,7);el.innerHTML=matching.map(([name,arr])=>`<button data-action="author-stars" data-author="${encodeURIComponent(name)}">${esc(name)} · ${arr.length}</button>`).join('');}
 function authorView(author){const items=books.filter(b=>readBook(b)&&b.author===author);showModal('Созвездие · '+author,`<p class="hint" style="margin-bottom:17px">${items.length} ${plural(items.length,'прочитанное произведение','прочитанных произведения','прочитанных произведений')} этого автора. Открой любую книгу, чтобы увидеть её запись.</p><div class="year-books-grid">${items.map((b,i)=>`<button class="year-book" data-action="detail" data-id="${esc(b.id)}"><span class="year-book-number">✦</span><strong>${esc(b.title)}</strong><small>${esc(b.originalGenre||'Книга')}</small></button>`).join('')}</div>`);}
 function renderWorldCounts(){for(const id of Object.keys(genreName)){const el=$('#world-count-'+id);if(el){const n=books.filter(b=>!b.textbook&&b.genre===id).length;el.textContent=n+' '+plural(n,'история','истории','историй')}}}
+
+function mariWorldValidCover(value){
+ return typeof value==='string'&&value.length<350000&&['data:image/jpeg;base64,','data:image/png;base64,','data:image/webp;base64,'].some(prefix=>value.startsWith(prefix));
+}
+function mariWorldCoverMarkup(value){
+ return mariWorldValidCover(value)?`<img src="${esc(value)}" alt="Выбранная обложка книжного мира">`:'<span>Здесь будет обложка твоего книжного мира</span>';
+}
+function mariWorldCoverField(cover,prefix){
+ const inputId=prefix+'-cover-file';
+ return `<div class="field mari-world-cover-field">
+ <label for="${inputId}">Обложка книжного мира (необязательно)</label>
+ <div class="mari-world-cover-picker">
+  <div class="mari-world-cover-preview" data-mari-world-cover-preview>${mariWorldCoverMarkup(cover)}</div>
+  <div class="mari-world-cover-controls"><input id="${inputId}" type="file" accept="image/jpeg,image/png,image/webp" data-mari-world-cover-input>
+  <button type="button" class="btn ghost small" data-mari-world-remove-cover>Убрать обложку</button>
+  <small>Выбери фото или картинку с устройства. Оно автоматически уменьшится для быстрого открытия библиотеки.</small></div>
+ </div></div>`;
+}
+function mariWorldResizeCover(file){
+ return new Promise((resolve,reject)=>{
+  const img=new Image(),url=URL.createObjectURL(file);
+  img.onload=()=>{
+   try{
+    const scale=Math.min(1,680/Math.max(img.naturalWidth,img.naturalHeight));
+    const canvas=document.createElement('canvas');
+    canvas.width=Math.max(1,Math.round(img.naturalWidth*scale));
+    canvas.height=Math.max(1,Math.round(img.naturalHeight*scale));
+    const ctx=canvas.getContext('2d');
+    ctx.fillStyle='#273247';ctx.fillRect(0,0,canvas.width,canvas.height);
+    ctx.drawImage(img,0,0,canvas.width,canvas.height);
+    let result=canvas.toDataURL('image/jpeg',.72);
+    if(result.length>230000){
+     const smaller=document.createElement('canvas'),ratio=Math.min(1,460/Math.max(canvas.width,canvas.height));
+     smaller.width=Math.max(1,Math.round(canvas.width*ratio));
+     smaller.height=Math.max(1,Math.round(canvas.height*ratio));
+     const other=smaller.getContext('2d');other.drawImage(canvas,0,0,smaller.width,smaller.height);
+     result=smaller.toDataURL('image/jpeg',.62);
+    }
+    if(!mariWorldValidCover(result))throw new Error('too large');
+    resolve(result);
+   }catch(err){reject(err);}finally{URL.revokeObjectURL(url);}
+  };
+  img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('bad image'));};
+  img.src=url;
+ });
+}
+function mariWorldBindCoverPicker(form,initialCover){
+ form.mariWorldCover=mariWorldValidCover(initialCover)?initialCover:'';
+ form.mariWorldCoverUpload=Promise.resolve();
+ const input=form.querySelector('[data-mari-world-cover-input]');
+ const remove=form.querySelector('[data-mari-world-remove-cover]');
+ const preview=form.querySelector('[data-mari-world-cover-preview]');
+ let revision=0;
+ const draw=()=>{preview.innerHTML=mariWorldCoverMarkup(form.mariWorldCover);remove.hidden=!form.mariWorldCover;};
+ input.addEventListener('change',()=>{
+  const file=input.files&&input.files[0];if(!file)return;
+  const version=++revision;
+  form.mariWorldCoverUpload=(async()=>{
+   if(!['image/jpeg','image/png','image/webp'].includes(file.type)||file.size>12*1024*1024)throw new Error('format');
+   const image=await mariWorldResizeCover(file);
+   if(version!==revision||!form.isConnected)return;
+   form.mariWorldCover=image;draw();notify('Обложка готова. Сохрани изменения.');
+  })().catch(()=>{if(version===revision)notify('Не удалось загрузить обложку. Выбери JPG, PNG или WebP до 12 МБ.');});
+ });
+ remove.addEventListener('click',()=>{revision++;form.mariWorldCover='';form.mariWorldCoverUpload=Promise.resolve();input.value='';draw();});
+ draw();
+}
 function renderCustomWorlds(){
  const root=$('#custom-worlds');if(!root)return;
- root.innerHTML=customWorlds.map((w,i)=>`<button class="world custom-world custom-tone-${i%4}" data-world="${esc(w.id)}"><span class="custom-world-illustration" aria-hidden="true"><svg viewBox="0 0 150 126"><path d="M29 110V48Q29 13 75 11Q121 13 121 48V110Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M43 108V51Q43 29 75 27Q108 29 108 51V108" fill="none" stroke="currentColor" stroke-opacity=".8"/><path d="M57 72q18-19 36 0M59 90q19-10 33 0" stroke="currentColor" stroke-opacity=".65" fill="none"/><circle cx="92" cy="82" r="3" fill="currentColor"/></svg></span><span class="world-text"><small>Твоя новая полка</small><h3>${esc(w.name)}</h3><p>${esc(w.description||'Истории, которым ты выбрала свой мир')}</p><span class="world-counter" id="world-count-${esc(w.id)}"></span></span></button>`).join('');
+ root.innerHTML=customWorlds.map((w,i)=>{
+  const hasCover=mariWorldValidCover(w.cover);
+  const artwork=hasCover?`<span class="custom-world-illustration custom-world-image" aria-hidden="true"><img src="${esc(w.cover)}" loading="lazy" alt=""></span>`:`<span class="custom-world-illustration" aria-hidden="true"><svg viewBox="0 0 150 126"><path d="M29 110V48Q29 13 75 11Q121 13 121 48V110Z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M43 108V51Q43 29 75 27Q108 29 108 51V108" fill="none" stroke="currentColor" stroke-opacity=".8"/><path d="M57 72q18-19 36 0M59 90q19-10 33 0" stroke="currentColor" stroke-opacity=".65" fill="none"/><circle cx="92" cy="82" r="3" fill="currentColor"/></svg></span>`;
+  return `<button class="world custom-world custom-tone-${i%4}${hasCover?' has-cover':''}" data-world="${esc(w.id)}">${artwork}<span class="world-text"><small>Твоя новая полка</small><h3>${esc(w.name)}</h3><p>${esc(w.description||'Истории, которым ты выбрала свой мир')}</p><span class="world-counter" id="world-count-${esc(w.id)}"></span></span></button>`;
+ }).join('');
 }
-function createWorldForm(){showModal('Создать книжный мир',`<p class="hint">Новый мир появится среди других тематических полок, а в карточках книг его можно будет выбрать. Ты сама решаешь, какие книги туда положить.</p><form id="new-world-form"><div class="field"><label for="new-world-name">Как назовём этот мир?</label><input id="new-world-name" maxlength="45" required placeholder="Например, Истории о животных"></div><div class="field" style="margin-top:12px"><label for="new-world-desc">Короткое описание (необязательно)</label><input id="new-world-desc" maxlength="100" placeholder="О чём здесь книги"></div><div class="modal-actions"><button type="submit" class="btn primary">Создать полку</button></div></form>`);
- $('#new-world-form').addEventListener('submit',e=>{e.preventDefault();const name=$('#new-world-name').value.trim().slice(0,45),description=$('#new-world-desc').value.trim().slice(0,100);if(!name)return;if(Object.values(genreName).some(x=>norm(x)===norm(name))){notify('Такая полка уже существует');return}const w={id:'custom-'+Date.now().toString(36),name,description};customWorlds.push(w);genreName[w.id]=name;try{localStorage.setItem(WORLD_STORE,JSON.stringify(customWorlds))}catch{notify('Не удалось сохранить название новой полки');return}closeModal();render();$('#worlds').scrollIntoView({behavior:'smooth'});notify('Появилась новая полка: '+name)})
+
+function createWorldForm(){
+ showModal('Создать книжный мир',`<p class="hint">Новый мир появится среди других тематических полок, а в карточках книг его можно будет выбрать. Ты сама решаешь, какие книги туда положить.</p>
+ <form id="new-world-form"><div class="field"><label for="new-world-name">Как назовём этот мир?</label><input id="new-world-name" maxlength="45" required placeholder="Например, Истории о животных"></div>
+ <div class="field" style="margin-top:12px"><label for="new-world-desc">Короткое описание (необязательно)</label><input id="new-world-desc" maxlength="100" placeholder="О чём здесь книги"></div>
+ ${mariWorldCoverField('','new-world')}
+ <div class="modal-actions"><button type="submit" class="btn primary">Создать полку</button></div></form>`);
+ const form=$('#new-world-form');mariWorldBindCoverPicker(form,'');
+ form.addEventListener('submit',async e=>{
+  e.preventDefault();await form.mariWorldCoverUpload;
+  if(!form.isConnected)return;
+  const name=$('#new-world-name').value.trim().slice(0,45),description=$('#new-world-desc').value.trim().slice(0,100);
+  if(!name)return;
+  if(Object.values(genreName).some(x=>norm(x)===norm(name))){notify('Такая полка уже существует');return;}
+  const w={id:'custom-'+Date.now().toString(36),name,description,cover:form.mariWorldCover||''};
+  const updated=[...customWorlds,w];
+  try{localStorage.setItem(WORLD_STORE,JSON.stringify(updated));}catch{notify('Не удалось сохранить полку. Проверь свободное место в браузере.');return;}
+  customWorlds=updated;genreName[w.id]=name;
+  closeModal();render();$('#worlds').scrollIntoView({behavior:'smooth'});notify('Появилась новая полка: '+name);
+ });
 }
 function renderWishlist(){const list=books.filter(b=>b.status==='want'&&!b.textbook);const root=$('#wishlist-live');if(!root)return;
  if(!list.length){root.innerHTML=`<div class="wish-empty"><div><strong>Здесь пока ждёт первая мечта</strong><p>Какую книгу хочется прочитать? Добавь название и автора — и «Удиви меня» сможет выбрать историю из желаний.</p><button class="btn primary small" data-action="wish-add">${ico('plus')} Добавить первую книгу</button></div><span class="wish-empty-art" aria-hidden="true">✧</span></div>`;return;}
@@ -898,7 +1004,7 @@ renderStarMap=function(){
 function v10WorldModal(worldId){
  const w=customWorlds.find(x=>x.id===worldId),name=genreName[worldId]||w?.name||'Книжный мир';
  const n=books.filter(b=>!b.textbook&&b.genre===worldId).length;
- showModal('Книжный мир · '+name,`<div class="world-modal-head"><div><h3>${esc(name)}</h3><p class="world-modal-count">${n} ${plural(n,'история','истории','историй')} на этой полке</p></div></div><div class="world-modal-tools"><p>Можно искать по автору или названию и открывать книгу для редактирования.</p><button type="button" class="btn tonal small" data-v10-open-library-world="${esc(worldId)}">Открыть все на полке</button>${w?'<button type="button" class="btn tonal small" data-mari-world-manage="'+esc(worldId)+'">Изменить или удалить мир</button>':''}</div><div class="world-search"><input type="search" id="v10-world-search" autocomplete="off" placeholder="Название или автор"></div><div id="v10-world-list" class="world-result-list"></div>`);
+ showModal('Книжный мир · '+name,`<div class="world-modal-head">${w&&mariWorldValidCover(w.cover)?'<img class="mari-world-modal-cover" alt="" src="'+esc(w.cover)+'">':''}<div><h3>${esc(name)}</h3><p class="world-modal-count">${n} ${plural(n,'история','истории','историй')} на этой полке</p></div></div><div class="world-modal-tools"><p>Можно искать по автору или названию и открывать книгу для редактирования.</p><button type="button" class="btn tonal small" data-v10-open-library-world="${esc(worldId)}">Открыть все на полке</button>${w?'<button type="button" class="btn tonal small" data-mari-world-manage="'+esc(worldId)+'">Изменить или удалить мир</button>':''}</div><div class="world-search"><input type="search" id="v10-world-search" autocomplete="off" placeholder="Название или автор"></div><div id="v10-world-list" class="world-result-list"></div>`);
  v10WorldSearch='';v10RenderWorldModalList(worldId);
  $('#v10-world-search')?.focus({preventScroll:true});
 }
@@ -909,31 +1015,37 @@ function v10RenderWorldModalList(worldId){
 }
 
 /* The user owns custom worlds: built-in categories remain protected. */
+
 function mariWorldSettings(id){
  const w=customWorlds.find(item=>item.id===id);if(!w){notify('Этот мир не найден');return;}
  const count=books.filter(b=>!b.textbook&&b.genre===id).length;
- showModal('Настройки книжного мира',`<p class="hint">Здесь можно изменить название и описание своей полки. Книги останутся на ней.</p>
+ showModal('Настройки книжного мира',`<p class="hint">Здесь можно изменить название, описание и обложку своей полки. Книги останутся на ней.</p>
  <form id="mari-world-settings-form" data-world-id="${esc(id)}">
  <div class="field"><label for="mari-world-name">Название книжного мира</label><input id="mari-world-name" name="name" maxlength="45" required value="${esc(w.name)}"></div>
  <div class="field"><label for="mari-world-description">Описание</label><textarea id="mari-world-description" name="description" maxlength="100" rows="3" placeholder="О каких историях этот мир">${esc(w.description||'')}</textarea></div>
+ ${mariWorldCoverField(w.cover,'mari-world')}
  <p class="mari-world-note">На полке ${count} ${plural(count,'история','истории','историй')}. Чтобы добавить или перенести книгу, открой её карточку и выбери нужный книжный мир.</p>
  <div class="mari-world-form-actions"><button type="submit" class="btn primary">Сохранить изменения</button><button type="button" class="btn tonal" data-mari-world-back="${esc(id)}">Вернуться к книгам</button></div>
  <div class="mari-world-delete-row"><button type="button" class="mari-world-delete-link" data-mari-world-delete="${esc(id)}">Удалить этот книжный мир</button></div></form>`);
+ mariWorldBindCoverPicker($('#mari-world-settings-form'),w.cover);
 }
 function mariWorldDeletePrompt(id){
  const w=customWorlds.find(item=>item.id===id);if(!w)return;
  const n=books.filter(b=>b.genre===id).length;
  showModal('Удалить книжный мир?',`<div class="mari-world-warning"><h3>${esc(w.name)}</h3><p>Полка исчезнет, но ${n} ${plural(n,'книга','книги','книг')} не ${n===1?'исчезнет':'исчезнут'}: ${n===1?'она перейдёт':'они перейдут'} в «Другие истории». Впечатления, даты чтения и любимые книги сохранятся.</p></div><div class="mari-world-form-actions"><button type="button" class="btn tonal" data-mari-world-back-settings="${esc(id)}">Оставить мир</button><button type="button" class="mari-world-delete-confirm" data-mari-world-delete-confirm="${esc(id)}">Да, удалить мир</button></div>`);
 }
-function mariWorldSaveSettings(form){
+
+async function mariWorldSaveSettings(form){
  const id=form.dataset.worldId,w=customWorlds.find(item=>item.id===id);
  if(!w){notify('Книжный мир не найден');return;}
+ await form.mariWorldCoverUpload;
+ if(!form.isConnected)return;
  const name=form.elements.name.value.trim().slice(0,45);
  const description=form.elements.description.value.trim().slice(0,100);
  if(!name){notify('Укажи название книжного мира');return;}
  if(Object.entries(genreName).some(([key,value])=>key!==id&&norm(value)===norm(name))){notify('Мир с таким названием уже существует');return;}
- const updated=customWorlds.map(item=>item.id===id?{...item,name,description}:item);
- try{localStorage.setItem(WORLD_STORE,JSON.stringify(updated))}catch{notify('Не удалось сохранить изменения. Проверь свободное место в браузере.');return;}
+ const updated=customWorlds.map(item=>item.id===id?{...item,name,description,cover:form.mariWorldCover||''}:item);
+ try{localStorage.setItem(WORLD_STORE,JSON.stringify(updated));}catch{notify('Не удалось сохранить изменения. Проверь свободное место в браузере.');return;}
  customWorlds=updated;genreName[id]=name;render();v10WorldModal(id);notify('Книжный мир обновлён');
 }
 function mariWorldDelete(id){
