@@ -1057,177 +1057,193 @@ html{scroll-padding-top:80px}body{background:radial-gradient(ellipse 32% 17% at 
 </style>
 
 <style id="mari-favorite-approved-visual-20261119">
-/* Fixed text/art composition: image is in its own grid cell, never behind readable copy. */
+/* Large approved illustrations; copy stays in a protected, naturally wrapping column. */
 #favorite .loved{
  display:grid!important;
  grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ align-items:stretch!important;
  gap:16px!important;
- align-items:stretch!important;
 }
-#favorite .loved-card,#favorite .random-card{
- display:grid!important;
- grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr)!important;
- grid-template-rows:minmax(0,1fr) auto!important;
- gap:10px 8px!important;
- align-items:stretch!important;
+#favorite .loved-card,
+#favorite .random-card{
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:flex-start!important;
  position:relative!important;
  isolation:isolate!important;
- overflow:hidden!important;
  min-width:0!important;
  height:auto!important;
- min-height:300px!important;
- padding:25px 23px 24px!important;
+ min-height:310px!important;
  box-sizing:border-box!important;
- border-radius:21px!important;
+ padding:25px 23px 24px!important;
+ overflow:hidden!important;
  border:1px solid rgba(225,194,167,.43)!important;
+ border-radius:21px!important;
  background:linear-gradient(125deg,#27344b 0%,#2e354e 62%,#36334e 100%)!important;
  box-shadow:inset 0 1px rgba(255,241,221,.10),0 14px 30px rgba(6,9,19,.20)!important;
 }
-#favorite .random-card{background:linear-gradient(125deg,#233b48 0%,#293c4b 62%,#333f4c 100%)!important}
-/* Remove ALL old pseudo artwork and inline pictogram hooks. */
-#favorite .loved-card::before,#favorite .random-card::before,
-#favorite .loved-card::after,#favorite .random-card::after{
- display:none!important;
+#favorite .random-card{
+ background:linear-gradient(125deg,#233b48 0%,#293c4b 62%,#333f4c 100%)!important;
+}
+/* Nothing decorative can be drawn by old pseudo rules. */
+#favorite .loved-card::before,
+#favorite .random-card::before,
+#favorite .loved-card::after,
+#favorite .random-card::after{
  content:none!important;
+ display:none!important;
  background:none!important;
  background-image:none!important;
 }
 #favorite .feature-illustration{display:none!important}
 #favorite .mari-feature-content{
- grid-column:1!important;
- grid-row:1!important;
- align-self:start!important;
- min-width:0!important;
- width:100%!important;
+ display:block!important;
  position:relative!important;
- z-index:2!important;
- overflow-wrap:anywhere;
+ z-index:3!important;
+ flex:none!important;
+ align-self:flex-start!important;
+ box-sizing:border-box!important;
+ width:52%!important;
+ max-width:52%!important;
+ min-width:0!important;
+ overflow:visible!important;
+ overflow-wrap:break-word!important;
+ word-break:normal!important;
+ hyphens:auto;
+ text-wrap:pretty;
 }
-#favorite .mari-feature-content .kicker{color:#e4bf9e!important;font-size:10px!important;line-height:1.5!important;letter-spacing:1px!important}
+#favorite .mari-feature-content .kicker{
+ color:#e4bf9e!important;
+ font-size:10px!important;
+ line-height:1.5!important;
+ letter-spacing:1px!important;
+}
 #favorite .mari-feature-content h3{
  display:block!important;
+ width:100%!important;
  max-width:none!important;
  margin:12px 0!important;
+ font:normal clamp(24px,2.65vw,32px)/1.12 var(--display)!important;
  color:#fff0df!important;
- font:normal clamp(25px,2.7vw,33px)/1.13 var(--display)!important;
  text-shadow:0 2px 10px rgba(9,14,28,.20)!important;
+ overflow-wrap:normal!important;
+ word-break:normal!important;
+ hyphens:auto;
 }
 #favorite .mari-feature-content p{
  display:block!important;
+ position:relative!important;
+ z-index:3!important;
  width:100%!important;
  max-width:none!important;
  margin:0!important;
- font:normal 12px/1.7 var(--sans)!important;
+ padding:0!important;
+ font:normal 12px/1.65 var(--sans)!important;
  color:#f5e7db!important;
  text-shadow:none!important;
  background:none!important;
  -webkit-text-fill-color:currentColor!important;
+ overflow-wrap:break-word!important;
+ word-break:normal!important;
+ hyphens:auto;
 }
+/* Return the artwork to its former generous ~62% card width. The
+   feathered left edge also hides stray lettering baked into the art files. */
 #favorite .mari-feature-art{
- grid-column:2!important;
- grid-row:1 / span 2!important;
+ position:absolute!important;
+ z-index:1!important;
  display:flex!important;
- align-self:center!important;
  align-items:center!important;
  justify-content:flex-end!important;
- position:relative!important;
- z-index:1!important;
- min-width:0!important;
- width:100%!important;
- height:100%!important;
- max-height:255px!important;
- overflow:hidden!important;
+ top:12px!important;
+ right:0!important;
+ bottom:16px!important;
+ left:auto!important;
+ width:64%!important;
+ height:auto!important;
+ max-height:none!important;
+ min-height:0!important;
+ margin:0!important;
+ padding:0!important;
  pointer-events:none!important;
+ overflow:hidden!important;
 }
 #favorite .mari-feature-art img{
  display:block!important;
  width:100%!important;
  height:100%!important;
- max-height:255px!important;
+ max-width:none!important;
+ max-height:none!important;
  object-fit:contain!important;
- object-position:center right!important;
+ object-position:right center!important;
+ opacity:1!important;
  filter:drop-shadow(0 8px 14px rgba(9,13,25,.16));
+ -webkit-mask-image:linear-gradient(to right,transparent 0%,transparent 30%,rgba(0,0,0,.65) 43%,#000 55%);
+ mask-image:linear-gradient(to right,transparent 0%,transparent 30%,rgba(0,0,0,.65) 43%,#000 55%);
 }
 #favorite .loved-card>.btn[data-action="show-favorites"],
 #favorite .random-card>.btn[data-action="random"]{
- grid-column:1!important;
- grid-row:2!important;
- align-self:end!important;
- justify-self:start!important;
  box-sizing:border-box!important;
  display:inline-flex!important;
  align-items:center!important;
  justify-content:center!important;
+ position:relative!important;
+ z-index:4!important;
  flex:none!important;
- width:192px!important;min-width:0!important;max-width:100%!important;
- height:46px!important;min-height:46px!important;max-height:46px!important;
- margin:12px 0 0!important;
+ align-self:flex-start!important;
+ width:192px!important;
+ min-width:0!important;
+ max-width:100%!important;
+ height:46px!important;
+ min-height:46px!important;
+ max-height:46px!important;
+ margin:auto 0 0!important;
  padding:0 13px!important;
  border:1px solid #ffebda!important;
  border-radius:12px!important;
  background:linear-gradient(135deg,#f8e4d3,#eac5b1)!important;
  color:#273044!important;
  font:700 12px/1.15 var(--sans)!important;
- text-align:center!important;
  white-space:normal!important;
+ text-align:center!important;
  box-shadow:0 6px 18px rgba(13,16,34,.23),inset 0 1px rgba(255,255,255,.52)!important;
- position:relative!important;
- z-index:4!important;
  cursor:pointer!important;
  transition:transform .18s ease,filter .18s ease!important;
 }
 #favorite .loved-card>.btn[data-action="show-favorites"]:hover,
 #favorite .random-card>.btn[data-action="random"]:hover{
- transform:translateY(-2px)!important;
  filter:brightness(1.07)!important;
+ transform:translateY(-2px)!important;
 }
 #favorite .loved-card>.btn[data-action="show-favorites"]:focus-visible,
 #favorite .random-card>.btn[data-action="random"]:focus-visible{
  outline:3px solid #ffde8d!important;
  outline-offset:3px!important;
 }
-/* Reflow when page is zoomed: two cards become one column before their text zones get cramped. */
+/* Browser zoom decreases CSS viewport width: keep generous image size,
+   but stack the two cards before descriptions become too narrow. */
 @media(max-width:1020px){
- #favorite .loved{grid-template-columns:1fr!important}
- #favorite .loved-card,#favorite .random-card{
-  grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)!important;
-  min-height:265px!important;
- }
+ #favorite .loved{grid-template-columns:1fr!important;gap:13px!important}
+ #favorite .mari-feature-content{width:48%!important;max-width:48%!important}
+ #favorite .mari-feature-art{width:62%!important}
 }
 @media(max-width:560px){
  #favorite .loved-card,#favorite .random-card{
-  grid-template-columns:minmax(0,1fr)!important;
-  grid-template-rows:auto auto auto!important;
-  gap:0!important;
-  min-height:0!important;
-  padding:23px 20px 21px!important;
+  min-height:330px!important;
+  padding:22px 18px 20px!important;
  }
- #favorite .mari-feature-content{
-  grid-column:1!important;
-  grid-row:1!important;
- }
- #favorite .mari-feature-content h3{font-size:clamp(25px,7vw,32px)!important}
- #favorite .mari-feature-content p{font-size:12px!important}
- #favorite .mari-feature-art{
-  grid-column:1!important;
-  grid-row:2!important;
-  justify-self:end!important;
-  width:min(78%,300px)!important;
-  height:150px!important;
-  max-height:150px!important;
-  margin:2px 0!important;
- }
- #favorite .mari-feature-art img{max-height:150px!important}
+ #favorite .mari-feature-content{width:54%!important;max-width:54%!important}
+ #favorite .mari-feature-content h3{font-size:clamp(23px,6.5vw,29px)!important}
+ #favorite .mari-feature-content p{font-size:12px!important;line-height:1.6!important}
+ #favorite .mari-feature-art{width:64%!important;top:24px!important;bottom:33px!important}
  #favorite .loved-card>.btn[data-action="show-favorites"],
- #favorite .random-card>.btn[data-action="random"]{
-  grid-column:1!important;
-  grid-row:3!important;
-  margin-top:12px!important;
- }
+ #favorite .random-card>.btn[data-action="random"]{margin-top:22px!important}
 }
 @media(max-width:360px){
- #favorite .mari-feature-art{height:120px!important;max-height:120px!important}
- #favorite .mari-feature-art img{max-height:120px!important}
+ #favorite .loved-card,#favorite .random-card{min-height:350px!important}
+ #favorite .mari-feature-content{width:55%!important;max-width:55%!important}
+ #favorite .mari-feature-content h3{font-size:23px!important}
+ #favorite .mari-feature-art{width:63%!important}
 }
 </style>
 </head>
