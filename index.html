@@ -368,35 +368,39 @@ body{overflow-x:clip}
 #modal-screen .modal-head{top:-20px!important}
 #modal-screen .world-result-list,#modal-screen .mari-month-books,#modal-screen .mari-impression-list{max-height:min(42dvh,380px)!important}
 
-/* Reading and loan shelves: compact, aligned, not giant empty rectangles */
-#reading{padding:28px clamp(16px,2.7vw,29px) 23px}
-#reading .room-ribbon{margin:0 0 18px}
-#reading .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px 25px;margin-bottom:18px}
+
+/* The reading and borrowing room — compact illustrated book shelves */
+#reading{padding:25px clamp(15px,2.4vw,28px) 23px}
+#reading .room-ribbon{margin:0 0 17px}
+#reading .section-head{display:flex;align-items:end;justify-content:space-between;gap:13px 24px;margin-bottom:18px}
 #reading .section-head>div{min-width:0}
 #reading .section-description{max-width:370px;margin:0}
 #reading .section-title{font-size:clamp(27px,3.1vw,37px);line-height:1.08}
 #reading .read-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch!important;gap:16px}
-#reading .read-grid>.ornate-panel{min-height:228px!important;height:auto!important;padding:20px 21px!important;border:1px solid #dabca25e!important;border-radius:18px!important;background:radial-gradient(circle at 92% 9%,#a88b9b24,transparent 52%),linear-gradient(140deg,#294252,#222b42)!important}
-#reading .read-grid>.loan-panel{background:radial-gradient(circle at 90% 20%,#d19f7b1c,transparent 57%),linear-gradient(135deg,#373044,#273e4c)!important}
-#reading .ornate-panel::after{content:"";position:absolute;right:19px;top:15px;width:23px;height:33px;border:1px solid #e7caa670;border-bottom-width:3px;border-radius:2px 2px 11px 11px;transform:rotate(12deg);pointer-events:none}
-#reading .panel-heading{font:normal clamp(24px,2.5vw,30px)/1.08 var(--display);padding-right:28px}
-#reading .subline{margin:5px 0 13px!important;line-height:1.45}
-#reading .reading-empty{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:12px;min-height:75px!important;max-height:none!important;padding:8px 0!important;text-align:left!important}
-#reading .reading-empty p{font-size:13px;flex:1 1 165px;max-width:260px}
-#reading .reading-empty .empty-tiny-books{flex:0 0 auto;transform:scale(.8);transform-origin:center}
-#reading .reading-empty .btn{flex:0 0 auto}
-#reading .loans-inner{margin:13px 0 13px}
-#reading .loan-actions{gap:8px}
-#reading .loan-actions .btn{white-space:normal;text-align:center;max-width:100%}
-#reading .loan-panel .hint{font-size:10px;line-height:1.5;margin-top:12px}
+#reading .read-grid>.ornate-panel{min-width:0;min-height:0!important;height:auto!important;padding:21px 24px 18px!important;border:1px solid rgba(222,193,168,.38)!important;border-radius:20px!important;box-shadow:0 10px 25px #0a14261b!important;background:radial-gradient(circle at 96% 0%,#799da51e,transparent 48%),linear-gradient(145deg,#2b3b50,#263047)!important}
+#reading .read-grid>.loan-panel{background:radial-gradient(circle at 94% 0%,#c6a18a1b,transparent 54%),linear-gradient(140deg,#393248,#29394b)!important}
+#reading .ornate-panel::before{content:"";inset:8px!important;border:1px solid rgba(242,216,183,.1)!important;border-radius:13px!important;pointer-events:none}
+#reading .ornate-panel::after{content:none!important;display:none!important}
+#reading .panel-heading{position:relative;z-index:1;font:normal clamp(25px,2.5vw,31px)/1.1 var(--display)!important;padding:0!important;margin:0!important;max-width:100%;color:#f9ecdd}
+#reading .panel-heading::after{content:"";display:block;height:2px;width:46px;margin-top:9px;border-radius:99px;background:linear-gradient(90deg,#ebcfac,rgba(235,207,172,0));box-shadow:none}
+#reading .subline{position:relative;z-index:1;margin:9px 0 15px!important;max-width:100%;font-size:11px;line-height:1.5;color:#bac4d0}
+#reading #current-book,#reading #loans{position:relative;z-index:1;min-width:0}
+#reading .reading-empty{position:relative;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;flex-wrap:nowrap!important;gap:14px!important;min-height:170px!important;max-height:none!important;padding:10px 38% 12px 0!important;text-align:left!important}
+#reading .reading-empty .empty-tiny-books{display:none!important}
+#reading .reading-empty p{flex:none!important;width:100%;min-width:0;max-width:310px!important;font:italic clamp(14px,1.35vw,16px)/1.52 var(--display)!important;color:#f1e6df;margin:0!important}
+#reading .reading-empty .btn{position:relative;z-index:2;flex:none!important;align-self:flex-start;min-height:39px!important;padding:9px 14px!important;border-radius:11px!important;background:#7d5e82!important;border:1px solid #cfaab17a!important;color:#fff0e3!important;font-size:11px!important;white-space:normal}
+#reading .reading-books-art{position:absolute;right:1px;bottom:0;width:min(38%,170px);max-height:155px;z-index:0;opacity:.93;pointer-events:none}
+#reading .reading-books-art svg{display:block;width:100%;height:auto;filter:drop-shadow(0 8px 9px #0b122660)}
+#reading .loans-inner{margin:7px 0 13px!important;display:grid;gap:8px}
+#reading .loan-empty{position:relative;isolation:isolate;display:flex;align-items:center;min-height:115px;padding:12px 115px 12px 16px!important;border:1px solid rgba(238,212,182,.18);border-left:2px solid #d9b59b;border-radius:10px;background:linear-gradient(125deg,#171e34a1,#33405050);font:normal 12px/1.58 var(--sans);color:#e7d9d7;overflow:hidden}
+#reading .loan-empty p{position:relative;z-index:1;margin:0;max-width:100%}
+#reading .loan-books-art{position:absolute;right:7px;bottom:1px;width:108px;z-index:0;opacity:.9;pointer-events:none}
+#reading .loan-books-art svg{display:block;width:100%;height:auto;filter:drop-shadow(0 6px 7px #0b122657)}
+#reading .loan-actions{position:relative;z-index:1;display:flex;flex-wrap:wrap;gap:8px;padding-top:1px}
+#reading .loan-actions .btn{white-space:normal;text-align:center;max-width:100%;min-height:40px!important;border-radius:10px!important}
+#reading .loan-panel .hint{position:relative;z-index:1;margin-top:12px!important;padding-top:10px;border-top:1px solid rgba(226,194,172,.19);font-size:10px;line-height:1.5;color:#acb9c8}
 #reading .reading-shelf{padding-bottom:8px}
 #reading .reading-mini{min-width:0}
-#statistics .stat-stage{max-width:1050px!important}
-#statistics-panel .stat-bubbles{max-width:none!important}
-#statistics-panel .stat-item{aspect-ratio:1.25!important;min-height:125px!important;background-image:radial-gradient(circle at 81% 17%,rgba(255,240,214,.14),transparent 43%)!important}
-#statistics-panel .mari-stat-book{width:49%;max-width:105px;top:9px;right:8px;opacity:1}
-#statistics-panel .stat-item strong{font-size:clamp(34px,4vw,50px)!important}
-#statistics-panel .stat-item span{max-width:80%;font-size:12px!important}
 
 /* Library search: a compact integrated expand control */
 #library .catalog-search-box{min-height:51px;padding:4px 6px 4px 13px;gap:10px}
@@ -445,6 +449,37 @@ body{overflow-x:clip}
 #wishes .wish-empty .btn{margin:2px 0 0;min-height:43px;white-space:normal}
 #wishes .wish-empty-art{flex:0 0 clamp(115px,22%,200px);width:clamp(115px,22%,200px);max-width:200px;align-self:center;opacity:.86;pointer-events:none}
 #wishes .wish-empty-art svg{display:block;width:100%;height:auto}
+
+
+/* Reading room at tablet and mobile widths */
+@media(max-width:899px){
+#reading .section-head{align-items:flex-start;flex-direction:column;gap:8px}
+#reading .section-description{max-width:100%}
+#reading .read-grid{grid-template-columns:1fr!important;gap:12px}
+#reading .read-grid>.ornate-panel{padding:20px 20px 17px!important}
+#reading .reading-empty{min-height:145px!important}
+#reading .reading-books-art{max-width:150px}
+}
+@media(max-width:700px){
+#reading{padding:21px 15px 18px!important}
+#reading .room-ribbon{margin:0 0 14px}
+#reading .section-head{margin-bottom:13px}
+#reading .section-title{font-size:clamp(26px,7vw,33px)!important}
+#reading .read-grid>.ornate-panel{padding:18px 18px 16px!important;min-height:0!important}
+#reading .panel-heading{font-size:26px!important}
+#reading .reading-empty{min-height:147px!important;gap:11px!important;padding:12px 36% 12px 0!important}
+#reading .reading-empty p{font-size:14px!important;flex:none!important}
+#reading .reading-books-art{width:36%;max-width:122px;opacity:.87}
+#reading .loan-empty{min-height:105px;padding:12px 102px 12px 12px!important}
+#reading .loan-books-art{width:95px;right:4px}
+#reading .loan-actions .btn{min-height:40px!important}
+}
+@media(max-width:380px){
+#reading .reading-empty{padding-right:31%!important}
+#reading .reading-books-art{width:30%;opacity:.65}
+#reading .loan-empty{padding-right:75px!important}
+#reading .loan-books-art{width:72px;opacity:.72}
+}
 
 /* Book of the year: a graphic with enough room for both title and action */
 #year .year-banner{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:23px;min-height:170px!important;padding:25px 30px!important;overflow:hidden}
@@ -907,10 +942,28 @@ const dateDue=b=>b.loan?.dueDate||(b.loan?.borrowedAt?shift(b.loan.borrowedAt,Nu
 const outstanding=b=>b.loan&&!b.loan.returnedAt;
 function renderCurrent(){
  const current=books.filter(x=>x.status==='reading'&&!x.textbook),root=$('#current-book');
- if(!current.length){root.innerHTML=`<div class="reading-empty"><div class="empty-tiny-books" aria-hidden="true"><i></i><i></i><i></i></div><p>Здесь пока свободная полка. Какую историю откроешь следующей?</p><button class="btn tonal small" data-action="add">Добавить книгу</button></div>`;return}
+ if(!current.length){root.innerHTML=`<div class="reading-empty"><p>Здесь пока свободная полка. Какую историю откроешь следующей?</p><button class="btn tonal small" data-action="add">Добавить книгу</button><div class="reading-books-art" aria-hidden="true">
+<svg viewBox="0 0 175 151" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="mariShelfPurple" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#a485a5"/><stop offset="1" stop-color="#5c526d"/></linearGradient><linearGradient id="mariShelfTeal" x1="0" x2="1"><stop stop-color="#78a5a0"/><stop offset="1" stop-color="#466c77"/></linearGradient><linearGradient id="mariShelfGold" x1="0" x2="1"><stop stop-color="#e1b7a0"/><stop offset="1" stop-color="#946b7b"/></linearGradient></defs>
+<ellipse cx="85" cy="138" rx="78" ry="7" fill="#080f21" opacity=".29"/>
+<path d="M9 132H163" stroke="#dec3a3" stroke-width="2" stroke-linecap="round"/><path d="M16 138H157" stroke="#d6bb9f" stroke-opacity=".4"/>
+<g transform="rotate(-8 40 93)"><rect x="22" y="49" width="31" height="82" rx="4" fill="url(#mariShelfPurple)" stroke="#e5c6ae" stroke-width="1.5"/><path d="M28 57h19m-19 65h19" stroke="#f4dcb9" stroke-width="1.6"/><path d="M37.5 72v34m-4-13 4-4 4 4m-4-12c9 6 8 16 0 19-8-3-9-13 0-19Z" fill="none" stroke="#f1d4b4" stroke-width="1.4"/></g>
+<g><rect x="57" y="28" width="33" height="104" rx="4" fill="url(#mariShelfTeal)" stroke="#e1cab0" stroke-width="1.5"/><path d="M64 35h19m-19 90h19M73 48v64" stroke="#f2dcbf" stroke-width="1.5"/><path d="M69 60q5-8 10 0-5 9-10 0Zm0 41q5-8 10 0-5 9-10 0Z" fill="#e3c49e" opacity=".75"/></g>
+<g transform="rotate(8 113 95)"><rect x="96" y="56" width="32" height="76" rx="4" fill="url(#mariShelfGold)" stroke="#e6c5af" stroke-width="1.5"/><path d="M102 63h20m-20 60h20m-10-48v36" stroke="#f9e5c9" stroke-width="1.5"/><path d="m112 82 7 10-7 10-7-10Z" fill="none" stroke="#f9e5c9" stroke-width="1.2"/></g>
+<g fill="#ecd4b3"><path d="m139 33 3.1 7.9 7.9 3.1-7.9 3.1-3.1 7.9-3.1-7.9-7.9-3.1 7.9-3.1Z" opacity=".95"/><circle cx="154" cy="21" r="2.5"/><circle cx="151" cy="70" r="1.8"/><circle cx="9" cy="52" r="1.4"/></g>
+<path d="M119 22q10-7 19-3" stroke="#d5b9ab" stroke-opacity=".55" fill="none"/>
+</svg></div></div>`;return}
  root.innerHTML=`<div class="reading-shelf" aria-label="Книги, которые читаю">${current.map(b=>`<button class="reading-mini" data-action="detail" data-id="${esc(b.id)}" title="${esc(b.title)}"><span class="reading-mini-cover">${cover(b)}</span><strong>${esc(b.title)}</strong><small>${countDays(b)===null?'Читаю':countDays(b)+' дн.'}</small></button>`).join('')}</div><div class="reading-shelf-foot"><span>${current.length} ${plural(current.length,'книга','книги','книг')} на полке</span><button class="tiny-add" data-action="add">Добавить ещё</button></div>`;
 }
-function renderLoans(){const items=books.filter(outstanding).sort((a,b)=>dateDue(a).localeCompare(dateDue(b)));const root=$('#loans');if(!items.length){root.innerHTML='<div class="loan-empty">Пока нет книг, которые нужно вернуть. Как только возьмёте книгу в библиотеке, она появится здесь.</div>';return}root.innerHTML=items.slice(0,4).map(b=>{const days=diff(dateDue(b)),alertBefore=Number(b.loan.remindDays??7),label=days<0?`Просрочено на ${-days} дн.`:days===0?'Вернуть сегодня':days<=alertBefore?`Пора готовить к возврату · ${days} дн.`:`Осталось ${days} дн.`;return `<div class="loan"><div>${cover(b)}</div><div class="loan-info"><strong>${esc(b.title)}</strong><small>${esc(b.loan.library)} · на руках ${Math.max(0,-diff(b.loan.borrowedAt))} дн.</small><div class="due ${days<=alertBefore?'urgent':''}">${label} · ${dformat(dateDue(b))}</div><button class="mini-link" data-action="detail" data-id="${esc(b.id)}">Продлить / вернуть →</button></div></div>`}).join('')+(items.length>4?`<p class="hint">И ещё ${items.length-4} книг на руках</p>`:'')}
+function renderLoans(){const items=books.filter(outstanding).sort((a,b)=>dateDue(a).localeCompare(dateDue(b)));const root=$('#loans');if(!items.length){root.innerHTML=`<div class="loan-empty"><p>Пока нет книг, которые нужно вернуть. Как только возьмёте книгу в библиотеке, она появится здесь.</p><div class="loan-books-art" aria-hidden="true">
+<svg viewBox="0 0 125 110" xmlns="http://www.w3.org/2000/svg">
+<defs><linearGradient id="mariLoanViolet" x1="0" x2="1"><stop stop-color="#ab8eab"/><stop offset="1" stop-color="#645775"/></linearGradient><linearGradient id="mariLoanMint" x1="0" x2="1"><stop stop-color="#9bb6ad"/><stop offset="1" stop-color="#4d7c80"/></linearGradient></defs>
+<ellipse cx="64" cy="102" rx="53" ry="6" fill="#141727" opacity=".3"/>
+<g transform="rotate(-8 61 75)"><rect x="16" y="70" width="91" height="21" rx="3" fill="url(#mariLoanViolet)" stroke="#ead1bb" stroke-width="1.5"/><path d="M23 74h76m-76 12h76" stroke="#e8d6c1" opacity=".65"/><path d="M34 71v19m9-19v19" stroke="#f1d8bb" opacity=".6"/></g>
+<g transform="rotate(6 65 59)"><rect x="26" y="48" width="82" height="20" rx="3" fill="url(#mariLoanMint)" stroke="#d9c6a9" stroke-width="1.4"/><path d="M34 54h67m-67 9h67" stroke="#e7d3ba" opacity=".7"/><path d="M45 49v18m8-18v18" stroke="#e7d3ba" opacity=".6"/></g>
+<g><circle cx="68" cy="31" r="21" fill="#354554" stroke="#e5c9a5" stroke-width="2"/><circle cx="68" cy="31" r="16" fill="none" stroke="#e5c9a5" stroke-opacity=".45"/><path d="M68 18v13l8 5" fill="none" stroke="#f2d9b5" stroke-width="2" stroke-linecap="round"/><circle cx="68" cy="31" r="2.5" fill="#f2d9b5"/></g>
+<g fill="#f0d3ac"><path d="m110 17 2.3 6 6 2.3-6 2.3-2.3 6-2.3-6-6-2.3 6-2.3Z"/><circle cx="22" cy="25" r="2"/></g>
+</svg></div></div>`;return}root.innerHTML=items.slice(0,4).map(b=>{const days=diff(dateDue(b)),alertBefore=Number(b.loan.remindDays??7),label=days<0?`Просрочено на ${-days} дн.`:days===0?'Вернуть сегодня':days<=alertBefore?`Пора готовить к возврату · ${days} дн.`:`Осталось ${days} дн.`;return `<div class="loan"><div>${cover(b)}</div><div class="loan-info"><strong>${esc(b.title)}</strong><small>${esc(b.loan.library)} · на руках ${Math.max(0,-diff(b.loan.borrowedAt))} дн.</small><div class="due ${days<=alertBefore?'urgent':''}">${label} · ${dformat(dateDue(b))}</div><button class="mini-link" data-action="detail" data-id="${esc(b.id)}">Продлить / вернуть →</button></div></div>`}).join('')+(items.length>4?`<p class="hint">И ещё ${items.length-4} книг на руках</p>`:'')}
 function matched(){
  let out=books.filter(b=>(!searchTerm||norm(b.title+' '+b.author).includes(norm(searchTerm)))&&(!worldFilter||b.genre===worldFilter));
  out=out.filter(b=>filter==='textbooks'?b.textbook:filter==='archive'?true:filter==='all'?(!b.textbook||Boolean(searchTerm)):!b.textbook);
