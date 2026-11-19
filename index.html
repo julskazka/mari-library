@@ -1031,24 +1031,25 @@ html{scroll-padding-top:80px}body{background:radial-gradient(ellipse 32% 17% at 
 #statistics-panel .stat-item{isolation:isolate}
 #statistics-panel .mari-stat-illustration{
  position:absolute!important;
- top:-5px!important;
- right:-4px!important;
- width:56%!important;
- max-width:140px!important;
+ top:-2px!important;
+ right:-2px!important;
+ width:63%!important;
+ max-width:138px!important;
  height:auto!important;
  aspect-ratio:1/1;
  object-fit:contain;
  z-index:1!important;
  opacity:.98!important;
  pointer-events:none;
- filter:drop-shadow(0 6px 7px rgba(17,11,32,.19));
- -webkit-mask-image:radial-gradient(ellipse 73% 75% at 52% 52%,#000 43%,rgba(0,0,0,.97) 60%,transparent 94%);
- mask-image:radial-gradient(ellipse 73% 75% at 52% 52%,#000 43%,rgba(0,0,0,.97) 60%,transparent 94%);
+ filter:drop-shadow(0 6px 8px rgba(17,11,32,.20));
+ /* Artwork now has genuine alpha transparency; do not mask/crop its outlines. */
+ -webkit-mask-image:none!important;
+ mask-image:none!important;
 }
 #statistics-panel .stat-item span,
 #statistics-panel .stat-item strong{position:relative!important;z-index:2!important}
 @media(max-width:680px){
- #statistics-panel .mari-stat-illustration{width:60%!important;max-width:125px!important;right:-3px!important;top:-3px!important}
+ #statistics-panel .mari-stat-illustration{width:62%!important;max-width:123px!important;right:-2px!important;top:0!important}
 }
 @media(max-width:380px){
  #statistics-panel .mari-stat-illustration{width:57%!important}
@@ -1559,10 +1560,10 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#top-menu')&&!$(
 /* 2026-11-19 UX polish; uses existing book state, does not touch storage */
 /* Four illustrated book treasures instead of schematic SVG pictograms. */
 const mariStatArtPaths=[
- 'assets/mari-stat-read-20261119.webp',
- 'assets/mari-stat-paper-20261119.webp',
- 'assets/mari-stat-digital-20261119.webp',
- 'assets/mari-stat-favorite-20261119.webp'
+ 'assets/mari-stat-read-20261119-v2.webp',
+ 'assets/mari-stat-paper-20261119-v2.webp',
+ 'assets/mari-stat-digital-20261119-v2.webp',
+ 'assets/mari-stat-favorite-20261119-v2.webp'
 ];
 const mariPrevStats=renderStats;
 renderStats=function(){
