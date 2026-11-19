@@ -1026,6 +1026,34 @@ html{scroll-padding-top:80px}body{background:radial-gradient(ellipse 32% 17% at 
  }
 }
 </style>
+<style id="mari-illustrated-stat-icons-20261119">
+/* Painted little book-scenes, masked to dissolve into each statistic tile. */
+#statistics-panel .stat-item{isolation:isolate}
+#statistics-panel .mari-stat-illustration{
+ position:absolute!important;
+ top:-5px!important;
+ right:-4px!important;
+ width:56%!important;
+ max-width:140px!important;
+ height:auto!important;
+ aspect-ratio:1/1;
+ object-fit:contain;
+ z-index:1!important;
+ opacity:.98!important;
+ pointer-events:none;
+ filter:drop-shadow(0 6px 7px rgba(17,11,32,.19));
+ -webkit-mask-image:radial-gradient(ellipse 73% 75% at 52% 52%,#000 43%,rgba(0,0,0,.97) 60%,transparent 94%);
+ mask-image:radial-gradient(ellipse 73% 75% at 52% 52%,#000 43%,rgba(0,0,0,.97) 60%,transparent 94%);
+}
+#statistics-panel .stat-item span,
+#statistics-panel .stat-item strong{position:relative!important;z-index:2!important}
+@media(max-width:680px){
+ #statistics-panel .mari-stat-illustration{width:60%!important;max-width:125px!important;right:-3px!important;top:-3px!important}
+}
+@media(max-width:380px){
+ #statistics-panel .mari-stat-illustration{width:57%!important}
+}
+</style>
 </head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -1529,14 +1557,28 @@ $('#star-author-search')?.addEventListener('input',e=>{starSearch=e.target.value
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#top-menu')&&!$('#top-menu').hidden)closeTopMenu();});
 
 /* 2026-11-19 UX polish; uses existing book state, does not touch storage */
-const mariDrawings=[
-'<rect x="11" y="20" width="19" height="45" rx="3" fill="#a88aa8" stroke="#e7cbb2"/><path d="M16 30h10M16 56h10" stroke="#f5e4d6"/><rect x="34" y="10" width="23" height="55" rx="3" fill="#6d91a0" stroke="#d8c5b6"/><path d="M40 22h12M40 53h12" stroke="#f5dfc7"/><rect x="60" y="26" width="18" height="39" rx="3" fill="#c18d82" stroke="#ead1b9"/>',
-'<path d="M12 50h66v14H12z" fill="#aa8190" stroke="#efd6bc"/><path d="M18 55h55" stroke="#f4e0d2"/><path d="M19 32h55v15H19z" fill="#6f93a0" stroke="#f4dac4"/><path d="M26 36h42" stroke="#f0e2d8"/><path d="M27 14h41v14H27z" fill="#bea78d" stroke="#efd6bc"/>',
-'<rect x="17" y="8" width="56" height="59" rx="8" fill="#6a8299" stroke="#e9d2bb" stroke-width="2"/><rect x="24" y="16" width="43" height="40" rx="3" fill="#e9dfd4"/><path d="M30 28q11-7 16 0v20q-8-6-16 0zm16 0q9-7 15 0v20q-8-6-15 0z" fill="#c9b4bc" stroke="#816d83"/><circle cx="45" cy="61" r="2" fill="#f9e9db"/>',
-'<path d="M14 26q17-10 32 1q14-11 31-1v40q-17-8-31 1q-16-9-32-1z" fill="#e9d6bd" stroke="#bca29b" stroke-width="2"/><path d="M46 27v40M21 37q11-5 19 0M53 37q11-5 18 0" fill="none" stroke="#9c7f83"/><path d="M61 12v24l-7-5-7 5V12z" fill="#b987a0" stroke="#ead2bd"/>'
+/* Four illustrated book treasures instead of schematic SVG pictograms. */
+const mariStatArtPaths=[
+ 'assets/mari-stat-read-20261119.webp',
+ 'assets/mari-stat-paper-20261119.webp',
+ 'assets/mari-stat-digital-20261119.webp',
+ 'assets/mari-stat-favorite-20261119.webp'
 ];
 const mariPrevStats=renderStats;
-renderStats=function(){mariPrevStats();$$('#statistics-panel .stat-item').forEach((item,i)=>{if(!item.querySelector('.mari-stat-book'))item.insertAdjacentHTML('afterbegin','<svg aria-hidden="true" class="mari-stat-book" viewBox="0 0 90 76" xmlns="http://www.w3.org/2000/svg">'+mariDrawings[i]+'</svg>');});};
+renderStats=function(){
+ mariPrevStats();
+ $$('#statistics-panel .stat-item').forEach((item,i)=>{
+  if(!mariStatArtPaths[i]||item.querySelector('.mari-stat-illustration'))return;
+  const img=document.createElement('img');
+  img.className='mari-stat-illustration';
+  img.alt='';
+  img.setAttribute('aria-hidden','true');
+  img.decoding='async';
+  img.loading='lazy';
+  img.src=mariStatArtPaths[i];
+  item.insertBefore(img,item.firstChild);
+ });
+};
 function mariWorldName(id){return genreName[id]||customWorlds.find(w=>w.id===id)?.name||'Книжный мир';}
 function mariOpenWorld(id){v10WorldModal(id);const el=$('#v10-world-list');if(el)el.scrollTop=0;}
 const mariWorldStripOriginal=v10RenderWorldStrip;
