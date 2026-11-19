@@ -348,41 +348,182 @@ body{background:radial-gradient(ellipse 56% 34% at 3% 0%,rgba(76,61,105,.23),tra
 .chapter-thread{display:none!important}
 @media(max-width:700px){.page{padding-left:12px!important;padding-right:12px!important}.prologue-trail{min-height:29px;font-size:11px;margin-top:7px}.prologue-trail:before,.prologue-trail:after{max-width:26px;margin:0 7px}}
 
-/* Consolidated interaction and illustration refinements */
+
+/* Stable cross-device layout: visual repair 2026-11-19 */
 .menu-backdrop[hidden]{display:none!important}
-.sidebar::after,.illustrated-atlas::before,.scenic-reading::before,.heart-room::before,.stat-stage .stats-panel::before,.note-preview::after,.year-banner::before,.monthly-story::before{content:none!important;display:none!important}
+.menu-backdrop{position:fixed;inset:0;z-index:180;border:0;background:rgba(6,11,24,.44);backdrop-filter:blur(2px)}
+.top-menu-panel{z-index:191!important}
+#top-menu-trigger{position:relative;z-index:192}
+.sidebar::after,.illustrated-atlas::before,.scenic-reading::before,.heart-room::before,.stat-stage .stats-panel::before,.note-preview::after,.monthly-story::before{content:none!important;display:none!important}
 .brand-seal{position:relative;font-size:0!important}
 .brand-seal::before{content:"";display:block;width:22px;height:16px;border:1.5px solid #e9d6bd;border-radius:2px 6px 6px 2px;transform:skewY(-7deg);box-shadow:inset 3px 0 0 #e9d6bd55}
 .brand-seal::after{content:"";position:absolute;left:50%;top:5px;height:15px;border-left:1px solid #e9d6bd}
-.menu-backdrop{position:fixed;inset:0;z-index:180;border:0;background:rgba(6,11,24,.42);backdrop-filter:blur(2px);cursor:default}
-.top-menu-panel{z-index:191!important}
-#top-menu-trigger{position:relative;z-index:192}
-@media(min-width:900px){.floating-dock{width:min(980px,calc(100vw - 64px))!important;max-width:980px!important;padding:3px 11px!important;bottom:10px!important;border-radius:15px!important}.floating-dock>a,.floating-dock>button{height:41px!important;gap:1px!important}.floating-dock .icon{width:18px!important;height:18px!important}}
+body{overflow-x:clip}
+.page{min-width:0}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:12px 22px;flex-wrap:wrap;min-width:0;overflow-wrap:anywhere}
+.foot .dedication{white-space:normal}
+#star-author-options[hidden]{display:none!important}
+#star-author-options{flex-basis:100%;min-width:0;position:relative!important;z-index:4!important}
+#modal-screen .modal{min-height:0!important;box-sizing:border-box}
+#modal-screen .modal-head{top:-20px!important}
+#modal-screen .world-result-list,#modal-screen .mari-month-books,#modal-screen .mari-impression-list{max-height:min(42dvh,380px)!important}
+
+/* Reading and loan shelves: compact, aligned, not giant empty rectangles */
+#reading{padding:28px clamp(16px,2.7vw,29px) 23px}
+#reading .room-ribbon{margin:0 0 18px}
+#reading .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px 25px;margin-bottom:18px}
+#reading .section-head>div{min-width:0}
+#reading .section-description{max-width:370px;margin:0}
+#reading .section-title{font-size:clamp(27px,3.1vw,37px);line-height:1.08}
+#reading .read-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;align-items:stretch!important;gap:16px}
+#reading .read-grid>.ornate-panel{min-height:228px!important;height:auto!important;padding:20px 21px!important;border:1px solid #dabca25e!important;border-radius:18px!important;background:radial-gradient(circle at 92% 9%,#a88b9b24,transparent 52%),linear-gradient(140deg,#294252,#222b42)!important}
+#reading .read-grid>.loan-panel{background:radial-gradient(circle at 90% 20%,#d19f7b1c,transparent 57%),linear-gradient(135deg,#373044,#273e4c)!important}
+#reading .ornate-panel::after{content:"";position:absolute;right:19px;top:15px;width:23px;height:33px;border:1px solid #e7caa670;border-bottom-width:3px;border-radius:2px 2px 11px 11px;transform:rotate(12deg);pointer-events:none}
+#reading .panel-heading{font:normal clamp(24px,2.5vw,30px)/1.08 var(--display);padding-right:28px}
+#reading .subline{margin:5px 0 13px!important;line-height:1.45}
+#reading .reading-empty{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:12px;min-height:75px!important;max-height:none!important;padding:8px 0!important;text-align:left!important}
+#reading .reading-empty p{font-size:13px;flex:1 1 165px;max-width:260px}
+#reading .reading-empty .empty-tiny-books{flex:0 0 auto;transform:scale(.8);transform-origin:center}
+#reading .reading-empty .btn{flex:0 0 auto}
+#reading .loans-inner{margin:13px 0 13px}
+#reading .loan-actions{gap:8px}
+#reading .loan-actions .btn{white-space:normal;text-align:center;max-width:100%}
+#reading .loan-panel .hint{font-size:10px;line-height:1.5;margin-top:12px}
+#reading .reading-shelf{padding-bottom:8px}
+#reading .reading-mini{min-width:0}
 #statistics .stat-stage{max-width:1050px!important}
 #statistics-panel .stat-bubbles{max-width:none!important}
 #statistics-panel .stat-item{aspect-ratio:1.25!important;min-height:125px!important;background-image:radial-gradient(circle at 81% 17%,rgba(255,240,214,.14),transparent 43%)!important}
 #statistics-panel .mari-stat-book{width:49%;max-width:105px;top:9px;right:8px;opacity:1}
 #statistics-panel .stat-item strong{font-size:clamp(34px,4vw,50px)!important}
 #statistics-panel .stat-item span{max-width:80%;font-size:12px!important}
-#catalog-expand::before{width:13px!important;height:13px!important;border:0!important;transform:none!important;background:linear-gradient(45deg,transparent 42%,#ffe6cb 43% 57%,transparent 58%) left center/50% 100% no-repeat,linear-gradient(-45deg,transparent 42%,#ffe6cb 43% 57%,transparent 58%) right center/50% 100% no-repeat}
-#catalog-expand[aria-expanded="true"]::before{transform:rotate(180deg)!important}
-#favorite .loved-card,#favorite .random-card{overflow:hidden;min-height:220px;padding-right:30%!important;background:radial-gradient(ellipse at 90% 30%,#b99cb72b,transparent 58%),linear-gradient(145deg,#2b344a,#212a40)!important}
-#favorite .random-card{background:radial-gradient(ellipse at 90% 30%,#c7ac8c33,transparent 58%),linear-gradient(145deg,#273b48,#242d40)!important}
-#favorite .feature-illustration{display:block!important;position:absolute;right:2%;bottom:10%;width:31%;max-width:170px;opacity:.76;pointer-events:none;filter:drop-shadow(0 12px 13px #080d1b66)}
-#favorite .feature-illustration svg{width:100%;height:auto}
-#favorite .loved-card .btn,#favorite .random-card .btn{border:1px solid #efd4b78a!important;color:#f8e6d6!important;background:#e4c5a91b!important;border-radius:11px!important;min-height:42px}
-#favorite .loved-card::before,#favorite .random-card::before{content:"";position:absolute;right:16%;bottom:0;width:24%;height:100%;border-left:1px solid #e9cdb522;border-right:1px solid #e9cdb522;transform:skew(-18deg);pointer-events:none}
-#favorite .loved-card::after,#favorite .random-card::after{border-color:#e9cdb52e!important}
-#reading .ornate-panel{background-image:radial-gradient(ellipse at 96% 8%,#cbb0b52b,transparent 46%)!important}
-#reading .ornate-panel::after{content:"";position:absolute;right:18px;top:15px;width:26px;height:38px;border:1px solid #e7caa670;border-bottom-width:3px;border-radius:2px 2px 13px 13px;transform:rotate(12deg);pointer-events:none}
-#worlds .world-grid .world-text,#worlds .custom-world .world-text{left:14px!important;right:14px!important;box-sizing:border-box}
-#star-author-options[hidden]{display:none!important}
-#star-author-options{flex-basis:100%;min-width:0;position:relative!important;z-index:4!important}
-#modal-screen .modal{min-height:0!important;box-sizing:border-box}
-#modal-screen .modal-head{top:-20px!important}
-#modal-screen .world-result-list,#modal-screen .mari-month-books,#modal-screen .mari-impression-list{max-height:min(42dvh,380px)!important}
-@media(max-width:720px){#statistics-panel .stat-item{min-height:115px!important;aspect-ratio:1.17!important}#statistics-panel .mari-stat-book{width:47%;max-width:85px}#favorite .loved-card,#favorite .random-card{padding-right:26%!important}#favorite .feature-illustration{width:26%}#worlds .world-grid .world-text,#worlds .custom-world .world-text{left:12px!important;right:12px!important}#modal-screen{align-items:center!important;padding:8px!important}#modal-screen .modal{max-height:calc(100dvh - 16px)!important;margin:0 auto!important}#modal-screen .modal-head{top:-14px!important}#modal-screen .world-result-list,#modal-screen .mari-month-books,#modal-screen .mari-impression-list{max-height:48dvh!important}}
-@media(max-width:420px){#favorite .loved-card,#favorite .random-card{padding-right:20%!important}#favorite .feature-illustration{right:-4%;width:28%;opacity:.42}.year-graph{gap:4px!important}.year-bar{padding:8px 1px!important}.year-bar .bar-month{font-size:8px!important}}
+
+/* Library search: a compact integrated expand control */
+#library .catalog-search-box{min-height:51px;padding:4px 6px 4px 13px;gap:10px}
+#library .catalog-loupe{font-size:27px;line-height:1;flex:0 0 auto}
+#library .catalog-search-box input{min-height:39px;font-size:13px}
+#catalog-expand{display:flex;align-items:center;justify-content:center;flex:0 0 40px;width:40px;min-width:40px;min-height:39px;height:39px;padding:0!important;border:1px solid #e1c4ad55!important;border-radius:9px!important;background:#eee0d018!important;color:#f1dcc5;font-size:0!important;box-shadow:none!important}
+#catalog-expand::before{content:"";display:block;width:10px!important;height:10px!important;border:0!important;border-right:2px solid currentColor!important;border-bottom:2px solid currentColor!important;transform:translateY(-2px) rotate(45deg)!important;background:none!important}
+#catalog-expand[aria-expanded="true"]::before{transform:translateY(2px) rotate(225deg)!important}
+#library .catalog-view-tools{flex-wrap:wrap;gap:8px}
+#library .catalog-view-tools .view-switch{margin-left:auto}
+
+/* Illustrated book worlds: artwork as background, all labels safely inside */
+#worlds .world-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px!important}
+#worlds .world-grid .world{min-width:0;min-height:290px!important;height:auto;border-radius:19px!important;overflow:hidden!important;padding:0!important;isolation:isolate}
+#worlds .world-grid .world::before{inset:8px;border-radius:12px;z-index:4;pointer-events:none}
+#worlds .world-grid .world::after{z-index:1;pointer-events:none}
+#worlds .world-grid .world-paint{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;overflow:hidden!important;z-index:0}
+#worlds .world-grid .world-paint img{width:100%!important;height:100%!important;object-fit:cover!important;object-position:center!important;display:block}
+#worlds .world-grid .world-number{position:absolute;top:18px!important;left:18px!important;z-index:5!important;padding:5px 10px;border:1px solid #dfc2a17a;border-radius:9px;background:#20273cb8;color:#ffeddb;font-size:14px}
+#worlds .world-grid .world-text{position:absolute!important;z-index:3!important;left:0!important;right:0!important;bottom:0!important;min-width:0!important;box-sizing:border-box!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;padding:70px 23px 20px!important;background:linear-gradient(180deg,transparent 0%,#1b2439d9 40%,#172136f5 100%)!important}
+#worlds .world-grid .world-text small{font-size:10px;line-height:1.3}
+#worlds .world-grid .world-text h3{font-size:clamp(25px,2.55vw,33px)!important;line-height:1.02!important;max-width:100%;margin:7px 0 9px}
+#worlds .world-grid .world-text p{font-size:12px!important;line-height:1.4!important;min-height:0!important;max-width:100%;margin:0}
+#worlds .world-grid .world-counter{display:inline-flex;align-self:flex-start;margin-top:13px;max-width:100%;padding:5px 11px!important;border:1px solid #ebcbae7a!important;border-radius:999px!important;background:#111d30b5!important;color:#f3dac0;font:normal 11px/1.3 var(--sans);white-space:normal;overflow-wrap:anywhere}
+#worlds .custom-world .world-text{left:0!important;right:0!important;bottom:0!important;box-sizing:border-box;max-width:100%}
+
+/* Favorite and surprise cards: content never sits beneath the artwork */
+#favorite .loved{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#favorite .loved-card,#favorite .random-card{position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:flex-start;min-width:0;min-height:224px!important;padding:25px 32% 23px 26px!important;border:1px solid #e8bd9c73!important;border-radius:19px!important;overflow:hidden!important;background:radial-gradient(ellipse at 92% 75%,#a58aa43b,transparent 54%),linear-gradient(145deg,#30394d,#202d44)!important}
+#favorite .random-card{background:radial-gradient(ellipse at 93% 77%,#b29c8045,transparent 55%),linear-gradient(145deg,#29424a,#263145)!important}
+#favorite .loved-card::before,#favorite .random-card::before,#favorite .loved-card::after,#favorite .random-card::after{content:none!important;display:none!important}
+#favorite .loved-card>.kicker,#favorite .random-card>.kicker,#favorite .loved-card>h3,#favorite .random-card>h3,#favorite .loved-card>p,#favorite .random-card>p{position:relative;z-index:2;max-width:100%!important;overflow-wrap:break-word}
+#favorite .loved-card h3,#favorite .random-card h3{font:normal clamp(25px,2.8vw,34px)/1.05 var(--display)!important;margin:8px 0 11px;color:#ffecdf}
+#favorite .loved-card p,#favorite .random-card p{font:normal 12px/1.55 var(--sans)!important;color:#e7d9dc;margin-bottom:17px}
+#favorite .loved-card .btn,#favorite .random-card .btn{position:relative;z-index:3;margin-top:auto;max-width:100%;border:1px solid #efd4b78a!important;color:#f8e6d6!important;background:#e4c5a91b!important;border-radius:10px!important;min-height:40px}
+#favorite .feature-illustration{display:flex!important;align-items:end;justify-content:center;position:absolute!important;z-index:1!important;left:auto!important;top:auto!important;right:14px!important;bottom:16px!important;width:29%!important;max-width:154px!important;height:auto!important;max-height:80%!important;opacity:.75!important;pointer-events:none;filter:none}
+#favorite .feature-illustration svg{display:block;width:100%!important;height:auto!important;max-height:165px!important;object-fit:contain;filter:drop-shadow(0 9px 12px #080d1b66)}
+
+/* A small illustration and clean vertical rhythm for an empty wish shelf */
+#wishes .section-head{gap:14px;align-items:center}
+#wishes .section-head .btn{flex:none}
+#wishes .wish-empty{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:24px 27px;border-radius:15px}
+#wishes .wish-empty>div:first-child{display:flex;flex-direction:column;align-items:flex-start;gap:11px;min-width:0;max-width:670px;position:relative;z-index:2}
+#wishes .wish-empty strong{font-size:clamp(22px,2.4vw,29px);line-height:1.13;margin:0}
+#wishes .wish-empty p{margin:0;max-width:650px}
+#wishes .wish-empty .btn{margin:2px 0 0;min-height:43px;white-space:normal}
+#wishes .wish-empty-art{flex:0 0 clamp(115px,22%,200px);width:clamp(115px,22%,200px);max-width:200px;align-self:center;opacity:.86;pointer-events:none}
+#wishes .wish-empty-art svg{display:block;width:100%;height:auto}
+
+/* Book of the year: a graphic with enough room for both title and action */
+#year .year-banner{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:23px;min-height:170px!important;padding:25px 30px!important;overflow:hidden}
+#year .year-banner::before{content:none!important;display:none!important}
+#year .year-banner>div:first-child{position:relative;z-index:2;min-width:0;max-width:650px}
+#year .year-banner h2{font-size:clamp(30px,3.5vw,43px);line-height:1.08;overflow-wrap:anywhere}
+#year .year-banner p{font-size:12px;line-height:1.55}
+#year .year-banner-art{position:absolute;z-index:1;right:19%;bottom:-35px;width:clamp(165px,22%,265px);opacity:.22;pointer-events:none}
+#year .year-banner-art svg{display:block;width:100%;height:auto}
+#year .year-banner .btn{position:relative;z-index:2;flex:0 0 auto;max-width:100%;white-space:normal;text-align:center}
+
+/* Dock on desktop: wider, flatter, every label has its own actual icon */
+@media(min-width:900px){
+.floating-dock{width:min(970px,calc(100vw - 56px))!important;max-width:970px!important;bottom:10px!important;padding:5px 10px!important;gap:4px!important;border-radius:16px!important}
+.floating-dock>a,.floating-dock>button{flex:1 1 0!important;width:auto!important;min-width:0;height:48px!important;gap:3px!important;padding:4px 7px!important;flex-direction:column!important}
+.floating-dock .icon{width:18px!important;height:18px!important}
+.floating-dock small{font-size:10px;line-height:1.15}
+}
+@media(max-width:899px){
+#reading .section-head{align-items:start;flex-direction:column;gap:8px}
+#reading .section-description{max-width:100%}
+#reading .read-grid{grid-template-columns:1fr!important;gap:12px}
+#reading .read-grid>.ornate-panel{min-height:175px!important}
+#favorite .loved-card,#favorite .random-card{min-height:208px!important}
+#worlds .world-grid .world{min-height:268px!important}
+#year .year-banner-art{right:15%;opacity:.13}
+}
+@media(max-width:700px){
+.foot{justify-content:center;text-align:center;gap:8px;padding-bottom:85px}
+#reading{padding:21px 15px 18px!important}
+#reading .room-ribbon{margin:0 0 15px}
+#reading .section-head{margin-bottom:13px}
+#reading .section-title{font-size:clamp(26px,7vw,33px)!important}
+#reading .read-grid>.ornate-panel{min-height:0!important;padding:17px 17px!important}
+#reading .reading-empty{gap:10px}
+#reading .reading-empty .empty-tiny-books{display:none}
+#reading .reading-empty p{flex:1 1 100%;font-size:12px}
+#reading .loans-inner{margin:13px 0}
+#reading .loan-actions .btn{min-height:41px}
+#statistics-panel .stat-item{min-height:112px!important;aspect-ratio:1.18!important}
+#statistics-panel .mari-stat-book{width:47%;max-width:85px}
+#library .catalog-search-box{min-height:49px}
+#catalog-expand{width:37px;min-width:37px;flex-basis:37px;height:37px}
+#worlds .world-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important}
+#worlds .world-grid .world{min-height:254px!important}
+#worlds .world-grid .world-text{padding:53px 12px 13px!important}
+#worlds .world-grid .world-number{top:10px!important;left:10px!important;font-size:12px}
+#worlds .world-grid .world-text h3{font-size:clamp(19px,4.7vw,24px)!important}
+#worlds .world-grid .world-text p{font-size:10px!important}
+#worlds .world-grid .world-counter{font-size:10px;padding:4px 8px!important;margin-top:9px}
+#favorite .loved{grid-template-columns:1fr;gap:11px}
+#favorite .loved-card,#favorite .random-card{min-height:194px!important;padding:19px 32% 20px 19px!important}
+#favorite .loved-card h3,#favorite .random-card h3{font-size:clamp(24px,6.2vw,29px)!important}
+#favorite .loved-card p,#favorite .random-card p{font-size:11px!important}
+#favorite .feature-illustration{right:10px!important;bottom:10px!important;width:27%!important;opacity:.6!important}
+#wishes .section-head{align-items:flex-start;flex-direction:column;gap:10px}
+#wishes .wish-empty{padding:18px 17px;min-height:178px}
+#wishes .wish-empty-art{width:105px;flex-basis:105px;opacity:.45}
+#year .year-banner{align-items:stretch;flex-direction:column;gap:14px;min-height:0!important;padding:21px 19px!important}
+#year .year-banner h2{font-size:clamp(30px,8vw,39px)!important}
+#year .year-banner .btn{align-self:flex-start;min-height:43px}
+#year .year-banner-art{right:-15px;bottom:-27px;width:180px;opacity:.12}
+#modal-screen{align-items:center!important;padding:8px!important}
+#modal-screen .modal{max-height:calc(100dvh - 16px)!important;margin:0 auto!important}
+#modal-screen .modal-head{top:-14px!important}
+#modal-screen .world-result-list,#modal-screen .mari-month-books,#modal-screen .mari-impression-list{max-height:48dvh!important}
+}
+@media(max-width:470px){
+#worlds .world-grid{grid-template-columns:1fr!important;gap:12px!important}
+#worlds .world-grid .world{min-height:248px!important}
+#worlds .world-grid .world-text{padding:66px 19px 16px!important}
+#worlds .world-grid .world-text h3{font-size:28px!important}
+#worlds .world-grid .world-text p{font-size:12px!important}
+#favorite .loved-card,#favorite .random-card{padding-right:31%!important}
+#wishes .wish-empty-art{position:absolute;right:8px;bottom:9px;opacity:.16}
+#wishes .wish-empty>div:first-child{max-width:100%}
+#wishes .wish-empty .btn{max-width:100%}
+#year .year-banner .btn{align-self:stretch}
+}
 
 </style>
 <style id="v10-final-overrides">
@@ -720,7 +861,7 @@ html{scroll-padding-top:80px}body{background:radial-gradient(ellipse 32% 17% at 
 <button class="world mystery" data-world="mystery"><span class="world-number">02 /</span><span aria-hidden="true" class="world-paint"><img alt="" loading="lazy" src="assets/world-mystery-af58d3ef2ba9.webp"/></span><div class="world-text"><small>Секреты и загадки</small><h3>Тайны и<br/>детективы</h3><p>Истории, которые хочется разгадать</p><span class="world-counter" id="world-count-mystery">Истории на полке</span></div></button>
 <button class="world adventure" data-world="adventure"><span class="world-number">03 /</span><span aria-hidden="true" class="world-paint"><img alt="" loading="lazy" src="assets/world-adventure-694d6f1473f5.webp"/></span><div class="world-text"><small>За горизонт</small><h3>Приключения</h3><p>Новые места и удивительные встречи</p><span class="world-counter" id="world-count-adventure">Истории на полке</span></div></button>
 <button class="world fantasy" data-world="fantasy"><span class="world-number">04 /</span><span aria-hidden="true" class="world-paint"><img alt="" loading="lazy" src="assets/world-fantasy-15f397cfe04c.webp"/></span><div class="world-text"><small>Там, где возможно всё</small><h3>Сказочные<br/>миры</h3><p>Немного волшебства между страницами</p><span class="world-counter" id="world-count-fantasy">Истории на полке</span></div></button>
-<button class="world other" data-world="other"><span class="world-number">05 /</span><span aria-hidden="true" class="world-paint other-paint"><img alt="" loading="lazy" src="assets/world-other-7f444ee3e96e.webp"/></span><div class="world-text"><small>Разные голоса</small><h3>Другие истории</h3><p>Рассказы, стихи, книги без точной темы</p><span class="world-counter" id="world-count-other"></span></div></button></div><div class="custom-world-grid" id="custom-worlds"></div></section><div aria-hidden="true" class="page-turn"><span class="ornamental-line"></span><span class="page-turn-leaf">✧   ❦   ✧</span><span class="ornamental-line"></span></div><section class="section" id="memories"><div class="section-head"><div><div class="kicker">Личные страницы</div><h2 class="section-title">То, что хочется сохранить</h2></div><p class="section-description">Не сочинение для школы. Просто то, что однажды хочется вспомнить.</p></div><div class="keepers"><div class="memory-page"><div class="memory-copy"><div class="kicker">Заметки на полях</div><h2>Вещи, которые<br/>остаются с нами</h2><blockquote>«Между страницами остаются наши маленькие чудеса».</blockquote><p>Впечатления, любимые моменты, рисунки, фотографии. Здесь ничего не нужно писать «правильно».</p><button class="paper-btn" data-action="impression">Записать впечатление</button></div><img alt="Нежная акварельная книга с цветами и луной" class="memory-img" id="memoryImage" src="assets/memory-book-d98783ad6597.webp"/></div><div class="impressions-intro"><div><span class="impression-mark">✎</span><h3>Мои книжные заметки</h3><p>Все чувства, рисунки и фотографии — рядом с книгой, к которой они относятся.</p></div><a class="impressions-link" href="impressions.html">Все мои впечатления <span aria-hidden="true">↗</span></a></div></div></section><div class="notes-section" id="notes-gallery"><div class="notes-heading"><div><div class="kicker">Сокровища между страницами</div><h3>Последние впечатления</h3></div><button class="mini-link" data-action="impression">Добавить воспоминание →</button><a class="notes-all" href="impressions.html">Все мои впечатления ↗</a></div><div class="notes-grid" id="recent-notes"></div></div><section class="section heart-room" id="favorite"><div class="section-head"><div><div class="kicker">Книги, к которым возвращаются</div><h2 class="section-title">Книги, которые особенно близки</h2></div></div><div class="loved"><div class="loved-card"><div class="kicker">Книга с особой закладкой</div><h3>Мои любимые истории</h3><p>Те, к которым хочется возвращаться, даже когда они закончились.</p><button class="btn ghost small" data-action="show-favorites">Открыть любимое</button><div aria-hidden="true" class="feature-illustration"><svg viewbox="0 0 156 126" xmlns="http://www.w3.org/2000/svg"><rect fill="#e5bdaf" height="43" opacity=".65" rx="5" stroke="#f5d7bb" width="107" x="24" y="57"></rect><path d="M34 70h88 M34 90h88" stroke="#784b62" stroke-opacity=".55"></path><path d="M23 100l18-45 54 4-17 47Z" fill="#978db0" stroke="#e8d1ba" stroke-width="2"></path><path d="M42 71l39 3M37 82l41 3" opacity=".7" stroke="#e6cdbb"></path><path d="M96 24l23 12-10 30-21-12z" fill="#d6b3bd" stroke="#e8cbb9"></path><path d="M104 31l-13 16" stroke="#ac7789"></path><path d="M73 59q0-25 9-34M80 44q-14-13-19-10M83 39q7-16 17-15" fill="none" stroke="#b9d4bd" stroke-width="2"></path><path d="M81 44q-16-10-17-18q12 2 17 18M84 38q10-17 22-11q-8 12-22 11" fill="#c5c9b4"></path></svg></div></div><div class="random-card"><div class="kicker">Выбрать книгу</div><h3>Удиви меня</h3><p>Пусть случай решит, что открыть дальше: из списка желаний и отложенных книг.</p><button class="btn ghost small" data-action="random">Удиви меня</button><div aria-hidden="true" class="feature-illustration"><svg viewbox="0 0 156 126" xmlns="http://www.w3.org/2000/svg"><path d="M25 42Q78 18 131 42L122 99Q72 85 27 105Z" fill="#e8d2bc" stroke="#f9e9c9" stroke-width="2"></path><path d="M41 55q30-8 58-4M39 68q27-7 54-2M37 80q20-6 40-4" fill="none" stroke="#846b78" stroke-opacity=".6"></path><g fill="none" stroke="#f6daac" stroke-width="3" transform="rotate(36 96 44)"><circle cx="95" cy="32" r="14"></circle><path d="M95 46v42l-8 4 8 6 8-6-8-4"></path></g><path d="M30 111q50-11 101 0" fill="none" stroke="#cfa6a7"></path></svg></div></div></div></section><section class="section wish-chapter" id="wishes"><div class="section-head"><div><div class="kicker">Неоткрытые двери</div><h2 class="section-title">Полка желаний</h2></div><button class="btn primary small" data-action="wish-add">+ Добавить желание</button></div><div class="wishlist-live" id="wishlist-live"></div></section><section class="section chronicles-room" id="history"><div class="section-head"><div><div class="kicker">Истории по годам</div><h2 class="section-title">Лента прочитанных лет</h2></div><p class="section-description">Открывай свой прошлый год и вспоминай, какие истории тогда были рядом.</p></div><div class="history-grid"><div class="timeline"><h3>История чтения</h3><div class="history-items" id="timeline"></div><div class="monthly-review" id="month-review"></div><p class="hint">Время чтения здесь может быть примерным. Если точная дата неизвестна, не выдумываем её.</p></div></div></section><section class="section year-room" id="year"><div class="year-banner"><div><div class="kicker">Настоящие книги из дневника</div><h2>Мой книжный 2026</h2><p>Настоящие книги и истории 2026 года из твоего дневника.</p></div><button class="btn primary" data-action="year">Ко всем книгам года</button></div><div class="year-contents"><div class="year-caption"><div><span class="kicker">Подлинный читательский год</span><h3 id="year-summary">Книги 2026 года</h3></div></div><div aria-label="Как показать книги года" class="year-view-switch" role="group"><button aria-pressed="true" class="year-view-btn active" data-action="year-view" data-year-view="grid" type="button">Плитки</button><button aria-pressed="false" class="year-view-btn" data-action="year-view" data-year-view="list" type="button">Список</button></div><div class="year-month-filter" id="year-month-filters"></div><div class="year-books-grid" id="year-grid"></div></div></section><section class="section cosmos-chapter" id="constellation"><div class="section-head cosmos-heading"><div><div class="kicker">Финальная глава · Авторские созвездия</div><h2 class="section-title">Небо книжных открытий</h2></div><p class="section-description">Здесь звезда — это автор, а маленькие огоньки вокруг неё — прочитанные книги. Нажми на созвездие, чтобы увидеть все истории автора.</p></div><div class="author-cosmos"><div class="cosmos-heading-bar"><span>Карта прочитанных авторов</span><span id="star-count">Авторы и прочитанные книги</span></div><div aria-label="Созвездия авторов" class="author-sky" id="stars-live"></div><div class="cosmos-find"><label for="star-author-search">Найти автора на книжном небе</label><input autocomplete="off" id="star-author-search" placeholder="Имя или фамилия автора…"/><div class="author-search-results" id="star-author-options"></div></div><p class="cosmos-hint">Нажми на автора, чтобы увидеть все его книги. Ищи по имени или фамилии — небо покажет нужное созвездие.</p><div class="constellation-actions"><button class="btn ghost small" data-action="stars-more" id="stars-more" type="button">Показать ещё авторов</button><span>Новые прочитанные книги пополняют созвездия автоматически</span></div></div></section><section class="safety-bar" id="safety"><div><h3>Всё важное — сберечь</h3><p>Сайт и исходные 416 произведений уже размещены на GitHub. Новые книги, избранное и впечатления пока сохраняются только в этом браузере; для переноса на другое устройство нужно скачать и импортировать архив. Не загружай сюда приватные фотографии, пока нет защищённого хранилища.</p></div><div class="safety-actions"><button class="btn ghost small" data-action="export"><svg class="icon sm"><use href="#i-download"></use></svg>Скачать архив</button><button class="btn tonal small" data-action="import"><svg class="icon sm"><use href="#i-upload"></use></svg>Загрузить архив</button><input accept=".json,application/json" hidden="" id="import-file" type="file"/></div></section><footer class="foot"><span>Между страницами</span>Место, где каждая история может остаться навсегда <span class="dedication">для Мари · с любовью</span></footer></main></div>
+<button class="world other" data-world="other"><span class="world-number">05 /</span><span aria-hidden="true" class="world-paint other-paint"><img alt="" loading="lazy" src="assets/world-other-7f444ee3e96e.webp"/></span><div class="world-text"><small>Разные голоса</small><h3>Другие истории</h3><p>Рассказы, стихи, книги без точной темы</p><span class="world-counter" id="world-count-other"></span></div></button></div><div class="custom-world-grid" id="custom-worlds"></div></section><div aria-hidden="true" class="page-turn"><span class="ornamental-line"></span><span class="page-turn-leaf">✧   ❦   ✧</span><span class="ornamental-line"></span></div><section class="section" id="memories"><div class="section-head"><div><div class="kicker">Личные страницы</div><h2 class="section-title">То, что хочется сохранить</h2></div><p class="section-description">Не сочинение для школы. Просто то, что однажды хочется вспомнить.</p></div><div class="keepers"><div class="memory-page"><div class="memory-copy"><div class="kicker">Заметки на полях</div><h2>Вещи, которые<br/>остаются с нами</h2><blockquote>«Между страницами остаются наши маленькие чудеса».</blockquote><p>Впечатления, любимые моменты, рисунки, фотографии. Здесь ничего не нужно писать «правильно».</p><button class="paper-btn" data-action="impression">Записать впечатление</button></div><img alt="Нежная акварельная книга с цветами и луной" class="memory-img" id="memoryImage" src="assets/memory-book-d98783ad6597.webp"/></div><div class="impressions-intro"><div><span class="impression-mark">✎</span><h3>Мои книжные заметки</h3><p>Все чувства, рисунки и фотографии — рядом с книгой, к которой они относятся.</p></div><a class="impressions-link" href="impressions.html">Все мои впечатления <span aria-hidden="true">↗</span></a></div></div></section><div class="notes-section" id="notes-gallery"><div class="notes-heading"><div><div class="kicker">Сокровища между страницами</div><h3>Последние впечатления</h3></div><button class="mini-link" data-action="impression">Добавить воспоминание →</button><a class="notes-all" href="impressions.html">Все мои впечатления ↗</a></div><div class="notes-grid" id="recent-notes"></div></div><section class="section heart-room" id="favorite"><div class="section-head"><div><div class="kicker">Книги, к которым возвращаются</div><h2 class="section-title">Книги, которые особенно близки</h2></div></div><div class="loved"><div class="loved-card"><div class="kicker">Книга с особой закладкой</div><h3>Мои любимые истории</h3><p>Те, к которым хочется возвращаться, даже когда они закончились.</p><button class="btn ghost small" data-action="show-favorites">Открыть любимое</button><div aria-hidden="true" class="feature-illustration"><svg viewbox="0 0 156 126" xmlns="http://www.w3.org/2000/svg"><rect fill="#e5bdaf" height="43" opacity=".65" rx="5" stroke="#f5d7bb" width="107" x="24" y="57"></rect><path d="M34 70h88 M34 90h88" stroke="#784b62" stroke-opacity=".55"></path><path d="M23 100l18-45 54 4-17 47Z" fill="#978db0" stroke="#e8d1ba" stroke-width="2"></path><path d="M42 71l39 3M37 82l41 3" opacity=".7" stroke="#e6cdbb"></path><path d="M96 24l23 12-10 30-21-12z" fill="#d6b3bd" stroke="#e8cbb9"></path><path d="M104 31l-13 16" stroke="#ac7789"></path><path d="M73 59q0-25 9-34M80 44q-14-13-19-10M83 39q7-16 17-15" fill="none" stroke="#b9d4bd" stroke-width="2"></path><path d="M81 44q-16-10-17-18q12 2 17 18M84 38q10-17 22-11q-8 12-22 11" fill="#c5c9b4"></path></svg></div></div><div class="random-card"><div class="kicker">Выбрать книгу</div><h3>Удиви меня</h3><p>Пусть случай решит, что открыть дальше: из списка желаний и отложенных книг.</p><button class="btn ghost small" data-action="random">Удиви меня</button><div aria-hidden="true" class="feature-illustration"><svg viewbox="0 0 156 126" xmlns="http://www.w3.org/2000/svg"><path d="M25 42Q78 18 131 42L122 99Q72 85 27 105Z" fill="#e8d2bc" stroke="#f9e9c9" stroke-width="2"></path><path d="M41 55q30-8 58-4M39 68q27-7 54-2M37 80q20-6 40-4" fill="none" stroke="#846b78" stroke-opacity=".6"></path><g fill="none" stroke="#f6daac" stroke-width="3" transform="rotate(36 96 44)"><circle cx="95" cy="32" r="14"></circle><path d="M95 46v42l-8 4 8 6 8-6-8-4"></path></g><path d="M30 111q50-11 101 0" fill="none" stroke="#cfa6a7"></path></svg></div></div></div></section><section class="section wish-chapter" id="wishes"><div class="section-head"><div><div class="kicker">Неоткрытые двери</div><h2 class="section-title">Полка желаний</h2></div><button class="btn primary small" data-action="wish-add">+ Добавить желание</button></div><div class="wishlist-live" id="wishlist-live"></div></section><section class="section chronicles-room" id="history"><div class="section-head"><div><div class="kicker">Истории по годам</div><h2 class="section-title">Лента прочитанных лет</h2></div><p class="section-description">Открывай свой прошлый год и вспоминай, какие истории тогда были рядом.</p></div><div class="history-grid"><div class="timeline"><h3>История чтения</h3><div class="history-items" id="timeline"></div><div class="monthly-review" id="month-review"></div><p class="hint">Время чтения здесь может быть примерным. Если точная дата неизвестна, не выдумываем её.</p></div></div></section><section class="section year-room" id="year"><div class="year-banner"><div><div class="kicker">Настоящие книги из дневника</div><h2>Мой книжный 2026</h2><p>Настоящие книги и истории 2026 года из твоего дневника.</p></div><div aria-hidden="true" class="year-banner-art"><svg viewBox="0 0 270 205" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#ffe2bd" stroke-width="3"><path d="M135 178V51Q92 18 32 46v127q57-21 103 5Zm0 0V51q46-33 103-5v127q-55-21-103 5Z" fill="#e3c9bf" fill-opacity=".25"/><path d="M135 66Q84 40 46 57m89 27Q84 59 46 76m89 27Q83 78 46 94m89 27Q84 98 46 113m89 27Q83 117 46 132m89-66q51-26 89-9m-89 27q51-25 89-8m-89 27q52-25 89-9m-89 27q52-23 89-8m-89 27q51-23 89-8" opacity=".5"/><path d="M25 181q64-18 110 12 52-30 109-12M58 32l5-11 5 11 11 5-11 5-5 11-5-11-11-5zM203 21l4-9 4 9 9 4-9 4-4 9-4-9-9-4z" stroke-linejoin="round"/></g></svg></div><button class="btn primary" data-action="year">Ко всем книгам года</button></div><div class="year-contents"><div class="year-caption"><div><span class="kicker">Подлинный читательский год</span><h3 id="year-summary">Книги 2026 года</h3></div></div><div aria-label="Как показать книги года" class="year-view-switch" role="group"><button aria-pressed="true" class="year-view-btn active" data-action="year-view" data-year-view="grid" type="button">Плитки</button><button aria-pressed="false" class="year-view-btn" data-action="year-view" data-year-view="list" type="button">Список</button></div><div class="year-month-filter" id="year-month-filters"></div><div class="year-books-grid" id="year-grid"></div></div></section><section class="section cosmos-chapter" id="constellation"><div class="section-head cosmos-heading"><div><div class="kicker">Финальная глава · Авторские созвездия</div><h2 class="section-title">Небо книжных открытий</h2></div><p class="section-description">Здесь звезда — это автор, а маленькие огоньки вокруг неё — прочитанные книги. Нажми на созвездие, чтобы увидеть все истории автора.</p></div><div class="author-cosmos"><div class="cosmos-heading-bar"><span>Карта прочитанных авторов</span><span id="star-count">Авторы и прочитанные книги</span></div><div aria-label="Созвездия авторов" class="author-sky" id="stars-live"></div><div class="cosmos-find"><label for="star-author-search">Найти автора на книжном небе</label><input autocomplete="off" id="star-author-search" placeholder="Имя или фамилия автора…"/><div class="author-search-results" id="star-author-options"></div></div><p class="cosmos-hint">Нажми на автора, чтобы увидеть все его книги. Ищи по имени или фамилии — небо покажет нужное созвездие.</p><div class="constellation-actions"><button class="btn ghost small" data-action="stars-more" id="stars-more" type="button">Показать ещё авторов</button><span>Новые прочитанные книги пополняют созвездия автоматически</span></div></div></section><section class="safety-bar" id="safety"><div><h3>Всё важное — сберечь</h3><p>Сайт и исходные 416 произведений уже размещены на GitHub. Новые книги, избранное и впечатления пока сохраняются только в этом браузере; для переноса на другое устройство нужно скачать и импортировать архив. Не загружай сюда приватные фотографии, пока нет защищённого хранилища.</p></div><div class="safety-actions"><button class="btn ghost small" data-action="export"><svg class="icon sm"><use href="#i-download"></use></svg>Скачать архив</button><button class="btn tonal small" data-action="import"><svg class="icon sm"><use href="#i-upload"></use></svg>Загрузить архив</button><input accept=".json,application/json" hidden="" id="import-file" type="file"/></div></section><footer class="foot"><span>Между страницами</span>Место, где каждая история может остаться навсегда <span class="dedication">для Мари · с любовью</span></footer></main></div>
 
 <div class="modal-screen" id="modal-screen" role="presentation"><div aria-labelledby="modal-heading" aria-modal="true" class="modal" role="dialog"><div class="modal-head"><h2 id="modal-heading">Новая книга</h2><button aria-label="Закрыть окно" class="close" data-action="close"><svg class="icon sm"><use href="#i-close"></use></svg></button></div><div id="modal-content"></div></div></div><div aria-live="polite" class="toast" id="toast" role="status"></div>
 <script>
@@ -917,7 +1058,7 @@ function createWorldForm(){
  });
 }
 function renderWishlist(){const list=books.filter(b=>b.status==='want'&&!b.textbook);const root=$('#wishlist-live');if(!root)return;
- if(!list.length){root.innerHTML=`<div class="wish-empty"><div><strong>Здесь пока ждёт первая мечта</strong><p>Какую книгу хочется прочитать? Добавь название и автора — и «Удиви меня» сможет выбрать историю из желаний.</p><button class="btn primary small" data-action="wish-add">${ico('plus')} Добавить первую книгу</button></div></div>`;return;}
+ if(!list.length){root.innerHTML=`<div class="wish-empty"><div><strong>Здесь пока ждёт первая мечта</strong><p>Какую книгу хочется прочитать? Добавь название и автора — и «Удиви меня» сможет выбрать историю из желаний.</p><button class="btn primary small" data-action="wish-add">${ico('plus')} Добавить первую книгу</button></div><div aria-hidden="true" class="wish-empty-art"><svg viewBox="0 0 180 150" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#efcfba" stroke-width="2.5" stroke-linejoin="round"><path d="M90 128Q54 100 14 115V36q45-18 76 12 31-30 76-12v79q-40-15-76 13Z" fill="#d2a8ba" fill-opacity=".25"/><path d="M90 48v80M25 51q26-8 52 11M25 68q26-8 52 11M25 85q26-8 52 11m13-34q26-19 52-11m-52 28q26-19 52-11m-52 28q26-19 52-11" opacity=".6"/><path d="M38 23l4-10 4 10 10 4-10 4-4 10-4-10-10-4zm97-4 3-8 3 8 8 3-8 3-3 8-3-8-8-3z" fill="#efd7ac" fill-opacity=".22"/></g></svg></div></div>`;return;}
  root.innerHTML=`<div class="wish-books">${list.slice(0,16).map(b=>`<button class="wish-book" data-action="detail" data-id="${esc(b.id)}"><span><strong>${esc(b.title)}</strong><br><small>${esc(b.author)}</small></span></button>`).join('')}</div>${list.length>16?`<p class="hint">И ещё ${list.length-16} книг на полке желаний</p>`:''}`;}
 function renderYear(){
  const {groups}=monthlyData(),yearbooks=Object.entries(groups).filter(([k])=>k.startsWith('2026-')).flatMap(([month,list])=>list.map(b=>({b,month}))).sort((a,b)=>a.month.localeCompare(b.month)||a.b.title.localeCompare(b.b.title,'ru'));
@@ -1203,7 +1344,7 @@ $('#star-author-search')?.addEventListener('focus',()=>renderAuthorSearch());
 $('#star-author-search')?.addEventListener('input',()=>renderAuthorSearch());
 const mariTools=$('#library .shelf-tools');if(mariTools&&!$('#mari-current-shelf'))mariTools.insertAdjacentHTML('afterend','<div class="mari-current-shelf" id="mari-current-shelf" aria-live="polite"></div>');
 const mariCatalogArrow=$('#catalog-expand');if(mariCatalogArrow){mariCatalogArrow.textContent='';mariCatalogArrow.setAttribute('aria-label','Показать или скрыть список книг');mariCatalogArrow.title='Показать или скрыть список книг';}
-const mariDockJournal=document.querySelector('.floating-dock a[href="impressions.html"] use');if(mariDockJournal)mariDockJournal.setAttribute('href','#i-edit');
+
 const mariYearText=$('#year .year-banner p');if(mariYearText)mariYearText.textContent='Выбирай год и месяц, чтобы увидеть прочитанные книги.';
 
 v10InitLayout();
@@ -1218,7 +1359,7 @@ render();const params=new URLSearchParams(location.search);const deep=params.get
 <a class="dock-d" href="#library" title="Все книги"><svg class="icon"><use href="#i-book"></use></svg><small>Книги</small></a>
 <a class="dock-d" href="#reading" title="Сейчас читаю"><svg class="icon"><use href="#i-feather"></use></svg><small>Читаю</small></a>
 <button aria-label="Добавить книгу" class="dock-add" data-action="add"><svg class="icon"><use href="#i-plus"></use></svg><small>Добавить</small></button>
-<a class="dock-d" href="impressions.html" title="Все впечатления"><svg class="icon"><use href="#i-journal"></use></svg><small>Впечатления</small></a>
+<a class="dock-d" href="impressions.html" title="Все впечатления"><svg class="icon"><use href="#i-edit"></use></svg><small>Впечатления</small></a>
 <a class="dock-d" href="#statistics" title="Статистика"><svg class="icon"><use href="#i-chart"></use></svg><small>Итоги</small></a>
 <button aria-controls="top-menu" aria-label="Открыть всё меню" class="dock-menu" data-action="open-menu" type="button"><span aria-hidden="true" class="dock-burger"><i></i><i></i><i></i></span><small>Меню</small></button>
 </nav><button aria-label="Наверх" data-action="to-top" hidden="" id="back-to-top" title="Вернуться к началу" type="button"><span aria-hidden="true">↑</span></button></body></html>
