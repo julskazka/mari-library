@@ -451,36 +451,6 @@ body{overflow-x:clip}
 #wishes .wish-empty-art svg{display:block;width:100%;height:auto}
 
 
-/* Reading room at tablet and mobile widths */
-@media(max-width:899px){
-#reading .section-head{align-items:flex-start;flex-direction:column;gap:8px}
-#reading .section-description{max-width:100%}
-#reading .read-grid{grid-template-columns:1fr!important;gap:12px}
-#reading .read-grid>.ornate-panel{padding:20px 20px 17px!important}
-#reading .reading-empty{min-height:145px!important}
-#reading .reading-books-art{max-width:150px}
-}
-@media(max-width:700px){
-#reading{padding:21px 15px 18px!important}
-#reading .room-ribbon{margin:0 0 14px}
-#reading .section-head{margin-bottom:13px}
-#reading .section-title{font-size:clamp(26px,7vw,33px)!important}
-#reading .read-grid>.ornate-panel{padding:18px 18px 16px!important;min-height:0!important}
-#reading .panel-heading{font-size:26px!important}
-#reading .reading-empty{min-height:147px!important;gap:11px!important;padding:12px 36% 12px 0!important}
-#reading .reading-empty p{font-size:14px!important;flex:none!important}
-#reading .reading-books-art{width:36%;max-width:122px;opacity:.87}
-#reading .loan-empty{min-height:105px;padding:12px 102px 12px 12px!important}
-#reading .loan-books-art{width:95px;right:4px}
-#reading .loan-actions .btn{min-height:40px!important}
-}
-@media(max-width:380px){
-#reading .reading-empty{padding-right:31%!important}
-#reading .reading-books-art{width:30%;opacity:.65}
-#reading .loan-empty{padding-right:75px!important}
-#reading .loan-books-art{width:72px;opacity:.72}
-}
-
 /* Book of the year: a graphic with enough room for both title and action */
 #year .year-banner{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:23px;min-height:170px!important;padding:25px 30px!important;overflow:hidden}
 #year .year-banner::before{content:none!important;display:none!important}
@@ -559,6 +529,38 @@ body{overflow-x:clip}
 #wishes .wish-empty .btn{max-width:100%}
 #year .year-banner .btn{align-self:stretch}
 }
+
+
+/* Reading room at tablet and mobile widths */
+@media(max-width:899px){
+#reading .section-head{align-items:flex-start;flex-direction:column;gap:8px}
+#reading .section-description{max-width:100%}
+#reading .read-grid{grid-template-columns:1fr!important;gap:12px}
+#reading .read-grid>.ornate-panel{padding:20px 20px 17px!important}
+#reading .reading-empty{min-height:145px!important}
+#reading .reading-books-art{max-width:150px}
+}
+@media(max-width:700px){
+#reading{padding:21px 15px 18px!important}
+#reading .room-ribbon{margin:0 0 14px}
+#reading .section-head{margin-bottom:13px}
+#reading .section-title{font-size:clamp(26px,7vw,33px)!important}
+#reading .read-grid>.ornate-panel{padding:18px 18px 16px!important;min-height:0!important}
+#reading .panel-heading{font-size:26px!important}
+#reading .reading-empty{min-height:147px!important;gap:11px!important;padding:12px 36% 12px 0!important}
+#reading .reading-empty p{font-size:14px!important;flex:none!important}
+#reading .reading-books-art{width:36%;max-width:122px;opacity:.87}
+#reading .loan-empty{min-height:105px;padding:12px 102px 12px 12px!important}
+#reading .loan-books-art{width:95px;right:4px}
+#reading .loan-actions .btn{min-height:40px!important}
+}
+@media(max-width:380px){
+#reading .reading-empty{padding-right:31%!important}
+#reading .reading-books-art{width:30%;opacity:.65}
+#reading .loan-empty{padding-right:75px!important}
+#reading .loan-books-art{width:72px;opacity:.72}
+}
+
 
 </style>
 <style id="v10-final-overrides">
