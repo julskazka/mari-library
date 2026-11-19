@@ -1581,8 +1581,8 @@ body{font-size:16px!important;line-height:1.58!important}
  #worlds .world-text small{font-size:14px!important}
 }
 </style><style id="mari-hero-soft-edge-20261119">
-/* Preserve every detail across the middle of the hero image: full opacity through
-   the inner 75% of the elliptical radius; feather only the outermost perimeter. */
+/* Irregular watercolor-shaped alpha mask: sharp reading-room details throughout
+   the center and a soft, asymmetric feather at the outer edges (no oval vignette). */
 .hero > img.hero-art{
  display:block!important;
  position:relative!important;
@@ -1599,8 +1599,8 @@ body{font-size:16px!important;line-height:1.58!important}
  background:transparent!important;
  filter:saturate(1.02) contrast(1.01)!important;
  opacity:1!important;
- -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 0%,#000 75%,rgba(0,0,0,.98) 80%,rgba(0,0,0,.82) 87%,rgba(0,0,0,.48) 93%,rgba(0,0,0,.16) 97%,transparent 100%)!important;
- mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 0%,#000 75%,rgba(0,0,0,.98) 80%,rgba(0,0,0,.82) 87%,rgba(0,0,0,.48) 93%,rgba(0,0,0,.16) 97%,transparent 100%)!important;
+ -webkit-mask-image:url("assets/mari-hero-organic-mask-20261119.png")!important;
+ mask-image:url("assets/mari-hero-organic-mask-20261119.png")!important;
  -webkit-mask-size:100% 100%!important;
  mask-size:100% 100%!important;
  -webkit-mask-repeat:no-repeat!important;
