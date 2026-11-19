@@ -599,6 +599,20 @@ body{background:
 .year-pagination .btn{min-width:180px}
 @media(max-width:559px){#library .book-grid:not(.compact-list) .book{padding:9px 7px 10px!important}#library .book-grid:not(.compact-list) .cover{width:54px!important;height:76px!important}#library .book-grid:not(.compact-list) .book-figure{min-height:76px!important;margin-bottom:7px!important}#library .book-grid:not(.compact-list) .book-title{font-size:11.5px!important}#library .book-grid:not(.compact-list) .book-author{font-size:9.5px!important}#library .book-grid:not(.compact-list) .book-tag,#library .book-grid:not(.compact-list) .format-tag{font-size:9px!important;padding:4px 6px!important}}
 </style>
+<style id="mari-world-management-20261119">
+#modal-screen .mari-world-note{margin:16px 0;color:#ddcfd4;font-size:12px;line-height:1.55}
+#modal-screen #mari-world-settings-form .field{margin-top:16px}
+#modal-screen #mari-world-settings-form input,#modal-screen #mari-world-settings-form textarea{display:block;width:100%;margin-top:7px;padding:12px 14px;border:1px solid rgba(238,207,178,.3);border-radius:13px;background:#182237;color:#fff2e8;font:inherit;line-height:1.4;resize:vertical}
+#modal-screen .mari-world-form-actions{display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:10px;margin-top:20px}
+#modal-screen .mari-world-delete-row{margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,.13)}
+#modal-screen .mari-world-delete-link{padding:8px 0;border:0;background:transparent;color:#f0c4bd;text-decoration:underline;text-underline-offset:4px;cursor:pointer;font:500 12px system-ui}
+#modal-screen .mari-world-delete-confirm{padding:11px 18px;border-radius:999px;border:1px solid #dbaea7;background:#633841;color:#fff2e8;font:600 12px system-ui;cursor:pointer}
+#modal-screen .mari-world-warning{padding:18px;border:1px solid rgba(238,207,178,.2);border-radius:16px;background:rgba(255,255,255,.04)}
+#modal-screen .mari-world-warning h3{font:normal 26px/1.2 Georgia,serif;margin:0 0 10px;color:#fff1e4}
+#modal-screen .mari-world-warning p{color:#e4d5d7;font-size:13px;line-height:1.6}
+#modal-screen .world-modal-tools [data-mari-world-manage]{margin-left:8px}
+@media(max-width:640px){#modal-screen .world-modal-tools [data-mari-world-manage]{margin-left:0}#modal-screen .mari-world-form-actions .btn{width:100%;justify-content:center}}
+</style>
 </head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -884,7 +898,7 @@ renderStarMap=function(){
 function v10WorldModal(worldId){
  const w=customWorlds.find(x=>x.id===worldId),name=genreName[worldId]||w?.name||'Книжный мир';
  const n=books.filter(b=>!b.textbook&&b.genre===worldId).length;
- showModal('Книжный мир · '+name,`<div class="world-modal-head"><div><h3>${esc(name)}</h3><p class="world-modal-count">${n} ${plural(n,'история','истории','историй')} на этой полке</p></div></div><div class="world-modal-tools"><p>Можно искать по автору или названию и открывать книгу для редактирования.</p><button type="button" class="btn tonal small" data-v10-open-library-world="${esc(worldId)}">Открыть все на полке</button></div><div class="world-search"><input type="search" id="v10-world-search" autocomplete="off" placeholder="Название или автор"></div><div id="v10-world-list" class="world-result-list"></div>`);
+ showModal('Книжный мир · '+name,`<div class="world-modal-head"><div><h3>${esc(name)}</h3><p class="world-modal-count">${n} ${plural(n,'история','истории','историй')} на этой полке</p></div></div><div class="world-modal-tools"><p>Можно искать по автору или названию и открывать книгу для редактирования.</p><button type="button" class="btn tonal small" data-v10-open-library-world="${esc(worldId)}">Открыть все на полке</button>${w?'<button type="button" class="btn tonal small" data-mari-world-manage="'+esc(worldId)+'">Изменить или удалить мир</button>':''}</div><div class="world-search"><input type="search" id="v10-world-search" autocomplete="off" placeholder="Название или автор"></div><div id="v10-world-list" class="world-result-list"></div>`);
  v10WorldSearch='';v10RenderWorldModalList(worldId);
  $('#v10-world-search')?.focus({preventScroll:true});
 }
@@ -893,6 +907,65 @@ function v10RenderWorldModalList(worldId){
  const items=books.filter(b=>!b.textbook&&b.genre===worldId&&(!v10WorldSearch||norm(b.title+' '+b.author).includes(norm(v10WorldSearch)))).sort((a,b)=>a.title.localeCompare(b.title,'ru'));
  root.innerHTML=items.length?items.map(b=>`<button type="button" class="world-result" data-action="detail" data-id="${esc(b.id)}">${cover(b,'mini-cover')}<span><strong>${esc(b.title)}</strong><br><small>${esc(b.author)}</small></span><span class="world-open">Открыть</span></button>`).join(''):'<p class="hint">Ничего не найдено. Попробуй другую часть названия.</p>';
 }
+
+/* The user owns custom worlds: built-in categories remain protected. */
+function mariWorldSettings(id){
+ const w=customWorlds.find(item=>item.id===id);if(!w){notify('Этот мир не найден');return;}
+ const count=books.filter(b=>!b.textbook&&b.genre===id).length;
+ showModal('Настройки книжного мира',`<p class="hint">Здесь можно изменить название и описание своей полки. Книги останутся на ней.</p>
+ <form id="mari-world-settings-form" data-world-id="${esc(id)}">
+ <div class="field"><label for="mari-world-name">Название книжного мира</label><input id="mari-world-name" name="name" maxlength="45" required value="${esc(w.name)}"></div>
+ <div class="field"><label for="mari-world-description">Описание</label><textarea id="mari-world-description" name="description" maxlength="100" rows="3" placeholder="О каких историях этот мир">${esc(w.description||'')}</textarea></div>
+ <p class="mari-world-note">На полке ${count} ${plural(count,'история','истории','историй')}. Чтобы добавить или перенести книгу, открой её карточку и выбери нужный книжный мир.</p>
+ <div class="mari-world-form-actions"><button type="submit" class="btn primary">Сохранить изменения</button><button type="button" class="btn tonal" data-mari-world-back="${esc(id)}">Вернуться к книгам</button></div>
+ <div class="mari-world-delete-row"><button type="button" class="mari-world-delete-link" data-mari-world-delete="${esc(id)}">Удалить этот книжный мир</button></div></form>`);
+}
+function mariWorldDeletePrompt(id){
+ const w=customWorlds.find(item=>item.id===id);if(!w)return;
+ const n=books.filter(b=>b.genre===id).length;
+ showModal('Удалить книжный мир?',`<div class="mari-world-warning"><h3>${esc(w.name)}</h3><p>Полка исчезнет, но ${n} ${plural(n,'книга','книги','книг')} не ${n===1?'исчезнет':'исчезнут'}: ${n===1?'она перейдёт':'они перейдут'} в «Другие истории». Впечатления, даты чтения и любимые книги сохранятся.</p></div><div class="mari-world-form-actions"><button type="button" class="btn tonal" data-mari-world-back-settings="${esc(id)}">Оставить мир</button><button type="button" class="mari-world-delete-confirm" data-mari-world-delete-confirm="${esc(id)}">Да, удалить мир</button></div>`);
+}
+function mariWorldSaveSettings(form){
+ const id=form.dataset.worldId,w=customWorlds.find(item=>item.id===id);
+ if(!w){notify('Книжный мир не найден');return;}
+ const name=form.elements.name.value.trim().slice(0,45);
+ const description=form.elements.description.value.trim().slice(0,100);
+ if(!name){notify('Укажи название книжного мира');return;}
+ if(Object.entries(genreName).some(([key,value])=>key!==id&&norm(value)===norm(name))){notify('Мир с таким названием уже существует');return;}
+ const updated=customWorlds.map(item=>item.id===id?{...item,name,description}:item);
+ try{localStorage.setItem(WORLD_STORE,JSON.stringify(updated))}catch{notify('Не удалось сохранить изменения. Проверь свободное место в браузере.');return;}
+ customWorlds=updated;genreName[id]=name;render();v10WorldModal(id);notify('Книжный мир обновлён');
+}
+function mariWorldDelete(id){
+ const w=customWorlds.find(item=>item.id===id);if(!w)return;
+ const previousWorlds=customWorlds.slice(),nextWorlds=customWorlds.filter(item=>item.id!==id);
+ const assigned=books.filter(b=>b.genre===id).map(b=>({book:b,genre:b.genre,manual:b.worldManuallyChosen}));
+ assigned.forEach(({book})=>{book.genre='other';book.worldManuallyChosen=true;});
+ if(!save()){assigned.forEach(({book,genre,manual})=>{book.genre=genre;book.worldManuallyChosen=manual;});return;}
+ try{localStorage.setItem(WORLD_STORE,JSON.stringify(nextWorlds))}
+ catch{
+   assigned.forEach(({book,genre,manual})=>{book.genre=genre;book.worldManuallyChosen=manual;});
+   save();notify('Не удалось удалить мир: ошибка сохранения');return;
+ }
+ customWorlds=nextWorlds;delete genreName[id];
+ if(worldFilter===id){worldFilter='';filter='all';}
+ render();closeModal();notify('Мир удалён. Книги сохранены в «Других историях».');
+}
+document.addEventListener('click',e=>{
+ const button=e.target.closest('[data-mari-world-manage],[data-mari-world-back],[data-mari-world-delete],[data-mari-world-delete-confirm],[data-mari-world-back-settings]');
+ if(!button)return;
+ e.preventDefault();e.stopImmediatePropagation();
+ const id=button.dataset.mariWorldManage||button.dataset.mariWorldBack||button.dataset.mariWorldDelete||button.dataset.mariWorldDeleteConfirm||button.dataset.mariWorldBackSettings;
+ if(button.hasAttribute('data-mari-world-manage')||button.hasAttribute('data-mari-world-back-settings'))mariWorldSettings(id);
+ else if(button.hasAttribute('data-mari-world-back'))v10WorldModal(id);
+ else if(button.hasAttribute('data-mari-world-delete'))mariWorldDeletePrompt(id);
+ else if(button.hasAttribute('data-mari-world-delete-confirm'))mariWorldDelete(id);
+},true);
+document.addEventListener('submit',e=>{
+ if(e.target?.id!=='mari-world-settings-form')return;
+ e.preventDefault();e.stopImmediatePropagation();mariWorldSaveSettings(e.target);
+},true);
+
 // Custom shelf data must be present in portable backups as well as in localStorage.
 exportData=function(){const date=today();download(new Blob([JSON.stringify({app:'Между страницами',version:2,exportedAt:new Date().toISOString(),books,customWorlds},null,2)],{type:'application/json'}),`mari-knigi-${date}.json`);notify('Книги и книжные миры включены в архив.');};
 importData=async function(file){if(!file)return;try{const data=JSON.parse(await file.text());if(!Array.isArray(data.books))throw Error('invalid');if(!confirm(`Заменить текущие ${books.length} записей на ${data.books.length} из архива?`))return;books=data.books;if(Array.isArray(data.customWorlds)){customWorlds=data.customWorlds.filter(w=>w&&typeof w.name==='string'&&typeof w.id==='string');localStorage.setItem(WORLD_STORE,JSON.stringify(customWorlds));customWorlds.forEach(w=>{genreName[w.id]=w.name;});}save();filter='archive';worldFilter='';searchTerm='';$('#search').value='';render();notify('Архив восстановлен.');}catch{notify('Не удалось импортировать архив. Проверь JSON.')}};
