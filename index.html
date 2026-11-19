@@ -1166,7 +1166,7 @@ const mariDrawings=[
 '<path d="M14 26q17-10 32 1q14-11 31-1v40q-17-8-31 1q-16-9-32-1z" fill="#e9d6bd" stroke="#bca29b" stroke-width="2"/><path d="M46 27v40M21 37q11-5 19 0M53 37q11-5 18 0" fill="none" stroke="#9c7f83"/><path d="M61 12v24l-7-5-7 5V12z" fill="#b987a0" stroke="#ead2bd"/>'
 ];
 const mariPrevStats=renderStats;
-renderStats=function(){mariPrevStats();$('#statistics-panel .stat-item').forEach((item,i)=>{if(!item.querySelector('.mari-stat-book'))item.insertAdjacentHTML('afterbegin','<svg aria-hidden="true" class="mari-stat-book" viewBox="0 0 90 76" xmlns="http://www.w3.org/2000/svg">'+mariDrawings[i]+'</svg>');});};
+renderStats=function(){mariPrevStats();$$('#statistics-panel .stat-item').forEach((item,i)=>{if(!item.querySelector('.mari-stat-book'))item.insertAdjacentHTML('afterbegin','<svg aria-hidden="true" class="mari-stat-book" viewBox="0 0 90 76" xmlns="http://www.w3.org/2000/svg">'+mariDrawings[i]+'</svg>');});};
 function mariWorldName(id){return genreName[id]||customWorlds.find(w=>w.id===id)?.name||'Книжный мир';}
 function mariOpenWorld(id){v10WorldModal(id);const el=$('#v10-world-list');if(el)el.scrollTop=0;}
 const mariWorldStripOriginal=v10RenderWorldStrip;
