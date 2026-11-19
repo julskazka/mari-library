@@ -575,6 +575,12 @@ body{background:
 @media(max-width:559px){#library .book-grid:not(.compact-list){grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}#library .book-grid:not(.compact-list) .book{min-height:226px!important;padding:12px 9px!important}#library .book-grid:not(.compact-list) .book-title{font-size:12.5px!important}#library .book-grid:not(.compact-list) .book-author{font-size:10px!important}#library .book-grid:not(.compact-list) .cover{width:74px!important;height:106px!important}#library .book-grid:not(.compact-list) .book-figure{min-height:106px!important}#library .book-grid:not(.compact-list) .book-bottom{gap:4px!important}#library .book-grid:not(.compact-list) .book-tag,#library .book-grid:not(.compact-list) .format-tag{font-size:8.5px!important;padding:5px 3px!important}#library .book-grid.compact-list{grid-template-columns:1fr!important}}
 @media(max-width:359px){#library .book-grid:not(.compact-list) .book-bottom{grid-template-columns:1fr!important}#library .book-grid:not(.compact-list) .book-tag,#library .book-grid:not(.compact-list) .format-tag{min-height:23px!important}}
 </style>
+<style id="mari-library-singleline-labels-20261119">
+/* Keep status and format labels intact. Let the entire pill move to the next row on narrow screens. */
+#library .book-grid:not(.compact-list) .book-bottom{display:flex!important;flex-wrap:wrap!important;justify-content:center!important;align-content:flex-end!important;align-items:center!important;gap:6px!important;width:100%!important;min-width:0!important;height:auto!important;min-height:0!important;margin:auto 0 0!important}
+#library .book-grid:not(.compact-list) .book-tag,#library .book-grid:not(.compact-list) .format-tag{display:inline-flex!important;flex:0 0 auto!important;width:auto!important;max-width:100%!important;height:auto!important;min-height:25px!important;padding:5px 7px!important;font-size:9px!important;line-height:1.15!important;white-space:nowrap!important;word-break:normal!important;overflow-wrap:normal!important}
+@media(max-width:559px){#library .book-grid:not(.compact-list) .book-bottom{gap:5px!important}#library .book-grid:not(.compact-list) .book-tag,#library .book-grid:not(.compact-list) .format-tag{font-size:9px!important;padding:5px 6px!important;white-space:nowrap!important;word-break:normal!important;overflow-wrap:normal!important}}
+</style>
 </head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
