@@ -1460,9 +1460,129 @@ body{font-size:14px!important;line-height:1.55}
 /* Slightly more breathing room for text in small badges and inputs. */
 #library .book-bottom{height:auto!important;min-height:0!important;gap:5px!important}
 #library .book-grid:not(.compact-list) .book{height:auto!important;min-height:0!important}
+
+/* Legibility pass: ordinary copy 16–17px, supportive text and controls ~15px.
+   Main headings (h1–h6, section-title, panel-heading) keep their chosen sizes. */
+body{font-size:16px!important;line-height:1.58!important}
+.hero .hero-copy p,
+.section-description,
+#memories .memory-copy p,
+#memories .impressions-intro p,
+#favorite .mari-feature-content p,
+#reading .subline,
+#reading .loan-panel .hint,
+#reading .loan-empty,
+#library .book-empty p,
+#worlds .world-text p,
+#wishes .wish-empty p,
+#wishes .wishlist-live p,
+#history .timeline p,
+#year p,
+#statistics #stat-detail,
+.notes-section p,
+.note-preview p,
+.stat-desc,
+.world-explainer p,
+#modal-screen p,
+#modal-screen .hint{
+ font-size:16.5px!important;
+ line-height:1.62!important;
+}
+.hero .hero-copy p,
+.section-description,
+#memories .memory-copy p,
+#memories .impressions-intro p{
+ font-size:17px!important;
+}
+#library .book-author,
+#reading .hint,
+#reading .reading-mini small,
+#reading .reading-mini .reading-mini-author,
+#statistics-panel .stat-item span,
+#statistics-panel .stat-item span b,
+#statistics-panel .stat-item span small,
+#worlds .world-text small,
+#worlds .world-counter,
+#history .history-item small,
+#history .year-count-label,
+#library .book-bottom small,
+#favorite .mari-feature-content .kicker,
+#memories .memory-copy .kicker,
+.kicker,
+.overline,
+.side-small,
+.section-eyebrow,
+.hero-caption{
+ font-size:15px!important;
+ line-height:1.45!important;
+}
+#library .book-tag,
+#library .format-tag,
+#library .book-grid:not(.compact-list) .book-tag,
+#library .book-grid:not(.compact-list) .format-tag,
+#library .book-grid.compact-list .book-tag,
+#library .book-grid.compact-list .format-tag{
+ font-size:14.5px!important;
+ line-height:1.3!important;
+ white-space:normal!important;
+ overflow-wrap:break-word!important;
+}
+#library .book-title,
+#library .book-grid:not(.compact-list) .book-title,
+#library .book-grid.compact-list .book-title{
+ font-size:15.5px!important;
+ line-height:1.42!important;
+}
+#library .book-author{font-size:15px!important;line-height:1.5!important}
+.btn,
+.paper-btn,
+.mini-link,
+.filter,
+.impressions-link,
+.notes-all,
+#favorite .loved-card>.btn[data-action="show-favorites"],
+#favorite .random-card>.btn[data-action="random"],
+#reading .reading-empty .btn,
+#reading .loan-actions .btn,
+#memories .memory-page .paper-btn,
+#search-results button{
+ font-size:15px!important;
+ line-height:1.3!important;
+}
+.side-menu a,
+.top-menu-panel a,
+.menu-grid a,
+.menu-grid small,
+#search-results .search-line,
+#modal-screen label,
+#modal-screen input,
+#modal-screen select,
+#modal-screen textarea,
+.floating-dock small{
+ font-size:15px!important;
+ line-height:1.45!important;
+}
+#library .book-grid:not(.compact-list) .book{height:auto!important;min-height:0!important}
+#library .book-bottom{height:auto!important;min-height:0!important;flex-wrap:wrap!important}
+#statistics-panel .stat-item{min-height:165px!important}
+#worlds .world-text p{line-height:1.45!important}
+@media(max-width:700px){
+ #statistics-panel .stat-item{aspect-ratio:auto!important;min-height:160px!important}
+ #worlds .world-text p{font-size:15.5px!important;line-height:1.42!important}
+ #worlds .world-text small,#worlds .world-counter{font-size:14.5px!important}
+ #favorite .mari-feature-content p{font-size:16px!important}
+ #memories .memory-copy p{font-size:17px!important}
+ .floating-dock small{font-size:14px!important}
+ .hero .hero-copy p{font-size:17px!important;line-height:1.6!important}
+}
+@media(max-width:380px){
+ #library .book-tag,#library .format-tag{font-size:14px!important}
+ #favorite .mari-feature-content p{font-size:15.5px!important}
+ #worlds .world-text small{font-size:14px!important}
+}
 </style><style id="mari-hero-soft-edge-20261119">
-/* Original hero illustration stays whole, but dissolves into the ink-dark card instead
-   of appearing inside a hard rectangle. Scopes to the actual <img class="hero-art">. */
+/* Preserve every detail across the middle of the hero image: full opacity through
+   the inner 75% of the elliptical radius; feather only the outermost perimeter. */
 .hero > img.hero-art{
  display:block!important;
  position:relative!important;
@@ -1479,8 +1599,8 @@ body{font-size:14px!important;line-height:1.55}
  background:transparent!important;
  filter:saturate(1.02) contrast(1.01)!important;
  opacity:1!important;
- -webkit-mask-image:radial-gradient(ellipse 56% 57% at 50% 49%,#000 43%,rgba(0,0,0,.93) 56%,rgba(0,0,0,.68) 70%,rgba(0,0,0,.36) 82%,rgba(0,0,0,.12) 91%,transparent 100%)!important;
- mask-image:radial-gradient(ellipse 56% 57% at 50% 49%,#000 43%,rgba(0,0,0,.93) 56%,rgba(0,0,0,.68) 70%,rgba(0,0,0,.36) 82%,rgba(0,0,0,.12) 91%,transparent 100%)!important;
+ -webkit-mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 0%,#000 75%,rgba(0,0,0,.98) 80%,rgba(0,0,0,.82) 87%,rgba(0,0,0,.48) 93%,rgba(0,0,0,.16) 97%,transparent 100%)!important;
+ mask-image:radial-gradient(ellipse 50% 50% at 50% 50%,#000 0%,#000 75%,rgba(0,0,0,.98) 80%,rgba(0,0,0,.82) 87%,rgba(0,0,0,.48) 93%,rgba(0,0,0,.16) 97%,transparent 100%)!important;
  -webkit-mask-size:100% 100%!important;
  mask-size:100% 100%!important;
  -webkit-mask-repeat:no-repeat!important;
