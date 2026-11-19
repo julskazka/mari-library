@@ -1149,17 +1149,19 @@ html{scroll-padding-top:80px}body{background:radial-gradient(ellipse 32% 17% at 
 }
 /* Return the artwork to its former generous ~62% card width. The
    feathered left edge also hides stray lettering baked into the art files. */
+/* The illustration keeps its full size, but melts gradually into the card.
+   Broad alpha falloff + matching tinted veil avoid a vertical cut-off. */
 #favorite .mari-feature-art{
  position:absolute!important;
  z-index:1!important;
  display:flex!important;
  align-items:center!important;
  justify-content:flex-end!important;
- top:12px!important;
- right:0!important;
- bottom:16px!important;
+ top:10px!important;
+ right:-6px!important;
+ bottom:14px!important;
  left:auto!important;
- width:64%!important;
+ width:66%!important;
  height:auto!important;
  max-height:none!important;
  min-height:0!important;
@@ -1167,6 +1169,34 @@ html{scroll-padding-top:80px}body{background:radial-gradient(ellipse 32% 17% at 
  padding:0!important;
  pointer-events:none!important;
  overflow:hidden!important;
+}
+#favorite .mari-feature-art::before{
+ content:"";
+ display:block;
+ position:absolute;
+ inset:0;
+ z-index:2;
+ pointer-events:none;
+}
+#favorite .loved-card .mari-feature-art::before{
+ background:linear-gradient(90deg,
+  rgba(39,52,75,1) 0%,
+  rgba(39,52,75,.97) 10%,
+  rgba(39,52,75,.87) 23%,
+  rgba(39,52,75,.64) 38%,
+  rgba(39,52,75,.35) 53%,
+  rgba(39,52,75,.12) 69%,
+  rgba(39,52,75,0) 86%);
+}
+#favorite .random-card .mari-feature-art::before{
+ background:linear-gradient(90deg,
+  rgba(35,59,72,1) 0%,
+  rgba(35,59,72,.97) 10%,
+  rgba(35,59,72,.87) 23%,
+  rgba(35,59,72,.64) 38%,
+  rgba(35,59,72,.35) 53%,
+  rgba(35,59,72,.12) 69%,
+  rgba(35,59,72,0) 86%);
 }
 #favorite .mari-feature-art img{
  display:block!important;
@@ -1178,8 +1208,16 @@ html{scroll-padding-top:80px}body{background:radial-gradient(ellipse 32% 17% at 
  object-position:right center!important;
  opacity:1!important;
  filter:drop-shadow(0 8px 14px rgba(9,13,25,.16));
- -webkit-mask-image:linear-gradient(to right,transparent 0%,transparent 30%,rgba(0,0,0,.65) 43%,#000 55%);
- mask-image:linear-gradient(to right,transparent 0%,transparent 30%,rgba(0,0,0,.65) 43%,#000 55%);
+ -webkit-mask-image:linear-gradient(90deg,
+  transparent 0%,rgba(0,0,0,.03) 10%,
+  rgba(0,0,0,.14) 23%,rgba(0,0,0,.3) 36%,
+  rgba(0,0,0,.52) 50%,rgba(0,0,0,.76) 65%,
+  rgba(0,0,0,.94) 82%,#000 95%);
+ mask-image:linear-gradient(90deg,
+  transparent 0%,rgba(0,0,0,.03) 10%,
+  rgba(0,0,0,.14) 23%,rgba(0,0,0,.3) 36%,
+  rgba(0,0,0,.52) 50%,rgba(0,0,0,.76) 65%,
+  rgba(0,0,0,.94) 82%,#000 95%);
 }
 #favorite .loved-card>.btn[data-action="show-favorites"],
 #favorite .random-card>.btn[data-action="random"]{
