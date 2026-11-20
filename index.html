@@ -4090,17 +4090,88 @@ function mariInitPages(){
    ['constellation','Книжное небо','Авторы и созвездия','sky'],
    ['safety','Мои данные','Резервные копии','data']
   ];
+
+  /* Eight distinct engraved miniature scenes instead of eight schematic icons. */
   const art=[
-   '<path d="M24 74V33q17-8 35 2v43q-18-10-35-4ZM59 35q18-10 35-2v41q-18-6-35 4Z"/><path d="M59 35v43M29 43q11-4 24 2m-24 8q11-4 24 2m12-11q12-5 24-2m-24 11q11-5 24-2"/><path d="M20 80q20-7 39 6 18-13 39-6"/>',
-   '<path d="M26 84h62M34 81V42q13-9 28-3 12-8 24-3v45"/><path d="M62 39v41M41 49l12-2m18-1 10-3"/><path d="M44 26a21 21 0 1 1 24-23 20 20 0 0 0-24 23Z" opacity=".6"/><circle cx="89" cy="23" r="2"/>',
-   '<path d="M25 78h69M28 74V48h19v26M48 74V38h19v36M68 74V28h20v46"/><path d="M31 55h12m7-10h13m8-10h14M37 41l22-13 24-12"/><circle cx="84" cy="16" r="3"/>',
-   '<path d="M27 86V37l31-23 30 23v49M37 85V41l21-17 20 17v44"/><path d="M49 84V55q10-12 20 0v29M23 89h69M40 41h6m24 0h6"/><path d="M48 31q10-12 20 0"/>',
-   '<path d="M20 69q33-10 70 0v19q-34-8-70 0V69Zm6-10q31-8 57-1l8 9"/><path d="M36 79q8-7 17 0M67 78q9-7 17 0"/><path d="M70 24q-22 18-27 42m29-38-18 27m17-29 13-11"/><path d="M74 20q8-4 13 4-5 5-13-4Z"/>',
-   '<rect x="24" y="25" width="71" height="61" rx="4"/><path d="M24 40h71M41 19v13M77 19v13M35 53h12m9 0h12m9 0h8M35 67h12m9 0h12m9 0h8"/><path d="m71 75 5 5 12-15"/>',
-   '<circle cx="56" cy="55" r="28" stroke-dasharray="2 7" opacity=".4"/><path d="m24 45 25-22 24 19 20-5-17 36-31-4-21-24"/><g fill="#f2d5a1" stroke="none"><circle cx="24" cy="45" r="4"/><circle cx="49" cy="23" r="5"/><circle cx="73" cy="42" r="4"/><circle cx="93" cy="37" r="5"/><circle cx="76" cy="73" r="4"/><circle cx="45" cy="69" r="4"/></g>',
-   '<path d="M20 44h75v45H20V44Zm-4-7 40-19 43 19v8H16v-8Z"/><path d="M26 52h63m-38-6v34m-20-26v29m50-29v29"/><rect x="49" y="59" width="17" height="15" rx="3"/><path d="M53 59v-4q0-6 5-6t5 6v4"/>'
+   `<g stroke="#ead0a6" stroke-width="1.25" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M19 26h79M19 91h79M24 26v65m70-65v65" opacity=".45"/>
+   <rect x="30" y="38" width="11" height="41" rx="1.5" fill="#d8b89b33"/><rect x="43" y="32" width="11" height="47" rx="1.5" fill="#f0d7b533"/><rect x="57" y="40" width="10" height="39" rx="1.5" fill="#d6a1b633"/><rect x="69" y="35" width="10" height="44" rx="1.5" fill="#cfddd033"/>
+   <path d="M33 47h6m-6 23h6m13-30h6m-6 31h6m8-24h5m-5 24h5m6-31h6m-6 30h6"/>
+   <path d="M17 86q19-10 39-3 19-10 43 3M56 83v12" stroke-width="1.7"/>
+   <path d="M52 18q-3-6 2-9 4 6-2 9m-5 11 5-11 5 11" stroke="#f4d6a5"/><path d="M48 29h8l-1 5h-6z" fill="#f4ce9b55"/>
+   <circle cx="85" cy="19" r="2" fill="#f1d6ae"/><path d="m92 11 2 5 5 2-5 2-2 5-2-5-5-2 5-2z" opacity=".55"/>
+   </g>`,
+   `<g stroke="#ead0a6" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M16 87h87M22 82h77" opacity=".55"/>
+   <path d="M27 75q15-12 31-3 15-9 32 3v12q-19-8-32 3-16-11-31-3z" fill="#ecd8b347"/><path d="M58 72v18M31 79q11-6 23 0m8 0q12-6 23 0"/>
+   <path d="M25 62l-9-7v-16h31v10" opacity=".65"/><path d="M20 40q7 5 15 0m-8 13q13-3 17 0"/>
+   <path d="M67 31q8-5 19-1l-1 20q-6 9-16 0z" fill="#d3a9b33f"/><path d="M85 35q13-2 12 6-1 7-13 5"/>
+   <path d="M71 24q-7-7 2-13m7 14q7-5 4-12" stroke="#f3dabc" opacity=".72"/>
+   <path d="M24 30q12-12 25-8M51 14l4 4-4 4-4-4z" opacity=".53"/>
+   <circle cx="100" cy="20" r="2" fill="#edd3ae"/>
+   </g>`,
+   `<g stroke="#ecd0a8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M19 89h82m-76 0V46h17v43m2 0V37h19v52m2 0V30h17v59m2 0V49h14v40" fill="#d7a6ac3a"/>
+   <path d="M28 51h10M28 79h10M47 43h13M47 82h13M68 36h11M68 83h11M86 56h9M86 80h9"/>
+   <rect x="49" y="52" width="8" height="21" rx="1" fill="#f0d0b74d"/><rect x="70" y="49" width="7" height="27" rx="1" fill="#e2cc9d50"/>
+   <path d="M22 45q9-6 20-2m3-7q11-8 19-3m0-5q10-7 19-2M85 47q8-5 14-2" fill="none"/>
+   <path d="M18 24q18-13 32-12m18 6q12-8 26-4" fill="none" opacity=".5"/>
+   <path d="m89 13 2 5 5 1-5 2-2 5-2-5-5-2 5-1z" fill="#efdbaf55"/>
+   <circle cx="34" cy="22" r="2.6" fill="#f4d1ae"/><circle cx="51" cy="17" r="1.3" fill="#e9cfaa"/>
+   </g>`,
+   `<g stroke="#dfc9a3" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M22 91V40q0-24 36-29 37 6 37 29v51" fill="#ceb6b52c"/>
+   <path d="M32 89V42q0-18 26-23 27 5 27 23v47" fill="#263f4d66"/>
+   <path d="M41 90V48q2-12 17-16 16 4 17 16v42" fill="#acd4bf27"/>
+   <path d="M18 92h83M58 32v58M41 48h34" fill="none"/>
+   <path d="M44 85l8-18 7 4 8-14 9 16" fill="#9bbda659" stroke="#bdd4b6"/>
+   <path d="M29 77q-17-10-9-26m10 12q-15-6-12-21m78 33q15-12 7-23m-9 12q17-7 14-20"/>
+   <path d="M18 51l-5-4m13 7-3-6m79-2 5-5m-9 14 5-7" opacity=".68"/>
+   <path d="m58 10 4 4-4 4-4-4z" fill="#f4dcaf72"/><circle cx="18" cy="26" r="2" fill="#f2d3ab"/>
+   </g>`,
+   `<g stroke="#efcfad" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M21 41q23-7 60-3l9 47q-36-9-62 1z" fill="#edccad3b"/>
+   <path d="M34 54q20-4 39 0m-37 9q16-3 35 0m-33 10q12-2 28 0" opacity=".6"/>
+   <path d="M85 16Q62 27 51 62q21-14 28-31 6-13 6-15Z" fill="#b2b7ba52" stroke="#e6d2bb" stroke-width="1.4"/>
+   <path d="M85 16Q65 38 46 77" stroke="#f4dfbd" stroke-width="1.5"/><path d="m66 44 10-10m-15 18 10-8" opacity=".6"/>
+   <path d="M26 31q-13-11-11-19m13 17q2-16 13-21m-20 17q-5-7-15-4m8 4q0-11-11-12" stroke="#aec5b2"/>
+   <path d="M17 19q0-8 7-7 4 9-7 7m9-7q6-8 11-4-1 9-11 4m-12 15q-10 1-10-6 8-4 10 6" fill="#a5c6b747"/>
+   <circle cx="19" cy="36" r="5" fill="#d89faa77"/><circle cx="31" cy="27" r="4" fill="#e5b0b179"/>
+   <path d="m89 82 3 5 5 1-5 2-3 5-2-5-5-2 5-1z" opacity=".72"/>
+   </g>`,
+   `<g stroke="#efd1a8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+   <rect x="24" y="28" width="64" height="61" rx="5" fill="#d8b4ac34"/>
+   <path d="M24 43h64M39 22v12m33-12v12M31 49h50" stroke-width="1.8"/>
+   <path d="M36 57h12m11 0h11M36 69h12m11 0h11M36 81h12" opacity=".58"/>
+   <rect x="60" y="67" width="15" height="14" rx="3" fill="#f4d3a54d"/><path d="m63 74 4 4 6-8" stroke-width="1.5"/>
+   <path d="M92 17q-9 5-9 13m14-11q-8 8-12 17" stroke="#c0d1bb"/>
+   <path d="M94 21q9-6 9-13-13 0-9 13m-6 9q11-3 13-12-11 1-13 12" fill="#b9d0b057"/>
+   <path d="M18 30q-10-8-10-18m7 8q0-9-7-11" opacity=".53"/>
+   <circle cx="96" cy="46" r="2" fill="#f3d8ad"/>
+   </g>`,
+   `<g stroke="#e9d1b0" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" fill="none">
+   <circle cx="58" cy="49" r="32" stroke-dasharray="3 5" opacity=".42"/>
+   <ellipse cx="58" cy="49" rx="42" ry="20" transform="rotate(-32 58 49)" opacity=".7"/>
+   <path d="m26 61 24-26 17 17 27-29m-44 12 2 33 15-16 20 18M25 61l26 6" opacity=".78"/>
+   <g fill="#f4dcac" stroke="none"><circle cx="26" cy="61" r="3.2"/><circle cx="50" cy="35" r="4.1"/><circle cx="67" cy="52" r="3.5"/><circle cx="94" cy="23" r="4.4"/><circle cx="87" cy="70" r="2.7"/><circle cx="52" cy="68" r="2.6"/></g>
+   <path d="M19 93q18-7 38 2 19-8 38-2M57 94v9" stroke-width="1.7"/>
+   <path d="M41 11l2 5 5 2-5 2-2 5-2-5-5-2 5-2zm46 77 1 4 4 1-4 1-1 4-1-4-4-1 4-1z" fill="#ead2b04d"/>
+   <circle cx="22" cy="18" r="1.4" fill="#efddbc"/><circle cx="108" cy="46" r="1.6" fill="#efddbc"/>
+   </g>`,
+   `<g stroke="#efd1aa" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+   <path d="M25 29l47-12 23 14-1 57-57 8-13-15z" fill="#a3c4b53d"/>
+   <path d="M25 29l13 12 57-10m-57 10-1 55M25 29v52m13-40 35-8 1 54-37 9" fill="#d5b4a239"/>
+   <path d="M48 46l17-4m-17 10 15-3m-17 14 19-3m-18 8 13-3" opacity=".72"/>
+   <rect x="74" y="50" width="13" height="18" rx="3" fill="#f5d4ad57"/><path d="M78 50v-6q2-9 8-5 5 3 1 11" fill="none"/>
+   <path d="M82 57v6" stroke-width="2"/><circle cx="82" cy="56" r="2.3" fill="#f4ddb8"/>
+   <path d="M13 75q8-18 20-17m-14-2q6 3 13 2m-14 18q-2-11-11-11" stroke="#afcbbb"/>
+   <path d="M96 78l9 8-9 9m-3-9h12" stroke="#f3dab6" opacity=".73"/>
+   </g>`
   ];
-  const decorative=art.map(markup=>'<svg class="mari-directory-illustration" viewBox="0 0 116 106" aria-hidden="true" focusable="false"><g fill="none" stroke="#ecd5ae" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">'+markup+'</g></svg>');
+  const decorative=art.map((markup,i)=>`<svg class="mari-directory-illustration" viewBox="0 0 116 106" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+   <defs><radialGradient id="mariEngravedGlow${i}"><stop stop-color="#efcca8" stop-opacity=".16"/><stop offset="1" stop-color="#efcca8" stop-opacity="0"/></radialGradient></defs>
+   <ellipse cx="62" cy="52" rx="53" ry="47" fill="url(#mariEngravedGlow${i})"/>
+   ${markup}</svg>`);
   const cards=links.map(([id,name,desc,type],i)=>'<a class="mari-directory-card mari-directory-'+type+'" href="#'+id+'"><span class="mari-dir-number">'+(i+1).toString().padStart(2,'0')+'</span>'+decorative[i]+'<span class="mari-dir-copy"><strong>'+name+'</strong><small>'+desc+'</small></span></a>').join('');
   quick.insertAdjacentHTML('afterend','<section class="mari-home-directories" id="mari-home-directories"><div class="mari-directory-heading"><div class="kicker">Атлас моей библиотеки</div><h2>Куда отправимся?</h2><p>У каждой истории — своё место. Выбирай следующую главу.</p></div><div class="mari-directory-grid">'+cards+'</div></section>');
  }
