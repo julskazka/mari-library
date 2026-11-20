@@ -2898,6 +2898,10 @@ body{font-size:16px!important;line-height:1.58!important}
  #wishes .wish-empty{padding:21px 15px 155px!important}
  #wishes .wish-empty::after{height:170px!important;width:99%!important}
 }
+
+.mari-cover-options{grid-column:1/-1;border:1px solid #e8cfa956;border-radius:12px;padding:9px 14px}
+.mari-cover-options summary{cursor:pointer;padding:9px 0;color:#edd3b5;font-size:15px}
+.mari-cover-options .field{margin-top:12px}
 </style></head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -3208,8 +3212,17 @@ function addForm(opts={}){
   <div class="field"><label for="field-source">Откуда книга</label><select id="field-source" name="source">${Object.entries(sourceName).filter(([key])=>key!=='custom').map(([v,k])=>option(v,k,opts.loan?'rgdb':'home')).join('')}${placeOpts}<option value="custom">＋ Добавить своё место…</option></select></div>
   <div class="field wide" id="mari-custom-source-wrap" hidden><label for="field-source-custom">Новое место или источник книги *</label><input id="field-source-custom" name="sourceCustom" maxlength="120" placeholder="Например, библиотека у дома, книжный шкаф, подарок от бабушки"><span class="hint">Название сохранится вместе с книгой и появится в списке мест при следующем добавлении.</span></div>
   ${formField('Дата добавления','added','date',today())}${formField('Дата начала чтения','startAt','date','')}${formField('Дата окончания','readAt','date','')}
-  <div class="field"><label for="field-color">Цвет обложки</label><select name="color" id="field-color">${['rose','sage','violet','blue','gold','teal','ash'].map((c,i)=>option(c,['Розовый туман','Шалфей','Сиреневый','Ночной синий','Старое золото','Бирюза','Графит'][i],'rose')).join('')}<option value="custom">＋ Свой цвет…</option></select></div>
+  <div class="field wide"><label for="field-originalGenre">Жанр книги</label><input id="field-originalGenre" name="originalGenre" maxlength="120" placeholder="Например, городское фэнтези" value="${esc(opts.originalGenre||'')}"></div>
+  <div class="field wide"><label for="field-whyRead">Почему захотелось прочитать? (необязательно)</label><input id="field-whyRead" name="whyRead" maxlength="260" placeholder="Совет подруги, продолжение истории…" value="${esc(opts.whyRead||'')}"></div>
+  <div class="field wide"><label for="field-sourceSite">Сайт или приложение, где читаешь</label><input id="field-sourceSite" name="sourceSite" maxlength="180" placeholder="Например, Литрес, сайт автора…" value="${esc(opts.sourceSite||'')}"></div>
+  <div class="field wide"><label for="field-bookUrl">Ссылка на книгу или сайт</label><input id="field-bookUrl" name="bookUrl" type="url" inputmode="url" maxlength="1000" placeholder="https://…" value="${esc(opts.bookUrl||'')}"></div>
+  <div class="field"><label for="field-readingMinutes">Время чтения, минут</label><input id="field-readingMinutes" name="readingMinutes" type="number" min="0" max="1000000" step="1" placeholder="Например, 420"></div>
+  <div class="field wide"><label for="field-cycleName">Книжный цикл / серия</label><input id="field-cycleName" name="cycleName" maxlength="140" list="mari-cycle-list" placeholder="Например, Анита Блейк" value="${esc(opts.cycleName||'')}"><datalist id="mari-cycle-list">${[...new Set(books.map(b=>b.cycleName).filter(Boolean))].map(name=>`<option value="${esc(name)}">`).join('')}</datalist></div>
+  <div class="field"><label for="field-cycleVolume">Номер тома</label><input id="field-cycleVolume" name="cycleVolume" type="number" min="1" max="1000" step="1" value="${esc(opts.cycleVolume??'')}"></div>
+  <div class="field"><label for="field-cycleTotal">Всего томов (если известно)</label><input id="field-cycleTotal" name="cycleTotal" type="number" min="1" max="1000" step="1" value="${esc(opts.cycleTotal??'')}"></div>
+  <details class="mari-cover-options"><summary>Оформление обложки (необязательно)</summary><div class="field"><label for="field-color">Цвет обложки</label><select name="color" id="field-color">${['rose','sage','violet','blue','gold','teal','ash'].map((c,i)=>option(c,['Розовый туман','Шалфей','Сиреневый','Ночной синий','Старое золото','Бирюза','Графит'][i],'rose')).join('')}<option value="custom">＋ Свой цвет…</option></select></div>
   <div class="field wide mari-color-picker-wrap" id="mari-custom-color-wrap" hidden><label for="field-custom-color">Выбери свой оттенок обложки</label><div class="mari-color-pick-row"><input id="field-custom-color" type="color" name="customColor" value="#946487" aria-label="Свой цвет обложки"><span class="mari-color-swatch" id="mari-color-swatch" aria-hidden="true"></span><output id="mari-color-hex" for="field-custom-color">#946487</output></div></div>
+  </details>
   <div class="field wide" id="loan-fields" hidden><div class="loan-form"><div class="kicker">Книга, которую нужно вернуть</div><div class="fields"><div class="field wide" id="lender-field" hidden><label for="field-lender" id="lender-caption">Откуда книга или у кого взяли</label><input id="field-lender" name="lender" placeholder="Например, библиотека или имя человека" maxlength="120"></div>${formField('Когда взяли','borrowedAt','date',today())}<div class="field"><label for="field-days">На сколько дней</label><input id="field-days" type="number" name="days" min="1" max="3650" value="30"></div><div class="field"><label for="field-remind">Напомнить заранее</label><select id="field-remind" name="remindDays"><option value="7">За 7 дней</option><option value="3">За 3 дня</option><option value="5">За 5 дней</option><option value="10">За 10 дней</option><option value="0">Не напоминать</option><option value="custom">Свой вариант</option></select></div><div class="field" id="remind-custom-wrap" hidden><label for="field-remind-custom">За сколько дней</label><input id="field-remind-custom" name="remindCustom" type="number" min="0" max="365" value="7"></div></div><p class="hint">Дата возврата рассчитывается автоматически. После добавления её можно изменить вручную или продлить.</p></div></div>
   <label class="checkline field wide"><input type="checkbox" name="favorite"> Добавить в любимое</label>
   <label class="checkline field wide"><input type="checkbox" name="textbook"> Это произведение из школьного учебника (не считать в статистике)</label>
@@ -3278,9 +3291,16 @@ function addForm(opts={}){
   const selectedColor=String(data.get('color')||'rose');
   const customColor=selectedColor==='custom'?mariSafeCoverColor(data.get('customColor')):null;
   if(selectedColor==='custom'&&!customColor){notify('Выбери цвет обложки');return;}
+  const start=String(data.get('startAt')||''),end=String(data.get('readAt')||'');
+  if(start&&end&&end<start){notify('Дата окончания раньше даты начала');return;}
   const b={
    id:'b'+Date.now().toString(36)+Math.random().toString(36).slice(2,6),
    title,author,genre:data.get('genre'),status:statusValue,format:data.get('format'),
+   originalGenre:String(data.get('originalGenre')||'').trim(),whyRead:String(data.get('whyRead')||'').trim(),
+   sourceSite:String(data.get('sourceSite')||'').trim(),bookUrl:String(data.get('bookUrl')||'').trim(),
+   readingMinutes:data.get('readingMinutes')===''?null:Math.max(0,Math.floor(Number(data.get('readingMinutes'))||0)),
+   cycleName:String(data.get('cycleName')||'').trim(),cycleVolume:Math.max(0,Math.floor(Number(data.get('cycleVolume'))||0))||null,
+   cycleTotal:Math.max(0,Math.floor(Number(data.get('cycleTotal'))||0))||null,
    source,sourceCustom:source==='custom'?customPlace:null,
    color:selectedColor,customColor,
    favorite:!!data.get('favorite'),textbook:!!data.get('textbook')||source==='textbook',
