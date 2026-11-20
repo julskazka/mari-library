@@ -3087,6 +3087,16 @@ html.mari-nav-open body{overflow:hidden!important}
 }
 @media(max-width:390px){#search-area .mari-search-title h2{font-size:18px!important}#search-area .mari-search-actions button{font-size:11px!important}.mari-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mari-directory-grid .mari-directory-card{min-height:183px;padding:11px!important}.mari-directory-illustration{width:112px;height:104px}.mari-dir-copy{padding-top:91px}.mari-dir-copy strong{font-size:19px!important}}
 
+
+/* Existing-book title suggestions use the same accessible menu as author suggestions. */
+#modal-screen .mari-title-field{position:relative!important;z-index:20}
+#modal-screen .mari-title-options{position:relative;width:100%;max-height:250px;overflow-y:auto;z-index:21;scrollbar-width:thin;margin-top:5px}
+#modal-screen .mari-title-options button{display:flex!important;flex-direction:column;align-items:flex-start;gap:3px;min-height:51px}
+#modal-screen .mari-title-options button strong{font:600 15px/1.3 system-ui!important;color:#f8e9dd!important}
+#modal-screen .mari-title-options button span{font:13px/1.3 system-ui;color:#d2bec8!important}
+#star-author-options button strong{font-size:14px;line-height:1.3}
+#star-author-options button small{font-size:12px!important}
+
 </style></head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -3254,7 +3264,7 @@ function authorGlyph(n,index){
  return `<svg viewBox="0 0 180 80" aria-label="${n} ${plural(n,'книга','книги','книг')} — ${n} огоньков" class="author-skyline"><path d="${d}" stroke="#dbbca1" stroke-opacity=".66" stroke-width="1" fill="none"/>${points.map(([x,y],i)=>`<circle cx="${x}" cy="${y}" r="${i===0?4.1:2.1}" fill="#ffe7c5"/><circle cx="${x}" cy="${y}" r="${i===0?8.5:5}" fill="#e1b9c0" opacity=".10"/>`).join('')}</svg>`;
 }
 function renderStarMap(){
- const available=allAuthors(),matching=available.filter(([a])=>!starSearch||norm(a).includes(norm(starSearch))),featured=matching.slice(0,starSearch?Math.max(12,starLimit):starLimit),root=$('#stars-live');
+ const available=allAuthors(),matching=available.filter(([a,arr])=>!starSearch||norm(a).includes(norm(starSearch))||arr.some(b=>norm(b.title).includes(norm(starSearch)))),featured=matching.slice(0,starSearch?Math.max(12,starLimit):starLimit),root=$('#stars-live');
  root.innerHTML=featured.map(([name,items],i)=>`<button class="author-asterism" data-action="author-stars" data-author="${encodeURIComponent(name)}" title="Книги автора ${esc(name)}">${authorGlyph(items.length,i)}<strong>${esc(name)}</strong><small>${items.length} ${plural(items.length,'книга','книги','книг')}</small></button>`).join('')||'<div class="author-none">Автора пока нет в прочитанном. Попробуй другую фамилию.</div>';
  $('#star-count').textContent=`${available.length} авторов · ${books.filter(readBook).length} прочитанных историй`;
  const more=$('#stars-more');if(more){more.hidden=featured.length>=matching.length;more.textContent=`Ещё авторы (${Math.max(0,matching.length-featured.length)})`}
@@ -3427,7 +3437,7 @@ function addForm(opts={}){
  const existingPlaces=[...new Set(books.filter(b=>b.source==='custom').map(b=>String(b.sourceCustom||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru')).slice(0,80);
  const placeOpts=existingPlaces.map(name=>`<option value="place|${encodeURIComponent(name)}">${esc(name)}</option>`).join('');
  showModal('Новая книга · новая история',`<form id="add-book-form"><div class="fields">
-  <div class="field wide"><label for="field-title">Название книги *</label><input id="field-title" name="title" required maxlength="250" autocomplete="off" placeholder="Начни вводить название…" value="${esc(opts.title||'')}"></div>
+  <div class="field wide mari-title-field"><label for="field-title">Название книги *</label><input id="field-title" name="title" required maxlength="250" autocomplete="off" aria-expanded="false" aria-controls="mari-title-options" placeholder="Найди название или добавь новое…" value="${esc(opts.title||'')}"><div class="mari-author-options mari-title-options" id="mari-title-options" role="listbox" aria-label="Книги из библиотеки" hidden></div><span class="hint">Начни вводить название или автора — существующие книги появятся в списке.</span></div>
   <div class="field wide mari-author-field"><label for="field-author">Автор *</label><input id="field-author" name="author" type="text" autocomplete="off" autocapitalize="words" required maxlength="160" aria-expanded="false" aria-controls="mari-author-options" placeholder="Имя, фамилия или новый автор…" value="${esc(opts.author||'')}"><div class="mari-author-options" id="mari-author-options" role="listbox" aria-label="Авторы из библиотеки" hidden></div><span class="hint">Начни вводить имя и выбери подсказку. Если автора нет — просто впиши нового.</span></div>
   <div class="field"><label for="field-genre">Книжный мир</label><select name="genre" id="field-genre">${Object.entries(genreName).map(([v,k])=>option(v,k,'other')).join('')}</select></div>
   <div class="field"><label for="field-status">Статус чтения</label><select id="field-status" name="status">${Object.entries(statusName).map(([v,k])=>option(v,k,opts.status||'want')).join('')}</select></div>
@@ -3451,6 +3461,33 @@ function addForm(opts={}){
   <label class="checkline field wide"><input type="checkbox" name="textbook"> Это произведение из школьного учебника (не считать в статистике)</label>
  </div><div class="modal-actions"><button type="button" class="btn ghost" data-action="close">Отмена</button><button type="submit" class="btn primary">${ico('plus')} Добавить книгу</button></div><div class="modal-note">Книги сохраняются в этом браузере. Для резервной копии используй экспорт архива библиотеки.</div></form>`);
  const form=$('#add-book-form'),authorInput=$('#field-author'),authorOptions=$('#mari-author-options');
+
+ const titleInput=$('#field-title'),titleOptions=$('#mari-title-options');
+ const titleMatches=()=>{
+  const query=norm(titleInput.value),list=books.filter(b=>!query||norm(b.title+' '+b.author).includes(query)).sort((a,b)=>a.title.localeCompare(b.title,'ru')).slice(0,9);
+  titleOptions.innerHTML=list.length?list.map(b=>`<button type="button" role="option" data-mari-title-book="${esc(b.id)}"><strong>${esc(b.title)}</strong><span>${esc(b.author||'Автор не указан')}</span></button>`).join(''):'<div class="mari-author-no-match">Этой книги ещё нет. Можно добавить новую запись.</div>';
+  titleOptions.hidden=false;titleInput.setAttribute('aria-expanded','true');
+ };
+ const hideTitle=()=>{titleOptions.hidden=true;titleInput.setAttribute('aria-expanded','false');};
+ titleInput.addEventListener('focus',titleMatches);
+ titleInput.addEventListener('input',titleMatches);
+ titleInput.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.stopPropagation();hideTitle();return;}
+  if(e.key==='ArrowDown'&&!titleOptions.hidden){e.preventDefault();titleOptions.querySelector('button')?.focus();}
+ });
+ titleInput.addEventListener('blur',()=>setTimeout(()=>{if(!titleOptions.contains(document.activeElement))hideTitle();},150));
+ titleOptions.addEventListener('pointerdown',e=>{if(e.target.closest('button'))e.preventDefault();});
+ titleOptions.addEventListener('click',e=>{
+  const found=e.target.closest('[data-mari-title-book]');if(!found)return;
+  hideTitle();const id=found.dataset.mariTitleBook;if(id)showDetail(id);
+ });
+ titleOptions.addEventListener('keydown',e=>{
+  if(e.key==='Escape'){e.stopPropagation();hideTitle();titleInput.focus();return;}
+  const list=[...titleOptions.querySelectorAll('button')],idx=list.indexOf(document.activeElement);
+  if((e.key==='ArrowDown'||e.key==='ArrowUp')&&list.length){e.preventDefault();list[(idx+(e.key==='ArrowDown'?1:list.length-1))%list.length]?.focus();}
+  if(e.key==='Enter'&&document.activeElement?.hasAttribute('data-mari-title-book')){e.preventDefault();showDetail(document.activeElement.dataset.mariTitleBook);}
+ });
+
  const showAuthors=()=>{
   const q=norm(authorInput.value.trim());
   const choices=authors.filter(name=>!q||norm(name).includes(q)).slice(0,8);
@@ -3783,7 +3820,7 @@ renderImpressionChoices=function(){
 };
 renderStarMap=function(){
  v10OriginalStarMap();
- const more=$('#stars-more');if(more){const all=allAuthors().filter(([a])=>!starSearch||norm(a).includes(norm(starSearch)));more.hidden=starLimit>=all.length;more.textContent='Показать ещё авторов ('+Math.max(0,all.length-starLimit)+')';}
+ const more=$('#stars-more');if(more){const all=allAuthors().filter(([a,arr])=>!starSearch||norm(a).includes(norm(starSearch))||arr.some(b=>norm(b.title).includes(norm(starSearch))));more.hidden=starLimit>=all.length;more.textContent='Показать ещё авторов ('+Math.max(0,all.length-starLimit)+')';}
 };
 function v10WorldModal(worldId){
  const w=customWorlds.find(x=>x.id===worldId),name=genreName[worldId]||w?.name||'Книжный мир';
@@ -3932,10 +3969,17 @@ renderImpressionChoices=function(){
  root.innerHTML='<p class="mari-results-count">Найдено '+list.length+' '+plural(list.length,'книга','книги','книг')+'</p><div class="mari-impression-list">'+shown.map(b=>'<button class="search-line" data-action="detail" data-id="'+esc(b.id)+'">'+cover(b,'mini-cover')+'<span><strong>'+esc(b.title)+'</strong><br><small>'+esc(b.author)+'</small></span></button>').join('')+'</div>'+(list.length>shown.length?'<button class="btn tonal small mari-show-more" data-mari-more-impressions="1">Показать ещё · '+(list.length-shown.length)+'</button>':'')+(!list.length?'<p class="hint">Попробуй другой запрос или фильтр.</p>':'');
 };
 renderAuthorSearch=function(){
- const root=$('#star-author-options'),input=$('#star-author-search');if(!root||!input)return;const q=norm(input.value),map=new Map();
- books.forEach(b=>{const a=(b.author||'').trim();if(!a)return;map.set(a,(map.get(a)||0)+1);});
- const found=[...map.entries()].filter(([name])=>!q||norm(name).includes(q)).sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'ru')).slice(0,18);
- root.innerHTML='<div class="mari-author-tip">'+(q?'Авторы в библиотеке':'Выбери автора или начни вводить имя')+'</div>'+found.map(([name,n])=>'<button type="button" data-action="author-stars" data-author="'+encodeURIComponent(name)+'"><span>'+esc(name)+'</span><small>'+n+' '+plural(n,'книга','книги','книг')+'</small></button>').join('')+(found.length?'':'<p class="hint">Автор не найден.</p>');root.hidden=false;
+ const root=$('#star-author-options'),input=$('#star-author-search');if(!root||!input)return;
+ const q=norm(input.value),groups=new Map();
+ books.forEach(b=>{const name=String(b.author||'').trim();if(!name)return;if(!groups.has(name))groups.set(name,[]);groups.get(name).push(b);});
+ const authors=[...groups].filter(([name,list])=>!q||norm(name).includes(q)||list.some(b=>norm(b.title).includes(q))).sort((a,b)=>b[1].length-a[1].length||a[0].localeCompare(b[0],'ru')).slice(0,12);
+ const titles=q?books.filter(b=>norm(b.title).includes(q)).sort((a,b)=>a.title.localeCompare(b.title,'ru')).slice(0,10):[];
+ const titleHtml=titles.map(b=>'<button type="button" data-action="detail" data-id="'+esc(b.id)+'"><span><strong>'+esc(b.title)+'</strong><br><small>'+esc(b.author)+'</small></span><small>Открыть книгу</small></button>').join('');
+ const authorHtml=authors.map(([name,list])=>'<button type="button" data-action="author-stars" data-author="'+encodeURIComponent(name)+'"><span>'+esc(name)+'</span><small>'+list.length+' '+plural(list.length,'книга','книги','книг')+'</small></button>').join('');
+ root.innerHTML=(titles.length?'<div class="mari-author-tip">Книги по названию</div>'+titleHtml:'')+
+  (authors.length?'<div class="mari-author-tip">Авторы и их книги</div>'+authorHtml:'')+
+  (!titles.length&&!authors.length?'<p class="hint">Ни книга, ни автор не найдены.</p>':'');
+ root.hidden=false;
 };
 authorView=function(author){const items=books.filter(b=>b.author===author).sort((a,b)=>a.title.localeCompare(b.title,'ru'));const n=items.filter(readBook).length;showModal('Созвездие · '+author,'<p class="hint">'+items.length+' '+plural(items.length,'книга','книги','книг')+' в библиотеке. Прочитано: '+n+'. Открой книгу для просмотра или редактирования.</p><div class="mari-month-books">'+items.map(b=>'<button class="world-result" data-action="detail" data-id="'+esc(b.id)+'">'+cover(b,'mini-cover')+'<span><strong>'+esc(b.title)+'</strong><br><small>'+esc(b.author)+'</small></span></button>').join('')+'</div>');};
 document.addEventListener('pointerdown',e=>{if(!e.target.closest('#top-menu,#top-menu-trigger,.dock-menu,[data-action="open-menu"]'))closeTopMenu();if(!e.target.closest('.catalog-search-zone')){catalogOpen=false;renderCatalogSuggestions();$('#catalog-expand')?.setAttribute('aria-expanded','false');}if(!e.target.closest('#search-area'))$('#search-results')?.classList.remove('show');if(!e.target.closest('.cosmos-find')){const r=$('#star-author-options');if(r)r.hidden=true;}},true);
