@@ -583,16 +583,6 @@ body{overflow-x:clip}
 #wishes .wish-empty-art svg{display:block;width:100%;height:auto}
 
 
-/* Book of the year: a graphic with enough room for both title and action */
-#year .year-banner{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:space-between;gap:23px;min-height:170px!important;padding:25px 30px!important;overflow:hidden}
-#year .year-banner::before{content:none!important;display:none!important}
-#year .year-banner>div:first-child{position:relative;z-index:2;min-width:0;max-width:650px}
-#year .year-banner h2{font-size:clamp(30px,3.5vw,43px);line-height:1.08;overflow-wrap:anywhere}
-#year .year-banner p{font-size:12px;line-height:1.55}
-#year .year-banner-art{position:absolute;z-index:1;right:19%;bottom:-35px;width:clamp(165px,22%,265px);opacity:.22;pointer-events:none}
-#year .year-banner-art svg{display:block;width:100%;height:auto}
-#year .year-banner .btn{position:relative;z-index:2;flex:0 0 auto;max-width:100%;white-space:normal;text-align:center}
-
 /* Dock on desktop: wider, flatter, every label has its own actual icon */
 @media(min-width:900px){
 .floating-dock{width:min(970px,calc(100vw - 56px))!important;max-width:970px!important;bottom:10px!important;padding:5px 10px!important;gap:4px!important;border-radius:16px!important}
@@ -730,17 +720,6 @@ body{background:
 .monthly-story{display:none!important}
 .year-room .year-banner{align-items:end}
 .year-room .year-banner p{max-width:420px}
-.year-calendar-panel{margin:0 0 18px;padding:18px 18px 16px;border-radius:18px;border:1px solid rgba(240,210,186,.18);background:radial-gradient(circle at 92% 12%,rgba(148,117,170,.16),transparent 24%),linear-gradient(135deg,#202b40,#253249 70%,#372f4b)}
-.year-calendar-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.year-calendar-head h3{font:normal 26px/1.08 var(--display);margin:5px 0 0;color:#fff1e7}
-.year-calendar-head p{font-size:13px;color:#d8cbd6;max-width:520px}
-.year-graph{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px;align-items:end;min-height:170px}
-.year-bar{border:0;border-radius:16px 16px 10px 10px;background:linear-gradient(180deg,#edd1b2,#c9a6bd 55%,#6b6f8e);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;padding:10px 4px 8px;min-height:44px;color:#2a2330;cursor:pointer;box-shadow:0 8px 18px rgba(7,10,18,.2);transition:transform .18s ease,filter .18s ease;position:relative}
-.year-bar:hover,.year-bar.active{transform:translateY(-3px);filter:brightness(1.06)}
-.year-bar .bar-num{font:700 12px/1 system-ui;margin-bottom:8px}
-.year-bar .bar-month{font:600 10px/1.15 system-ui;color:#342b3b;text-transform:uppercase;letter-spacing:.6px}
-.year-book{min-height:118px!important}
-.year-books-grid.year-list .year-book{min-height:unset!important}
 #library .section-head{margin-bottom:10px}
 .filters .filter{border-radius:999px}
 #library-world-strip{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
@@ -877,6 +856,278 @@ body{background:
  .world-modal-tools button{margin-top:9px}
  #favorite .loved-card,#favorite .random-card{padding:23px!important}
 }
+
+/* Illustrated-book almanac: a typographic, paper-and-cloth chapter.
+   Applies only to #year; the reading data and book-card actions are unchanged. */
+#year .year-banner{
+ position:relative; isolation:isolate; overflow:hidden;
+ display:flex; align-items:center; justify-content:space-between;
+ gap:28px; min-height:215px!important;
+ padding:34px clamp(23px,3.4vw,43px)!important;
+ border:1px solid rgba(233,196,151,.58);
+ border-radius:22px 22px 0 0!important;
+ background:
+   radial-gradient(ellipse 42% 98% at 92% 15%,rgba(191,154,146,.23),transparent 77%),
+   radial-gradient(ellipse 60% 110% at -10% 110%,rgba(117,64,81,.42),transparent 75%),
+   linear-gradient(118deg,#643c51 0%,#4a3950 47%,#253f51 100%);
+ box-shadow:0 20px 48px rgba(8,11,29,.27);
+}
+#year .year-banner::before{
+ content:""!important;display:block!important;
+ position:absolute;left:0;top:0;width:6px;height:100%;
+ background:linear-gradient(180deg,#d3a16c,#eacfa6 45%,#92634e);
+ opacity:.85;
+}
+#year .year-banner::after{
+ content:attr(data-year);
+ position:absolute;z-index:-1;pointer-events:none;
+ right:clamp(145px,15vw,205px);top:-41px;
+ font:italic clamp(110px,15vw,205px)/1 Georgia,serif;
+ letter-spacing:-.095em;white-space:nowrap;
+ color:rgba(241,206,172,.10);
+}
+#year .year-banner>div:first-child{position:relative;z-index:2;min-width:0;max-width:580px}
+#year .year-banner .kicker{font-size:14px!important;letter-spacing:1.6px;color:#f3cd97!important}
+#year .year-banner h2{
+ margin:11px 0 12px;
+ color:#fff0e3;
+ font:normal clamp(35px,4vw,53px)/1.08 Georgia,serif;
+ letter-spacing:-.8px;
+ overflow-wrap:normal;
+}
+#year .year-banner p{
+ max-width:440px!important;
+ font-size:16px!important;line-height:1.55!important;
+ color:#eedbe0;
+}
+#year .year-banner-art{display:none!important}
+#year .year-banner .btn{
+ position:relative;z-index:2;flex:0 0 auto;
+ width:auto;min-height:51px;
+ padding:13px 21px;
+ font-size:15px!important;font-weight:700;
+ white-space:normal;text-align:center;
+ color:#423047;
+ background:linear-gradient(115deg,#f4e0ca,#e4c6d2);
+ border:1px solid rgba(255,238,211,.9);
+ border-radius:12px;
+ box-shadow:0 9px 27px rgba(32,18,36,.24);
+}
+#year .year-contents{
+ display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:21px;
+ padding:clamp(16px,2.8vw,31px);
+ border:1px solid rgba(220,188,157,.31);border-top:0;
+ border-radius:0 0 22px 22px;
+ background:
+   radial-gradient(ellipse 90% 80% at 95% 90%,rgba(85,71,110,.15),transparent 76%),
+   linear-gradient(145deg,#262b42 0%,#202c42 100%);
+}
+#year #year-calendar-panel{
+ position:relative;isolation:isolate;
+ grid-column:1/-1;
+ margin:0 0 29px;
+ padding:clamp(19px,2.3vw,27px);
+ border:1px solid rgba(229,194,151,.43);
+ border-radius:18px;
+ background:
+  radial-gradient(ellipse 55% 110% at 96% 0%,rgba(102,65,91,.24),transparent 70%),
+  linear-gradient(135deg,#252b41,#2b3048 57%,#283c49);
+ box-shadow:inset 0 1px rgba(255,244,219,.06),0 18px 35px rgba(8,11,28,.22);
+}
+#year .year-calendar-head{
+ display:flex;justify-content:space-between;align-items:center;
+ gap:18px;flex-wrap:wrap;margin:0;
+}
+#year .year-calendar-head .kicker{font-size:14px!important;letter-spacing:1.6px;color:#ecc68f!important}
+#year .year-calendar-head h3{
+ margin:5px 0 5px;
+ font:normal clamp(27px,3vw,34px)/1.12 Georgia,serif;
+ color:#f7eadd;
+}
+#year .year-calendar-head p{font-size:15px!important;color:#d6c8d5;line-height:1.5}
+#year .month-year-picker{display:flex;align-items:center;gap:10px;color:#ead7c8;font-size:14px;white-space:nowrap}
+#year .month-year-picker select{
+ min-width:95px;min-height:46px;
+ padding:10px 13px;
+ border-radius:10px;
+ border:1px solid rgba(227,197,164,.6);
+ background:#1c293d;
+ color:#fff0e3;font-size:15px;
+}
+#year .year-graph{
+ display:grid;grid-template-columns:repeat(6,minmax(0,1fr))!important;
+ gap:11px;align-items:stretch;
+ min-height:0!important;
+ margin-top:24px;
+}
+#year .year-graph .year-bar{
+ position:relative;overflow:hidden;isolation:isolate;
+ display:flex;flex-direction:column;justify-content:space-between;align-items:flex-start;
+ min-width:0;min-height:112px!important;height:112px!important;
+ gap:6px;padding:13px 13px 15px 18px;
+ border:1px solid rgba(218,185,155,.39);
+ border-radius:11px 16px 16px 11px;
+ background:linear-gradient(135deg,#3b3249 0%,#29364a 100%);
+ color:#f6e9dc;
+ text-align:left;
+ box-shadow:inset 4px 0 #b4937d,inset 5px 0 rgba(248,222,190,.12),0 9px 18px rgba(6,10,26,.19);
+ transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+}
+#year .year-graph .year-bar:nth-child(4n+2){background:linear-gradient(132deg,#41364f,#2b3c51)}
+#year .year-graph .year-bar:nth-child(4n+3){background:linear-gradient(132deg,#483648,#30434e)}
+#year .year-graph .year-bar:nth-child(4n+4){background:linear-gradient(132deg,#323a52,#29364a)}
+#year .year-graph .year-bar::after{
+ content:"";position:absolute;left:0;bottom:0;
+ height:3px;width:var(--month-share,0%);
+ background:linear-gradient(90deg,#cb9e6e,#efd6b0);
+ transition:width .2s ease;
+}
+#year .year-graph .year-bar .bar-month{
+ margin:0;order:0;min-width:0;
+ font:600 clamp(12.5px,1.2vw,14.5px)/1.2 system-ui,sans-serif;
+ color:#f2d4b8;letter-spacing:0;text-transform:none;
+}
+#year .year-graph .year-bar .bar-num{
+ order:1;align-self:flex-start;justify-self:start;
+ margin:0;min-height:0;
+ color:#ffeedc;
+ font:italic clamp(28px,3.1vw,37px)/1 Georgia,serif;
+}
+#year .year-graph .year-bar .bar-caption{order:2;color:#d6c6d0;font-size:12.5px;line-height:1.2}
+#year .year-graph .year-bar.empty{opacity:.65}
+#year .year-graph .year-bar:hover{
+ transform:translateY(-3px);
+ border-color:#e6c598;
+ box-shadow:inset 4px 0 #deb18c,0 13px 24px rgba(6,10,26,.3);
+ filter:none;
+}
+#year .year-graph .year-bar.active{
+ transform:none;
+ background:linear-gradient(130deg,#f1dccb,#d9c2cd)!important;
+ border-color:#ffedcf;
+ box-shadow:inset 5px 0 #86586f,0 10px 26px rgba(8,12,29,.32);
+}
+#year .year-graph .year-bar.active .bar-month,
+#year .year-graph .year-bar.active .bar-num,
+#year .year-graph .year-bar.active .bar-caption{color:#403349}
+#year .year-caption{grid-column:1;min-width:0;margin:0 0 15px;align-self:center}
+#year .year-caption .kicker{font-size:14px!important;color:#e9c38d!important;letter-spacing:1.4px}
+#year .year-caption h3{font:normal clamp(25px,2.7vw,33px)/1.2 Georgia,serif;margin:7px 0;color:#f5e6d6}
+#year .year-view-switch{
+ grid-column:2;display:flex;align-items:center;gap:5px;
+ justify-content:flex-end;justify-self:end;
+ margin:0 0 15px;
+ padding:5px;
+ border:1px solid rgba(219,184,153,.36);
+ border-radius:12px;background:#1a2438;
+}
+#year .year-view-btn{
+ min-width:76px;min-height:40px;
+ padding:9px 15px;border:0;border-radius:9px;
+ background:transparent;color:#e3cfce;
+ font-size:14px;font-weight:600;
+}
+#year .year-view-btn.active{background:linear-gradient(120deg,#f1dccc,#e3c9d6);color:#402f46;font-weight:700}
+#year #year-month-filters{
+ grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;
+ margin:1px 0 21px;
+}
+#year #year-month-filters button{
+ min-height:39px;padding:9px 14px;
+ font-size:14px;border-radius:999px;
+ color:#ebd9d5;border:1px solid rgba(228,192,167,.31);
+ background:rgba(66,50,76,.56);
+}
+#year #year-month-filters button.active{
+ background:linear-gradient(115deg,#eed5c6,#e0c6d6);
+ color:#412d47;border-color:transparent;font-weight:700;
+}
+#year #year-grid{
+ grid-column:1/-1;
+ display:grid;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:13px!important;
+}
+#year #year-grid .year-book{
+ min-width:0;min-height:152px!important;
+ padding:20px 17px 15px 21px!important;
+ position:relative;overflow:hidden;
+ display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;
+ gap:8px;
+ text-align:left;color:#f9eada;
+ border:1px solid rgba(228,194,154,.34);border-radius:11px 16px 16px 11px;
+ background:linear-gradient(133deg,#40374e,#29374b);
+ box-shadow:inset 4px 0 #b59579,inset 6px 0 rgba(255,224,184,.12),0 9px 24px rgba(7,10,25,.11);
+}
+#year #year-grid .year-book:nth-child(4n+2){background:linear-gradient(140deg,#304853,#2b304a)}
+#year #year-grid .year-book:nth-child(4n+3){background:linear-gradient(140deg,#51384d,#322e49)}
+#year #year-grid .year-book:nth-child(4n+4){background:linear-gradient(140deg,#3b4156,#283c4d)}
+#year #year-grid .year-book:hover{transform:translateY(-2px);border-color:#e6c598}
+#year #year-grid .year-book strong{
+ width:100%;max-height:none;
+ color:#f8e9d9;
+ font:normal clamp(17px,1.7vw,21px)/1.24 Georgia,serif;
+ overflow-wrap:break-word;
+}
+#year #year-grid .year-book small{font-size:13px!important;line-height:1.4;color:#d5c1ca;max-height:none}
+#year #year-grid .year-month-stamp{
+ margin-top:auto;align-self:flex-start;
+ padding:0;border:none;background:none;
+ color:#edcba6;font-size:12px!important;font-weight:600;letter-spacing:.3px;text-transform:none;
+}
+#year #year-grid.year-list{grid-template-columns:1fr!important}
+#year #year-grid.year-list .year-book{
+ min-height:79px!important;
+ padding:14px 18px 14px 21px!important;
+ display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 16px;align-items:center;
+}
+#year #year-grid.year-list .year-book strong{grid-column:1;grid-row:1}
+#year #year-grid.year-list .year-book small{grid-column:1;grid-row:2}
+#year #year-grid.year-list .year-month-stamp{grid-column:2;grid-row:1/3;margin:auto 0}
+#year #year-pagination{grid-column:1/-1}
+@media(max-width:1100px){
+ #year #year-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}
+@media(max-width:899px){
+ #year .year-banner{padding:27px 24px!important;min-height:0!important}
+ #year .year-banner h2{font-size:clamp(35px,5vw,48px)!important}
+ #year .year-banner::after{right:5%;top:-18px;font-size:135px}
+ #year .year-contents{padding:17px}
+ #year #year-calendar-panel{padding:21px 18px 22px!important}
+ #year .year-graph{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+@media(max-width:620px){
+ #year .year-banner{flex-direction:column;align-items:stretch;gap:17px;padding:26px 21px!important}
+ #year .year-banner::after{font-size:118px;right:-13px;top:-16px;color:rgba(241,206,172,.07)}
+ #year .year-banner h2{font-size:clamp(33px,8vw,42px)!important}
+ #year .year-banner p{font-size:15px!important;max-width:100%!important}
+ #year .year-banner .btn{align-self:flex-start;min-height:47px;width:auto;max-width:100%}
+ #year .year-contents{grid-template-columns:1fr;padding:14px}
+ #year #year-calendar-panel{padding:20px 15px 22px!important;margin-bottom:22px}
+ #year .year-calendar-head{align-items:flex-start}
+ #year .month-year-picker{width:100%;justify-content:space-between}
+ #year .year-graph{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:8px;margin-top:20px}
+ #year .year-graph .year-bar{height:106px!important;min-height:106px!important;padding:12px 9px 13px 14px}
+ #year .year-graph .year-bar .bar-month{font-size:13px!important}
+ #year .year-graph .year-bar .bar-num{font-size:32px}
+ #year .year-graph .year-bar .bar-caption{font-size:11.5px}
+ #year .year-caption{grid-column:1;margin-bottom:0}
+ #year .year-view-switch{grid-column:1;justify-self:start;margin:12px 0 18px}
+ #year #year-month-filters{margin:0 0 19px}
+ #year #year-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ #year #year-grid .year-book{min-height:142px!important;padding:17px 13px 13px 17px!important}
+ #year #year-grid .year-book strong{font-size:17px}
+ #year #year-grid .year-book small{font-size:12.5px!important}
+}
+@media(max-width:355px){
+ #year .year-graph .year-bar{padding-left:12px;padding-right:6px}
+ #year .year-graph .year-bar .bar-month{font-size:12px!important}
+ #year #year-grid .year-book strong{font-size:16px}
+ #year #year-month-filters button{padding:8px 11px;font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+ #year .year-graph .year-bar{transition:none}
+}
+
 </style>
 
 <style id="v10-illustrated-rooms">
@@ -2680,7 +2931,7 @@ body{font-size:16px!important;line-height:1.58!important}
     <div class="mari-feature-art" aria-hidden="true"><img src="assets/mari-surprise-art-20261119.webp" alt="" loading="lazy" decoding="async"></div>
     <button class="btn ghost small" data-action="random">Удиви меня</button>
   </div>
-</div></section><section class="section wish-chapter" id="wishes"><div class="section-head"><div><div class="kicker">Неоткрытые двери</div><h2 class="section-title">Полка желаний</h2></div><button class="btn primary small" data-action="wish-add">+ Добавить желание</button></div><div class="wishlist-live" id="wishlist-live"></div></section><section class="section chronicles-room" id="history"><div class="section-head"><div><div class="kicker">Истории по годам</div><h2 class="section-title">Лента прочитанных лет</h2></div><p class="section-description">Открывай свой прошлый год и вспоминай, какие истории тогда были рядом.</p></div><div class="history-grid"><div class="timeline"><h3>История чтения</h3><div class="history-items" id="timeline"></div><img class="mari-chronicles-art" src="assets/mari-chronicles-watercolor-20261120.avif" width="780" height="975" alt="" aria-hidden="true" loading="lazy" decoding="async"/><div class="monthly-review" id="month-review"></div><p class="hint">Время чтения здесь может быть примерным. Если точная дата неизвестна, не выдумываем её.</p></div></div></section><section class="section year-room" id="year"><div class="year-banner"><div><div class="kicker">Настоящие книги из дневника</div><h2>Мой книжный 2026</h2><p>Настоящие книги и истории 2026 года из твоего дневника.</p></div><div aria-hidden="true" class="year-banner-art"><svg viewBox="0 0 270 205" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#ffe2bd" stroke-width="3"><path d="M135 178V51Q92 18 32 46v127q57-21 103 5Zm0 0V51q46-33 103-5v127q-55-21-103 5Z" fill="#e3c9bf" fill-opacity=".25"/><path d="M135 66Q84 40 46 57m89 27Q84 59 46 76m89 27Q83 78 46 94m89 27Q84 98 46 113m89 27Q83 117 46 132m89-66q51-26 89-9m-89 27q51-25 89-8m-89 27q52-25 89-9m-89 27q52-23 89-8m-89 27q51-23 89-8" opacity=".5"/><path d="M25 181q64-18 110 12 52-30 109-12M58 32l5-11 5 11 11 5-11 5-5 11-5-11-11-5zM203 21l4-9 4 9 9 4-9 4-4 9-4-9-9-4z" stroke-linejoin="round"/></g></svg></div><button class="btn primary" data-action="year">Ко всем книгам года</button></div><div class="year-contents"><div class="year-caption"><div><span class="kicker">Подлинный читательский год</span><h3 id="year-summary">Книги 2026 года</h3></div></div><div aria-label="Как показать книги года" class="year-view-switch" role="group"><button aria-pressed="true" class="year-view-btn active" data-action="year-view" data-year-view="grid" type="button">Плитки</button><button aria-pressed="false" class="year-view-btn" data-action="year-view" data-year-view="list" type="button">Список</button></div><div class="year-month-filter" id="year-month-filters"></div><div class="year-books-grid" id="year-grid"></div></div></section><section class="section cosmos-chapter" id="constellation"><div class="section-head cosmos-heading"><div><div class="kicker">Финальная глава · Авторские созвездия</div><h2 class="section-title">Небо книжных открытий</h2></div><p class="section-description">Здесь звезда — это автор, а маленькие огоньки вокруг неё — прочитанные книги. Нажми на созвездие, чтобы увидеть все истории автора.</p></div><div class="author-cosmos"><div class="cosmos-heading-bar"><span>Карта прочитанных авторов</span><span id="star-count">Авторы и прочитанные книги</span></div><div aria-label="Созвездия авторов" class="author-sky" id="stars-live"></div><div class="cosmos-find"><label for="star-author-search">Найти автора на книжном небе</label><input autocomplete="off" id="star-author-search" placeholder="Имя или фамилия автора…"/><div class="author-search-results" id="star-author-options"></div></div><p class="cosmos-hint">Нажми на автора, чтобы увидеть все его книги. Ищи по имени или фамилии — небо покажет нужное созвездие.</p><div class="constellation-actions"><button class="btn ghost small" data-action="stars-more" id="stars-more" type="button">Показать ещё авторов</button><span>Новые прочитанные книги пополняют созвездия автоматически</span></div></div></section><section class="safety-bar" id="safety"><div><h3>Всё важное — сберечь</h3><p>Сайт и исходные 416 произведений уже размещены на GitHub. Новые книги, избранное и впечатления пока сохраняются только в этом браузере; для переноса на другое устройство нужно скачать и импортировать архив. Не загружай сюда приватные фотографии, пока нет защищённого хранилища.</p></div><div class="safety-actions"><button class="btn ghost small" data-action="export"><svg class="icon sm"><use href="#i-download"></use></svg>Скачать архив</button><button class="btn tonal small" data-action="import"><svg class="icon sm"><use href="#i-upload"></use></svg>Загрузить архив</button><input accept=".json,application/json" hidden="" id="import-file" type="file"/></div></section><footer class="foot"><span>Между страницами</span>Место, где каждая история может остаться навсегда <span class="dedication">для Мари · с любовью</span></footer></main></div>
+</div></section><section class="section wish-chapter" id="wishes"><div class="section-head"><div><div class="kicker">Неоткрытые двери</div><h2 class="section-title">Полка желаний</h2></div><button class="btn primary small" data-action="wish-add">+ Добавить желание</button></div><div class="wishlist-live" id="wishlist-live"></div></section><section class="section chronicles-room" id="history"><div class="section-head"><div><div class="kicker">Истории по годам</div><h2 class="section-title">Лента прочитанных лет</h2></div><p class="section-description">Открывай свой прошлый год и вспоминай, какие истории тогда были рядом.</p></div><div class="history-grid"><div class="timeline"><h3>История чтения</h3><div class="history-items" id="timeline"></div><img class="mari-chronicles-art" src="assets/mari-chronicles-watercolor-20261120.avif" width="780" height="975" alt="" aria-hidden="true" loading="lazy" decoding="async"/><div class="monthly-review" id="month-review"></div><p class="hint">Время чтения здесь может быть примерным. Если точная дата неизвестна, не выдумываем её.</p></div></div></section><section class="section year-room" id="year"><div class="year-banner"><div><div class="kicker">Настоящие книги из дневника</div><h2>Мой книжный 2026</h2><p>Настоящие книги и истории 2026 года из твоего дневника.</p></div><button class="btn primary" data-action="year">Ко всем книгам года</button></div><div class="year-contents"><div class="year-caption"><div><span class="kicker">Подлинный читательский год</span><h3 id="year-summary">Книги 2026 года</h3></div></div><div aria-label="Как показать книги года" class="year-view-switch" role="group"><button aria-pressed="true" class="year-view-btn active" data-action="year-view" data-year-view="grid" type="button">Плитки</button><button aria-pressed="false" class="year-view-btn" data-action="year-view" data-year-view="list" type="button">Список</button></div><div class="year-month-filter" id="year-month-filters"></div><div class="year-books-grid" id="year-grid"></div></div></section><section class="section cosmos-chapter" id="constellation"><div class="section-head cosmos-heading"><div><div class="kicker">Финальная глава · Авторские созвездия</div><h2 class="section-title">Небо книжных открытий</h2></div><p class="section-description">Здесь звезда — это автор, а маленькие огоньки вокруг неё — прочитанные книги. Нажми на созвездие, чтобы увидеть все истории автора.</p></div><div class="author-cosmos"><div class="cosmos-heading-bar"><span>Карта прочитанных авторов</span><span id="star-count">Авторы и прочитанные книги</span></div><div aria-label="Созвездия авторов" class="author-sky" id="stars-live"></div><div class="cosmos-find"><label for="star-author-search">Найти автора на книжном небе</label><input autocomplete="off" id="star-author-search" placeholder="Имя или фамилия автора…"/><div class="author-search-results" id="star-author-options"></div></div><p class="cosmos-hint">Нажми на автора, чтобы увидеть все его книги. Ищи по имени или фамилии — небо покажет нужное созвездие.</p><div class="constellation-actions"><button class="btn ghost small" data-action="stars-more" id="stars-more" type="button">Показать ещё авторов</button><span>Новые прочитанные книги пополняют созвездия автоматически</span></div></div></section><section class="safety-bar" id="safety"><div><h3>Всё важное — сберечь</h3><p>Сайт и исходные 416 произведений уже размещены на GitHub. Новые книги, избранное и впечатления пока сохраняются только в этом браузере; для переноса на другое устройство нужно скачать и импортировать архив. Не загружай сюда приватные фотографии, пока нет защищённого хранилища.</p></div><div class="safety-actions"><button class="btn ghost small" data-action="export"><svg class="icon sm"><use href="#i-download"></use></svg>Скачать архив</button><button class="btn tonal small" data-action="import"><svg class="icon sm"><use href="#i-upload"></use></svg>Загрузить архив</button><input accept=".json,application/json" hidden="" id="import-file" type="file"/></div></section><footer class="foot"><span>Между страницами</span>Место, где каждая история может остаться навсегда <span class="dedication">для Мари · с любовью</span></footer></main></div>
 
 <div class="modal-screen" id="modal-screen" role="presentation"><div aria-labelledby="modal-heading" aria-modal="true" class="modal" role="dialog"><div class="modal-head"><h2 id="modal-heading">Новая книга</h2><button aria-label="Закрыть окно" class="close" data-action="close"><svg class="icon sm"><use href="#i-close"></use></svg></button></div><div id="modal-content"></div></div></div><div aria-live="polite" class="toast" id="toast" role="status"></div>
 <script>
@@ -3140,6 +3391,7 @@ if(action==='return'){const b=bookById(id);if(b?.loan){b.loan.returnedAt=today()
  
 // v10 — implemented inside the existing app closure, so all changes share the real book data.
 const V10_MONTHS=['янв','фев','мар','апр','май','июн','июл','авг','сен','окт','ноя','дек'];
+const V10_MONTH_LABELS=['Январь','Февраль','Март','Апрель','Май','Июнь','Июль','Август','Сентябрь','Октябрь','Ноябрь','Декабрь'];
 let v10SelectedYear='2026';
 let v10WorldSearch='';
 const v10OriginalStats=renderStats;
@@ -3187,9 +3439,10 @@ renderYear=function(){
  const top=Math.max(1,...Object.values(byMonth));
  const panel=$('#year-calendar-panel');
  if(panel){
-   panel.innerHTML=`<div class="year-calendar-head"><div><div class="kicker">Книжный календарь</div><h3>Путешествие по месяцам</h3><p>Нажми на месяц, чтобы увидеть его книги.</p></div><label class="month-year-picker">Год <select aria-label="Выбрать год чтения" id="v10-year-select">${years.map(y=>`<option value="${y}" ${y===v10SelectedYear?'selected':''}>${y}</option>`).join('')}</select></label></div><div class="year-graph">${V10_MONTHS.map((m,i)=>{const key=v10SelectedYear+'-'+String(i+1).padStart(2,'0'),n=byMonth[key]||0;const height=48+(n?Math.round((n/top)*92):0);return `<button type="button" class="year-bar ${yearMonthFilter===key?'active':''}" data-v10-month="${key}" style="height:${height}px" title="${m}: ${n} книг"><span class="bar-num">${n||'—'}</span><span class="bar-month">${m}</span></button>`}).join('')}</div>`;
+   panel.innerHTML=`<div class="year-calendar-head"><div><div class="kicker">Книжный календарь</div><h3>Путешествие по месяцам</h3><p>Выбери месяц — откроются все прочитанные в нём истории.</p></div><label class="month-year-picker">Год <select aria-label="Выбрать год чтения" id="v10-year-select">${years.map(y=>`<option value="${y}" ${y===v10SelectedYear?'selected':''}>${y}</option>`).join('')}</select></label></div><div class="year-graph">${V10_MONTHS.map((m,i)=>{const key=v10SelectedYear+'-'+String(i+1).padStart(2,'0'),n=byMonth[key]||0,share=n?Math.round(n/top*100):0;return `<button type="button" class="year-bar ${n?'has-books':'empty'} ${yearMonthFilter===key?'active':''}" data-v10-month="${key}" aria-label="${V10_MONTH_LABELS[i]} ${v10SelectedYear}: ${n} ${plural(n,'история','истории','историй')}. Открыть книги месяца" aria-pressed="${yearMonthFilter===key}" style="--month-share:${share}%"><span class="bar-month">${V10_MONTH_LABELS[i]}</span><span class="bar-num">${n||'—'}</span><span class="bar-caption">${n?plural(n,'история','истории','историй'):'Нет записей'}</span></button>`}).join('')}</div>`;
  }
  const title=$('#year .year-banner h2');if(title)title.textContent='Мой книжный '+v10SelectedYear;
+ const yearBanner=$('#year .year-banner');if(yearBanner)yearBanner.dataset.year=v10SelectedYear;
  $('#year-summary').textContent=`${yearbooks.length} ${plural(yearbooks.length,'история','истории','историй')} в ${v10SelectedYear} году`;
  $('#year-month-filters').innerHTML=`<button class="${yearMonthFilter==='all'?'active':''}" data-action="year-filter" data-month="all">Все · ${yearbooks.length}</button>`+V10_MONTHS.map((m,i)=>{const key=v10SelectedYear+'-'+String(i+1).padStart(2,'0'),n=byMonth[key]||0;return n?`<button class="${yearMonthFilter===key?'active':''}" data-action="year-filter" data-month="${key}">${m} · ${n}</button>`:''}).join('');
  const visible=yearMonthFilter==='all'?yearbooks:yearbooks.filter(x=>x.month===yearMonthFilter),root=$('#year-grid');
