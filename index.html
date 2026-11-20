@@ -1720,7 +1720,361 @@ body{font-size:16px!important;line-height:1.58!important}
  .hero > img.hero-art{width:min(100%,335px)!important}
 }
 </style>
-</head>
+<style id="mari-book-forms-responsive-20261120">
+/* Add-book and book-detail are scrollable, accessible dialogs on all viewports.
+   All override rules are limited to the modal; the library layout is untouched. */
+#modal-screen{
+ box-sizing:border-box!important;
+ padding:clamp(9px,2vw,20px)!important;
+ overflow:hidden!important;
+ align-items:center!important;
+}
+#modal-screen .modal{
+ box-sizing:border-box!important;
+ width:min(840px,100%)!important;
+ max-width:840px!important;
+ min-width:0!important;
+ max-height:calc(100dvh - 28px)!important;
+ margin:auto!important;
+ padding:20px clamp(18px,2.7vw,28px) 26px!important;
+ overflow-x:hidden!important;
+ overflow-y:auto!important;
+ overscroll-behavior-y:contain;
+ -webkit-overflow-scrolling:touch;
+ scrollbar-width:thin;
+ border-radius:21px!important;
+ background:linear-gradient(145deg,#1b2437,#231f35)!important;
+}
+#modal-screen .modal-head{
+ position:sticky!important;
+ top:-20px!important;
+ z-index:30!important;
+ display:flex!important;
+ align-items:center!important;
+ justify-content:space-between!important;
+ gap:14px!important;
+ padding:12px 0 16px!important;
+ margin:0 0 18px!important;
+ background:linear-gradient(180deg,#1c2336 84%,rgba(28,35,54,.96))!important;
+ border-bottom:1px solid rgba(237,210,188,.16)!important;
+ backdrop-filter:blur(9px);
+ -webkit-backdrop-filter:blur(9px);
+}
+#modal-screen #modal-heading{
+ min-width:0!important;
+ max-width:calc(100% - 55px);
+ white-space:normal!important;
+ font-size:clamp(25px,2.8vw,32px)!important;
+ line-height:1.14!important;
+}
+#modal-screen .modal-head .close{flex:0 0 38px;min-width:38px;min-height:38px}
+#modal-screen #modal-content{min-width:0!important;width:100%!important;overflow:visible!important}
+#modal-screen #add-book-form{min-width:0!important}
+#modal-screen #add-book-form .fields{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:18px 16px!important;
+ align-items:start!important;
+}
+#modal-screen #add-book-form .field,
+#modal-screen .detail-block .field{
+ display:flex;
+ flex-direction:column;
+ gap:7px;
+ min-width:0!important;
+ max-width:100%!important;
+}
+#modal-screen #add-book-form .field.wide{grid-column:1/-1!important}
+#modal-screen .field input:not([type="checkbox"]):not([type="color"]),
+#modal-screen .field select,
+#modal-screen .field textarea,
+#modal-screen #note-form textarea,
+#modal-screen .detail-world-select{
+ box-sizing:border-box!important;
+ display:block;
+ width:100%!important;
+ min-width:0!important;
+ max-width:100%!important;
+ min-height:48px!important;
+ padding:12px 13px!important;
+ border-radius:11px!important;
+ border:1px solid rgba(228,202,180,.34)!important;
+ background:#192a3b!important;
+ color:#fff1e6!important;
+ font-family:system-ui,sans-serif!important;
+ font-size:16px!important;
+ line-height:1.4!important;
+}
+#modal-screen .field textarea,
+#modal-screen #note-form textarea{min-height:122px!important;resize:vertical!important}
+#modal-screen .field label,
+#modal-screen #note-form label{
+ display:block;
+ color:#f4d9d1!important;
+ font:700 15px/1.4 system-ui,sans-serif!important;
+ overflow-wrap:break-word;
+}
+#modal-screen .field .hint,
+#modal-screen .modal-note,
+#modal-screen .mari-status-help,
+#modal-screen .mari-status-summary,
+#modal-screen .detail-block .hint{
+ font-size:14px!important;
+ line-height:1.52!important;
+ color:#d0c1c8!important;
+}
+#modal-screen .field input:focus-visible,
+#modal-screen .field select:focus-visible,
+#modal-screen .field textarea:focus-visible,
+#modal-screen .mari-status-btn:focus-visible,
+#modal-screen .mari-favorite-btn:focus-visible{
+ outline:2px solid #eac7aa!important;
+ outline-offset:2px!important;
+}
+#modal-screen [hidden]{display:none!important}
+#modal-screen .checkline{
+ display:flex!important;
+ flex-direction:row!important;
+ align-items:flex-start!important;
+ gap:12px!important;
+ font-size:15px!important;
+ line-height:1.5!important;
+ overflow-wrap:break-word;
+}
+#modal-screen .checkline input[type="checkbox"]{
+ display:block!important;
+ box-sizing:border-box!important;
+ flex:0 0 21px!important;
+ width:21px!important;
+ height:21px!important;
+ min-width:21px!important;
+ min-height:21px!important;
+ margin:2px 0 0!important;
+ accent-color:#dfaebf;
+}
+#modal-screen .loan-form{
+ box-sizing:border-box!important;
+ width:100%!important;
+ padding:17px!important;
+ border-radius:14px!important;
+ background:rgba(233,210,186,.045)!important;
+ border:1px solid rgba(233,210,186,.23)!important;
+}
+#modal-screen .mari-author-options{
+ display:grid;
+ gap:4px;
+ box-sizing:border-box;
+ width:100%;
+ max-height:232px;
+ overflow:auto;
+ padding:7px;
+ border-radius:12px;
+ border:1px solid rgba(234,201,169,.36);
+ background:linear-gradient(165deg,#262d41,#202536);
+ box-shadow:0 12px 22px rgba(5,10,22,.24);
+ scrollbar-width:thin;
+}
+#modal-screen .mari-author-options[hidden]{display:none!important}
+#modal-screen .mari-author-options button{
+ display:block;
+ width:100%;
+ min-height:42px;
+ padding:10px 12px;
+ text-align:left;
+ border:0;
+ border-radius:8px;
+ background:transparent;
+ color:#f7e9dd;
+ font:500 15px/1.4 system-ui,sans-serif;
+ cursor:pointer;
+ overflow-wrap:anywhere;
+}
+#modal-screen .mari-author-options button:hover,
+#modal-screen .mari-author-options button:focus-visible{
+ background:rgba(240,209,179,.15);
+ outline:1px solid rgba(244,208,181,.3);
+}
+#modal-screen .mari-author-no-match{padding:10px 12px;color:#ddd0cb;font:14px/1.5 system-ui,sans-serif}
+#modal-screen .mari-color-pick-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+#modal-screen #field-custom-color,
+#modal-screen #detail-custom-color{
+ box-sizing:border-box!important;
+ display:block;
+ flex:0 0 66px!important;
+ width:66px!important;
+ max-width:66px!important;
+ height:52px!important;
+ min-height:52px!important;
+ padding:5px!important;
+ border-radius:10px!important;
+ border:1px solid rgba(245,218,191,.45)!important;
+ background:#253047!important;
+ cursor:pointer;
+}
+#modal-screen .mari-color-swatch{
+ display:block;width:54px;height:54px;flex:0 0 54px;
+ border-radius:10px;border:1px solid rgba(248,230,203,.45);
+ box-shadow:inset 0 0 0 3px rgba(255,255,255,.1);
+}
+#modal-screen .mari-color-pick-row output{color:#e8d4c7;font:600 15px/1.3 system-ui}
+#modal-screen .modal-actions{
+ display:flex!important;
+ flex-wrap:wrap!important;
+ gap:10px!important;
+ justify-content:flex-end!important;
+ margin:22px 0 0!important;
+ padding:10px 0 0!important;
+}
+#modal-screen .modal-actions .btn{min-height:46px!important;font-size:15px!important;padding:12px 16px!important}
+#modal-screen .detail-head{
+ display:grid!important;
+ grid-template-columns:112px minmax(0,1fr)!important;
+ align-items:start!important;
+ gap:18px!important;
+ min-width:0!important;
+ margin:0 0 20px!important;
+}
+#modal-screen .detail-head>div:last-child{min-width:0!important;overflow-wrap:anywhere}
+#modal-screen .detail-head .cover{width:105px!important;max-width:105px!important;height:153px!important}
+#modal-screen .detail-head h2{font-size:clamp(23px,3vw,31px)!important;line-height:1.18!important;overflow-wrap:break-word}
+#modal-screen .detail-head p{font-size:15px!important;line-height:1.45!important;overflow-wrap:break-word}
+#modal-screen .detail-block{
+ min-width:0!important;
+ padding:20px 0!important;
+ border-top:1px solid rgba(235,204,183,.22)!important;
+}
+#modal-screen .detail-block h3{font-size:clamp(20px,2.5vw,25px)!important;line-height:1.2!important}
+#modal-screen .detail-block p{overflow-wrap:break-word!important}
+#modal-screen .mari-detail-cover-fields{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+ gap:12px;
+ align-items:end;
+ margin:12px 0;
+}
+#modal-screen .mari-cover-save{font-size:15px!important;min-height:44px!important}
+#modal-screen .mari-status-group{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:10px!important;
+ margin:15px 0 12px!important;
+}
+#modal-screen .mari-status-btn{
+ display:flex!important;
+ align-items:center!important;
+ justify-content:flex-start!important;
+ gap:10px!important;
+ box-sizing:border-box!important;
+ min-width:0!important;
+ min-height:50px!important;
+ padding:11px 14px!important;
+ border:1px solid rgba(238,208,182,.42)!important;
+ border-radius:12px!important;
+ background:rgba(226,209,207,.055)!important;
+ color:#f2dfd6!important;
+ font:600 15px/1.25 system-ui,sans-serif!important;
+ text-align:left!important;
+ cursor:pointer!important;
+ overflow-wrap:break-word;
+}
+#modal-screen .mari-status-btn svg{width:18px;min-width:18px;max-width:18px;height:18px}
+#modal-screen .mari-status-btn.is-active{
+ background:linear-gradient(135deg,#f5e2d2,#e6c4bb)!important;
+ color:#302a3f!important;
+ border-color:#ffedd9!important;
+ box-shadow:0 5px 15px rgba(6,10,24,.24)!important;
+}
+#modal-screen .mari-status-btn:not(.is-active):hover{background:rgba(238,212,192,.14)!important}
+#modal-screen .mari-status-summary{
+ padding:12px 14px!important;
+ margin:12px 0!important;
+ border-radius:10px;
+ background:rgba(244,219,192,.08)!important;
+}
+#modal-screen .mari-status-summary strong{color:#fff1df!important}
+#modal-screen .mari-status-summary span{
+ display:block!important;
+ padding-top:4px!important;
+ font-size:13px!important;
+}
+#modal-screen .mari-favorite-separate{
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ gap:10px;
+ margin:16px 0 0;
+ padding:13px 0 0;
+ border-top:1px solid rgba(233,209,190,.17);
+}
+#modal-screen .mari-favorite-separate>span{color:#d6c5c7;font-size:14px}
+#modal-screen .mari-favorite-btn{
+ display:flex;align-items:center;justify-content:center;gap:9px;
+ min-height:46px;padding:10px 14px;border-radius:11px;
+ border:1px solid rgba(241,205,189,.44);
+ background:#27283d;
+ color:#f7e6df;font:600 15px/1.3 system-ui;cursor:pointer;
+}
+#modal-screen .mari-favorite-btn.is-active{
+ border-color:#f5d8b5;background:#6e4b66;color:#fff4e8;
+}
+#modal-screen .mari-favorite-btn svg{width:18px;height:18px}
+#modal-screen .note-entry p,#modal-screen .note-entry time{overflow-wrap:anywhere}
+#modal-screen #note-form input[type="file"]{
+ box-sizing:border-box!important;
+ width:100%!important;
+ max-width:100%!important;
+ padding:11px 12px!important;
+ background:#1b2a3c!important;
+ border:1px solid rgba(238,205,181,.35)!important;
+ border-radius:11px!important;
+ color:#f4e5da!important;
+ font-size:15px!important;
+}
+#modal-screen #note-form .modal-actions{justify-content:flex-end!important}
+@media(max-width:760px){
+ #modal-screen{padding:0!important;align-items:stretch!important}
+ #modal-screen .modal{
+  width:100%!important;
+  max-width:100%!important;
+  height:100dvh!important;
+  max-height:100dvh!important;
+  min-height:0!important;
+  border-radius:0!important;
+  border-left:0!important;border-right:0!important;
+  padding:16px 17px calc(30px + env(safe-area-inset-bottom))!important;
+  margin:0!important;
+  overflow-y:auto!important;
+ }
+ #modal-screen .modal-head{top:-16px!important;padding:9px 0 13px!important}
+ #modal-screen #add-book-form .fields,
+ #modal-screen .mari-detail-cover-fields,
+ #modal-screen #add-book-form .loan-form .fields{
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:15px!important;
+ }
+ #modal-screen #add-book-form .field.wide{grid-column:1!important}
+ #modal-screen .detail-head{
+  grid-template-columns:85px minmax(0,1fr)!important;
+  gap:14px!important;
+ }
+ #modal-screen .detail-head .cover{width:80px!important;max-width:80px!important;height:116px!important}
+ #modal-screen .detail-block{padding:17px 0!important}
+ #modal-screen .modal-actions{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important}
+ #modal-screen .modal-actions .btn{width:100%!important;min-width:0!important;white-space:normal!important}
+ #modal-screen .mari-status-group{gap:8px!important}
+ #modal-screen .mari-status-btn{padding:11px!important;font-size:14px!important}
+ #modal-screen .mari-favorite-separate{align-items:stretch}
+}
+@media(max-width:370px){
+ #modal-screen .modal{padding-left:13px!important;padding-right:13px!important}
+ #modal-screen #modal-heading{font-size:24px!important}
+ #modal-screen .mari-status-btn{font-size:13.5px!important;padding:9px!important;gap:7px!important}
+ #modal-screen .mari-status-btn svg{width:16px;min-width:16px;height:16px}
+ #modal-screen .mari-status-group{gap:7px!important}
+ #modal-screen .modal-actions .btn{padding:10px 8px!important}
+}
+</style></head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
 <symbol id="i-book" viewbox="0 0 24 24"><path d="M12 7c-3-3-6-3-10-2v14c4-1 8-1 10 2 2-3 6-3 10-2V5c-4-1-7-1-10 2zm0 0v14"></path></symbol><symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></symbol><symbol id="i-heart" viewbox="0 0 24 24"><path d="M20.8 4.8c-2.5-2.5-6.6-2.2-8.8.6-2.2-2.8-6.3-3.1-8.8-.6a5.6 5.6 0 0 0 0 7.9L12 21l8.8-8.3a5.6 5.6 0 0 0 0-7.9Z"></path></symbol><symbol id="i-plus" viewbox="0 0 24 24"><path d="M12 4v16M4 12h16"></path></symbol><symbol id="i-star" viewbox="0 0 24 24"><path d="m12 2 3.1 6.4 7.1 1-5.1 5 1.2 7-6.3-3.4-6.3 3.4 1.2-7-5.1-5 7.1-1Z"></path></symbol><symbol id="i-moon" viewbox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 9 9 0 1 0 20.5 14.5Z"></path></symbol><symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 6v6l4 3"></path></symbol><symbol id="i-chart" viewbox="0 0 24 24"><path d="M3 21h18M6 21v-8h4v8m2 0V4h4v17m2 0v-11h3v11"></path></symbol><symbol id="i-feather" viewbox="0 0 24 24"><path d="M20 3C7 2 4 9 4 16c5 1 12-2 16-13ZM4 16l-2 5m2-5 11-9"></path></symbol><symbol id="i-calendar" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M7 3v4m10-4v4M3 10h18"></path></symbol><symbol id="i-download" viewbox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"></path></symbol><symbol id="i-upload" viewbox="0 0 24 24"><path d="M12 17V5m-5 5 5-5 5 5M4 17v4h16v-4"></path></symbol><symbol id="i-camera" viewbox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"></path><circle cx="12" cy="13" r="3.5"></circle></symbol><symbol id="i-arrow" viewbox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7"></path></symbol><symbol id="i-home" viewbox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-6v-7H9v7H3z"></path></symbol><symbol id="i-close" viewbox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"></path></symbol><symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 5 5L20 7"></path></symbol><symbol id="i-lock" viewbox="0 0 24 24"><rect height="11" rx="2" width="16" x="4" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></symbol><symbol id="i-refresh" viewbox="0 0 24 24"><path d="M20 7V3l-4 4h4M4 17v4l4-4H4m1-8a8 8 0 0 1 14-3m0 9a8 8 0 0 1-14 3"></path></symbol><symbol id="i-sun" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"></path></symbol><symbol id="i-edit" viewbox="0 0 24 24"><path d="M3 21h18M5 17 17 5l3 3-12 12H5z"></path></symbol>
@@ -2013,7 +2367,7 @@ function addForm(opts={}){
  const authors=[...new Set(books.map(x=>String(x.author||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru'));
  const existingPlaces=[...new Set(books.filter(b=>b.source==='custom').map(b=>String(b.sourceCustom||'').trim()).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'ru')).slice(0,80);
  const placeOpts=existingPlaces.map(name=>`<option value="place|${encodeURIComponent(name)}">${esc(name)}</option>`).join('');
- showModal('Новая книга · новая история',`<form id="add-book-form" novalidate="false"><div class="fields">
+ showModal('Новая книга · новая история',`<form id="add-book-form"><div class="fields">
   <div class="field wide"><label for="field-title">Название книги *</label><input id="field-title" name="title" required maxlength="250" autocomplete="off" placeholder="Начни вводить название…" value="${esc(opts.title||'')}"></div>
   <div class="field wide mari-author-field"><label for="field-author">Автор *</label><input id="field-author" name="author" type="text" autocomplete="off" autocapitalize="words" required maxlength="160" aria-expanded="false" aria-controls="mari-author-options" placeholder="Имя, фамилия или новый автор…" value="${esc(opts.author||'')}"><div class="mari-author-options" id="mari-author-options" role="listbox" aria-label="Авторы из библиотеки" hidden></div><span class="hint">Начни вводить имя и выбери подсказку. Если автора нет — просто впиши нового.</span></div>
   <div class="field"><label for="field-genre">Книжный мир</label><select name="genre" id="field-genre">${Object.entries(genreName).map(([v,k])=>option(v,k,'other')).join('')}</select></div>
