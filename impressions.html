@@ -71,56 +71,79 @@ body.impression-dialog-open{overflow:hidden!important}
 }
 @media(max-width:360px){.impression-panel{padding-left:13px;padding-right:13px}.impression-dialog-actions button{font-size:14px}}
 
-/* Same permanent book search and chapter navigation on the separate impressions page. */
-html{scroll-padding-top:calc(var(--mari-imp-height,150px) + 18px)}
+
+/* Same compact global search and book menu as the main library. */
+html{scroll-padding-top:calc(var(--mari-imp-height,80px) + 14px)}
 .shell{padding-top:0!important}
-.mari-imp-search{position:sticky;top:0;z-index:170;isolation:isolate;max-width:100%;margin:0 0 20px;padding:15px clamp(15px,2.5vw,28px) 17px;border:1px solid #efc79bc2;border-top:0;border-radius:0 0 22px 22px;background:radial-gradient(ellipse 55% 120% at 100% 0%,#a3769439,transparent 77%),linear-gradient(116deg,rgba(48,38,60,.985),rgba(35,49,67,.985) 85%);box-shadow:0 17px 40px #060b205e,inset 0 1px #ffe2b832;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
-.mari-imp-search::before{content:"";pointer-events:none;position:absolute;inset:7px;border:1px solid #f5d6af38;border-radius:0 0 15px 15px;z-index:-1}
-.mari-imp-search::after{content:"";pointer-events:none;position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,#f8e1b6,#a87087 53%,#d2aa78)}
-.mari-imp-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:12px}
-.mari-imp-title{min-width:0}
-.mari-imp-title .kicker{display:block;color:#efd0a4;font-size:12px;letter-spacing:1.3px}
-.mari-imp-title h2{font:normal clamp(25px,3.2vw,38px)/1.12 Georgia,serif;color:#fff0dd;margin:4px 0 0}
-.mari-imp-actions{display:flex;gap:10px;flex:0 0 auto}
-.mari-imp-actions>a,.mari-imp-actions>button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;border-radius:12px;white-space:nowrap;font:700 14px/1.2 system-ui!important;text-decoration:none;cursor:pointer}
-.mari-imp-add{color:#342637;background:linear-gradient(125deg,#fae6cd,#e8c5d2);border:1px solid #ffe9d3}
-.mari-imp-menu{color:#fff0e0;background:linear-gradient(125deg,#58435b,#344a5c);border:1px solid #f3d4aa85}
-.mari-imp-searchbox{display:flex;align-items:center;gap:12px;min-height:54px;padding:0 16px;border:1px solid #efcfae6b;border-radius:12px;background:linear-gradient(104deg,#142637db,#2a2339e3)}
-.mari-imp-searchbox svg{flex:none;color:#f0cfa9}
-.mari-imp-searchbox input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff0df;font:15px system-ui}
-.mari-imp-searchbox input::placeholder{color:#cfbfca}
-.mari-imp-searchbox:focus-within{border-color:#f3d8b4;box-shadow:0 0 0 3px #dfb88d24}
-.mari-imp-book-results{position:absolute;top:calc(100% + 4px);left:12px;right:12px;z-index:205;max-height:min(55dvh,360px);overflow-y:auto;padding:12px;border:1px solid #efd4b9a6;border-radius:13px;background:linear-gradient(140deg,#253449,#352b43);box-shadow:0 22px 60px #040812aa}
+.mari-imp-search{position:sticky;top:0;z-index:170;isolation:isolate;box-sizing:border-box;
+ display:grid;grid-template-columns:minmax(145px,220px) minmax(0,1fr) auto;grid-template-areas:"label field actions";
+ align-items:center;gap:clamp(9px,1.4vw,20px);max-width:100%;margin:0 0 19px!important;padding:11px clamp(12px,2.3vw,24px)!important;
+ border:1px solid rgba(220,181,152,.48);border-top:0;border-radius:0 0 17px 17px;
+ background:radial-gradient(ellipse at 90% -50%,rgba(126,78,110,.28),transparent 69%),linear-gradient(118deg,rgba(45,37,54,.975),rgba(30,43,60,.975));
+ box-shadow:0 11px 27px rgba(7,11,27,.33),inset 0 1px rgba(255,222,186,.12);
+ backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.mari-imp-search::before,.mari-imp-search::after{content:none!important}
+.mari-imp-heading{display:contents}
+.mari-imp-title{grid-area:label;min-width:0;padding-left:12px;border-left:2px solid rgba(227,190,153,.57)}
+.mari-imp-title .kicker{display:block;font-size:9px!important;line-height:1.3;letter-spacing:1.15px;color:#dfbfa3;margin:0 0 3px}
+.mari-imp-title h2{font:normal clamp(19px,2.1vw,25px)/1.1 Georgia,serif;color:#f7e6d9;margin:0}
+.mari-imp-actions{grid-area:actions;display:flex;align-items:center;gap:8px;flex:none}
+.mari-imp-actions>a,.mari-imp-actions>button{display:inline-flex;align-items:center;justify-content:center;gap:7px;box-sizing:border-box;min-height:44px!important;margin:0!important;padding:9px 12px!important;
+ white-space:nowrap;cursor:pointer;border-radius:10px!important;font:650 13px/1.25 system-ui,sans-serif!important;text-decoration:none!important}
+.mari-imp-add{color:#332636!important;background:linear-gradient(120deg,#f0d9c3,#e2c2d1)!important;border:1px solid #f7dfd2!important}
+.mari-imp-menu{color:#f4e1d5!important;background:rgba(69,56,74,.63)!important;border:1px solid rgba(217,185,154,.54)!important}
+.mari-imp-searchbox{grid-area:field;display:flex;align-items:center;gap:9px;min-height:44px;padding:0 12px;border:1px solid rgba(218,188,163,.38);border-radius:10px;background:rgba(16,29,45,.54)}
+.mari-imp-searchbox svg{width:18px;height:18px;flex:none;color:#dfc29c}
+.mari-imp-searchbox input{min-width:0;width:100%;flex:1;border:0;outline:0;background:transparent;color:#f9e8d9;font:14px/1.4 system-ui}
+.mari-imp-searchbox input::placeholder{color:#c6bac3}
+.mari-imp-searchbox:focus-within{border-color:#f4d0a2;box-shadow:0 0 0 2px #d5ae831b}
+.mari-imp-book-results{position:absolute;top:calc(100% + 4px);left:12px;right:12px;z-index:200;max-height:min(51dvh,345px);overflow-y:auto;padding:9px;border:1px solid #e1c4a7ab;border-radius:13px;background:linear-gradient(145deg,#263448,#352d42);box-shadow:0 20px 43px #040817b3}
 .mari-imp-book-results[hidden]{display:none!important}
 .mari-imp-results-title{font:700 12px system-ui;color:#ebc8a5;letter-spacing:.6px;margin:3px 7px 8px}
-.mari-imp-book-results a{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 12px;color:#ffeddb;border-radius:8px;text-decoration:none}
+.mari-imp-book-results a{display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap;padding:10px 12px;color:#ffeddb;border-radius:8px;text-decoration:none}
 .mari-imp-book-results a:hover{background:#ffffff16}
 .mari-imp-book-results a strong{font:normal 16px Georgia}
 .mari-imp-book-results a span{color:#cfc2ce;font-size:13px}
 .mari-imp-book-results p{font-size:13px;color:#dfcbd2;margin:8px}
-.mari-imp-search.is-compact{padding-top:9px;padding-bottom:10px}
-.mari-imp-search.is-compact .mari-imp-heading{margin-bottom:8px}
-.mari-imp-search.is-compact .kicker{display:none}
-.mari-imp-search.is-compact h2{font-size:24px}
-.mari-imp-search.is-compact .mari-imp-searchbox{min-height:46px}
-.mari-imp-search.is-compact .mari-imp-actions>*{min-height:40px;padding:8px 14px}
+.mari-imp-search.is-compact{padding-top:7px!important;padding-bottom:7px!important}
+.mari-imp-search.is-compact .mari-imp-searchbox{min-height:40px}
+.mari-imp-search.is-compact .mari-imp-actions>*{min-height:40px!important;padding:7px 11px!important}
+.mari-imp-search.is-compact .kicker{display:none!important}
+.mari-imp-search.is-compact h2{font-size:20px!important}
 .floating-dock{display:none!important}
-#notes-menu{position:fixed!important;top:calc(var(--mari-imp-height,145px) + 7px)!important;bottom:auto!important;right:clamp(12px,3.5vw,58px)!important;left:auto!important;z-index:230!important;max-height:calc(100dvh - var(--mari-imp-height,145px) - 20px)!important;overflow-y:auto!important;border:1px solid #e7c8a6ae}
+html.mari-nav-open body{overflow:hidden!important}
+#mari-imp-backdrop{position:fixed;inset:0;z-index:8000;background:rgba(5,9,22,.68);border:0;backdrop-filter:blur(5px)}
+#mari-imp-backdrop[hidden]{display:none!important}
+#notes-menu{position:fixed!important;top:max(12px,env(safe-area-inset-top))!important;right:max(12px,env(safe-area-inset-right))!important;bottom:max(12px,env(safe-area-inset-bottom))!important;left:auto!important;
+ box-sizing:border-box;display:flex;flex-direction:column;width:min(430px,calc(100vw - 24px))!important;height:auto!important;max-height:calc(100dvh - 24px)!important;padding:22px!important;
+ overflow-y:auto!important;overscroll-behavior:contain;z-index:8010!important;border:1px solid rgba(237,202,174,.68)!important;border-radius:21px!important;
+ background:radial-gradient(ellipse at 100% 0%,rgba(140,94,122,.27),transparent 50%),linear-gradient(140deg,#33283e,#1e3042)!important;box-shadow:0 27px 85px rgba(4,7,18,.83)!important}
+#notes-menu[hidden]{display:none!important}
+#notes-menu .menu-panel-head{position:sticky;top:-22px;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;
+ padding:8px 0 12px;margin:0 0 10px;background:linear-gradient(#342c43 79%,rgba(52,44,67,.93));font:23px Georgia,serif;color:#ffe4d4}
+#notes-menu .menu-close{display:grid;place-items:center;flex:none;min-height:42px;min-width:42px;cursor:pointer;background:#ffffff10;border:1px solid #efd3b45a;border-radius:9px;color:#f3ddc7;font-size:23px}
+#notes-menu .menu-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+#notes-menu .menu-grid a{display:flex;align-items:center;min-width:0;min-height:44px;padding:12px 10px;font:14px/1.28 system-ui;color:#e9dbe9;background:rgba(236,210,210,.065);border:1px solid rgba(236,210,210,.12);border-radius:10px;text-decoration:none}
+#notes-menu .menu-grid a:hover{background:#e3bbc238}
+#notes-menu .menu-dedication{text-align:center;font:italic 16px Georgia;color:#e6c9b2;margin-top:auto;padding-top:18px}
 #notes-up{bottom:18px!important}
+@media(max-width:1120px){.mari-imp-search{grid-template-columns:minmax(130px,175px) minmax(0,1fr) auto;gap:9px}.mari-imp-title h2{font-size:20px!important}.mari-imp-actions>*{font-size:12px!important;padding:8px 10px!important}}
 @media(max-width:700px){
- .mari-imp-search{padding:10px 12px 12px;border-radius:0 0 16px 16px}
- .mari-imp-heading{display:grid;grid-template-columns:1fr;gap:7px;margin-bottom:8px}
- .mari-imp-title{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap}
- .mari-imp-title .kicker{font-size:10px!important;letter-spacing:1px!important}
- .mari-imp-title h2{font-size:25px}
- .mari-imp-actions{display:grid;grid-template-columns:minmax(0,1fr) minmax(85px,.55fr);gap:8px}
- .mari-imp-actions>*{min-height:43px!important;padding:9px 10px!important}
- .mari-imp-searchbox{min-height:47px;padding:0 12px}
+ .mari-imp-search{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"label actions" "field field";gap:7px 8px;padding:8px 11px 9px!important;margin-bottom:12px!important;border-radius:0 0 13px 13px}
+ .mari-imp-title{padding-left:8px}
+ .mari-imp-title .kicker{display:none!important}
+ .mari-imp-title h2{font-size:20px!important}
+ .mari-imp-actions{gap:6px}
+ .mari-imp-actions>*{min-height:37px!important;font-size:12px!important;padding:7px 9px!important}
+ .mari-imp-searchbox{min-height:41px}
  .mari-imp-searchbox input{font-size:14px}
- .mari-imp-search.is-compact .kicker{display:none}
- .mari-imp-search.is-compact h2{font-size:21px}
- #notes-menu{left:9px!important;right:9px!important;width:auto!important}
+ .mari-imp-search.is-compact h2{font-size:19px!important}
+ .mari-imp-search.is-compact .mari-imp-actions>*{min-height:36px!important}
+ #notes-menu{top:0!important;right:0!important;bottom:0!important;left:0!important;width:100vw!important;max-height:100dvh!important;border-radius:0!important;padding:15px max(15px,env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) max(15px,env(safe-area-inset-left))!important}
+ #notes-menu .menu-panel-head{top:-15px;padding-top:12px}
+ #notes-menu .menu-grid a{min-height:44px}
 }
+@media(max-width:390px){.mari-imp-title h2{font-size:18px!important}.mari-imp-actions>*{font-size:11px!important}}
 
 </style></head><body><main class="shell"><header class="mari-imp-search" id="mari-impression-global-search">
 <div class="mari-imp-heading"><div class="mari-imp-title"><span class="kicker">Поиск по всей библиотеке</span><h2>Найти свою историю</h2></div>
@@ -259,7 +282,18 @@ entryForm.addEventListener('submit',async e=>{
 });
 
 $('#query').addEventListener('input',render);render()})();
-</script><nav aria-label="Разделы библиотеки" class="notes-menu" hidden="" id="notes-menu"><a href="index.html#top">Главная</a><a href="index.html#quick-start">Добавить книгу</a><a href="index.html#reading">Сейчас читаю</a><a href="index.html#library">Моя библиотека</a><a href="index.html#worlds">Книжные миры</a><a href="index.html#wishes">Желания</a><a href="impressions.html">Все впечатления</a><a href="index.html#year">Мой книжный год</a><a href="index.html#constellation">Созвездия</a></nav><button aria-label="Наверх" hidden="" id="notes-up">↑</button><script>
+</script><button type="button" class="mari-imp-backdrop" id="mari-imp-backdrop" aria-label="Закрыть меню" hidden></button>
+<nav aria-label="Меню библиотеки" class="notes-menu" id="notes-menu" role="dialog" aria-modal="true" hidden>
+<div class="menu-panel-head"><span>Навигация по библиотеке</span><button type="button" class="menu-close" id="mari-imp-menu-close" aria-label="Закрыть меню">×</button></div>
+<div class="menu-grid">
+<a href="index.html#top">Главная</a><a href="index.html?add=1">Добавить книгу</a>
+<a href="index.html#reading">Читаю и вернуть</a><a href="index.html#statistics">Статистика</a>
+<a href="index.html#library">Все книги</a><a href="index.html#wishes">Список желаний</a>
+<a href="index.html#worlds">Книжные миры</a><a href="index.html#cycles">Книжные циклы</a>
+<a href="impressions.html">Впечатления</a><a href="index.html#year">Мой книжный год</a>
+<a href="index.html#constellation">Книжное небо</a><a href="index.html#safety">Мои данные</a>
+</div><div class="menu-dedication">для Мари · с любовью</div>
+</nav><button aria-label="Наверх" hidden="" id="notes-up">↑</button><script>
 (()=>{
  const input=document.querySelector('#mari-imp-book-search'),root=document.querySelector('#mari-imp-book-results'),top=document.querySelector('#mari-impression-global-search');
  const menu=document.querySelector('#notes-menu'),trigger=document.querySelector('#notes-menu-trigger');
@@ -276,15 +310,23 @@ $('#query').addEventListener('input',render);render()})();
  };
  input.addEventListener('input',draw);
  input.addEventListener('focus',()=>{if(input.value.trim())draw();});
+ const backdrop=document.querySelector('#mari-imp-backdrop'),closeButton=document.querySelector('#mari-imp-menu-close');
+ const closeMenu=()=>{menu.hidden=true;backdrop.hidden=true;trigger.setAttribute('aria-expanded','false');document.documentElement.classList.remove('mari-nav-open');};
  trigger.addEventListener('click',()=>{
-  menu.hidden=!menu.hidden;trigger.setAttribute('aria-expanded',String(!menu.hidden));hideResults();
+  const opening=menu.hidden;menu.hidden=!opening;backdrop.hidden=!opening;
+  trigger.setAttribute('aria-expanded',String(opening));
+  document.documentElement.classList.toggle('mari-nav-open',opening);
+  hideResults();if(opening)closeButton.focus({preventScroll:true});
  });
- const closeMenu=()=>{menu.hidden=true;trigger.setAttribute('aria-expanded','false');};
+ closeButton.addEventListener('click',closeMenu);
+ backdrop.addEventListener('click',closeMenu);
+ menu.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
  document.addEventListener('pointerdown',e=>{
   if(!e.target.closest('#mari-impression-global-search'))hideResults();
   if(!e.target.closest('#notes-menu,#notes-menu-trigger'))closeMenu();
  },true);
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){hideResults();closeMenu();}});
+ 
  const metrics=()=>document.documentElement.style.setProperty('--mari-imp-height',Math.ceil(top.offsetHeight)+'px');
  const onScroll=()=>{
   top.classList.toggle('is-compact',window.scrollY>140);
