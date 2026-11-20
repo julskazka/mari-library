@@ -2264,23 +2264,171 @@ body{font-size:16px!important;line-height:1.58!important}
 }
 #wishes .wish-empty .btn[data-action="wish-add"]:hover{filter:brightness(1.1)!important;transform:translateY(-1px)}
 #wishes .wish-empty-art{display:none!important}
-#wishes .wish-books{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))!important;gap:13px!important}
-#wishes .wish-book{
- box-sizing:border-box!important;
- position:relative!important;
- min-height:104px!important;
- padding:18px!important;
- border:1px solid rgba(230,201,142,.62)!important;
- border-radius:14px!important;
- background:linear-gradient(140deg,rgba(232,234,201,.18),rgba(26,67,59,.64))!important;
- color:#ffefd9!important;
- text-align:left!important;
- box-shadow:inset 0 1px rgba(255,245,211,.08),0 5px 13px rgba(7,32,34,.14)!important;
- overflow-wrap:break-word;
+/* Filled wishlist: each wish is a little leather-bound story on textured vellum. */
+#wishes .wish-books{
+ display:grid!important;
+ grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:16px!important;
+ align-items:stretch!important;
 }
-#wishes .wish-book strong{color:#ffeed8!important;font-size:16px!important;line-height:1.4!important}
-#wishes .wish-book small{color:#ead7ca!important;font-size:14px!important;line-height:1.4!important}
-#wishes .wish-book:hover{border-color:#ffe0a5!important;background:rgba(45,90,76,.65)!important}
+#wishes .wish-book{
+ position:relative!important;
+ isolation:isolate!important;
+ box-sizing:border-box!important;
+ display:grid!important;
+ grid-template-columns:100px minmax(0,1fr)!important;
+ align-items:center!important;
+ gap:19px!important;
+ width:100%!important;
+ min-width:0!important;
+ min-height:181px!important;
+ margin:0!important;
+ padding:20px 21px!important;
+ border:1.5px solid rgba(226,194,124,.93)!important;
+ border-radius:17px!important;
+ text-align:left!important;
+ color:#342d3d!important;
+ background:
+  radial-gradient(ellipse 75% 115% at 100% 100%,rgba(166,195,172,.62),transparent 82%),
+  linear-gradient(135deg,#eee4d2 0%,#dcdcc8 48%,#b6cbb2 100%)!important;
+ box-shadow:inset 0 0 0 5px rgba(255,246,224,.17),inset 0 1px rgba(255,254,239,.7),0 9px 23px rgba(7,32,34,.22)!important;
+ cursor:pointer!important;
+ overflow:hidden!important;
+ transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease!important;
+}
+#wishes .wish-book:nth-child(2n){
+ background:
+  radial-gradient(ellipse 80% 115% at 100% 10%,rgba(189,171,195,.31),transparent 85%),
+  linear-gradient(135deg,#ece0d5,#d6d6cd 50%,#adc9b7)!important;
+}
+#wishes .wish-book::before{
+ content:""!important;
+ position:absolute!important;
+ z-index:0!important;
+ pointer-events:none!important;
+ inset:0!important;
+ opacity:.09!important;
+ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.22' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E") 0 0/190px 190px!important;
+}
+#wishes .wish-book::after{
+ content:""!important;
+ position:absolute!important;
+ inset:7px!important;
+ border:1px solid rgba(128,116,91,.2)!important;
+ border-radius:11px!important;
+ z-index:0!important;
+ pointer-events:none!important;
+}
+#wishes .mari-wish-cover-wrap{
+ position:relative!important;
+ z-index:1!important;
+ box-sizing:border-box!important;
+ display:flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ width:100px!important;
+ min-width:0!important;
+ max-width:100px!important;
+ height:140px!important;
+ min-height:0!important;
+ filter:drop-shadow(5px 8px 6px rgba(37,44,42,.26))!important;
+}
+#wishes .mari-wish-cover-wrap .cover{
+ box-sizing:border-box!important;
+ display:flex!important;
+ width:90px!important;
+ min-width:90px!important;
+ max-width:90px!important;
+ height:132px!important;
+ min-height:132px!important;
+ max-height:132px!important;
+ margin:0!important;
+ padding:10px!important;
+ border-radius:3px 8px 7px 3px!important;
+ border:1px solid rgba(251,225,172,.55)!important;
+ box-shadow:5px 7px 10px rgba(27,37,36,.28),inset 3px 0 3px rgba(255,255,255,.19),inset -7px 0 9px rgba(0,0,0,.22)!important;
+ transform:rotate(-4deg)!important;
+ transition:transform .2s ease!important;
+}
+#wishes .wish-book:nth-child(2n) .mari-wish-cover-wrap .cover{transform:rotate(3deg)!important}
+#wishes .mari-wish-cover-wrap .cover::before{inset:7px!important}
+#wishes .mari-wish-cover-wrap .cover-engraving{max-width:80%!important;max-height:70%!important}
+#wishes .mari-wish-copy{
+ position:relative!important;
+ z-index:1!important;
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:flex-start!important;
+ min-width:0!important;
+ gap:5px!important;
+ padding:3px 0!important;
+ overflow-wrap:break-word!important;
+}
+#wishes .mari-wish-label{
+ display:inline-flex!important;
+ align-items:center!important;
+ gap:7px!important;
+ color:#6f6658!important;
+ font:700 11px/1.3 system-ui,sans-serif!important;
+ text-transform:uppercase!important;
+ letter-spacing:.9px!important;
+}
+#wishes .mari-wish-ornament{color:#996f55!important;font:20px/1 Georgia,serif!important}
+#wishes .wish-book .mari-wish-copy strong{
+ display:block!important;
+ margin:3px 0 0!important;
+ color:#3a3041!important;
+ font:normal clamp(21px,2.35vw,27px)/1.15 var(--display),Georgia,serif!important;
+ text-shadow:none!important;
+ overflow-wrap:anywhere!important;
+}
+#wishes .wish-book .mari-wish-copy small{
+ display:block!important;
+ color:#625766!important;
+ font:500 15px/1.4 system-ui,sans-serif!important;
+ overflow-wrap:anywhere!important;
+}
+#wishes .mari-wish-open{
+ display:inline-flex!important;
+ align-items:center!important;
+ gap:8px!important;
+ margin-top:9px!important;
+ padding-top:8px!important;
+ border-top:1px solid rgba(120,103,82,.25)!important;
+ color:#325b50!important;
+ font:700 13px/1.3 system-ui,sans-serif!important;
+}
+#wishes .mari-wish-open span{font-size:22px;line-height:12px}
+#wishes .wish-book:hover{
+ transform:translateY(-3px)!important;
+ border-color:#f9d48d!important;
+ box-shadow:inset 0 0 0 5px rgba(255,246,224,.18),0 13px 25px rgba(5,31,29,.28)!important;
+}
+#wishes .wish-book:hover .mari-wish-cover-wrap .cover{transform:rotate(0deg) translateY(-2px)!important}
+#wishes .mari-wish-more{color:#f0ddc2!important;font-size:14px!important;margin:15px 2px 0!important}
+@media(min-width:1300px){
+ #wishes .wish-books{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #wishes .wish-book{grid-template-columns:83px minmax(0,1fr)!important;gap:14px!important;padding:16px!important}
+ #wishes .mari-wish-cover-wrap{width:83px!important;max-width:83px!important}
+ #wishes .mari-wish-cover-wrap .cover{width:79px!important;min-width:79px!important;max-width:79px!important;height:119px!important;min-height:119px!important;max-height:119px!important}
+}
+@media(max-width:740px){
+ #wishes .wish-books{grid-template-columns:minmax(0,1fr)!important;gap:12px!important}
+ #wishes .wish-book{grid-template-columns:92px minmax(0,1fr)!important;min-height:155px!important;padding:15px 16px!important;gap:15px!important}
+ #wishes .mari-wish-cover-wrap{width:92px!important;max-width:92px!important;height:127px!important}
+ #wishes .mari-wish-cover-wrap .cover{width:82px!important;min-width:82px!important;max-width:82px!important;height:119px!important;min-height:119px!important;max-height:119px!important}
+ #wishes .wish-book .mari-wish-copy strong{font-size:clamp(20px,5vw,25px)!important}
+ #wishes .mari-wish-open{margin-top:6px!important}
+}
+@media(max-width:390px){
+ #wishes .wish-book{grid-template-columns:77px minmax(0,1fr)!important;padding:13px 12px!important;gap:12px!important}
+ #wishes .mari-wish-cover-wrap{width:77px!important;max-width:77px!important;height:117px!important}
+ #wishes .mari-wish-cover-wrap .cover{width:70px!important;min-width:70px!important;max-width:70px!important;height:103px!important;min-height:103px!important;max-height:103px!important}
+ #wishes .mari-wish-label{font-size:10px!important}
+ #wishes .wish-book .mari-wish-copy strong{font-size:19px!important}
+ #wishes .wish-book .mari-wish-copy small{font-size:14px!important}
+ #wishes .mari-wish-open{font-size:12px!important}
+}
 #wishes .btn:focus-visible,#wishes .wish-book:focus-visible{
  outline:3px solid #fbe2a8!important;
  outline-offset:3px!important;
@@ -2621,7 +2769,15 @@ function createWorldForm(){
 }
 function renderWishlist(){const list=books.filter(b=>b.status==='want'&&!b.textbook);const root=$('#wishlist-live');if(!root)return;
  if(!list.length){root.innerHTML=`<div class="wish-empty"><div><strong>Здесь пока ждёт первая мечта</strong><p>Какую книгу хочется прочитать? Добавь название и автора — и «Удиви меня» сможет выбрать историю из желаний.</p><button class="btn primary small" data-action="wish-add">${ico('plus')} Добавить первую книгу</button></div><div aria-hidden="true" class="wish-empty-art"><svg viewBox="0 0 180 150" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#efcfba" stroke-width="2.5" stroke-linejoin="round"><path d="M90 128Q54 100 14 115V36q45-18 76 12 31-30 76-12v79q-40-15-76 13Z" fill="#d2a8ba" fill-opacity=".25"/><path d="M90 48v80M25 51q26-8 52 11M25 68q26-8 52 11M25 85q26-8 52 11m13-34q26-19 52-11m-52 28q26-19 52-11m-52 28q26-19 52-11" opacity=".6"/><path d="M38 23l4-10 4 10 10 4-10 4-4 10-4-10-10-4zm97-4 3-8 3 8 8 3-8 3-3 8-3-8-8-3z" fill="#efd7ac" fill-opacity=".22"/></g></svg></div></div>`;return;}
- root.innerHTML=`<div class="wish-books">${list.slice(0,16).map(b=>`<button class="wish-book" data-action="detail" data-id="${esc(b.id)}"><span><strong>${esc(b.title)}</strong><br><small>${esc(b.author)}</small></span></button>`).join('')}</div>${list.length>16?`<p class="hint">И ещё ${list.length-16} книг на полке желаний</p>`:''}`;}
+ root.innerHTML=`<div class="wish-books">${list.slice(0,16).map((b,i)=>`<button type="button" class="wish-book" data-action="detail" data-id="${esc(b.id)}" aria-label="Открыть книгу: ${esc(b.title)}, ${esc(b.author)}">
+    <span class="mari-wish-cover-wrap" aria-hidden="true">${cover(b,'mari-wish-cover')}</span>
+    <span class="mari-wish-copy">
+      <span class="mari-wish-label">Книга в ожидании <span class="mari-wish-ornament" aria-hidden="true">✧</span></span>
+      <strong>${esc(b.title)}</strong>
+      <small>${esc(b.author)}</small>
+      <span class="mari-wish-open">Открыть историю <span aria-hidden="true">›</span></span>
+    </span>
+  </button>`).join('')}</div>${list.length>16?`<p class="mari-wish-more">И ещё ${list.length-16} книг на полке желаний</p>`:''}`;}
 function renderYear(){
  const {groups}=monthlyData(),yearbooks=Object.entries(groups).filter(([k])=>k.startsWith('2026-')).flatMap(([month,list])=>list.map(b=>({b,month}))).sort((a,b)=>a.month.localeCompare(b.month)||a.b.title.localeCompare(b.b.title,'ru'));
  const names=['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
