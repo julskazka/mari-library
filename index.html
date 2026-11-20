@@ -2939,6 +2939,23 @@ body{font-size:16px!important;line-height:1.58!important}
 .mari-cycle-empty p{color:#d4c8cf;max-width:600px}
 @media(max-width:850px){.mari-cycle-grid{grid-template-columns:1fr}}
 @media(max-width:580px){.mari-cycle-room{padding:17px 13px!important}.mari-cycle-card{padding:16px}.mari-cycle-top h3{font-size:24px}}
+
+/* Compact homepage and separate screen-like routes, using one safe shared data store */
+.topline .topline-right{display:none!important}
+#search-area{margin:13px 0 19px!important;padding:20px clamp(14px,3vw,28px);border:1px solid #d7b59a70;border-radius:19px;background:radial-gradient(ellipse at 86% 0%,#ba96b72a,transparent 55%),linear-gradient(125deg,#3b2f46,#26394a)}
+#search-area .search-results{z-index:110}
+.mari-search-title{margin:0 0 14px}.mari-search-title h2{font:normal clamp(27px,3.5vw,39px)/1.14 Georgia,serif;margin:5px 0 0;color:#fff0d9}
+.mari-home-directories{padding:21px clamp(14px,2.6vw,26px);margin:28px 0;border:1px solid #dfc1a751;border-radius:20px;background:linear-gradient(135deg,#2a293f,#253849)}
+.mari-home-directories>h2{font:normal clamp(27px,3vw,36px) Georgia,serif;color:#fff0dd;margin:6px 0 20px}
+.mari-directory-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.mari-directory-grid a{display:flex;flex-direction:column;min-width:0;min-height:130px;border:1px solid #e1c09e5c;border-radius:13px;padding:17px 14px;color:#fff0dd;background:linear-gradient(135deg,#40324b,#2e3f4e)}
+.mari-directory-grid a:nth-child(3n+2){background:linear-gradient(135deg,#433447,#344450)}
+.mari-directory-grid a:hover,.mari-directory-grid a:focus-visible{border-color:#f2d1a4;transform:translateY(-2px)}
+.mari-directory-grid a span{font:italic 14px Georgia;color:#efc79b;margin-bottom:8px}
+.mari-directory-grid a strong{font:normal 20px/1.12 Georgia;overflow-wrap:anywhere}
+.mari-directory-grid a small{font-size:12px;line-height:1.4;color:#dbced4;margin-top:8px}
+@media(max-width:900px){.mari-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){#search-area{padding:16px 13px!important}.mari-directory-grid{gap:8px}.mari-directory-grid a{min-height:117px;padding:13px 11px}.mari-directory-grid a strong{font-size:18px}.mari-directory-grid a small{font-size:11px}}
 </style></head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -3520,8 +3537,8 @@ function setBook(id,mode){
 }
 function ics(bookList){const clean=s=>String(s).replace(/[\n\r]/g,' ').replace(/[,;\\]/g,' ');const lines=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//MARI LIBRARY//RU','CALSCALE:GREGORIAN'];bookList.filter(outstanding).forEach((b,i)=>{const due=dateDue(b),compact=due.replace(/-/g,'');lines.push('BEGIN:VEVENT','UID:mari-library-'+i+'-'+Date.now()+'@local','DTSTAMP:'+new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'').replace(/Z$/,'Z'),'DTSTART;VALUE=DATE:'+compact,'DTEND;VALUE=DATE:'+shift(due,1).replace(/-/g,''),'SUMMARY:'+clean('Вернуть книгу: '+b.title),'DESCRIPTION:'+clean('Библиотека '+b.loan.library),'BEGIN:VALARM','ACTION:DISPLAY','DESCRIPTION:'+clean('Через 7 дней вернуть: '+b.title),'TRIGGER:-P'+Math.max(0,Number(b.loan.remindDays??7))+'D','END:VALARM','END:VEVENT')});lines.push('END:VCALENDAR');download(new Blob([lines.join('\r\n')],{type:'text/calendar;charset=utf-8'}),'mari-library-return.ics')}
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-function yearView(){yearMonthFilter='all';renderYear();$('#year-grid').scrollIntoView({behavior:'smooth',block:'start'});}
-function starsView(){document.querySelector('#constellation').scrollIntoView({behavior:'smooth'});}
+function yearView(){yearMonthFilter='all';renderYear();mariGoPage('archive','year');}
+function starsView(){mariGoPage('sky','constellation');}
 function renderImpressionChoices(){
  const root=$('#impression-search-results');if(!root)return;const q=norm($('#impression-book-search')?.value||''),matches=books.filter(b=>!q||norm(b.title+' '+b.author).includes(q)).sort((a,b)=>a.title.localeCompare(b.title,'ru'));
  root.innerHTML=`<p class="hint">${matches.length} ${plural(matches.length,'книга','книги','книг')} · ${q?'результаты поиска':'начни вводить название или автора'}</p>`+matches.slice(0,12).map(b=>`<button class="search-line" data-action="detail" data-id="${esc(b.id)}">${cover(b,'mini-cover')}<span><strong>${esc(b.title)}</strong><br><small>${esc(b.author)}</small></span></button>`).join('')+(matches.length>12?'<p class="hint">Показаны первые 12. Уточни запрос, чтобы найти нужную книгу.</p>':'')+(matches.length===0?`<button class="btn tonal small" data-action="add">Добавить книгу</button>`:'');
@@ -3543,7 +3560,7 @@ $$('[data-view]').forEach(el=>el.addEventListener('click',()=>{catalogMode=el.da
 $('#search').addEventListener('input',updateSearch);$('#search').addEventListener('keydown',e=>{if(e.key==='Escape')$('#search-results').classList.remove('show');if(e.key==='Enter'){e.preventDefault();const match=books.find(b=>norm(b.title+' '+b.author).includes(norm($('#search').value)));match?showDetail(match.id):addForm({title:$('#search').value})}});$('#month-year').addEventListener('change',()=>renderStats());$('#star-author-search').addEventListener('input',e=>{starSearch=e.target.value;starLimit=8;renderStarMap();renderAuthorSearch()});$('#modal-screen').addEventListener('change',e=>{if(e.target?.id!=='detail-genre')return;const b=bookById(e.target.dataset.bookId);if(!b)return;b.genre=e.target.value;b.worldManuallyChosen=true;save();render();notify('Книжная полка изменена');});$('#sort').addEventListener('change',e=>{sort=e.target.value;pageSize=12;renderBooks()});$('#catalog-year').addEventListener('change',e=>{catalogYear=e.target.value;pageSize=12;renderBooks();renderCatalogSuggestions()});$('#modal-screen').addEventListener('input',e=>{if(e.target?.id==='impression-book-search')renderImpressionChoices()});
 $('#import-file').addEventListener('change',e=>{importData(e.target.files[0]);e.target.value='' });
 $('#modal-screen').addEventListener('click',e=>{if(e.target===$('#modal-screen'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeTopMenu();catalogOpen=false;renderCatalogSuggestions();$('#search-results').classList.remove('show')}});
-document.addEventListener('click',e=>{const w=e.target.closest('[data-world]');if(w){pageSize=12;worldFilter=w.dataset.world;filter='all';searchTerm='';$('#search').value='';render();$('#library').scrollIntoView({behavior:'smooth'});notify('Открыта полка: '+genreName[worldFilter]);return}const f=e.target.closest('[data-filter]');if(f){pageSize=12;filter=f.dataset.filter;worldFilter='';render();return}const btn=e.target.closest('[data-action]');if(!btn){if(!e.target.closest('#search-area'))$('#search-results').classList.remove('show');if(!e.target.closest('.catalog-search-zone')){catalogOpen=false;renderCatalogSuggestions()}return}const action=btn.dataset.action,id=btn.dataset.id;
+document.addEventListener('click',e=>{const w=e.target.closest('[data-world]');if(w){pageSize=12;worldFilter=w.dataset.world;filter='all';searchTerm='';$('#search').value='';render();mariGoPage('books','library');notify('Открыта полка: '+genreName[worldFilter]);return}const f=e.target.closest('[data-filter]');if(f){pageSize=12;filter=f.dataset.filter;worldFilter='';render();return}const btn=e.target.closest('[data-action]');if(!btn){if(!e.target.closest('#search-area'))$('#search-results').classList.remove('show');if(!e.target.closest('.catalog-search-zone')){catalogOpen=false;renderCatalogSuggestions()}return}const action=btn.dataset.action,id=btn.dataset.id;
 if(action==='open-menu'){openTopMenu();return}if(action==='world-add'){createWorldForm();return}if(action==='show-all'){pageSize=books.length+100;renderBooks();return}if(action==='year-show-all'){yearShowAll=true;renderYear();return}if(action==='year-view'){yearMode=btn.dataset.yearView;renderYear();return}if(action==='to-top'){window.scrollTo({top:0,behavior:'smooth'});return}if(action==='catalog-book'){showDetail(id);catalogOpen=false;renderCatalogSuggestions();return}if(action==='stars-more'){starLimit+=12;renderStarMap();return}if(action==='wish-add'){addForm({status:'want'});return}if(action==='author-stars'){const author=decodeURIComponent(btn.dataset.author||'');if(author)authorView(author);return}if(action==='year-filter'){yearMonthFilter=btn.dataset.month||'all';yearShowAll=false;renderYear();return}if(action==='more'){pageSize+=12;renderBooks();return}if(action==='save-cover-color'){
  const b=bookById(id),picker=$('#detail-color'),customInput=$('#detail-custom-color');
  if(!b||!picker)return;
@@ -3558,7 +3575,7 @@ if(action==='open-menu'){openTopMenu();return}if(action==='world-add'){createWor
 }
 if(action==='toggle-format'){const b=bookById(id);if(b){b.format=b.format==='paper'?'digital':'paper';b.formatInferred=false;b.formatAssumption='';save();render();showDetail(id);notify('Формат изменён: '+(b.format==='paper'?'бумажная':'электронная'))}return}if(action==='close'){closeModal();return}if(action==='add'||action==='loan-add'||action==='add-search'){const q=action==='add-search'?$('#search').value:'';$('#search-results').classList.remove('show');addForm({title:q,loan:action==='loan-add'});return}
 if(action==='detail'){showDetail(id);$('#search-results').classList.remove('show');return}if(action==='delete-book-request'){confirmDeleteBook(id);return}if(action==='delete-book-confirm'){removeBookFromLibrary(id);return}if(['heart','read-start','finished','want','paused'].includes(action)){setBook(id,action);return}if(action==='impression'){impressionView();return}if(action==='stars'){starsView();return}if(action==='year'){yearView();return}if(action==='loan-calendar'){const list=books.filter(outstanding);if(!list.length){notify('Пока нет книг с датой возврата');return}ics(list);notify('Календарь для библиотечных книг скачан');return}if(action==='ics-single'){ics([bookById(id)]);notify('Напоминание сохранено в файл календаря');return}
-if(action==='return'){const b=bookById(id);if(b?.loan){b.loan.returnedAt=today();save();render();showDetail(id);notify('Отмечено: книга возвращена')}return}if(action==='extend'){const b=bookById(id),due=$('#extend-date')?.value;if(b?.loan&&due){b.loan.dueDate=due;save();render();showDetail(id);notify('Срок возврата обновлён')}return}if(action==='show-favorites'){filter='favorite';worldFilter='';searchTerm='';$('#search').value='';render();$('#library').scrollIntoView({behavior:'smooth'});return}if(action==='random'){const unread=books.filter(b=>!b.textbook&&b.status!=='read');if(!unread.length){showModal('Что прочитать дальше?',`<div class="random-empty"><div class="random-book-stack" aria-hidden="true"><i></i><i></i><i></i></div><h3>Давай соберём полку будущих историй</h3><p>Пока все книги прочитаны. Добавь хотя бы одно желание или отложенную историю — и я смогу выбрать случайную книгу.</p><button class="btn primary" data-action="wish-add">Добавить в список желаний</button></div>`);return}showDetail(unread[Math.floor(Math.random()*unread.length)].id);return}if(action==='export'){exportData();return}if(action==='import'){$('#import-file').click();return}
+if(action==='return'){const b=bookById(id);if(b?.loan){b.loan.returnedAt=today();save();render();showDetail(id);notify('Отмечено: книга возвращена')}return}if(action==='extend'){const b=bookById(id),due=$('#extend-date')?.value;if(b?.loan&&due){b.loan.dueDate=due;save();render();showDetail(id);notify('Срок возврата обновлён')}return}if(action==='show-favorites'){filter='favorite';worldFilter='';searchTerm='';$('#search').value='';render();mariGoPage('books','library');return}if(action==='random'){const unread=books.filter(b=>!b.textbook&&b.status!=='read');if(!unread.length){showModal('Что прочитать дальше?',`<div class="random-empty"><div class="random-book-stack" aria-hidden="true"><i></i><i></i><i></i></div><h3>Давай соберём полку будущих историй</h3><p>Пока все книги прочитаны. Добавь хотя бы одно желание или отложенную историю — и я смогу выбрать случайную книгу.</p><button class="btn primary" data-action="wish-add">Добавить в список желаний</button></div>`);return}showDetail(unread[Math.floor(Math.random()*unread.length)].id);return}if(action==='export'){exportData();return}if(action==='import'){$('#import-file').click();return}
 });
  
 // v10 — implemented inside the existing app closure, so all changes share the real book data.
@@ -3800,7 +3817,69 @@ const mariCatalogArrow=$('#catalog-expand');if(mariCatalogArrow){mariCatalogArro
 
 const mariYearText=$('#year .year-banner p');if(mariYearText)mariYearText.textContent='Выбирай год и месяц, чтобы увидеть прочитанные книги.';
 
+
+const mariPageMap={
+ home:['section.hero','.prologue-trail','#search-area','#quick-start','#statistics','#mari-home-directories'],
+ books:['#library','#favorite'],
+ reading:['#reading','#wishes'],
+ worlds:['#worlds'],cycles:['#cycles'],
+ diary:['#memories','#notes-gallery'],
+ archive:['#history','#year'],
+ sky:['#constellation'],data:['#safety']
+};
+const mariPageAnchor={top:'home','search-area':'home','quick-start':'home',statistics:'home',library:'books',favorite:'books',reading:'reading',wishes:'reading',worlds:'worlds',cycles:'cycles',memories:'diary','notes-gallery':'diary',history:'archive',year:'archive',constellation:'sky',safety:'data'};
+const mariPageLabels={home:'Между страницами',books:'Библиотека моих историй',reading:'Сейчас читаю',worlds:'Книжные миры',cycles:'Книжные циклы',diary:'Мои впечатления',archive:'Мой книжный год',sky:'Книжное небо',data:'Мои данные'};
+function mariPageFromUrl(){
+ const p=new URLSearchParams(location.search).get('page');
+ if(Object.prototype.hasOwnProperty.call(mariPageMap,p))return p;
+ return mariPageAnchor[decodeURIComponent(location.hash.slice(1))]||'home';
+}
+function mariShowPage(page){
+ if(!mariPageMap[page])page='home';
+ for(const selector of [...new Set(Object.values(mariPageMap).flat())]){
+  const el=document.querySelector(selector);if(!el)continue;
+  const visible=mariPageMap[page].includes(selector);
+  el.hidden=!visible;
+  if(visible)el.style.removeProperty('display');else el.style.setProperty('display','none','important');
+ }
+ $$('.page-turn').forEach(el=>{el.hidden=page!=='diary';if(page==='diary')el.style.removeProperty('display');else el.style.setProperty('display','none','important');});
+ document.body.dataset.mariPage=page;
+ document.title=mariPageLabels[page]+' · библиотека Мари';
+}
+function mariGoPage(page,anchor){
+ if(!mariPageMap[page])page='home';
+ const u=new URL(location.href);
+ u.searchParams.delete('book');u.searchParams.delete('impression');
+ if(page==='home')u.searchParams.delete('page');else u.searchParams.set('page',page);
+ u.hash=anchor?'#'+anchor:'';
+ history.pushState({mariPage:page},'',u);
+ mariShowPage(page);
+ closeTopMenu();
+ const target=anchor?document.getElementById(anchor):null;
+ if(target)requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));
+ else window.scrollTo({top:0});
+}
+function mariInitPages(){
+ const search=$('#search-area'),hero=$('section.hero');
+ if(search&&hero){hero.before(search);search.insertAdjacentHTML('afterbegin','<div class="mari-search-title"><span class="kicker">Поиск по всей библиотеке</span><h2>Найти свою историю</h2></div>');}
+ const quick=$('#quick-start');
+ if(quick&&!$('#mari-home-directories')){
+  const links=[['library','Все книги','Каталог и любимые'],['reading','Сейчас читаю','Чтение и желания'],['cycles','Книжные циклы','Все тома по порядку'],['worlds','Книжные миры','Полки по жанрам'],['memories','Мои впечатления','Заметки и фото'],['year','Книжный год','Годы и месяцы'],['constellation','Книжное небо','Авторы и созвездия'],['safety','Мои данные','Резервные копии']];
+  quick.insertAdjacentHTML('afterend','<section class="mari-home-directories" id="mari-home-directories"><div class="kicker">Открой следующую главу</div><h2>Куда отправимся?</h2><div class="mari-directory-grid">'+links.map(([id,name,desc],i)=>'<a href="#'+id+'"><span>'+(i+1).toString().padStart(2,'0')+'</span><strong>'+name+'</strong><small>'+desc+'</small></a>').join('')+'</div></section>');
+ }
+ document.addEventListener('click',e=>{
+  const a=e.target.closest('a[href^="#"]');if(!a)return;
+  const id=decodeURIComponent(a.getAttribute('href').slice(1));
+  const page=mariPageAnchor[id];if(!page)return;
+  e.preventDefault();mariGoPage(page,id);
+ },true);
+ window.addEventListener('popstate',()=>mariShowPage(mariPageFromUrl()));
+ window.addEventListener('hashchange',()=>mariShowPage(mariPageFromUrl()));
+ mariShowPage(mariPageFromUrl());
+}
+
 v10InitLayout();
+mariInitPages();
 
 // The original 416-book catalogue is on GitHub; user edits are local only until a secure write backend is built.
 render();const params=new URLSearchParams(location.search);const deep=params.get('book');if(deep&&bookById(deep))showDetail(deep);if(params.get('impression')==='1')impressionView();
