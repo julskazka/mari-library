@@ -860,16 +860,16 @@ body{background:
 /* Illustrated-book almanac: a typographic, paper-and-cloth chapter.
    Applies only to #year; the reading data and book-card actions are unchanged. */
 #year .year-banner{
- position:relative; isolation:isolate; overflow:hidden;
- display:flex; align-items:center; justify-content:space-between;
- gap:28px; min-height:215px!important;
- padding:34px clamp(23px,3.4vw,43px)!important;
+ position:relative;isolation:isolate;overflow:hidden;
+ display:grid;grid-template-columns:minmax(0,1fr) minmax(290px,.8fr);
+ grid-template-rows:auto auto;align-items:center;column-gap:14px;row-gap:0;
+ min-height:250px!important;
+ padding:31px clamp(23px,3.4vw,43px)!important;
  border:1px solid rgba(233,196,151,.58);
  border-radius:22px 22px 0 0!important;
  background:
-   radial-gradient(ellipse 42% 98% at 92% 15%,rgba(191,154,146,.23),transparent 77%),
-   radial-gradient(ellipse 60% 110% at -10% 110%,rgba(117,64,81,.42),transparent 75%),
-   linear-gradient(118deg,#643c51 0%,#4a3950 47%,#253f51 100%);
+   radial-gradient(ellipse 58% 115% at -6% 112%,rgba(117,64,81,.40),transparent 80%),
+   linear-gradient(112deg,#643c51 0%,#46384c 45%,#273142 77%,#273142 100%);
  box-shadow:0 20px 48px rgba(8,11,29,.27);
 }
 #year .year-banner::before{
@@ -879,14 +879,17 @@ body{background:
  opacity:.85;
 }
 #year .year-banner::after{
- content:attr(data-year);
- position:absolute;z-index:-1;pointer-events:none;
- right:clamp(145px,15vw,205px);top:-41px;
- font:italic clamp(110px,15vw,205px)/1 Georgia,serif;
- letter-spacing:-.095em;white-space:nowrap;
- color:rgba(241,206,172,.10);
+ content:"";display:block;pointer-events:none;
+ position:absolute;z-index:1;right:10px;top:0;bottom:0;
+ width:49%;height:100%;
+ background:url("assets/mari-year-watercolor-20261120.jpg") center / contain no-repeat;
+ -webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 17%,#000 94%,transparent 100%);
+ mask-image:linear-gradient(90deg,transparent 0%,#000 17%,#000 94%,transparent 100%);
 }
-#year .year-banner>div:first-child{position:relative;z-index:2;min-width:0;max-width:580px}
+#year .year-banner>div:first-child{
+ position:relative;z-index:2;min-width:0;max-width:580px;
+ grid-column:1;grid-row:1;align-self:end;
+}
 #year .year-banner .kicker{font-size:14px!important;letter-spacing:1.6px;color:#f3cd97!important}
 #year .year-banner h2{
  margin:11px 0 12px;
@@ -902,7 +905,8 @@ body{background:
 }
 #year .year-banner-art{display:none!important}
 #year .year-banner .btn{
- position:relative;z-index:2;flex:0 0 auto;
+ position:relative;z-index:2;grid-column:1;grid-row:2;
+ justify-self:start;align-self:start;margin-top:17px;
  width:auto;min-height:51px;
  padding:13px 21px;
  font-size:15px!important;font-weight:700;
@@ -1090,17 +1094,27 @@ body{background:
 @media(max-width:899px){
  #year .year-banner{padding:27px 24px!important;min-height:0!important}
  #year .year-banner h2{font-size:clamp(35px,5vw,48px)!important}
- #year .year-banner::after{right:5%;top:-18px;font-size:135px}
  #year .year-contents{padding:17px}
  #year #year-calendar-panel{padding:21px 18px 22px!important}
  #year .year-graph{grid-template-columns:repeat(4,minmax(0,1fr))!important}
 }
 @media(max-width:620px){
- #year .year-banner{flex-direction:column;align-items:stretch;gap:17px;padding:26px 21px!important}
- #year .year-banner::after{font-size:118px;right:-13px;top:-16px;color:rgba(241,206,172,.07)}
+ #year .year-banner{
+  display:flex;flex-direction:column;align-items:stretch;gap:12px;
+  padding:26px 21px 12px!important;
+ }
+ #year .year-banner>div:first-child{align-self:stretch}
+ #year .year-banner::after{
+  position:relative;top:auto;right:auto;bottom:auto;
+  order:3;align-self:center;width:min(100%,430px);height:auto;
+  aspect-ratio:2/1;min-height:128px;margin:0 auto;
+  background-position:center;background-size:contain;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 9%,#000 92%,transparent 100%);
+  mask-image:linear-gradient(180deg,transparent 0%,#000 9%,#000 92%,transparent 100%);
+ }
  #year .year-banner h2{font-size:clamp(33px,8vw,42px)!important}
  #year .year-banner p{font-size:15px!important;max-width:100%!important}
- #year .year-banner .btn{align-self:flex-start;min-height:47px;width:auto;max-width:100%}
+ #year .year-banner .btn{align-self:flex-start;min-height:47px;width:auto;max-width:100%;margin-top:3px}
  #year .year-contents{grid-template-columns:1fr;padding:14px}
  #year #year-calendar-panel{padding:20px 15px 22px!important;margin-bottom:22px}
  #year .year-calendar-head{align-items:flex-start}
@@ -3442,7 +3456,6 @@ renderYear=function(){
    panel.innerHTML=`<div class="year-calendar-head"><div><div class="kicker">Книжный календарь</div><h3>Путешествие по месяцам</h3><p>Выбери месяц — откроются все прочитанные в нём истории.</p></div><label class="month-year-picker">Год <select aria-label="Выбрать год чтения" id="v10-year-select">${years.map(y=>`<option value="${y}" ${y===v10SelectedYear?'selected':''}>${y}</option>`).join('')}</select></label></div><div class="year-graph">${V10_MONTHS.map((m,i)=>{const key=v10SelectedYear+'-'+String(i+1).padStart(2,'0'),n=byMonth[key]||0,share=n?Math.round(n/top*100):0;return `<button type="button" class="year-bar ${n?'has-books':'empty'} ${yearMonthFilter===key?'active':''}" data-v10-month="${key}" aria-label="${V10_MONTH_LABELS[i]} ${v10SelectedYear}: ${n} ${plural(n,'история','истории','историй')}. Открыть книги месяца" aria-pressed="${yearMonthFilter===key}" style="--month-share:${share}%"><span class="bar-month">${V10_MONTH_LABELS[i]}</span><span class="bar-num">${n||'—'}</span><span class="bar-caption">${n?plural(n,'история','истории','историй'):'Нет записей'}</span></button>`}).join('')}</div>`;
  }
  const title=$('#year .year-banner h2');if(title)title.textContent='Мой книжный '+v10SelectedYear;
- const yearBanner=$('#year .year-banner');if(yearBanner)yearBanner.dataset.year=v10SelectedYear;
  $('#year-summary').textContent=`${yearbooks.length} ${plural(yearbooks.length,'история','истории','историй')} в ${v10SelectedYear} году`;
  $('#year-month-filters').innerHTML=`<button class="${yearMonthFilter==='all'?'active':''}" data-action="year-filter" data-month="all">Все · ${yearbooks.length}</button>`+V10_MONTHS.map((m,i)=>{const key=v10SelectedYear+'-'+String(i+1).padStart(2,'0'),n=byMonth[key]||0;return n?`<button class="${yearMonthFilter===key?'active':''}" data-action="year-filter" data-month="${key}">${m} · ${n}</button>`:''}).join('');
  const visible=yearMonthFilter==='all'?yearbooks:yearbooks.filter(x=>x.month===yearMonthFilter),root=$('#year-grid');
