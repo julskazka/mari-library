@@ -686,6 +686,10 @@ body{overflow-x:clip}
 
 </style>
 <style id="v10-final-overrides">
+/* Phone layout calibration: the 100% browser view matches the former 75% phone view.
+   Desktop, tablets, data and native browser zoom remain untouched. */
+@media (max-width:700px) and (pointer:coarse){html{zoom:.75}}
+
 :root{--paper:#f5ebdf;--ink-soft:#d8c1b6;--section-border:rgba(240,205,177,.22)}
 body{background:
  radial-gradient(circle at 12% 6%, rgba(121,93,135,.20), transparent 28%),
