@@ -2074,6 +2074,280 @@ body{font-size:16px!important;line-height:1.58!important}
  #modal-screen .mari-status-group{gap:7px!important}
  #modal-screen .modal-actions .btn{padding:10px 8px!important}
 }
+</style><style id="mari-wishes-emerald-20261120">
+/* The approved emerald wishlist: warm gilded edges, real text and functional buttons.
+   Art and vine are separate transparent assets taken from the approved composition. */
+#wishes.wish-chapter{
+ box-sizing:border-box!important;
+ position:relative!important;
+ isolation:isolate!important;
+ overflow:hidden!important;
+ margin-top:38px!important;
+ padding:clamp(21px,2.5vw,31px)!important;
+ border-radius:23px!important;
+ border:1.5px solid #c9a965!important;
+ background:
+  radial-gradient(ellipse 65% 130% at 82% 56%,rgba(104,157,119,.31),transparent 74%),
+  radial-gradient(ellipse 78% 65% at 12% 3%,rgba(19,79,67,.68),transparent 78%),
+  linear-gradient(123deg,#153d38 0%,#246052 50%,#16463d 100%)!important;
+ box-shadow:inset 0 0 0 1px rgba(249,227,158,.17),inset 0 0 75px rgba(4,30,30,.27),0 16px 38px rgba(1,13,26,.24)!important;
+}
+#wishes.wish-chapter::before{
+ content:""!important;
+ display:block!important;
+ position:absolute!important;
+ inset:0!important;
+ z-index:0!important;
+ pointer-events:none!important;
+ border-radius:inherit!important;
+ opacity:.15!important;
+ mix-blend-mode:soft-light!important;
+ background-size:225px 225px!important;
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.27' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E")!important;
+}
+#wishes.wish-chapter::after{
+ content:""!important;
+ position:absolute!important;
+ inset:8px!important;
+ z-index:0!important;
+ pointer-events:none!important;
+ border-radius:17px!important;
+ border:1px solid rgba(247,218,153,.13)!important;
+}
+#wishes .section-head{
+ position:relative!important;
+ z-index:2!important;
+ display:flex!important;
+ align-items:center!important;
+ flex-direction:row!important;
+ justify-content:space-between!important;
+ gap:18px!important;
+ margin:0!important;
+ padding:0 5px 15px!important;
+ border-bottom:0!important;
+ min-width:0!important;
+}
+#wishes .section-head::after{
+ content:""!important;
+ position:absolute!important;
+ z-index:0!important;
+ pointer-events:none!important;
+ width:33%!important;
+ height:112px!important;
+ top:-8px!important;
+ left:43%!important;
+ background:url("assets/mari-wishes-emerald-vine-20261120.webp") center/contain no-repeat!important;
+ opacity:.9!important;
+}
+#wishes .section-head>div,
+#wishes .section-head>.btn{z-index:1!important;position:relative!important}
+#wishes .section-head .kicker{
+ color:#f2c978!important;
+ font-size:15px!important;
+ letter-spacing:1.6px!important;
+ line-height:1.5!important;
+ text-transform:uppercase!important;
+}
+#wishes .section-head .section-title{
+ color:#faeacb!important;
+ font-size:clamp(32px,4vw,48px)!important;
+ line-height:1.15!important;
+ margin:7px 0 0!important;
+ text-shadow:0 2px 16px rgba(6,25,26,.27)!important;
+}
+#wishes .section-head .btn[data-action="wish-add"]{
+ box-sizing:border-box!important;
+ flex:0 0 auto!important;
+ min-height:47px!important;
+ min-width:0!important;
+ padding:11px 18px!important;
+ border-radius:13px!important;
+ border:1.5px solid #e6bf75!important;
+ background:linear-gradient(120deg,#fff1d8,#e9d0c1)!important;
+ color:#453047!important;
+ font:700 15px/1.25 system-ui,sans-serif!important;
+ box-shadow:0 5px 16px rgba(6,26,28,.22)!important;
+ white-space:normal!important;
+}
+#wishes .wishlist-live{
+ position:relative!important;
+ z-index:1!important;
+ margin:10px 0 0!important;
+ min-width:0!important;
+}
+#wishes .wish-empty{
+ box-sizing:border-box!important;
+ position:relative!important;
+ isolation:isolate!important;
+ display:flex!important;
+ align-items:center!important;
+ overflow:hidden!important;
+ min-width:0!important;
+ min-height:272px!important;
+ border-radius:19px!important;
+ border:1.5px solid rgba(239,199,113,.83)!important;
+ padding:29px clamp(20px,3vw,34px)!important;
+ background:
+  radial-gradient(ellipse 54% 82% at 18% 55%,rgba(255,248,219,.95),rgba(229,230,188,.80) 64%,rgba(176,197,151,.27) 95%,transparent 100%),
+  linear-gradient(100deg,#e8e7c9 0%,#c7d3b0 40%,#779b82 68%,#3b6352 100%)!important;
+ box-shadow:0 9px 25px rgba(6,29,30,.19),inset 0 0 0 6px rgba(244,218,160,.07)!important;
+}
+#wishes .wish-empty::before{
+ content:""!important;
+ display:block!important;
+ position:absolute!important;
+ z-index:1!important;
+ inset:0!important;
+ border-radius:inherit!important;
+ pointer-events:none!important;
+ opacity:.14!important;
+ mix-blend-mode:multiply!important;
+ background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.19' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E") 0 0/230px 230px!important;
+}
+#wishes .wish-empty::after{
+ content:""!important;
+ position:absolute!important;
+ display:block!important;
+ z-index:2!important;
+ pointer-events:none!important;
+ top:0!important;
+ right:-2%!important;
+ bottom:0!important;
+ width:52%!important;
+ background:url("assets/mari-wishes-emerald-books-20261120.webp") right center/contain no-repeat!important;
+ opacity:1!important;
+}
+#wishes .wish-empty>div:first-child{
+ position:relative!important;
+ z-index:3!important;
+ flex:0 1 62%!important;
+ width:62%!important;
+ max-width:62%!important;
+ min-width:0!important;
+ display:flex!important;
+ flex-direction:column!important;
+ align-items:flex-start!important;
+ gap:14px!important;
+}
+#wishes .wish-empty strong{
+ display:block!important;
+ font:normal clamp(24px,2.65vw,32px)/1.17 var(--display),Georgia,serif!important;
+ color:#3f2945!important;
+ text-shadow:none!important;
+ margin:0!important;
+ max-width:100%!important;
+}
+#wishes .wish-empty p{
+ color:#372e3b!important;
+ font:normal 16.5px/1.58 system-ui,sans-serif!important;
+ margin:0!important;
+ max-width:100%!important;
+ text-shadow:none!important;
+}
+#wishes .wish-empty .btn[data-action="wish-add"]{
+ box-sizing:border-box!important;
+ display:inline-flex!important;
+ align-items:center!important;
+ justify-content:center!important;
+ min-height:50px!important;
+ max-width:100%!important;
+ padding:12px 18px!important;
+ border:1.5px solid #dcb575!important;
+ border-radius:12px!important;
+ background:linear-gradient(135deg,#713c52,#4a2b46)!important;
+ color:#fff0db!important;
+ box-shadow:0 7px 15px rgba(44,22,40,.21)!important;
+ font:700 15px/1.3 system-ui,sans-serif!important;
+ text-align:center!important;
+ white-space:normal!important;
+ margin:3px 0 0!important;
+}
+#wishes .wish-empty .btn[data-action="wish-add"]:hover{filter:brightness(1.1)!important;transform:translateY(-1px)}
+#wishes .wish-empty-art{display:none!important}
+#wishes .wish-books{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))!important;gap:13px!important}
+#wishes .wish-book{
+ box-sizing:border-box!important;
+ position:relative!important;
+ min-height:104px!important;
+ padding:18px!important;
+ border:1px solid rgba(230,201,142,.62)!important;
+ border-radius:14px!important;
+ background:linear-gradient(140deg,rgba(232,234,201,.18),rgba(26,67,59,.64))!important;
+ color:#ffefd9!important;
+ text-align:left!important;
+ box-shadow:inset 0 1px rgba(255,245,211,.08),0 5px 13px rgba(7,32,34,.14)!important;
+ overflow-wrap:break-word;
+}
+#wishes .wish-book strong{color:#ffeed8!important;font-size:16px!important;line-height:1.4!important}
+#wishes .wish-book small{color:#ead7ca!important;font-size:14px!important;line-height:1.4!important}
+#wishes .wish-book:hover{border-color:#ffe0a5!important;background:rgba(45,90,76,.65)!important}
+#wishes .btn:focus-visible,#wishes .wish-book:focus-visible{
+ outline:3px solid #fbe2a8!important;
+ outline-offset:3px!important;
+}
+@media(max-width:890px){
+ #wishes .section-head::after{width:30%!important;left:45%!important;opacity:.65!important}
+ #wishes .wish-empty>div:first-child{flex-basis:63%!important;width:63%!important;max-width:63%!important}
+ #wishes .wish-empty::after{width:48%!important;right:-7%!important}
+}
+@media(max-width:640px){
+ #wishes.wish-chapter{margin-top:26px!important;padding:20px 15px!important;border-radius:18px!important}
+ #wishes .section-head{
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  gap:15px!important;
+  padding:0 3px 17px!important;
+ }
+ #wishes .section-head::after{
+  width:45%!important;
+  height:72px!important;
+  top:4px!important;
+  left:auto!important;
+  right:-6px!important;
+  opacity:.58!important;
+ }
+ #wishes .section-head .kicker{font-size:12.5px!important}
+ #wishes .section-head .section-title{font-size:clamp(32px,8vw,40px)!important}
+ #wishes .section-head .btn[data-action="wish-add"]{min-height:46px!important;padding:10px 16px!important;font-size:15px!important}
+ #wishes .wishlist-live{margin:0!important}
+ #wishes .wish-empty{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  padding:23px 19px 190px!important;
+  min-height:0!important;
+  gap:0!important;
+  border-radius:16px!important;
+  background:
+   radial-gradient(ellipse 115% 75% at 22% 15%,rgba(255,250,224,.96),rgba(223,230,196,.87) 73%,transparent 100%),
+   linear-gradient(160deg,#e9e8cf,#c0d3b0 63%,#53816b)!important;
+ }
+ #wishes .wish-empty>div:first-child{
+  flex:0 1 auto!important;
+  width:100%!important;
+  max-width:100%!important;
+  gap:13px!important;
+ }
+ #wishes .wish-empty strong{font-size:clamp(24px,6.5vw,30px)!important}
+ #wishes .wish-empty p{font-size:15.5px!important;line-height:1.55!important}
+ #wishes .wish-empty .btn[data-action="wish-add"]{font-size:14.5px!important;min-height:47px!important}
+ #wishes .wish-empty::after{
+  top:auto!important;
+  right:-4%!important;
+  bottom:-10px!important;
+  left:auto!important;
+  width:92%!important;
+  height:194px!important;
+  background-position:right bottom!important;
+  background-size:contain!important;
+ }
+ #wishes .wish-book{min-height:88px!important}
+}
+@media(max-width:365px){
+ #wishes.wish-chapter{padding:17px 12px!important}
+ #wishes .wish-empty{padding:21px 15px 155px!important}
+ #wishes .wish-empty::after{height:170px!important;width:99%!important}
+}
 </style></head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
