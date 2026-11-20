@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 530" role="img" aria-labelledby="t d">
+<title id="t">Хранители книжных лет</title><desc id="d">Старинные книги, карманные часы и маленький фонарь в осенних ветвях.</desc>
+<defs>
+<linearGradient id="gold" x2=".9" y2="1"><stop stop-color="#ffe9b6"/><stop offset=".43" stop-color="#c99553"/><stop offset="1" stop-color="#704329"/></linearGradient>
+<linearGradient id="page" x2="0" y2="1"><stop stop-color="#fff0cf"/><stop offset=".55" stop-color="#d4ad82"/><stop offset="1" stop-color="#805e4f"/></linearGradient>
+<linearGradient id="navy" x2=".85" y2="1"><stop stop-color="#526678"/><stop offset=".25" stop-color="#273b56"/><stop offset="1" stop-color="#17233d"/></linearGradient>
+<linearGradient id="plum" x2=".88" y2="1"><stop stop-color="#76536b"/><stop offset=".28" stop-color="#4b365a"/><stop offset="1" stop-color="#292641"/></linearGradient>
+<linearGradient id="wine" x2=".84" y2="1"><stop stop-color="#a46b61"/><stop offset=".35" stop-color="#65394d"/><stop offset="1" stop-color="#3e273d"/></linearGradient>
+<linearGradient id="teal" x2=".84" y2="1"><stop stop-color="#6b9286"/><stop offset=".3" stop-color="#355a63"/><stop offset="1" stop-color="#213c52"/></linearGradient>
+<radialGradient id="flame"><stop stop-color="#fffbd4"/><stop offset=".3" stop-color="#ffe8a1"/><stop offset=".6" stop-color="#eebd67" stop-opacity=".48"/><stop offset="1" stop-color="#ffda82" stop-opacity="0"/></radialGradient>
+<filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feGaussianBlur stdDeviation="13"/></filter>
+<filter id="glow" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="3"/></filter>
+<filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="3" seed="9" result="noise"/><feDisplacementMap in="SourceGraphic" in2="noise" scale="1.7"/></filter>
+<g id="sprig" fill="none" stroke="#c59b67" stroke-width="2.2" stroke-linecap="round">
+<path d="M0 0Q38 -55 67 -123M25 -39Q-15 -58 1 -88M42 -67Q80 -82 79 -110M52 -91Q27 -127 42 -142"/>
+<g fill="#c3a070" stroke="#805c56" stroke-width=".9" opacity=".91"><path d="M1 -88Q-15 -110 6 -112Q23 -99 1 -88Z"/><path d="M79 -110Q100 -127 99 -100Q85 -87 79 -110Z"/><path d="M42 -142Q29 -160 54 -160Q66 -139 42 -142Z"/><path d="M25 -39Q4 -43 8 -66Q36 -65 25 -39Z"/></g></g>
+<g id="filigree" fill="none" stroke="#d9b982" stroke-width="2" opacity=".83"><path d="M0 18q15 -17 32 0t32 0q-19 19 -32 0t-32 0" /><path d="M32 18q-11 -16 0 -29q12 13 0 29M32 18q-13 16 0 29q13 -14 0 -29"/><circle cx="32" cy="18" r="4" fill="#e2b97d"/></g>
+</defs>
+<ellipse cx="303" cy="478" rx="211" ry="22" fill="#0a1228" opacity=".43" filter="url(#shadow)"/>
+<g opacity=".5" fill="#e7c486"><circle cx="75" cy="214" r="2.5"/><circle cx="141" cy="136" r="2"/><circle cx="486" cy="259" r="3"/><circle cx="533" cy="324" r="1.5"/><circle cx="105" cy="310" r="1.5"/><circle cx="456" cy="59" r="2.4"/></g>
+<g opacity=".48" stroke="#a1b2bf" fill="none"><path d="M36 382Q75 365 113 383"/><path d="M461 434q37 -20 60 -9" /></g>
+<!-- brushed antique clock -->
+<g transform="translate(244 190) rotate(-14)">
+<path d="M-5 -73v-18h10v18" fill="#8c5b35" stroke="#dab77b" stroke-width="4"/><circle cx="0" cy="-93" r="12" fill="none" stroke="#c9975c" stroke-width="6"/>
+<circle r="76" fill="#422d39" stroke="#ae7d4a" stroke-width="9"/><circle r="66" fill="#e8d7bd" stroke="#5c3f42" stroke-width="6"/><circle r="57" fill="#f5e5ca" stroke="#bb9263" stroke-width="1.7"/>
+<g stroke="#614549" stroke-width="3" stroke-linecap="round"><path d="M0 -52v10M0 52v-10M52 0H42M-52 0h10M36 -36l-7 7M-36 36l7 -7M36 36l-7 -7M-36 -36l7 7"/></g>
+<path d="M0 0L-22 -24M0 0L27 -36" stroke="#694650" stroke-width="5" stroke-linecap="round"/><circle r="5" fill="#a06d49"/><circle r="70" fill="none" stroke="#fff0d6" opacity=".28" stroke-width="2"/>
+</g>
+<!-- golden lantern behind the pile -->
+<g transform="translate(415 78)">
+<ellipse cx="29" cy="104" rx="69" ry="78" fill="url(#flame)" opacity=".8"/>
+<path d="M29 2q-21 -25 0 -29q23 2 0 29" fill="none" stroke="#b59060" stroke-width="5"/><path d="M11 18l18 -13 18 13" fill="#5c4651" stroke="#bf935f" stroke-width="4"/>
+<path d="M3 22h52l9 26v97l-36 15-34-15v-97Z" fill="#483740" fill-opacity=".84" stroke="#c39357" stroke-width="7"/>
+<path d="M8 51h40v75l-18 15-22-15Z" fill="#f2bb65" opacity=".65"/>
+<path d="M26 110q-13 -23 3 -41q15 21 1 42Z" fill="#fff7cb"/>
+<path d="M5 49h50M28 21v116M1 143h56" stroke="#deb579" stroke-width="4"/>
+<path d="M2 24Q29 -6 55 24" fill="none" stroke="#e7c58a" stroke-width="4"/>
+</g>
+<!-- softened flowering autumn branches -->
+<use href="#sprig" transform="translate(110 421) rotate(-21) scale(1.35)" opacity=".74"/>
+<use href="#sprig" transform="translate(473 390) rotate(40) scale(1.04)" opacity=".68"/>
+<use href="#sprig" transform="translate(163 244) rotate(-32) scale(.73)" opacity=".65"/>
+<!-- bottom navy volume, worn hand-inked covers -->
+<g transform="translate(78 407) rotate(3 210 27)" filter="url(#rough)">
+<path d="M16 0h393l13 13v43H15l-14-12Z" fill="url(#navy)" stroke="#b89a70" stroke-width="3"/>
+<path d="M18 7h385v41H18Z" fill="none" stroke="#a47f5b" stroke-width="2.1"/>
+<path d="M37 4v44M59 4v44M354 4v44M376 4v44" stroke="#c39961" opacity=".8" stroke-width="3"/>
+<use href="#filigree" transform="translate(178 5) scale(.75)"/>
+<path d="M404 9h30v43h-30q9-23 0-43Z" fill="url(#page)" stroke="#654855" stroke-width="3"/>
+<path d="M410 15h18M410 20h18M410 26h18M410 32h18M410 38h18M410 44h18" stroke="#b38769" stroke-width="1.2"/>
+</g>
+<g transform="translate(56 343) rotate(-4 216 32)">
+<path d="M0 6l17-8h412l12 15-2 51H11l-11-9Z" fill="url(#wine)" stroke="#c8a27c" stroke-width="3"/>
+<path d="M25 5h379v48H25Z" fill="none" stroke="#b78a6e" stroke-width="2"/>
+<path d="M37 7v45M55 7v45M359 7v45M380 7v45" stroke="#ceaa7c" stroke-width="2.8"/>
+<use href="#filigree" transform="translate(160 7) scale(1.05)"/>
+<path d="M408 8h39v52h-39q16-26 0-52Z" fill="url(#page)" stroke="#7c5360" stroke-width="3"/>
+<path d="M419 13h17M419 18h18M419 24h17M419 30h16M419 36h18M419 42h17M419 48h18" stroke="#ae8465" stroke-width="1.2"/>
+</g>
+<g transform="translate(111 286) rotate(5 190 28)">
+<path d="M0 2h363l17 11-4 47H0Z" fill="url(#plum)" stroke="#b89980" stroke-width="3"/>
+<path d="M18 8h320v42H18Z" fill="none" stroke="#b69178" stroke-width="2.1"/>
+<path d="M28 7v44M47 7v44M300 8v44M323 8v44" stroke="#c2a17c" stroke-width="2.5"/>
+<use href="#filigree" transform="translate(146 6) scale(.76)"/>
+<path d="M339 7h44v47h-44q12-23 0-47Z" fill="url(#page)" stroke="#856c71" stroke-width="3"/>
+<path d="M349 13h25M350 19h24M351 25h24M351 31h24M350 37h25M349 43h25" stroke="#ac866a" stroke-width="1.1"/>
+</g>
+<g transform="translate(93 230) rotate(-3 190 26)">
+<path d="M5 4h370l12 9v42H0Z" fill="url(#teal)" stroke="#b29e79" stroke-width="3"/>
+<path d="M25 8h323v37H25Z" fill="none" stroke="#b49a77" stroke-width="2"/>
+<path d="M37 7v40M55 8v39M318 7v40M339 8v39" stroke="#c8b58b" stroke-width="2.4"/>
+<use href="#filigree" transform="translate(158 4) scale(.82)"/>
+<path d="M352 7h40v45h-40q13-22 0-45Z" fill="url(#page)" stroke="#826a68" stroke-width="3"/>
+<path d="M364 13h21M365 19h20M366 25h20M366 31h20M365 37h20M364 43h21" stroke="#ad8b71" stroke-width="1.2"/>
+</g>
+<!-- burgundy upper volume -->
+<g transform="translate(124 186) rotate(3 161 24)">
+<path d="M0 0h325l9 11v35H0Z" fill="url(#wine)" stroke="#ccaa80" stroke-width="3"/>
+<path d="M15 7h295v30H15Z" fill="none" stroke="#d0a579" stroke-width="1.7"/>
+<path d="M28 6v33M47 6v33M278 6v33M296 6v33" stroke="#b88e6e" stroke-width="2"/>
+<use href="#filigree" transform="translate(143 6) scale(.55)"/>
+<path d="M310 7h32v34h-32q10-17 0-34Z" fill="url(#page)" stroke="#755264" stroke-width="2"/>
+<path d="M319 13h17M320 18h16M321 23h16M320 28h17M319 33h17" stroke="#af8971" stroke-width="1"/>
+</g>
+<!-- bookmark and pressed-paper folds -->
+<path d="M165 228q-7 43 -13 79l14-8 17 13q1-49 11-82Z" fill="#9e5961" stroke="#d8ad92" stroke-width="2.2"/>
+<path d="M374 216q26 -33 59-33q-14 18-15 36q-17-10-44-3Z" fill="#f0d9ae" opacity=".9" stroke="#b58b61" stroke-width="2"/>
+<path d="M415 192q-5 13-1 25" fill="none" stroke="#b58b61" stroke-width="1.6"/>
+<use href="#sprig" transform="translate(95 466) rotate(-48) scale(.65)" opacity=".95"/>
+<use href="#sprig" transform="translate(487 481) rotate(24) scale(.7)" opacity=".83"/>
+<g fill="#f6d7a4" opacity=".82"><circle cx="78" cy="260" r="2"/><circle cx="96" cy="277" r="2"/><circle cx="458" cy="290" r="2"/><circle cx="510" cy="191" r="2.5"/><circle cx="398" cy="470" r="1.6"/></g>
+</svg>
