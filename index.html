@@ -4109,7 +4109,7 @@ v10InitLayout();
 mariInitPages();
 
 // The original 416-book catalogue is on GitHub; user edits are local only until a secure write backend is built.
-render();const params=new URLSearchParams(location.search);const deep=params.get('book');if(deep&&bookById(deep))showDetail(deep);if(params.get('impression')==='1')impressionView();
+render();const params=new URLSearchParams(location.search);const deep=params.get('book');if(deep&&bookById(deep))showDetail(deep);if(params.get('impression')==='1')impressionView();if(params.get('add')==='1')addForm();
 })();
 
 </script>
