@@ -3148,6 +3148,207 @@ html.mari-nav-open body{overflow:hidden!important}
 #star-author-options button strong{font-size:14px;line-height:1.3}
 #star-author-options button small{font-size:12px!important}
 
+
+/* 2026 · Catalog as an intimate illustrated book gallery.
+   Scope is limited to #library; other site rooms keep their approved design. */
+#library.shelving-room{
+ position:relative;isolation:isolate;
+ margin:18px 0 14px!important;
+ padding:clamp(18px,2.8vw,32px) clamp(14px,2.65vw,30px) 24px!important;
+ border:1px solid rgba(228,190,163,.43)!important;border-radius:23px!important;
+ background:
+  radial-gradient(ellipse 53% 30% at 94% 0%,rgba(143,87,128,.22),transparent 73%),
+  radial-gradient(ellipse 65% 45% at 0% 90%,rgba(92,102,144,.13),transparent 78%),
+  linear-gradient(150deg,#25243b,#212b40 60%,#263546)!important;
+ box-shadow:inset 0 1px rgba(255,230,198,.11),0 18px 38px rgba(8,11,27,.25)!important;
+}
+#library.shelving-room::before{
+ content:"";position:absolute;inset:8px;z-index:-1;pointer-events:none;
+ border:1px solid rgba(228,189,156,.15);border-radius:15px;
+}
+#library.shelving-room .room-ribbon{
+ margin:0 0 9px!important;color:#d7ad93!important;
+ font:650 11px/1.35 system-ui,sans-serif;letter-spacing:1.9px;text-transform:uppercase;
+}
+#library.shelving-room .mari-catalog-heading{
+ margin:0 0 21px!important;padding:0 0 17px!important;
+ display:flex;align-items:center;justify-content:space-between;gap:18px;
+ border-bottom:1px solid rgba(239,205,180,.23);
+}
+#library .mari-catalog-heading .kicker{color:#e3b993!important;font-size:12px!important;letter-spacing:1.2px!important}
+#library .mari-catalog-heading .section-title{
+ margin:6px 0 8px!important;color:#ffead6!important;
+ font:normal clamp(30px,3.5vw,43px)/1.12 Georgia,serif!important;
+}
+#library .mari-catalog-intro{
+ max-width:640px;margin:0;font-size:15px!important;line-height:1.5!important;color:#d7c4c9;
+}
+#library .mari-catalog-add{
+ display:inline-flex;gap:6px;align-items:center;justify-content:center;flex-shrink:0;
+ min-height:42px;padding:9px 14px!important;border:1px solid rgba(235,203,175,.53)!important;
+ border-radius:12px;background:rgba(246,216,195,.09);color:#f5ddc8!important;
+ font-size:14px!important;white-space:nowrap;
+}
+#library .mari-catalog-add:hover{background:rgba(246,216,195,.17)}
+#library .mari-catalog-panel{
+ display:block!important;position:relative;overflow:visible;
+ margin:0 0 15px!important;padding:17px clamp(13px,2vw,22px) 14px!important;
+ border:1px solid rgba(227,194,169,.44)!important;border-radius:17px!important;
+ background:radial-gradient(ellipse at 100% 0%,rgba(112,79,111,.24),transparent 65%),
+   linear-gradient(112deg,rgba(52,41,65,.78),rgba(39,51,72,.82))!important;
+ box-shadow:inset 0 1px rgba(255,235,207,.12)!important;
+}
+#library .mari-catalog-panel-head{display:flex;gap:13px;align-items:center;margin-bottom:14px}
+#library .mari-catalog-bookmark{flex:none;display:grid;place-items:center;width:52px;height:48px;color:#e9c59f;background:rgba(243,209,173,.08);border:1px solid rgba(242,205,165,.19);border-radius:11px}
+#library .mari-catalog-bookmark svg{display:block;width:41px;height:33px}
+#library .mari-catalog-panel-eyebrow{display:block;font:700 10px/1.35 system-ui;color:#d8b4a5;letter-spacing:1.1px;text-transform:uppercase}
+#library .mari-catalog-panel-head h3{font:normal 25px/1.15 Georgia,serif;color:#ffe8d3;margin:2px 0 0}
+#library .mari-catalog-primary-row{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#library .mari-catalog-main-filters{display:flex;flex-wrap:wrap;gap:8px;min-width:0}
+#library .mari-catalog-panel .filter{
+ border:1px solid rgba(230,197,172,.34)!important;
+ border-radius:999px!important;background:rgba(31,39,58,.5)!important;color:#eadbd6!important;
+ font:600 13px/1.2 system-ui,sans-serif!important;
+ min-height:40px!important;padding:10px 15px!important;
+ white-space:normal;transition:background .18s,border-color .18s;
+}
+#library .mari-catalog-panel .filter.active{
+ background:linear-gradient(115deg,#f0d4be,#d8b5c4)!important;
+ color:#382b3c!important;border-color:rgba(251,231,202,.9)!important;
+ box-shadow:0 4px 15px rgba(14,14,34,.16);
+}
+#library .mari-catalog-filter-toggle{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;flex-shrink:0;
+ min-height:42px;padding:10px 13px;border:1px solid rgba(245,216,183,.49);
+ background:rgba(225,187,181,.12);border-radius:11px;color:#f0d7c6;
+ font:650 13px/1.2 system-ui,sans-serif;cursor:pointer;
+}
+#library .mari-catalog-filter-toggle:hover,#library .mari-catalog-filter-toggle.has-active{background:rgba(227,189,184,.22)}
+#library .mari-catalog-filter-badge{font-size:11px;line-height:1;border-radius:50%;padding:5px 7px;color:#3b283b;background:#efcfb4}
+#library .mari-catalog-filter-badge[hidden]{display:none!important}
+#library .mari-catalog-extra[hidden]{display:none!important}
+#library .mari-catalog-extra{
+ margin:16px 0 0;padding:15px 0 2px;
+ display:grid;grid-template-columns:1fr 1fr;gap:17px;
+ border-top:1px solid rgba(229,193,171,.2);
+}
+#library .mari-catalog-extra-group{min-width:0}
+#library .mari-catalog-field-label{display:block;margin:0 0 9px;color:#d9b69f;font:700 11px system-ui;letter-spacing:.8px;text-transform:uppercase}
+#library .mari-catalog-extra-group .filters{display:flex;flex-wrap:wrap;gap:7px}
+#library .mari-catalog-extra-group .filter{min-height:36px!important;padding:8px 11px!important;font-size:12px!important}
+#library .mari-catalog-extra-selects{grid-column:1/-1;display:flex;align-items:end;gap:11px;flex-wrap:wrap;border-top:1px solid rgba(229,193,171,.12);padding-top:13px}
+#library .mari-catalog-select-label{display:grid;gap:6px;min-width:0;color:#dfbda8;font:600 12px/1.35 system-ui}
+#library .mari-catalog-select-label select{
+ min-width:150px;min-height:43px;padding:9px 31px 9px 12px!important;
+ border-radius:10px!important;border:1px solid rgba(235,203,172,.36)!important;
+ background:#293246!important;color:#f7e6d9!important;font:500 14px/1.2 system-ui;
+}
+#library .mari-catalog-reset{min-height:43px;border:0;background:transparent;color:#e6c6b6;font:650 12px system-ui;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:9px 7px}
+#library .mari-catalog-reset:hover{color:#fff0df}
+#library .mari-catalog-bottom-row{
+ display:flex;align-items:center;justify-content:space-between;gap:12px;
+ margin-top:16px;padding-top:14px;border-top:1px solid rgba(229,193,171,.21);
+}
+#library .mari-catalog-alpha{min-width:0;flex:0 1 240px;position:relative}
+#library .mari-catalog-alpha>summary{
+ display:inline-flex;align-items:center;gap:8px;padding:7px 0;
+ color:#ead1ba;font:650 13px/1.35 system-ui;cursor:pointer;list-style:none;
+}
+#library .mari-catalog-alpha>summary::-webkit-details-marker{display:none}
+#library .mari-catalog-alpha>summary:hover{color:#fff1db}
+#library .mari-catalog-alpha[open]{flex-basis:300px}
+#library .mari-catalog-alpha .catalog-search-zone{position:relative;z-index:19;margin:6px 0 0}
+#library .mari-catalog-alpha .catalog-search-box{min-height:46px!important}
+#library .mari-catalog-alpha .catalog-suggestions{
+ position:relative!important;inset:auto!important;top:auto!important;
+ max-height:min(280px,47dvh)!important;overflow:auto;
+ margin-top:7px!important;box-sizing:border-box;
+}
+#library .mari-catalog-alpha-hint{font-size:12px;color:#cfbcc8;margin:7px 2px}
+#library .mari-catalog-bottom-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap}
+#library .mari-catalog-sort{display:flex;align-items:center;gap:8px;font-size:12px}
+#library .mari-catalog-sort .sort-select{min-width:155px!important;width:auto!important}
+#library .view-switch{display:flex;gap:3px;padding:3px!important;border-radius:11px!important;border:1px solid rgba(243,207,177,.23);background:rgba(17,25,42,.44)}
+#library .view-choice{font-size:13px!important;min-height:37px!important;padding:8px 11px!important;white-space:nowrap}
+#library .view-choice.active{background:linear-gradient(120deg,#e4c1b6,#bdaacb)!important;color:#33293b!important;font-weight:700}
+#library .mari-catalog-clear{color:#f1c8bb;min-height:36px;padding:7px;border:0;background:none;font:600 12px system-ui;text-decoration:underline;cursor:pointer}
+#library .mari-catalog-clear[hidden]{display:none!important}
+#library.shelving-room .catalog-count{
+ font-size:14px!important;letter-spacing:0!important;margin:10px 0 13px!important;
+ color:#e5c9b4!important;padding-left:4px;
+}
+/* Give each miniature book room to breathe while preserving all book controls. */
+#library.shelving-room .book-grid:not(.compact-list){
+ display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+ gap:17px!important;margin-top:0!important;padding:0 0 22px!important;
+}
+#library.shelving-room .book-grid:not(.compact-list) .book{
+ border-radius:15px!important;padding:16px 12px 14px!important;
+ background:linear-gradient(140deg,rgba(65,47,71,.89),rgba(39,54,70,.86))!important;
+ border:1px solid rgba(236,205,174,.31)!important;
+ box-shadow:0 9px 22px rgba(9,12,30,.21)!important;
+}
+#library.shelving-room .book-grid:not(.compact-list) .book-figure{min-height:124px!important;margin-bottom:11px!important}
+#library.shelving-room .book-grid:not(.compact-list) .cover{
+ width:84px!important;height:120px!important;
+ box-shadow:5px 9px 17px rgba(5,9,23,.55)!important;
+}
+#library.shelving-room .book-grid:not(.compact-list) .book-title{
+ font-size:15px!important;font-weight:650!important;line-height:1.32!important;margin-bottom:7px!important;
+ color:#f9ebdc!important;
+}
+#library.shelving-room .book-grid:not(.compact-list) .book-author{
+ font-size:13px!important;line-height:1.35!important;color:#d9c9cc!important;margin-bottom:12px!important;
+}
+#library.shelving-room .book-grid:not(.compact-list) .book-tag,
+#library.shelving-room .book-grid:not(.compact-list) .format-tag{
+ font-size:11px!important;min-height:27px!important;padding:5px 7px!important;
+ white-space:normal!important;line-height:1.22!important;
+}
+#library.shelving-room .book-grid.compact-list{gap:11px!important}
+#library.shelving-room .book-grid.compact-list .book{border:1px solid rgba(233,205,176,.31)!important;background:linear-gradient(125deg,#3e3149,#293a4a)!important;border-radius:12px!important}
+#library.shelving-room .book-grid.compact-list .book-title{font-size:15px!important;line-height:1.3!important}
+#library.shelving-room .book-grid.compact-list .book-author{font-size:12px!important}
+@media(min-width:1450px){#library.shelving-room .book-grid:not(.compact-list){grid-template-columns:repeat(5,minmax(0,1fr))!important}}
+@media(max-width:1050px){#library.shelving-room .book-grid:not(.compact-list){grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:780px){
+ #library.shelving-room{padding:19px 13px 20px!important;margin:12px 0!important;border-radius:18px!important}
+ #library .mari-catalog-heading{align-items:flex-start}
+ #library .mari-catalog-heading .section-title{font-size:33px!important}
+ #library .mari-catalog-intro{font-size:14px!important}
+ #library .mari-catalog-panel{padding:14px 11px!important}
+ #library .mari-catalog-primary-row{align-items:flex-start;flex-direction:column;gap:10px}
+ #library .mari-catalog-main-filters{width:100%;gap:7px}
+ #library .mari-catalog-panel .filter{font-size:13px!important;padding:9px 12px!important;min-height:39px!important}
+ #library .mari-catalog-filter-toggle{min-height:39px!important}
+ #library .mari-catalog-extra{grid-template-columns:1fr}
+ #library .mari-catalog-extra-selects{gap:9px}
+ #library .mari-catalog-bottom-row{align-items:flex-start;flex-direction:column}
+ #library .mari-catalog-alpha{flex:none;width:100%}
+ #library .mari-catalog-bottom-actions{justify-content:space-between;width:100%}
+ #library .mari-catalog-sort{flex:1;justify-content:flex-start}
+ #library.shelving-room .book-grid:not(.compact-list){grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important}
+ #library.shelving-room .book-grid:not(.compact-list) .book{padding:12px 10px!important}
+ #library.shelving-room .book-grid:not(.compact-list) .book-figure{min-height:101px!important}
+ #library.shelving-room .book-grid:not(.compact-list) .cover{width:69px!important;height:100px!important}
+ #library.shelving-room .book-grid:not(.compact-list) .book-title{font-size:14px!important}
+ #library.shelving-room .book-grid:not(.compact-list) .book-author{font-size:12px!important}
+ #library.shelving-room .book-grid:not(.compact-list) .book-tag,#library.shelving-room .book-grid:not(.compact-list) .format-tag{font-size:11px!important}
+}
+@media(max-width:420px){
+ #library .mari-catalog-heading{flex-wrap:wrap;gap:10px}
+ #library .mari-catalog-add{min-height:39px!important}
+ #library .mari-catalog-panel-head h3{font-size:22px}
+ #library .mari-catalog-bookmark{width:44px;height:44px}
+ #library .mari-catalog-select-label select{min-width:126px}
+ #library .mari-catalog-bottom-actions{gap:8px}
+ #library .mari-catalog-sort .sort-select{min-width:122px!important}
+ #library .view-choice{font-size:12px!important;padding:8px 9px!important}
+ #library.shelving-room .book-grid:not(.compact-list){gap:8px!important}
+ #library.shelving-room .book-grid:not(.compact-list) .book{padding:11px 8px!important}
+ #library.shelving-room .book-grid:not(.compact-list) .book-title{font-size:13px!important}
+}
+
 </style></head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -3174,7 +3375,78 @@ html.mari-nav-open body{overflow:hidden!important}
 <path d="M106 75Q124 50 144 78Q160 59 183 69V99Q159 91 144 103Q126 91 106 100Z" fill="#efe0c9" stroke="#d2b9ab" stroke-width="1.6"></path><path d="M144 79v24M115 83q13-3 23 3M153 82q10-4 23-2" fill="none" stroke="#937f8b" stroke-width="1.2"></path>
 <path d="M112 64Q96 38 101 15M114 55Q87 40 91 20M120 60Q137 32 141 17" fill="none" stroke="#9eb8ab" stroke-linecap="round" stroke-width="2"></path>
 <path d="M101 31Q83 19 89 8Q104 12 101 31M109 45Q126 28 134 37Q124 49 109 45M139 31Q151 10 160 18Q155 33 139 31" fill="#9cbca8" opacity=".8"></path>
-<g fill="#ecc4c5" stroke="#d6abb9" stroke-width="1"><circle cx="99" cy="12" r="8"></circle><circle cx="141" cy="13" r="7"></circle><circle cx="88" cy="19" r="5"></circle></g><g fill="#f1e3b3"><circle cx="99" cy="12" r="2.5"></circle><circle cx="141" cy="13" r="2"></circle></g></g></svg></div><div class="stat-bubbles"><div class="stat-item"><span>Прочитано</span><strong id="stat-total">—</strong></div><div class="stat-item"><span>Бумажные</span><strong id="stat-paper">—</strong></div><div class="stat-item"><span>Электронные</span><strong id="stat-digital">—</strong></div><div class="stat-item"><span>Любимые</span><strong id="stat-fav">—</strong></div></div><div aria-hidden="true" class="stack"><div class="paper" id="stack-paper" style="width:50%"></div><div class="digital" id="stack-digital" style="width:50%"></div></div><p class="stat-desc" id="stat-detail">Статистика личного чтения</p></div><div class="monthly-story"><div class="monthly-head"><div><div class="kicker">Путешествие по месяцам</div><h3>Книжный календарь</h3></div><label class="month-year-picker">Год <select id="month-year"><option selected="" value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option></select></label></div><div aria-label="Приблизительное распределение прочитанного по месяцам" class="month-chart" id="month-chart"></div><p class="month-explainer" id="month-explainer"></p></div></div></section><section class="section shelving-room" id="library"><div aria-hidden="true" class="room-ribbon">Галерея книжных корешков</div><div class="section-head"><div><div class="kicker">Все личные истории</div><h2 class="section-title">Библиотека моих историй</h2></div><button class="mini-link" data-action="add">Добавить новую книгу <svg class="icon sm"><use href="#i-arrow"></use></svg></button></div><div class="shelf-tools"><div aria-label="Фильтр книг" class="filters" role="group"><button class="filter active" data-filter="archive">Все книги</button><button class="filter" data-filter="all">Личные книги</button><button class="filter" data-filter="textbooks">Из учебников</button><button class="filter" data-filter="read">Прочитано</button><button class="filter" data-filter="reading">Сейчас читаю</button><button class="filter" data-filter="want">Хочу прочитать</button><button class="filter" data-filter="favorite"><svg class="icon sm"><use href="#i-heart"></use></svg> Любимое</button><button class="filter" data-filter="paper">Бумажные</button><button class="filter" data-filter="digital">Электронные</button><button class="filter" data-filter="paused">Отложила</button><button class="filter" data-filter="unread">Не прочитано</button><button class="filter" data-filter="borrowed">На руках</button><button class="filter" data-filter="notes">С впечатлениями</button><button class="filter" data-filter="no-notes">Без впечатлений</button></div><label><span class="sr-only">Сортировка</span><select class="sort-select" id="sort"><option value="recent">Недавно добавленные</option><option selected="" value="title">По названию</option><option value="author">По автору</option></select></label><label class="catalog-year-control">Год<select id="catalog-year"><option value="all">Любой год</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option></select></label></div><div class="catalog-search-zone"><div class="catalog-search-box"><span aria-hidden="true" class="catalog-loupe">⌕</span><input aria-label="Поиск в выбранном разделе библиотеки" autocomplete="off" id="catalog-search" placeholder="Найти книгу или автора на этой полке…" type="search"/><button aria-expanded="false" aria-label="Показать список книг по алфавиту" class="catalog-expand" id="catalog-expand" type="button">⌄</button></div><div class="catalog-view-tools"><span id="catalog-live-hint">Начни вводить название или фамилию</span><div aria-label="Вид книг" class="view-switch" role="group"><button aria-pressed="true" class="view-choice active" data-view="grid" type="button">▦ Обложки</button><button aria-pressed="false" class="view-choice" data-view="list" type="button">☷ Список</button></div></div><div class="catalog-suggestions" hidden="" id="catalog-suggestions"></div></div><p aria-live="polite" class="catalog-count" id="catalog-count"></p><div class="book-grid" id="books"></div><div class="catalog-pagination" id="catalog-pagination"></div></section><section class="section illustrated-atlas" id="worlds"><div class="section-head"><div><div class="kicker">Тематические полки · по мотивам чтения Мари</div><h2 class="section-title">Книжные миры Мари</h2></div><p class="section-description">Каждая история получает тематическую полку по названию и жанру. Переложить её в другой мир можно в карточке.</p></div><div class="world-actions"><button class="btn tonal small" data-action="world-add">Создать свой книжный мир</button><p class="world-help">Новая полка появится рядом с остальными. Книги можно перенести на неё из их карточек.</p></div><details class="world-explainer"><summary>Как книги распределяются по мирам? <span aria-hidden="true">⌄</span></summary><div><p><strong>Тайны и детективы</strong> — книги с пометкой «детектив» и явными словами о тайнах и расследованиях.</p><p><strong>Школьные истории</strong> — школа, друзья, одноклассники, каникулы и похожие сюжеты.</p><p><strong>Приключения</strong> — путешествия, острова и приключенческие сюжеты.</p><p><strong>Сказочные миры</strong> — сказки, фантастика, магия и фэнтези.</p><p><strong>Другие истории</strong> — когда по названию или жанру тему определить нельзя. Это не оценка книги: полки предложены автоматически и могут ошибаться. Мари может выбрать любую другую полку.</p></div></details><div class="world-grid">
+<g fill="#ecc4c5" stroke="#d6abb9" stroke-width="1"><circle cx="99" cy="12" r="8"></circle><circle cx="141" cy="13" r="7"></circle><circle cx="88" cy="19" r="5"></circle></g><g fill="#f1e3b3"><circle cx="99" cy="12" r="2.5"></circle><circle cx="141" cy="13" r="2"></circle></g></g></svg></div><div class="stat-bubbles"><div class="stat-item"><span>Прочитано</span><strong id="stat-total">—</strong></div><div class="stat-item"><span>Бумажные</span><strong id="stat-paper">—</strong></div><div class="stat-item"><span>Электронные</span><strong id="stat-digital">—</strong></div><div class="stat-item"><span>Любимые</span><strong id="stat-fav">—</strong></div></div><div aria-hidden="true" class="stack"><div class="paper" id="stack-paper" style="width:50%"></div><div class="digital" id="stack-digital" style="width:50%"></div></div><p class="stat-desc" id="stat-detail">Статистика личного чтения</p></div><div class="monthly-story"><div class="monthly-head"><div><div class="kicker">Путешествие по месяцам</div><h3>Книжный календарь</h3></div><label class="month-year-picker">Год <select id="month-year"><option selected="" value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option></select></label></div><div aria-label="Приблизительное распределение прочитанного по месяцам" class="month-chart" id="month-chart"></div><p class="month-explainer" id="month-explainer"></p></div></div></section>
+<section class="section shelving-room" id="library">
+ <div class="room-ribbon" aria-hidden="true">Галерея книжных корешков</div>
+ <div class="section-head mari-catalog-heading">
+  <div class="mari-catalog-heading-copy">
+   <div class="kicker">Личная коллекция · истории и открытия</div>
+   <h2 class="section-title">Все мои книги</h2>
+   <p class="mari-catalog-intro">Каждая история на своей полке. Открывай любимые страницы, находи новые и возвращайся к прочитанному.</p>
+  </div>
+  <button class="mini-link mari-catalog-add" data-action="add" type="button"><svg class="icon sm"><use href="#i-plus"></use></svg> Новая книга</button>
+ </div>
+ <div class="shelf-tools mari-catalog-panel">
+  <div class="mari-catalog-panel-head">
+   <span class="mari-catalog-bookmark" aria-hidden="true"><svg viewBox="0 0 90 70" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M44 58C32 51 20 50 8 53V14c14-5 25-3 36 6v38Zm2 0c12-7 24-8 36-5V14c-14-5-25-3-36 6v38Z"/><path d="M44 20v38M13 23c10-2 18-1 25 4m-25 7c10-2 18-1 25 4m14-11c8-5 16-6 25-4m-25 15c8-5 16-6 25-4"/><path d="M24 10c7-4 14-5 21-5m7 0c7 0 14 1 21 5"/><path d="m45 1 2 4 4 2-4 2-2 4-2-4-4-2 4-2z" fill="currentColor" stroke="none"/></svg></span>
+   <div><span class="mari-catalog-panel-eyebrow">Порядок на книжных полках</span><h3>Выбери свою историю</h3></div>
+  </div>
+  <div class="mari-catalog-primary-row">
+   <div aria-label="Основные фильтры книг" class="filters mari-catalog-main-filters" role="group">
+    <button type="button" class="filter active" data-filter="archive">Все книги</button>
+    <button type="button" class="filter" data-filter="read">Прочитано</button>
+    <button type="button" class="filter" data-filter="reading">Сейчас читаю</button>
+    <button type="button" class="filter" data-filter="want">Хочу прочитать</button>
+   </div>
+   <button class="mari-catalog-filter-toggle" id="mari-filter-toggle" type="button" aria-controls="mari-extra-filters" aria-expanded="false">
+    <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="currentColor" stroke="none"/><circle cx="16" cy="12" r="2" fill="currentColor" stroke="none"/><circle cx="11" cy="17" r="2" fill="currentColor" stroke="none"/></svg>
+    <span>Другие фильтры</span><span id="mari-catalog-filter-badge" class="mari-catalog-filter-badge" hidden></span>
+   </button>
+  </div>
+  <div class="mari-catalog-extra" id="mari-extra-filters" hidden>
+    <div class="mari-catalog-extra-group">
+     <span class="mari-catalog-field-label">Мои подборки</span>
+     <div class="filters" role="group" aria-label="Дополнительные подборки">
+      <button type="button" class="filter" data-filter="all">Личные книги</button>
+      <button type="button" class="filter" data-filter="textbooks">Учебники</button>
+      <button type="button" class="filter" data-filter="favorite">Любимые</button>
+      <button type="button" class="filter" data-filter="paused">Отложенные</button>
+      <button type="button" class="filter" data-filter="unread">Не прочитано</button>
+      <button type="button" class="filter" data-filter="borrowed">На руках</button>
+     </div>
+    </div>
+    <div class="mari-catalog-extra-group">
+     <span class="mari-catalog-field-label">Формат и впечатления</span>
+     <div class="filters" role="group" aria-label="Формат книги и заметки">
+      <button type="button" class="filter" data-filter="paper">Бумажные</button>
+      <button type="button" class="filter" data-filter="digital">Электронные</button>
+      <button type="button" class="filter" data-filter="notes">С впечатлениями</button>
+      <button type="button" class="filter" data-filter="no-notes">Без впечатлений</button>
+     </div>
+    </div>
+    <div class="mari-catalog-extra-selects">
+      <label class="mari-catalog-select-label" for="catalog-world"><span>Книжный мир</span><select id="catalog-world"><option value="">Все книжные миры</option></select></label>
+      <label class="mari-catalog-select-label catalog-year-control" for="catalog-year"><span>Год чтения</span><select id="catalog-year"><option value="all">Любой год</option><option value="2026">2026</option><option value="2025">2025</option><option value="2024">2024</option></select></label>
+      <button id="mari-catalog-reset" type="button" class="mari-catalog-reset">Сбросить фильтры</button>
+    </div>
+  </div>
+  <div class="mari-catalog-bottom-row">
+   <details class="mari-catalog-alpha" id="mari-catalog-alpha">
+    <summary><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M5 4h14M5 10h14M5 16h9M5 21h9"/></svg>Список по алфавиту</summary>
+    <div class="catalog-search-zone">
+      <div class="catalog-search-box"><span aria-hidden="true" class="catalog-loupe">⌕</span><input aria-label="Поиск в выбранной подборке по названию и автору" autocomplete="off" id="catalog-search" placeholder="Название книги или автор…" type="search"/><button aria-expanded="false" aria-label="Показать книги по алфавиту" class="catalog-expand" id="catalog-expand" type="button">⌄</button></div>
+      <p id="catalog-live-hint" class="mari-catalog-alpha-hint">Выбирай книгу по названию или автору</p>
+      <div class="catalog-suggestions" hidden id="catalog-suggestions"></div>
+    </div>
+   </details>
+   <div class="mari-catalog-bottom-actions">
+    <button id="mari-catalog-clear-search" type="button" class="mari-catalog-clear" hidden>Очистить поиск</button>
+    <label class="mari-catalog-select-label mari-catalog-sort" for="sort"><span>Сортировка</span><select class="sort-select" id="sort"><option value="recent">Недавно добавленные</option><option selected value="title">По названию</option><option value="author">По автору</option></select></label>
+    <div aria-label="Вид книг" class="view-switch" role="group"><button aria-pressed="true" class="view-choice active" data-view="grid" type="button">Обложки</button><button aria-pressed="false" class="view-choice" data-view="list" type="button">Список</button></div>
+   </div>
+  </div>
+ </div>
+ <p aria-live="polite" class="catalog-count" id="catalog-count"></p><div class="book-grid" id="books"></div><div class="catalog-pagination" id="catalog-pagination"></div></section><section class="section illustrated-atlas" id="worlds"><div class="section-head"><div><div class="kicker">Тематические полки · по мотивам чтения Мари</div><h2 class="section-title">Книжные миры Мари</h2></div><p class="section-description">Каждая история получает тематическую полку по названию и жанру. Переложить её в другой мир можно в карточке.</p></div><div class="world-actions"><button class="btn tonal small" data-action="world-add">Создать свой книжный мир</button><p class="world-help">Новая полка появится рядом с остальными. Книги можно перенести на неё из их карточек.</p></div><details class="world-explainer"><summary>Как книги распределяются по мирам? <span aria-hidden="true">⌄</span></summary><div><p><strong>Тайны и детективы</strong> — книги с пометкой «детектив» и явными словами о тайнах и расследованиях.</p><p><strong>Школьные истории</strong> — школа, друзья, одноклассники, каникулы и похожие сюжеты.</p><p><strong>Приключения</strong> — путешествия, острова и приключенческие сюжеты.</p><p><strong>Сказочные миры</strong> — сказки, фантастика, магия и фэнтези.</p><p><strong>Другие истории</strong> — когда по названию или жанру тему определить нельзя. Это не оценка книги: полки предложены автоматически и могут ошибаться. Мари может выбрать любую другую полку.</p></div></details><div class="world-grid">
 <button class="world school" data-world="school"><span class="world-number">01 /</span><span aria-hidden="true" class="world-paint"><img alt="" loading="lazy" src="assets/world-school-8dab4e4589c3.webp"/></span><div class="world-text"><small>Близкое и настоящее</small><h3>Школьные<br/>истории</h3><p>Друзья, смешные случаи, открытия</p><span class="world-counter" id="world-count-school">Истории на полке</span></div></button>
 <button class="world mystery" data-world="mystery"><span class="world-number">02 /</span><span aria-hidden="true" class="world-paint"><img alt="" loading="lazy" src="assets/world-mystery-af58d3ef2ba9.webp"/></span><div class="world-text"><small>Секреты и загадки</small><h3>Тайны и<br/>детективы</h3><p>Истории, которые хочется разгадать</p><span class="world-counter" id="world-count-mystery">Истории на полке</span></div></button>
 <button class="world adventure" data-world="adventure"><span class="world-number">03 /</span><span aria-hidden="true" class="world-paint"><img alt="" loading="lazy" src="assets/world-adventure-694d6f1473f5.webp"/></span><div class="world-text"><small>За горизонт</small><h3>Приключения</h3><p>Новые места и удивительные встречи</p><span class="world-counter" id="world-count-adventure">Истории на полке</span></div></button>
@@ -3282,12 +3554,33 @@ function matched(){
  if(catalogSearch)out=out.filter(b=>norm(b.title+' '+b.author).includes(norm(catalogSearch)));
  out.sort((a,b)=>sort==='title'?a.title.localeCompare(b.title,'ru'):sort==='author'?a.author.localeCompare(b.author,'ru'):(b.added||'').localeCompare(a.added||''));return out;
 }
+
+function mariRenderCatalogControls(){
+ const world=$('#catalog-world');
+ if(world){
+  const names=Object.entries(genreName);
+  if(world.options.length!==names.length+1){
+   world.innerHTML='<option value="">Все книжные миры</option>'+names.map(([key,name])=>'<option value="'+esc(key)+'">'+esc(name)+'</option>').join('');
+  }
+  world.value=worldFilter||'';
+ }
+ const year=$('#catalog-year');if(year)year.value=catalogYear;
+ $$('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter));
+ const isExtra=!['archive','read','reading','want'].includes(filter);
+ const activeCount=Number(isExtra)+Number(Boolean(worldFilter))+Number(catalogYear!=='all');
+ const badge=$('#mari-catalog-filter-badge');
+ if(badge){badge.hidden=!activeCount;badge.textContent=String(activeCount);}
+ const toggle=$('#mari-filter-toggle');if(toggle)toggle.classList.toggle('has-active',Boolean(activeCount));
+ const clear=$('#mari-catalog-clear-search');if(clear)clear.hidden=!catalogSearch;
+}
+
 function renderBooks(){
  const result=matched(),visible=result.slice(0,pageSize),root=$('#books');
  root.classList.toggle('compact-list',catalogMode==='list');
  $('#catalog-count').textContent=`На полке: ${result.length} ${plural(result.length,'история','истории','историй')} · показано ${visible.length}`;
  root.innerHTML=result.length?visible.map(b=>`<article class="book"><div class="book-figure"><button class="book-open" data-action="detail" data-id="${esc(b.id)}" aria-label="Открыть ${esc(b.title)}">${cover(b)}</button><button class="heart ${b.favorite?'on':''}" data-action="heart" data-id="${esc(b.id)}" title="${b.favorite?'Убрать из любимого':'Отметить любимой'}" aria-label="Любимое: ${esc(b.title)}">${ico('heart')}</button><button type="button" class="mari-inline-remove mari-catalog-remove" data-action="delete-book-request" data-id="${esc(b.id)}" title="Удалить книгу из библиотеки" aria-label="Удалить ${esc(b.title)} из библиотеки">×</button></div><button class="book-title" data-action="detail" data-id="${esc(b.id)}">${esc(b.title)}</button><p class="book-author">${esc(b.author)}</p><div class="book-bottom"><span class="book-tag">${statusName[b.status]||'Книга'}</span><span class="format-tag">${formatName[b.format]||'Не уточнён'}</span></div></article>`).join(''):`<div class="book-empty" style="grid-column:1/-1"><h3>На этой полке пока тихо…</h3><p>Не нашли книгу? Можно добавить её вместе с автором.</p><button class="btn primary small" data-action="add">${ico('plus')} Добавить книгу</button></div>`;
  const pager=$('#catalog-pagination');if(pager){pager.hidden=result.length<=pageSize;pager.innerHTML=result.length>pageSize?`<span>Ещё ${result.length-pageSize} из этой полки</span><button class="btn tonal small" data-action="more">Показать ещё ${Math.min(12,result.length-pageSize)}</button><button class="btn ghost small" data-action="show-all">Показать все ${result.length}</button>`:'';}
+  mariRenderCatalogControls();
 }
 function monthCandidates(b){
  if(/^\d{4}-\d{2}-\d{2}$/.test(b.readAt||''))return [b.readAt.slice(0,7)];
@@ -3478,7 +3771,7 @@ document.addEventListener('click',e=>{
  const next=Math.max(0,...group.items.map(x=>Number(x.cycleVolume)||0))+1;
  addForm({author:group.author,cycleName:group.name,cycleVolume:next,cycleTotal:group.total||''});
 },true);
-function render(){renderCycles();renderCustomWorlds();renderCurrent();renderLoans();renderBooks();renderStats();renderNotes();renderStarMap();renderWishlist();renderYear();renderWorldCounts();renderCatalogSuggestions();$$('[data-filter]').forEach(b=>b.classList.toggle('active',b.dataset.filter===filter&&!worldFilter))}
+function render(){renderCycles();renderCustomWorlds();renderCurrent();renderLoans();renderBooks();renderStats();renderNotes();renderStarMap();renderWishlist();renderYear();renderWorldCounts();renderCatalogSuggestions();mariRenderCatalogControls()}
 const showModal=(heading,html)=>{$('#modal-heading').textContent=heading;$('#modal-content').innerHTML=html;$('#modal-screen').classList.add('open');$('#modal-screen .modal').scrollTop=0;document.body.style.overflow='hidden';requestAnimationFrame(()=>$('#modal-screen .close')?.focus({preventScroll:true}))};
 const closeModal=()=>{$('#modal-screen').classList.remove('open');document.body.style.overflow=''};
 const option=(v,label,selected)=>`<option value="${v}" ${selected===v?'selected':''}>${label}</option>`;
@@ -3794,10 +4087,31 @@ $('#top-menu-trigger').addEventListener('click',openTopMenu);$('#menu-backdrop')
 $('#catalog-search').addEventListener('input',()=>{catalogOpen=Boolean($('#catalog-search').value.trim());catalogUpdate()});$('#catalog-search').addEventListener('focus',()=>{catalogOpen=true;renderCatalogSuggestions()});
 $('#catalog-expand').addEventListener('click',()=>{catalogOpen=!catalogOpen;$('#catalog-expand').setAttribute('aria-expanded',String(catalogOpen));renderCatalogSuggestions()});
 $$('[data-view]').forEach(el=>el.addEventListener('click',()=>{catalogMode=el.dataset.view;$$('[data-view]').forEach(b=>{b.classList.toggle('active',b.dataset.view===catalogMode);b.setAttribute('aria-pressed',String(b.dataset.view===catalogMode))});renderBooks()}));
-$('#search').addEventListener('input',updateSearch);$('#search').addEventListener('focus',updateSearch);$('#search').addEventListener('keydown',e=>{if(e.key==='Escape'){mariCloseSearchSuggestions();return;}if(e.key==='ArrowDown'){const option=$('#search-results .search-line');if(option){e.preventDefault();option.focus();}return;}if(e.key==='Enter'){e.preventDefault();const match=books.find(b=>norm(b.title+' '+b.author).includes(norm($('#search').value)));match?showDetail(match.id):addForm({title:$('#search').value})}});$('#month-year').addEventListener('change',()=>renderStats());$('#star-author-search').addEventListener('input',e=>{starSearch=e.target.value;starLimit=8;renderStarMap();renderAuthorSearch()});$('#modal-screen').addEventListener('change',e=>{if(e.target?.id!=='detail-genre')return;const b=bookById(e.target.dataset.bookId);if(!b)return;b.genre=e.target.value;b.worldManuallyChosen=true;save();render();notify('Книжная полка изменена');});$('#sort').addEventListener('change',e=>{sort=e.target.value;pageSize=12;renderBooks()});$('#catalog-year').addEventListener('change',e=>{catalogYear=e.target.value;pageSize=12;renderBooks();renderCatalogSuggestions()});$('#modal-screen').addEventListener('input',e=>{if(e.target?.id==='impression-book-search')renderImpressionChoices()});
+$('#search').addEventListener('input',updateSearch);$('#search').addEventListener('focus',updateSearch);$('#search').addEventListener('keydown',e=>{if(e.key==='Escape'){mariCloseSearchSuggestions();return;}if(e.key==='ArrowDown'){const option=$('#search-results .search-line');if(option){e.preventDefault();option.focus();}return;}if(e.key==='Enter'){e.preventDefault();const match=books.find(b=>norm(b.title+' '+b.author).includes(norm($('#search').value)));match?showDetail(match.id):addForm({title:$('#search').value})}});$('#month-year').addEventListener('change',()=>renderStats());$('#star-author-search').addEventListener('input',e=>{starSearch=e.target.value;starLimit=8;renderStarMap();renderAuthorSearch()});$('#modal-screen').addEventListener('change',e=>{if(e.target?.id!=='detail-genre')return;const b=bookById(e.target.dataset.bookId);if(!b)return;b.genre=e.target.value;b.worldManuallyChosen=true;save();render();notify('Книжная полка изменена');});
+$('#mari-filter-toggle').addEventListener('click',()=>{
+ const panel=$('#mari-extra-filters'),btn=$('#mari-filter-toggle');
+ panel.hidden=!panel.hidden;btn.setAttribute('aria-expanded',String(!panel.hidden));
+});
+$('#catalog-world').addEventListener('change',e=>{
+ worldFilter=e.target.value;pageSize=12;renderBooks();renderCatalogSuggestions();
+});
+$('#mari-catalog-reset').addEventListener('click',()=>{
+ filter='archive';worldFilter='';catalogYear='all';catalogSearch='';searchTerm='';
+ $('#catalog-search').value='';$('#search').value='';catalogOpen=false;pageSize=12;
+ mariCloseSearchSuggestions();render();notify('Фильтры сброшены');
+});
+$('#mari-catalog-clear-search').addEventListener('click',()=>{
+ $('#catalog-search').value='';catalogSearch='';catalogOpen=false;pageSize=12;
+ renderBooks();renderCatalogSuggestions();
+});
+$('#mari-catalog-alpha').addEventListener('toggle',e=>{
+ if(!e.target.open){catalogOpen=false;renderCatalogSuggestions();}
+});
+
+$('#sort').addEventListener('change',e=>{sort=e.target.value;pageSize=12;renderBooks()});$('#catalog-year').addEventListener('change',e=>{catalogYear=e.target.value;pageSize=12;renderBooks();renderCatalogSuggestions()});$('#modal-screen').addEventListener('input',e=>{if(e.target?.id==='impression-book-search')renderImpressionChoices()});
 $('#import-file').addEventListener('change',e=>{importData(e.target.files[0]);e.target.value='' });
 $('#modal-screen').addEventListener('click',e=>{if(e.target===$('#modal-screen'))closeModal()});document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeModal();closeTopMenu();catalogOpen=false;renderCatalogSuggestions();$('#search-results').classList.remove('show')}});
-document.addEventListener('click',e=>{const w=e.target.closest('[data-world]');if(w){pageSize=12;worldFilter=w.dataset.world;filter='all';searchTerm='';$('#search').value='';render();mariGoPage('books','library');notify('Открыта полка: '+genreName[worldFilter]);return}const f=e.target.closest('[data-filter]');if(f){pageSize=12;filter=f.dataset.filter;worldFilter='';render();return}const btn=e.target.closest('[data-action]');if(!btn){if(!e.target.closest('#search-area'))$('#search-results').classList.remove('show');if(!e.target.closest('.catalog-search-zone')){catalogOpen=false;renderCatalogSuggestions()}return}const action=btn.dataset.action,id=btn.dataset.id;
+document.addEventListener('click',e=>{const w=e.target.closest('[data-world]');if(w){pageSize=12;worldFilter=w.dataset.world;filter='all';searchTerm='';$('#search').value='';render();mariGoPage('books','library');notify('Открыта полка: '+genreName[worldFilter]);return}const f=e.target.closest('[data-filter]');if(f){pageSize=12;filter=f.dataset.filter;render();return}const btn=e.target.closest('[data-action]');if(!btn){if(!e.target.closest('#search-area'))$('#search-results').classList.remove('show');if(!e.target.closest('.catalog-search-zone')){catalogOpen=false;renderCatalogSuggestions()}return}const action=btn.dataset.action,id=btn.dataset.id;
 if(action==='open-menu'){openTopMenu();return}if(action==='world-add'){createWorldForm();return}if(action==='show-all'){pageSize=books.length+100;renderBooks();return}if(action==='year-show-all'){yearShowAll=true;renderYear();return}if(action==='year-view'){yearMode=btn.dataset.yearView;renderYear();return}if(action==='to-top'){window.scrollTo({top:0,behavior:'smooth'});return}if(action==='catalog-book'){showDetail(id);catalogOpen=false;renderCatalogSuggestions();return}if(action==='stars-more'){starLimit+=12;renderStarMap();return}if(action==='wish-add'){addForm({status:'want'});return}if(action==='author-stars'){const author=decodeURIComponent(btn.dataset.author||'');if(author)authorView(author);return}if(action==='year-filter'){yearMonthFilter=btn.dataset.month||'all';yearShowAll=false;renderYear();return}if(action==='more'){pageSize+=12;renderBooks();return}if(action==='save-cover-color'){
  const b=bookById(id),picker=$('#detail-color'),customInput=$('#detail-custom-color');
  if(!b||!picker)return;
