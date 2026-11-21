@@ -3917,7 +3917,7 @@ function mariCyclesData(){
 }
 function mariCycleCandidates(){
  const groups=new Map();
- const cleanTitle=title=>norm(String(title||'').replace(/[«»"'“”]/g,'').replace(/\s*(?:[({[]?\s*(?:том|книга|часть|т\.)\s*[№#]?\s*\d+\s*[)}\]]?\s*$/i,'').replace(/\s*[—–:-]\s*(?:том|книга|часть)\s*\d+\s*$/i,'').trim());
+ const cleanTitle=title=>norm(String(title||'').replace(/[«»"'“”]/g,'').replace(/\s*(?:том|книга|часть|т\.)\s*[№#]?\s*\d+\s*$/i,'').replace(/\s*[—–:-]\s*(?:том|книга|часть)\s*\d+\s*$/i,'').trim());
  books.forEach(b=>{
   if(b.textbook||b.cycleName)return;
   const author=norm(String(b.author||'').trim()),title=cleanTitle(b.title);
