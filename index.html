@@ -3567,6 +3567,14 @@ html.mari-nav-open body{overflow:hidden!important}
 #modal-screen .mari-book-cycle-editor .mari-cycle-book-actions button[type="submit"]{min-height:49px!important;padding:12px 20px!important;box-shadow:0 6px 17px rgba(8,12,27,.2)!important}
 #modal-screen .mari-book-cycle-editor input:focus{outline:2px solid #e6c1a3;outline-offset:2px}
 @media(max-width:600px){#modal-screen .detail-head + .mari-book-cycle-editor{margin:15px 0 19px!important}#modal-screen .mari-cycle-book-actions button[type="submit"]{width:100%!important}}
+</style><style id="mari-general-book-save-20261121">
+#modal-screen .modal-head{align-items:center!important;gap:10px!important}
+#modal-screen .modal-head #modal-heading{flex:1 1 auto!important}
+#modal-screen .mari-save-book-header{flex:0 0 auto;padding:10px 14px;min-height:42px;border:1px solid #e9c6b5;border-radius:11px;background:linear-gradient(110deg,#f1dfcb,#d7bbca);color:#2b2536;font:700 14px/1.25 system-ui;cursor:pointer}
+#modal-screen .mari-book-save-footer{position:relative;display:flex;align-items:center;gap:13px;flex-wrap:wrap;margin:24px 0 14px;padding:17px;border:1px solid rgba(238,204,174,.43);border-radius:14px;background:linear-gradient(120deg,#383048,#273849)}
+#modal-screen .mari-book-save-footer button{font-size:15px!important;min-height:48px;padding:12px 19px!important}
+#modal-screen .mari-book-save-footer span{flex:1 1 220px;font-size:14px;line-height:1.5;color:#d9c8cc}
+@media(max-width:650px){#modal-screen .modal-head{flex-wrap:wrap!important}#modal-screen .modal-head #modal-heading{flex:1 1 calc(100% - 60px)!important}#modal-screen .modal-head .close{order:1!important}#modal-screen .mari-save-book-header{order:2!important;width:100%!important;min-height:44px!important}#modal-screen .mari-book-save-footer button{width:100%}}
 </style></head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -4261,7 +4269,17 @@ function mariBookCycleEditor(b,id){
  </form></div>`;
 }
 function showDetail(id){const b=bookById(id);if(!b)return;activeId=id;const notes=(b.impressions||[]).map((n,index)=>`<div class="note-entry"><time>${dformat(n.date,true)}</time>${n.text?`<p>${esc(n.text)}</p>`:''}${/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(n.photo||'')?`<img src="${n.photo}" alt="Фотография из книжных впечатлений">`:''}<div class="mari-note-actions"><button type="button" data-note-edit="${index}" data-note-book="${esc(id)}">Редактировать</button><button type="button" data-note-delete="${index}" data-note-book="${esc(id)}">Удалить</button></div></div>`).join('');const loan=b.loan?`<div class="detail-block"><h3>Библиотечная книга · ${esc(b.loan.library)}</h3><p class="hint">Взяли ${dformat(b.loan.borrowedAt,true)}. ${b.loan.returnedAt?'Вернули '+dformat(b.loan.returnedAt,true):'Вернуть до '+dformat(dateDue(b),true)}</p>${!b.loan.returnedAt?`<div class="detail-controls"><div class="field"><label for="extend-date">Новый срок возврата</label><input type="date" id="extend-date" value="${dateDue(b)}"></div><button class="btn tonal small" data-action="extend" data-id="${esc(id)}">Продлить</button><button class="btn ghost small" data-action="return" data-id="${esc(id)}">Книга возвращена</button><button class="btn ghost small" data-action="ics-single" data-id="${esc(id)}">${ico('calendar')} Напоминание</button></div>`:''}</div>`:'';
- showModal('Книжная карточка',`<div class="detail-head">${cover(b)}<div><div class="kicker">${genreName[b.genre]||'Книжная полка'}</div><h2>${esc(b.title)}</h2><p>${esc(b.author)}</p><p>${formatName[b.format]||'Книга'} · ${esc(b.sourceCustom||b.sourceOriginal||sourceName[b.source]||'Без источника')}</p>${b.readPeriod?`<p><strong>Когда читала (примерно):</strong> ${esc(b.readPeriod)}</p>`:''}${b.formatInferred?`<p class="hint">${b.formatAssumption?esc(b.formatAssumption):'Формат указан предварительно: в исходной таблице он не был заполнен.'}</p>`:''}<p>${b.textbook?'Из учебника · исключено из статистики':'Личное чтение'}</p></div></div>${mariBookCycleEditor(b,id)}<div class="detail-block"><h3>Формат чтения</h3><p class="hint">Если формат в таблице был указан неверно, здесь можно его исправить; статистика обновится.</p><button class="btn tonal small" data-action="toggle-format" data-id="${esc(id)}">${ico('book')} Сменить на ${b.format==='paper'?'электронную':'бумажную'}</button></div>${mariDetailColorMarkup(b,id)}<div class="detail-block"><h3>На какой книжной полке?</h3><p class="hint">Полка предлагается по жанру из исходного дневника. Ты можешь изменить её — неуверенные определения оставляем в «Других историях».</p><select class="detail-world-select" data-book-id="${esc(id)}" id="detail-genre">${Object.entries(genreName).map(([v,k])=>option(v,k,b.genre||'other')).join('')}</select><p class="hint">Жанр из таблицы: ${esc(b.originalGenre||'не уточнён')}${b.worldManuallyChosen?' · полка выбрана вручную':''}</p></div>${mariDetailStatusMarkup(b,id)}${mariReadingMetaBlock(b,id)}${loan}<div class="detail-block"><h3>Впечатления и фотографии</h3>${notes||'<p class="loan-empty">Здесь пока ничего нет. Можно написать всего одну строчку или добавить фото.</p>'}<form id="note-form"><div class="field"><label for="note-text">Что запомнилось?</label><textarea id="note-text" name="note" placeholder="Любая мысль, вопрос, любимый момент…"></textarea></div><div class="mari-note-voice"><button type="button" id="mari-note-voice-btn" aria-pressed="false">Записать голосом</button><span id="mari-note-voice-status" role="status">Расшифровка появится в поле выше.</span></div><p class="mari-note-edit-info" id="mari-note-edit-info" hidden></p><div class="field" style="margin-top:10px"><label for="note-file">Фотография (необязательно)</label><input id="note-file" type="file" name="photo" accept="image/jpeg,image/png,image/webp,image/heic" style="font-size:11px"></div><p class="hint">Для экономии места фото уменьшится до 900 пикселей. Это только локальный демонстрационный режим.</p><div class="modal-actions"><button type="button" class="btn ghost small" id="mari-note-cancel-edit" hidden>Отменить правку</button><button type="submit" class="btn primary small" id="mari-note-submit">Сохранить впечатление</button></div></form></div><div class="mari-delete-book-row"><button type="button" class="mari-delete-book-link" data-action="delete-book-request" data-id="${esc(id)}">Удалить книгу из библиотеки</button><span>Удаление затронет все полки и записи этой книги.</span></div>`);
+ showModal('Книжная карточка',`<div class="detail-head">${cover(b)}<div><div class="kicker">${genreName[b.genre]||'Книжная полка'}</div><h2>${esc(b.title)}</h2><p>${esc(b.author)}</p><p>${formatName[b.format]||'Книга'} · ${esc(b.sourceCustom||b.sourceOriginal||sourceName[b.source]||'Без источника')}</p>${b.readPeriod?`<p><strong>Когда читала (примерно):</strong> ${esc(b.readPeriod)}</p>`:''}${b.formatInferred?`<p class="hint">${b.formatAssumption?esc(b.formatAssumption):'Формат указан предварительно: в исходной таблице он не был заполнен.'}</p>`:''}<p>${b.textbook?'Из учебника · исключено из статистики':'Личное чтение'}</p></div></div><div class="detail-block"><h3>Формат чтения</h3><p class="hint">Если формат в таблице был указан неверно, здесь можно его исправить; статистика обновится.</p><button class="btn tonal small" data-action="toggle-format" data-id="${esc(id)}">${ico('book')} Сменить на ${b.format==='paper'?'электронную':'бумажную'}</button></div>${mariDetailColorMarkup(b,id)}<div class="detail-block"><h3>На какой книжной полке?</h3><p class="hint">Полка предлагается по жанру из исходного дневника. Ты можешь изменить её — неуверенные определения оставляем в «Других историях».</p><select class="detail-world-select" data-book-id="${esc(id)}" id="detail-genre">${Object.entries(genreName).map(([v,k])=>option(v,k,b.genre||'other')).join('')}</select><p class="hint">Жанр из таблицы: ${esc(b.originalGenre||'не уточнён')}${b.worldManuallyChosen?' · полка выбрана вручную':''}</p></div>${mariDetailStatusMarkup(b,id)}${mariReadingMetaBlock(b,id)}${loan}<div class="detail-block"><h3>Впечатления и фотографии</h3>${notes||'<p class="loan-empty">Здесь пока ничего нет. Можно написать всего одну строчку или добавить фото.</p>'}<form id="note-form"><div class="field"><label for="note-text">Что запомнилось?</label><textarea id="note-text" name="note" placeholder="Любая мысль, вопрос, любимый момент…"></textarea></div><div class="mari-note-voice"><button type="button" id="mari-note-voice-btn" aria-pressed="false">Записать голосом</button><span id="mari-note-voice-status" role="status">Расшифровка появится в поле выше.</span></div><p class="mari-note-edit-info" id="mari-note-edit-info" hidden></p><div class="field" style="margin-top:10px"><label for="note-file">Фотография (необязательно)</label><input id="note-file" type="file" name="photo" accept="image/jpeg,image/png,image/webp,image/heic" style="font-size:11px"></div><p class="hint">Для экономии места фото уменьшится до 900 пикселей. Это только локальный демонстрационный режим.</p><div class="modal-actions"><button type="button" class="btn ghost small" id="mari-note-cancel-edit" hidden>Отменить правку</button><button type="submit" class="btn primary small" id="mari-note-submit">Сохранить впечатление</button></div></form></div>${mariBookCycleEditor(b,id)}<div class="mari-book-save-footer"><button type="button" class="btn primary" data-mari-save-whole-book="${esc(id)}">Сохранить изменения книги</button><span>Сохранит данные книги, полку, цвет обложки и серию. Впечатления сохраняются отдельно.</span></div><div class="mari-delete-book-row"><button type="button" class="mari-delete-book-link" data-action="delete-book-request" data-id="${esc(id)}">Удалить книгу из библиотеки</button><span>Удаление затронет все полки и записи этой книги.</span></div>`);
+ const header=$('#modal-screen .modal-head');
+ const closeButton=header?.querySelector('.close');
+ if(header&&closeButton){
+  header.querySelector('.mari-save-book-header')?.remove();
+  const saveButton=document.createElement('button');
+  saveButton.type='button';saveButton.className='mari-save-book-header';
+  saveButton.dataset.mariSaveWholeBook=String(id);
+  saveButton.textContent='Сохранить книгу';
+  header.insertBefore(saveButton,closeButton);
+ }
  $('#detail-color').addEventListener('change',e=>{$('#detail-color-custom-wrap').hidden=e.target.value!=='custom'});
  const form=$('#note-form');let editingNote=null;
  const noteCancel=$('#mari-note-cancel-edit'),noteInfo=$('#mari-note-edit-info');
@@ -4319,6 +4337,52 @@ function toggleMariNoteVoice(){
 }
 async function resizeImage(file){return new Promise((resolve,reject)=>{const img=new Image();const url=URL.createObjectURL(file);img.onload=()=>{const scale=Math.min(1,900/Math.max(img.width,img.height));const c=document.createElement('canvas');c.width=Math.max(1,Math.round(img.width*scale));c.height=Math.max(1,Math.round(img.height*scale));c.getContext('2d').drawImage(img,0,0,c.width,c.height);URL.revokeObjectURL(url);resolve(c.toDataURL('image/jpeg',.73))};img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('invalid image'))};img.src=url})}
 
+document.addEventListener('click',e=>{
+ const button=e.target.closest('[data-mari-save-whole-book]');
+ if(!button)return;
+ e.preventDefault();e.stopImmediatePropagation();
+ const b=bookById(button.dataset.mariSaveWholeBook),meta=$('#mari-book-metadata-form'),cycle=$('#mari-cycle-book-form');
+ if(!b||!meta||!cycle)return;
+ if(!meta.reportValidity()||!cycle.reportValidity()){
+  const details=meta.closest('details');if(details)details.open=true;
+  notify('Проверь заполнение полей');return;
+ }
+ const md=new FormData(meta),cd=new FormData(cycle);
+ const start=String(md.get('startAt')||''),end=String(md.get('readAt')||'');
+ if(start&&end&&end<start){meta.closest('details').open=true;notify('Окончание чтения раньше начала');return;}
+ const name=String(cd.get('cycleName')||'').trim(),volRaw=String(cd.get('cycleVolume')||''),totalRaw=String(cd.get('cycleTotal')||'');
+ const volume=volRaw===''?null:Number(volRaw),total=totalRaw===''?null:Number(totalRaw);
+ if(!name&&(volume!==null||total!==null)){notify('Для номера тома нужно название цикла');return}
+ if(name&&(!Number.isInteger(volume)||volume<1||volume>1000)){notify('Укажи номер тома от 1 до 1000');return}
+ if(total!==null&&(!Number.isInteger(total)||total<1||total>1000)){notify('Проверь количество томов');return}
+ if(total!==null&&volume!==null&&volume>total){notify('Номер тома больше общего количества');return}
+ const url=String(md.get('bookUrl')||'').trim();
+ if(url&&!mariSafeBookLink(url)){meta.closest('details').open=true;notify('Укажи правильную ссылку на книгу');return}
+ const picker=$('#detail-color');
+ const selected=picker?.value||b.color||'rose';
+ const next={
+  startAt:start||null,readAt:end||null,
+  originalGenre:String(md.get('originalGenre')||'').trim(),
+  whyRead:String(md.get('whyRead')||'').trim(),
+  sourceSite:String(md.get('sourceSite')||'').trim(),
+  bookUrl:url,
+  readingMinutes:md.get('readingMinutes')===''?null:Math.max(0,Math.floor(Number(md.get('readingMinutes'))||0)),
+  cycleName:name,cycleVolume:name?volume:null,cycleTotal:name?total:null,
+  color:selected,customColor:selected==='custom'?(mariSafeCoverColor($('#detail-custom-color')?.value)||'#946487'):null,
+  genre:$('#detail-genre')?.value||b.genre,
+  worldManuallyChosen:($('#detail-genre')?.value||b.genre)!==b.genre?true:b.worldManuallyChosen
+ };
+ const prior=JSON.stringify(b);
+ Object.assign(b,next);
+ if(!save()){
+  const restored=JSON.parse(prior);
+  Object.keys(next).forEach(key=>{if(!(key in restored))delete b[key]});
+  Object.assign(b,restored);return;
+ }
+ const scroll=$('#modal-screen .modal')?.scrollTop||0;
+ render();showDetail(b.id);$('#modal-screen .modal').scrollTop=scroll;
+ notify('Изменения книги сохранены');
+},true);
 document.addEventListener('submit',e=>{
  if(e.target?.id!=='mari-cycle-book-form')return;
  e.preventDefault();e.stopImmediatePropagation();
