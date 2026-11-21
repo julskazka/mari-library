@@ -172,6 +172,15 @@ html.mari-nav-open body{overflow:hidden!important}
  #notes-up{bottom:83px!important}
 }
 
+</style><style id="mari-impression-editor-20261121">
+.impression-entry-actions{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0 9px}
+.impression-entry-actions button,.impression-voice button{border:1px solid rgba(230,191,169,.5);border-radius:11px;background:#333049;color:#f6e7dd;padding:10px 14px;font:600 14px/1.3 system-ui;cursor:pointer}
+.impression-entry-actions button:last-child{background:#3a2939;color:#f4c7c0}
+.impression-voice{display:flex;flex-wrap:wrap;align-items:center;gap:11px;margin:10px 0 16px}
+.impression-voice span{color:#d3c2c5;font-size:14px;line-height:1.45;flex:1 1 230px}
+.impression-voice button[aria-pressed="true"]{background:#79465c;color:#fff}
+.impression-existing-photo{color:#edcaa9;font-size:14px;margin:8px 0}
+@media(max-width:600px){.impression-entry-actions button,.impression-voice button{min-height:44px}}
 </style></head><body><main class="shell"><header class="mari-imp-search" id="mari-impression-global-search">
 <div class="mari-imp-heading"><div class="mari-imp-title"><span class="kicker">Поиск по всей библиотеке</span><h2>Найти свою историю</h2></div>
 <div class="mari-imp-actions"><a class="mari-imp-add" href="index.html?add=1">＋ Добавить книгу</a><button id="notes-menu-trigger" class="mari-imp-menu" aria-controls="notes-menu" aria-expanded="false" type="button">☰ Меню</button></div></div>
@@ -184,19 +193,19 @@ html.mari-nav-open body{overflow:hidden!important}
   <form id="impression-write-form">
    <div class="impression-field"><label for="impression-write-search">К какой книге впечатление? *</label><input type="search" id="impression-write-search" placeholder="Начни вводить название или автора…" autocomplete="off" aria-controls="impression-book-results" aria-expanded="false"><div class="impression-book-results" id="impression-book-results" role="listbox" aria-label="Выбор книги"></div><div class="impression-chosen" id="impression-chosen" hidden aria-live="polite"></div></div>
    <div class="impression-field"><label for="impression-write-text">Что запомнилось?</label><textarea id="impression-write-text" name="note" placeholder="Любимая сцена, мысль, чувство или маленькое открытие…"></textarea></div>
-   <div class="impression-field"><label for="impression-write-photo">Добавить фотографию (необязательно)</label><input type="file" id="impression-write-photo" accept="image/jpeg,image/png,image/webp"><p class="impression-hint">Можно оставить только текст или только фотографию. Фото уменьшится до 900 пикселей для экономии памяти.</p></div>
-   <p class="impression-write-message" id="impression-write-message" role="status" aria-live="polite"></p>
+   <div class="impression-voice"><button type="button" id="impression-voice-button" aria-pressed="false">Записать голосом</button><span id="impression-voice-status" role="status" aria-live="polite">Речь появится в поле выше. Перед сохранением её можно исправить.</span></div><div class="impression-field"><label for="impression-write-photo">Добавить фотографию (необязательно)</label><input type="file" id="impression-write-photo" accept="image/jpeg,image/png,image/webp"><p class="impression-hint">Можно оставить только текст или только фотографию. Фото уменьшится до 900 пикселей для экономии памяти.</p></div>
+   <div id="impression-existing-photo" class="impression-existing-photo" hidden></div><p class="impression-write-message" id="impression-write-message" role="status" aria-live="polite"></p>
    <div class="impression-dialog-actions"><button class="impression-cancel" id="impression-dialog-cancel" type="button">Отмена</button><button class="impression-submit" id="impression-submit" type="submit">Сохранить впечатление</button></div>
   </form>
  </div>
 </div><div class="impression-success" id="impression-success" role="status" hidden>Впечатление сохранено в библиотеке</div><script>
-(()=>{'use strict';const KEY='mari_between_pages_real_416_v1';let books=[];try{books=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(books))books=[]}catch{books=[]}const $=s=>document.querySelector(s);const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const norm=s=>String(s||'').toLocaleLowerCase('ru').replace(/ё/g,'е');const date=s=>{if(!s)return 'Без даты';const d=new Date(s+'T12:00:00');return Number.isNaN(+d)?esc(s):d.toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})};const entries=()=>books.flatMap(book=>(book.impressions||[]).map(note=>({book,note}))).sort((a,b)=>(b.note.date||'').localeCompare(a.note.date||''));function render(){const q=norm($('#query').value.trim()),items=entries().filter(x=>!q||norm(x.book.title+' '+x.book.author+' '+(x.note.text||'')).includes(q));$('#count').textContent=items.length+' '+(items.length===1?'впечатление':items.length<5&&items.length>1?'впечатления':'впечатлений');$('#notes').innerHTML=items.length?items.map(({book,note})=>`<article class="note"><time>${date(note.date)}</time><h3>${esc(book.title)}</h3><div class="author">${esc(book.author)}</div>${note.text?`<p>${esc(note.text)}</p>`:''}${/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(note.photo||'')?`<img src="${note.photo}" alt="Фото-впечатление о книге">`:''}<a href="index.html?book=${encodeURIComponent(book.id)}#library">Открыть карточку книги ↗</a></article>`).join(''):`<div class="empty"><div class="empty-pages" aria-hidden="true"><i></i><i></i><i></i></div><h2>${q?'Ничего не найдено':'Здесь начнётся история'}</h2><p>${q?'Попробуй другое слово — ищем по названию, автору и тексту.':'Когда Мари добавит первое впечатление, здесь появится её личный книжный альбом. Можно писать хоть одно предложение или добавить фотографию.'}</p><button class="start" type="button" data-impression-new>+ Оставить первое впечатление</button></div>`}
+(()=>{'use strict';const KEY='mari_between_pages_real_416_v1';let books=[];try{books=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(books))books=[]}catch{books=[]}const $=s=>document.querySelector(s);const esc=s=>String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));const norm=s=>String(s||'').toLocaleLowerCase('ru').replace(/ё/g,'е');const date=s=>{if(!s)return 'Без даты';const d=new Date(s+'T12:00:00');return Number.isNaN(+d)?esc(s):d.toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'})};const entries=()=>books.flatMap(book=>(book.impressions||[]).map((note,index)=>({book,note,index}))).sort((a,b)=>(b.note.date||'').localeCompare(a.note.date||''));function render(){const q=norm($('#query').value.trim()),items=entries().filter(x=>!q||norm(x.book.title+' '+x.book.author+' '+(x.note.text||'')).includes(q));$('#count').textContent=items.length+' '+(items.length===1?'впечатление':items.length<5&&items.length>1?'впечатления':'впечатлений');$('#notes').innerHTML=items.length?items.map(({book,note,index})=>`<article class="note"><time>${date(note.date)}</time><h3>${esc(book.title)}</h3><div class="author">${esc(book.author)}</div>${note.text?`<p>${esc(note.text)}</p>`:''}${/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(note.photo||'')?`<img src="${note.photo}" alt="Фото-впечатление о книге">`:''}<div class="impression-entry-actions"><button type="button" data-impression-edit="${esc(book.id)}" data-note-index="${index}">Редактировать</button><button type="button" data-impression-delete="${esc(book.id)}" data-note-index="${index}">Удалить</button></div><a href="index.html?book=${encodeURIComponent(book.id)}#library">Открыть карточку книги ↗</a></article>`).join(''):`<div class="empty"><div class="empty-pages" aria-hidden="true"><i></i><i></i><i></i></div><h2>${q?'Ничего не найдено':'Здесь начнётся история'}</h2><p>${q?'Попробуй другое слово — ищем по названию, автору и тексту.':'Когда Мари добавит первое впечатление, здесь появится её личный книжный альбом. Можно писать хоть одно предложение или добавить фотографию.'}</p><button class="start" type="button" data-impression-new>+ Оставить первое впечатление</button></div>`}
 /* A direct writing flow on the impressions page. Uses the same localStorage
    record as index.html; no navigation and no new storage schema. */
 const dialog=$('#impression-dialog'),entryForm=$('#impression-write-form');
 const find=$('#impression-write-search'),choices=$('#impression-book-results');
 const chosen=$('#impression-chosen'),writeMessage=$('#impression-write-message');
-let selectedBookId=null,returnFocus=null,busy=false,successTimer=0;
+let selectedBookId=null,returnFocus=null,busy=false,successTimer=0,editingIndex=null,recognition=null,recognizing=false,spokenBase='';
 function currentBooks(){
  const val=JSON.parse(localStorage.getItem(KEY)||'[]');
  return Array.isArray(val)?val:[];
@@ -224,15 +233,57 @@ function selectBook(id){
 }
 function openWriter(){
  try{books=currentBooks()}catch{books=[]}
- selectedBookId=null;entryForm.reset();chosen.hidden=true;
+ stopVoice();selectedBookId=null;editingIndex=null;entryForm.reset();chosen.hidden=true;$('#impression-dialog-title').textContent='Новое впечатление';$('#impression-submit').textContent='Сохранить впечатление';$('#impression-existing-photo').hidden=true;
  writeMessage.textContent='';
  returnFocus=document.activeElement;
  dialog.hidden=false;document.body.classList.add('impression-dialog-open');
  bookChoices();
  requestAnimationFrame(()=>find.focus({preventScroll:true}));
 }
+function editWriter(bookId,index){
+ openWriter();
+ const b=books.find(book=>String(book.id)===String(bookId));const note=b?.impressions?.[index];
+ if(!note){writeMessage.textContent='Запись не найдена.';return;}
+ selectBook(bookId);editingIndex=index;
+ $('#impression-dialog-title').textContent='Редактировать впечатление';
+ $('#impression-submit').textContent='Сохранить изменения';
+ $('#impression-write-text').value=note.text||'';
+ const existing=$('#impression-existing-photo');
+ existing.hidden=!note.photo;
+ existing.textContent=note.photo?'Текущая фотография сохранится. Выбери новую, только если хочешь заменить её.':'';
+}
+function stopVoice(){
+ if(recognition){try{recognition.stop()}catch{}recognition=null}
+ recognizing=false;
+ const btn=$('#impression-voice-button'),status=$('#impression-voice-status');
+ if(btn){btn.setAttribute('aria-pressed','false');btn.textContent='Записать голосом'}
+ if(status)status.textContent='Речь появится в поле выше. Перед сохранением её можно исправить.';
+}
+function toggleVoice(){
+ if(recognizing){stopVoice();return}
+ const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
+ const status=$('#impression-voice-status');
+ if(!Recognition){status.textContent='Голосовая расшифровка не поддерживается этим браузером. Можно воспользоваться диктовкой клавиатуры.';return}
+ const field=$('#impression-write-text');
+ spokenBase=field.value.trim();let sessionText='';
+ const rec=new Recognition();recognition=rec;recognizing=true;rec.lang='ru-RU';rec.continuous=true;rec.interimResults=true;
+ $('#impression-voice-button').textContent='Остановить запись';$('#impression-voice-button').setAttribute('aria-pressed','true');
+ status.textContent='Слушаю… Говори, текст будет появляться выше.';
+ rec.onresult=event=>{
+  let finalText='',interim='';
+  for(let i=0;i<event.results.length;i++){
+   const value=event.results[i][0]?.transcript||'';
+   if(event.results[i].isFinal)finalText+=value+' ';else interim+=value;
+  }
+  sessionText=finalText+interim;
+  field.value=[spokenBase,sessionText.trim()].filter(Boolean).join(' ');
+ };
+ rec.onerror=event=>{status.textContent=event.error==='not-allowed'?'Нет доступа к микрофону. Разреши доступ в браузере.':'Не удалось распознать речь. Можно ввести текст вручную.';recognizing=false;recognition=null;$('#impression-voice-button').textContent='Записать голосом';$('#impression-voice-button').setAttribute('aria-pressed','false')};
+ rec.onend=()=>{if(recognition!==rec)return;recognition=null;recognizing=false;$('#impression-voice-button').textContent='Записать голосом';$('#impression-voice-button').setAttribute('aria-pressed','false');status.textContent='Расшифровка готова. Проверь текст перед сохранением.'};
+ try{rec.start()}catch{stopVoice();status.textContent='Не удалось включить микрофон.'}
+}
 function closeWriter(){
- if(busy)return;
+ if(busy)return;stopVoice();
  dialog.hidden=true;document.body.classList.remove('impression-dialog-open');
  find.setAttribute('aria-expanded','false');choices.innerHTML='';
  if(returnFocus&&returnFocus.isConnected)returnFocus.focus({preventScroll:true});
@@ -260,15 +311,24 @@ function todayLocal(){
  return [d.getFullYear(),String(d.getMonth()+1).padStart(2,'0'),String(d.getDate()).padStart(2,'0')].join('-');
 }
 document.addEventListener('click',e=>{
+ const edit=e.target.closest('[data-impression-edit]');if(edit){e.preventDefault();editWriter(edit.dataset.impressionEdit,Number(edit.dataset.noteIndex));return}
+ const del=e.target.closest('[data-impression-delete]');if(del){
+  e.preventDefault();if(!confirm('Удалить это впечатление? Отменить удаление нельзя.'))return;
+  try{const latest=currentBooks();const b=latest.find(x=>String(x.id)===String(del.dataset.impressionDelete));const i=Number(del.dataset.noteIndex);if(!b||!Array.isArray(b.impressions)||i<0||i>=b.impressions.length)throw Error('Запись не найдена');
+   b.impressions.splice(i,1);localStorage.setItem(KEY,JSON.stringify(latest));books=latest;render();
+  }catch{alert('Не получилось удалить запись. Проверь сохранение данных в браузере.')}return;
+ }
  const open=e.target.closest('[data-impression-new]');
  if(open){e.preventDefault();openWriter();return;}
  const pick=e.target.closest('[data-impression-book]');
  if(pick&&dialog.contains(pick)){e.preventDefault();selectBook(pick.dataset.impressionBook);return;}
  if(e.target===dialog){closeWriter();}
 });
+$('#impression-voice-button').addEventListener('click',toggleVoice);
 $('#impression-dialog-close').addEventListener('click',closeWriter);
 $('#impression-dialog-cancel').addEventListener('click',closeWriter);
 find.addEventListener('input',()=>{
+ if(editingIndex!==null){writeMessage.textContent='Для изменения книги создай новое впечатление — редактирование сохраняется за исходной книгой.';return;}
  selectedBookId=null;chosen.hidden=true;bookChoices();
 });
 find.addEventListener('focus',()=>{if(!selectedBookId)bookChoices()});
@@ -283,7 +343,7 @@ entryForm.addEventListener('submit',async e=>{
  if(!selectedBookId){writeMessage.textContent='Сначала выбери книгу из списка.';find.focus();return;}
  const noteText=$('#impression-write-text').value.trim();
  const imageFile=$('#impression-write-photo').files[0];
- if(!noteText&&!imageFile){writeMessage.textContent='Напиши впечатление или добавь фотографию.';$('#impression-write-text').focus();return;}
+ if(!noteText&&!imageFile&&editingIndex===null){writeMessage.textContent='Напиши впечатление или добавь фотографию.';$('#impression-write-text').focus();return;}
  const submit=$('#impression-submit');busy=true;submit.disabled=true;
  writeMessage.textContent='Сохраняем впечатление…';
  let photo=null;
@@ -292,7 +352,8 @@ entryForm.addEventListener('submit',async e=>{
   const latest=currentBooks();const book=latest.find(b=>String(b.id)===selectedBookId);
   if(!book)throw new Error('Книга не найдена. Выбери её снова.');
   if(!Array.isArray(book.impressions))book.impressions=[];
-  book.impressions.unshift({date:todayLocal(),text:noteText,photo});
+  if(editingIndex!==null){const old=book.impressions[editingIndex];if(!old)throw new Error('Запись не найдена');if(!noteText&&!photo&&!old.photo)throw new Error('Оставь текст или фотографию');book.impressions[editingIndex]={...old,text:noteText,photo:photo||old.photo||null};}
+  else book.impressions.unshift({date:todayLocal(),text:noteText,photo});
   localStorage.setItem(KEY,JSON.stringify(latest));
   books=latest;
   $('#query').value='';
