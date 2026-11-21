@@ -1264,7 +1264,7 @@ html{scroll-padding-top:80px}body{background:radial-gradient(ellipse 32% 17% at 
 #catalog-expand{min-width:46px!important;min-height:44px!important;border-radius:12px!important;background:#eed1bb1a!important;border:1px solid #eed1bb55!important;display:grid!important;place-items:center!important}#catalog-expand::before{content:""!important;display:block!important;width:12px!important;height:12px!important;border-right:2.5px solid #ffe6cb!important;border-bottom:2.5px solid #ffe6cb!important;transform:translateY(-3px) rotate(45deg)!important}#catalog-expand[aria-expanded="true"]::before{transform:translateY(2px) rotate(225deg)!important}.catalog-suggestions[hidden],#star-author-options[hidden],#star-author-options:empty{display:none!important}
 #modal-screen{z-index:10000!important;align-items:center!important;padding:14px!important;overflow:hidden!important;overscroll-behavior:contain}#modal-screen .modal{width:min(720px,100%)!important;max-width:720px!important;max-height:min(89dvh,780px)!important;overflow-y:auto!important;overflow-x:hidden!important;margin:auto!important;border-radius:20px!important;padding:20px 20px 27px!important;overscroll-behavior:contain;scrollbar-width:thin}#modal-screen .modal-head{position:sticky;top:-20px;z-index:2;padding:12px 0 11px;background:#1c2136ef;backdrop-filter:blur(12px)}.mari-month-search label{display:block;font-size:12px;margin-bottom:6px;color:#ead4ca}.mari-month-search input,.mari-impression-filter select{width:100%;border-radius:11px;border:1px solid #e6cab777;padding:12px 14px;background:#273048;color:#f6e6d6}.mari-month-books{max-height:49dvh;overflow-y:auto;margin-top:14px;display:grid;gap:7px;scrollbar-width:thin}.mari-month-books .world-result{min-height:64px!important}.world-result-list{max-height:48dvh!important;overflow-y:auto!important;overscroll-behavior:contain}
 .mari-impression-filter{display:flex;align-items:center;gap:12px;margin:12px 0;color:#e6cdbf;font-size:12px}.mari-impression-filter select{width:auto;min-width:190px;flex:1}.mari-results-count{margin:12px 0;color:#efd6c2;font-size:12px}.mari-impression-list{max-height:42dvh;overflow-y:auto;scrollbar-width:thin;border:1px solid #e7cfbc44;border-radius:14px;background:#0c14234d}.mari-impression-list .search-line{border-bottom:1px solid #ead0b722!important;min-height:67px}.mari-show-more{margin:14px auto 5px;display:block!important}
-.cosmos-find{position:relative;z-index:30!important;overflow:visible!important}#star-author-options{display:block;position:relative!important;top:auto!important;left:auto!important;right:auto!important;width:100%!important;max-height:255px!important;overflow-y:auto!important;overscroll-behavior:contain;margin-top:8px;padding:8px!important;border:1px solid #f1d1bb55!important;border-radius:13px;background:#273048!important;box-shadow:0 8px 26px #0a0c1866}#star-author-options button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;white-space:normal!important;padding:9px 11px!important;margin-bottom:4px;text-align:left}#star-author-options button span{flex:1}#star-author-options button small{font-size:10px;color:#d7c7d8;white-space:nowrap}.mari-author-tip{font-size:10px;color:#e7ccb9;letter-spacing:.5px;padding:5px 8px 9px}
+.cosmos-find{position:relative;z-index:30!important;overflow:visible!important}#star-author-options{display:block;position:absolute!important;top:calc(100% + 7px)!important;left:0!important;right:0!important;width:100%!important;max-height:min(300px,42dvh)!important;overflow-y:auto!important;overscroll-behavior:contain;margin-top:0!important;padding:8px!important;border:1px solid #f1d1bb55!important;border-radius:13px;background:#22273b!important;box-shadow:0 18px 38px #0a0c18b3;z-index:80!important}#star-author-options button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;white-space:normal!important;padding:9px 11px!important;margin-bottom:4px;text-align:left}#star-author-options button span{flex:1}#star-author-options button small{font-size:10px;color:#d7c7d8;white-space:nowrap}.mari-author-tip{font-size:10px;color:#e7ccb9;letter-spacing:.5px;padding:5px 8px 9px}
 #favorite .feature-illustration,#favorite .loved-card .icon,#favorite .random-card .icon{display:none!important}#favorite .loved-card,#favorite .random-card{border-radius:20px!important;box-shadow:inset 0 0 0 7px #f0d3af0c,0 12px 28px #050a1926!important}#favorite .loved-card::after,#favorite .random-card::after{display:block!important;content:""!important;position:absolute!important;inset:10px!important;border:1px solid #f5dabf44!important;border-radius:13px!important;pointer-events:none!important;z-index:0!important}.wish-empty-art,.wish-marker,.page-turn-leaf,.header-spark{display:none!important}
 @media(max-width:580px){#modal-screen{padding:10px 7px max(10px,env(safe-area-inset-bottom))!important}#modal-screen .modal{width:100%!important;max-height:92dvh!important;padding:14px 14px 22px!important;border-radius:18px!important}#modal-screen .modal-head{top:-14px!important}.mari-month-books{max-height:56dvh}.mari-impression-list{max-height:51dvh}.mari-current-shelf{padding:10px 11px}.mari-current-shelf span{min-width:100%}.mari-worlds-prompt strong{font-size:20px}#worlds .world-grid .world-text,#worlds .custom-world .world-text{padding-left:15px!important}#library .book-grid:not(.compact-list) .heart{height:35px!important;width:35px!important;right:-6px!important;top:-5px!important}#star-author-options{max-height:230px!important}.mari-impression-filter{flex-wrap:wrap}.mari-impression-filter select{min-width:100%}}
 
@@ -3420,6 +3420,58 @@ html.mari-nav-open body{overflow:hidden!important}
 }
 @media (max-width:370px){.page .hero .hero-actions{flex-direction:column!important;align-items:stretch!important}.page .hero .hero-actions .btn{width:100%!important}}
 </style>
+<style id="mari-unified-search-results-20261121">
+/* Matching book lists: readable cards without hard white outlines or layout jumps. */
+#modal-screen .world-result-list,
+#modal-screen .mari-month-books{
+ display:flex!important;flex-direction:column!important;
+ gap:7px!important;max-height:min(42dvh,365px)!important;
+ overflow-y:auto!important;overflow-x:hidden!important;
+ overscroll-behavior:contain;scrollbar-width:thin;
+ padding:3px 5px 6px 0!important;margin-top:12px!important;
+ border:0!important;background:transparent!important;
+}
+#modal-screen .world-result-list .world-result,
+#modal-screen .mari-month-books .world-result{
+ display:grid!important;grid-template-columns:42px minmax(0,1fr) auto!important;
+ align-items:center!important;gap:12px!important;
+ width:100%!important;min-height:70px!important;
+ padding:10px 12px!important;
+ border:1px solid rgba(225,191,174,.21)!important;
+ border-radius:12px!important;
+ background:linear-gradient(110deg,rgba(53,49,72,.75),rgba(34,39,60,.8))!important;
+ box-shadow:none!important;outline:0!important;
+ color:#f6e7dc!important;text-align:left!important;
+ flex:0 0 auto!important;
+}
+#modal-screen .world-result-list .world-result:hover,
+#modal-screen .mari-month-books .world-result:hover{
+ background:linear-gradient(110deg,rgba(80,65,88,.85),rgba(47,50,76,.9))!important;
+ border-color:rgba(234,194,171,.55)!important;
+}
+#modal-screen .world-result .mini-cover,
+#modal-screen .world-result .cover{max-width:38px!important;width:38px!important;height:49px!important}
+#modal-screen .world-result span{min-width:0}
+#modal-screen .world-result strong{display:inline-block;font-size:15px!important;line-height:1.4!important;overflow-wrap:anywhere}
+#modal-screen .world-result small{font-size:13px!important;color:#c9bec9!important;line-height:1.5!important}
+#modal-screen .world-result .world-open{font-size:13px!important;padding:8px 11px!important;white-space:nowrap}
+#modal-screen .world-search input,#modal-screen .mari-month-search input{min-height:46px!important;font-size:15px!important}
+#modal-screen .world-search,#modal-screen .mari-month-search{margin:13px 0 5px!important}
+#constellation .cosmos-find{position:relative!important;z-index:40!important;overflow:visible!important}
+#constellation #star-author-options[hidden]{display:none!important}
+#constellation #star-author-options{position:absolute!important;inset:calc(100% + 7px) 0 auto!important;z-index:90!important;max-height:min(300px,42dvh)!important;overflow-y:auto!important;margin:0!important}
+#constellation #star-author-options button{min-height:44px!important;font-size:15px!important;border-radius:9px!important}
+#constellation #star-author-options button small{font-size:13px!important}
+#constellation .mari-author-tip{font-size:13px!important}
+@media(max-width:600px){
+ #modal-screen .world-result-list,#modal-screen .mari-month-books{max-height:45dvh!important}
+ #modal-screen .world-result-list .world-result,#modal-screen .mari-month-books .world-result{grid-template-columns:33px minmax(0,1fr) auto!important;gap:8px!important;padding:9px 8px!important}
+ #modal-screen .world-result .mini-cover,#modal-screen .world-result .cover{width:30px!important;height:42px!important}
+ #modal-screen .world-result strong{font-size:14px!important}
+ #modal-screen .world-result small{font-size:12px!important}
+ #modal-screen .world-result .world-open{font-size:12px!important;padding:7px 8px!important}
+}
+</style>
 </head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -4429,7 +4481,7 @@ renderAuthorSearch=function(){
  root.innerHTML=(titles.length?'<div class="mari-author-tip">Книги по названию</div>'+titleHtml:'')+
   (authors.length?'<div class="mari-author-tip">Авторы и их книги</div>'+authorHtml:'')+
   (!titles.length&&!authors.length?'<p class="hint">Ни книга, ни автор не найдены.</p>':'');
- root.hidden=false;
+ root.hidden=!(document.activeElement===input || input.value.trim());
 };
 authorView=function(author){const items=books.filter(b=>b.author===author).sort((a,b)=>a.title.localeCompare(b.title,'ru'));const n=items.filter(readBook).length;showModal('Созвездие · '+author,'<p class="hint">'+items.length+' '+plural(items.length,'книга','книги','книг')+' в библиотеке. Прочитано: '+n+'. Открой книгу для просмотра или редактирования.</p><div class="mari-month-books">'+items.map(b=>'<button class="world-result" data-action="detail" data-id="'+esc(b.id)+'">'+cover(b,'mini-cover')+'<span><strong>'+esc(b.title)+'</strong><br><small>'+esc(b.author)+'</small></span></button>').join('')+'</div>');};
 document.addEventListener('pointerdown',e=>{if(!e.target.closest('#top-menu,#top-menu-trigger,.dock-menu,[data-action="open-menu"]'))closeTopMenu();if(!e.target.closest('.catalog-search-zone')){catalogOpen=false;renderCatalogSuggestions();$('#catalog-expand')?.setAttribute('aria-expanded','false');}if(!e.target.closest('#search-area'))$('#search-results')?.classList.remove('show');if(!e.target.closest('.cosmos-find')){const r=$('#star-author-options');if(r)r.hidden=true;}},true);
