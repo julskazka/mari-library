@@ -3516,6 +3516,29 @@ html.mari-nav-open body{overflow:hidden!important}
 #modal-screen .mari-cycle-review-row small{font-size:13px;color:#d5c2c8}
 #modal-screen .mari-cycle-review-row input[type="number"]{width:65px;padding:9px;color:#f7e5d9;background:#182438;border:1px solid #e2c3a966;border-radius:8px}
 @media(max-width:760px){#cycles .mari-cycle-empty{grid-template-columns:1fr;padding:24px 19px!important;gap:10px}#cycles .mari-cycle-shelf-art{height:165px;max-width:250px;width:100%;margin:auto}#cycles .mari-cycle-suggestions{grid-template-columns:1fr}#cycles .mari-cycle-candidate{flex-wrap:wrap}#modal-screen .mari-cycle-review-row{grid-template-columns:1fr 1fr}#modal-screen .mari-cycle-review-row>span:first-child{grid-column:1/-1}}
+</style><style id="mari-cycle-illustrated-20261121">
+/* Restore the established illustrated book-album language; no schematic spine icons. */
+#cycles.mari-cycle-room{background:radial-gradient(ellipse at 85% 33%,rgba(117,86,117,.13),transparent 56%),linear-gradient(135deg,#292436,#1e2b3e)!important}
+#cycles .mari-cycle-empty{
+ grid-template-columns:minmax(0,1.03fr) minmax(230px,.97fr)!important;
+ min-height:365px!important;
+ border:1px solid rgba(227,194,167,.26)!important;
+ background:radial-gradient(ellipse at 73% 49%,rgba(118,82,108,.16),transparent 65%),linear-gradient(120deg,#29243a,#202c3d)!important;
+}
+#cycles .mari-cycle-empty-copy{z-index:2!important}
+#cycles .mari-cycle-empty h3{font-size:clamp(29px,3vw,42px)!important;line-height:1.16!important}
+#cycles .mari-cycle-empty p{font-size:16px!important}
+#cycles .mari-cycle-illustration{position:relative;align-self:stretch;display:flex;align-items:center;justify-content:center;min-width:0;min-height:300px;overflow:visible}
+#cycles .mari-cycle-paint{display:block;position:relative;width:110%;max-width:550px;max-height:390px;height:auto;overflow:visible;filter:drop-shadow(0 22px 28px rgba(12,10,27,.12))}
+#cycles .mari-cycle-shelf-art{display:none!important}
+#cycles .mari-cycle-eyebrow{color:#e4c19f!important}
+#cycles .mari-cycle-empty-hint{font-size:15px!important;color:#d2bfbe!important}
+#cycles .mari-cycle-suggestions{background:linear-gradient(125deg,#2f2a41,#253446)!important}
+@media(max-width:760px){
+ #cycles .mari-cycle-empty{grid-template-columns:minmax(0,1fr)!important;gap:0!important}
+ #cycles .mari-cycle-illustration{min-height:170px;max-height:245px;margin:-12px auto -10px;width:100%;max-width:390px}
+ #cycles .mari-cycle-paint{width:100%;max-height:245px}
+}
 </style></head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
@@ -3965,7 +3988,44 @@ function renderCycles(){
   <button type="button" class="btn tonal small mari-cycle-add" data-mari-cycle-add="${index}">Добавить том №${next}</button>
  </article>`;
  }).join('');
- const empty=`<div class="mari-cycle-empty"><div class="mari-cycle-empty-copy"><span class="mari-cycle-eyebrow">Полка будущих продолжений</span><h3>У каждой истории есть продолжение…</h3><p>Здесь будут собираться книжные серии — том за томом, в правильном порядке. Добавь первую книгу и укажи название цикла и номер тома.</p><button class="btn primary" type="button" data-action="add">Добавить книгу серии</button><span class="mari-cycle-empty-hint">Следующие тома появятся на этой полке автоматически.</span></div><div class="mari-cycle-shelf-art" aria-hidden="true"><span class="mari-cycle-spine"></span><span class="mari-cycle-spine"></span><span class="mari-cycle-spine"></span><span class="mari-cycle-spine"></span><span class="mari-cycle-spine"></span></div></div>`;
+ const empty=`<div class="mari-cycle-empty"><div class="mari-cycle-empty-copy"><span class="mari-cycle-eyebrow">Полка будущих продолжений</span><h3>У каждой истории есть продолжение…</h3><p>Здесь будут собираться книжные серии — том за томом, в правильном порядке. Добавь первую книгу и укажи название цикла и номер тома.</p><button class="btn primary" type="button" data-action="add">Добавить книгу серии</button><span class="mari-cycle-empty-hint">Следующие тома появятся на этой полке автоматически.</span></div><div class="mari-cycle-illustration" aria-hidden="true">
+<svg class="mari-cycle-paint" viewBox="0 0 580 460" xmlns="http://www.w3.org/2000/svg" role="presentation">
+<defs>
+ <radialGradient id="cycle-glow"><stop stop-color="#e2b785" stop-opacity=".47"/><stop offset=".58" stop-color="#ab829c" stop-opacity=".19"/><stop offset="1" stop-color="#211f35" stop-opacity="0"/></radialGradient>
+ <linearGradient id="cycle-page"><stop stop-color="#d8b9a8"/><stop offset=".46" stop-color="#f0d9bc"/><stop offset="1" stop-color="#ac8d9f"/></linearGradient>
+ <linearGradient id="cycle-cover"><stop stop-color="#43314d"/><stop offset=".5" stop-color="#76526c"/><stop offset="1" stop-color="#27273e"/></linearGradient>
+ <linearGradient id="cycle-ink"><stop stop-color="#d6b18f"/><stop offset="1" stop-color="#8b7695"/></linearGradient>
+ <filter id="cycle-blur"><feGaussianBlur stdDeviation="13"/></filter>
+ <mask id="cycle-dissolve"><rect width="580" height="460" fill="white"/><radialGradient id="cycle-edge"><stop offset=".57" stop-color="white"/><stop offset="1" stop-color="black"/></radialGradient><rect width="580" height="460" fill="url(#cycle-edge)"/></mask>
+</defs>
+<g mask="url(#cycle-dissolve)">
+ <ellipse cx="296" cy="240" rx="270" ry="215" fill="url(#cycle-glow)"/>
+ <path d="M44 360Q151 305 290 367T554 342" fill="none" stroke="#e3c39e" stroke-opacity=".23" stroke-width="23" filter="url(#cycle-blur)"/>
+ <g transform="translate(85 100) rotate(-10 130 180)">
+  <path d="M70 66Q145 35 227 90L230 320Q147 286 73 325Z" fill="url(#cycle-cover)" stroke="#caa88e" stroke-width="3"/>
+  <path d="M84 83Q154 63 215 99L218 306Q145 273 87 310Z" fill="none" stroke="#e0b99c" stroke-opacity=".59" stroke-width="2"/>
+  <path d="M150 81L150 298" stroke="#e0b99c" stroke-opacity=".48" stroke-width="2"/>
+  <path d="M87 98Q151 76 214 110M90 291Q153 265 216 289" stroke="#f3d4b5" stroke-opacity=".5" fill="none" stroke-width="2"/>
+  <path d="M152 133Q125 154 152 183Q180 154 152 133ZM152 190V252" fill="none" stroke="#cfae9c" stroke-width="2"/>
+ </g>
+ <g transform="translate(197 52) rotate(8 120 190)">
+  <path d="M48 71Q142 38 249 72L244 361Q147 321 49 365Z" fill="url(#cycle-page)" stroke="#d8b9a2" stroke-width="4"/>
+  <path d="M55 86Q135 63 143 88L145 342Q112 325 53 348Z" fill="#f6ddbe" opacity=".72"/>
+  <path d="M143 88Q174 62 241 87L238 346Q168 320 145 342Z" fill="#c9a4a3" opacity=".73"/>
+  <path d="M145 89V345" stroke="#866d79" stroke-width="5"/>
+  <path d="M74 113Q108 98 131 114M75 132Q107 120 128 133M77 151Q105 139 130 151M77 170Q107 157 130 169M77 189Q106 176 128 188M80 214Q107 201 128 212M80 234Q108 222 129 233" fill="none" stroke="#8c6f79" stroke-width="2" opacity=".6"/>
+  <path d="M165 114Q194 99 226 115M163 135Q198 119 226 134M163 157Q198 141 226 155M162 180Q198 164 227 179M164 202Q196 187 226 200M164 224Q198 208 226 222" fill="none" stroke="#775c72" stroke-width="2" opacity=".63"/>
+  <path d="M146 87Q158 70 174 62" fill="none" stroke="#f2d9bc" stroke-width="3"/>
+  <path d="M232 85L229 23L240 32L252 20L250 91" fill="#b98585" stroke="#efd0a8" stroke-width="2"/>
+ </g>
+ <g fill="#efcf9d">
+ <circle cx="102" cy="101" r="3"/><circle cx="411" cy="103" r="4"/><circle cx="479" cy="223" r="2.8"/><circle cx="81" cy="277" r="2"/><circle cx="456" cy="356" r="3.5"/>
+ </g>
+ <g stroke="#f3d3a1" stroke-width="2" stroke-linecap="round" opacity=".83">
+ <path d="M102 86V115M88 100H117M412 88V116M396 102H426M479 210V236M465 223H493M453 346V366M443 356H464"/>
+ </g>
+ <path d="M32 375Q93 308 130 365M434 360Q484 300 553 351" fill="none" stroke="#a69191" stroke-opacity=".35" stroke-width="13" filter="url(#cycle-blur)"/>
+</g></svg></div></div>`;
  const suggestions=candidates.length?`<aside class="mari-cycle-suggestions"><div><span class="mari-cycle-eyebrow">Возможные книжные циклы</span><h3>Кажется, эти истории связаны</h3><p>Нашлись совпадения названий у одного автора. Проверь, не тома ли это одной серии.</p></div><div class="mari-cycle-candidate-list">${candidates.map((g,i)=>`<div class="mari-cycle-candidate"><span><strong>${esc(g.title)}</strong><small>${esc(g.author)} · ${g.items.length} книги</small></span><button type="button" data-mari-cycle-review="${i}">Проверить книги</button></div>`).join('')}</div></aside>`:'';
  root.innerHTML=(cards||empty)+suggestions;
 }
