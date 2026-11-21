@@ -3068,9 +3068,13 @@ html.mari-nav-open body{overflow:hidden!important}
 }
 .mari-directory-grid .mari-directory-card::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(to bottom,
-    rgba(218,193,192,0) 0%,rgba(218,193,192,0) 45%,
-    rgba(212,185,188,.08) 72%,rgba(211,182,183,.19) 100%);
+  /* Blur only the lower edge of the artwork; the picture stays sharp above. */
+  background:linear-gradient(to bottom,transparent 42%,
+    rgba(38,25,46,.30) 63%,rgba(34,23,42,.78) 88%,rgba(31,22,39,.90) 100%);
+  -webkit-backdrop-filter:blur(9px);
+  backdrop-filter:blur(9px);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 42%,rgba(0,0,0,.5) 65%,#000 83%);
+  mask-image:linear-gradient(to bottom,transparent 42%,rgba(0,0,0,.5) 65%,#000 83%);
 }
 .mari-directory-paint{
   position:absolute;inset:-1px;z-index:0;pointer-events:none;
@@ -3091,15 +3095,16 @@ html.mari-nav-open body{overflow:hidden!important}
   position:absolute;z-index:4;bottom:0;left:0;right:0;
   display:flex;flex-direction:column;gap:4px;
   box-sizing:border-box;width:100%;padding:17px 16px 15px!important;
-  background:linear-gradient(to top,rgba(220,195,193,.73) 0%,rgba(220,195,193,.55) 50%,rgba(220,195,193,.07) 100%);
+  /* Keep the label perfectly sharp over the softly blurred lower artwork. */
+  background:transparent!important;
 }
 .mari-dir-copy strong{
   font:700 clamp(19px,1.95vw,25px)/1.13 Georgia,serif!important;
-  color:#452638!important;text-shadow:0 1px 1px rgba(255,241,230,.48)!important;overflow-wrap:anywhere;
+  color:#fff0dc!important;text-shadow:0 2px 7px rgba(15,9,24,.75)!important;overflow-wrap:anywhere;
 }
 .mari-dir-copy small{
   font-size:13px!important;line-height:1.35!important;font-weight:650!important;
-  color:#553947!important;text-shadow:0 1px 1px rgba(255,244,235,.48)!important;overflow-wrap:anywhere;
+  color:#f2e2d5!important;text-shadow:0 1px 5px rgba(15,9,24,.82)!important;overflow-wrap:anywhere;
 }
 .mari-search-suggestions-heading{color:#efd1b0;font-size:12px;font-weight:700;letter-spacing:.45px;padding:9px 12px 10px}
 #search-area .search-foot{align-items:center}
