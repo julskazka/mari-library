@@ -3946,8 +3946,7 @@ function mariOpenCycleSuggestion(index){
   if(!name||selection.length<2){notify('Выбери хотя бы две книги для цикла');return}
   if(selection.some(x=>!Number.isInteger(x.vol)||x.vol<1||x.vol>1000)||new Set(selection.map(x=>x.vol)).size!==selection.length){notify('Укажи разные номера томов от 1 до 1000');return}
   const previous=selection.map(x=>({book:x.book,name:x.book.cycleName,volume:x.book.cycleVolume,total:x.book.cycleTotal}));
-  const total=Math.max(...selection.map(x=>x.vol));
-  selection.forEach(x=>{x.book.cycleName=name;x.book.cycleVolume=x.vol;x.book.cycleTotal=total});
+  selection.forEach(x=>{x.book.cycleName=name;x.book.cycleVolume=x.vol});
   if(!save()){previous.forEach(x=>{x.book.cycleName=x.name;x.book.cycleVolume=x.volume;x.book.cycleTotal=x.total});return}
   render();closeModal();notify('Книжный цикл создан');
  });
