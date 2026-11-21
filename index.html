@@ -3375,7 +3375,19 @@ html.mari-nav-open body{overflow:hidden!important}
  #library.shelving-room .book-grid:not(.compact-list) .book-title{font-size:14px!important}
 }
 
-</style></head>
+</style><style>
+/* Room links are lightweight navigation, not duplicated book cards. */
+.mari-directory-secondary{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:24px 12px 5px}
+.mari-directory-secondary a,.mari-room-links a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 15px;border:1px solid rgba(217,183,139,.4);border-radius:999px;background:rgba(38,32,47,.72);color:#f2e3d2;font-size:15px;line-height:1.3;text-align:center}
+.mari-directory-secondary a:hover,.mari-room-links a:hover,.mari-room-home:hover{background:rgba(112,80,99,.65)}
+.mari-room-guide{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding:16px max(20px,3vw);margin:10px auto 4px;max-width:1220px;color:#f2e3d2}
+.mari-room-guide[hidden]{display:none!important}
+.mari-room-home{font-size:15px;padding:11px 15px;border:1px solid rgba(217,183,139,.42);border-radius:12px;white-space:nowrap}
+.mari-room-current{font:normal 23px/1.2 Georgia,serif;color:#e4c395}
+.mari-room-links{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
+@media(max-width:760px){.mari-room-guide{padding:14px 16px;gap:10px}.mari-room-current{font-size:21px}.mari-room-links{width:100%;margin-left:0;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.mari-room-links a{flex:0 0 auto}.mari-directory-secondary{padding:17px 10px 4px}}
+</style>
+</head>
 <body>
 <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden" xmlns="http://www.w3.org/2000/svg"><defs>
 <symbol id="i-book" viewbox="0 0 24 24"><path d="M12 7c-3-3-6-3-10-2v14c4-1 8-1 10 2 2-3 6-3 10-2V5c-4-1-7-1-10 2zm0 0v14"></path></symbol><symbol id="i-search" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></symbol><symbol id="i-heart" viewbox="0 0 24 24"><path d="M20.8 4.8c-2.5-2.5-6.6-2.2-8.8.6-2.2-2.8-6.3-3.1-8.8-.6a5.6 5.6 0 0 0 0 7.9L12 21l8.8-8.3a5.6 5.6 0 0 0 0-7.9Z"></path></symbol><symbol id="i-plus" viewbox="0 0 24 24"><path d="M12 4v16M4 12h16"></path></symbol><symbol id="i-star" viewbox="0 0 24 24"><path d="m12 2 3.1 6.4 7.1 1-5.1 5 1.2 7-6.3-3.4-6.3 3.4 1.2-7-5.1-5 7.1-1Z"></path></symbol><symbol id="i-moon" viewbox="0 0 24 24"><path d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5 9 9 0 1 0 20.5 14.5Z"></path></symbol><symbol id="i-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 6v6l4 3"></path></symbol><symbol id="i-chart" viewbox="0 0 24 24"><path d="M3 21h18M6 21v-8h4v8m2 0V4h4v17m2 0v-11h3v11"></path></symbol><symbol id="i-feather" viewbox="0 0 24 24"><path d="M20 3C7 2 4 9 4 16c5 1 12-2 16-13ZM4 16l-2 5m2-5 11-9"></path></symbol><symbol id="i-calendar" viewbox="0 0 24 24"><rect height="16" rx="2" width="18" x="3" y="5"></rect><path d="M7 3v4m10-4v4M3 10h18"></path></symbol><symbol id="i-download" viewbox="0 0 24 24"><path d="M12 3v12m-5-5 5 5 5-5M4 17v4h16v-4"></path></symbol><symbol id="i-upload" viewbox="0 0 24 24"><path d="M12 17V5m-5 5 5-5 5 5M4 17v4h16v-4"></path></symbol><symbol id="i-camera" viewbox="0 0 24 24"><path d="M3 7h4l2-3h6l2 3h4v13H3z"></path><circle cx="12" cy="13" r="3.5"></circle></symbol><symbol id="i-arrow" viewbox="0 0 24 24"><path d="M4 12h16m-7-7 7 7-7 7"></path></symbol><symbol id="i-home" viewbox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-6v-7H9v7H3z"></path></symbol><symbol id="i-close" viewbox="0 0 24 24"><path d="M5 5 19 19M19 5 5 19"></path></symbol><symbol id="i-check" viewbox="0 0 24 24"><path d="m5 12 5 5L20 7"></path></symbol><symbol id="i-lock" viewbox="0 0 24 24"><rect height="11" rx="2" width="16" x="4" y="10"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></symbol><symbol id="i-refresh" viewbox="0 0 24 24"><path d="M20 7V3l-4 4h4M4 17v4l4-4H4m1-8a8 8 0 0 1 14-3m0 9a8 8 0 0 1-14 3"></path></symbol><symbol id="i-sun" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"></path></symbol><symbol id="i-edit" viewbox="0 0 24 24"><path d="M3 21h18M5 17 17 5l3 3-12 12H5z"></path></symbol>
@@ -4424,6 +4436,7 @@ function mariShowPage(page){
  }
  $$('.page-turn').forEach(el=>{el.hidden=page!=='diary';if(page==='diary')el.style.removeProperty('display');else el.style.setProperty('display','none','important');});
  document.body.dataset.mariPage=page;
+ $('.mari-room-guide').forEach(el=>{el.hidden=el.dataset.roomGuide!==page;});
  document.title=mariPageLabels[page]+' · библиотека Мари';
 }
 function mariGoPage(page,anchor){
@@ -4443,6 +4456,37 @@ function mariGoPage(page,anchor){
 function mariSearchToolbarMetrics(){
  const search=$('#search-area');if(!search)return;
  document.documentElement.style.setProperty('--mari-search-height',Math.ceil(search.offsetHeight)+'px');
+}
+/* Contextual paths between rooms: one navigation model for web and a future app. */
+const mariRoomGuides={
+ books:{title:'Все мои книги',links:[['worlds','Книжные миры'],['memories','Мои впечатления'],['reading','Сейчас читаю']]},
+ reading:{title:'Моё чтение',links:[['library','Все книги'],['wishes','Полка желаний'],['cycles','Книжные циклы']]},
+ worlds:{title:'Книжные миры',links:[['library','Все книги'],['cycles','Книжные циклы']]},
+ cycles:{title:'Книжные циклы',links:[['wishes','Полка желаний'],['library','Все книги']]},
+ diary:{title:'Мои впечатления',links:[['library','Найти книгу'],['favorite','Любимые истории']]},
+ archive:{title:'История чтения',links:[['statistics','Истории в цифрах'],['constellation','Книжное небо']]},
+ sky:{title:'Книжное небо',links:[['statistics','Истории в цифрах'],['history','История чтения']]},
+ data:{title:'Сохранение библиотеки',links:[['library','Вернуться к книгам']]}
+};
+function mariInitRoomGuides(){
+ for(const [page,info] of Object.entries(mariRoomGuides)){
+  const first=document.querySelector(mariPageMap[page][0]);
+  if(!first||document.querySelector('[data-room-guide="'+page+'"]'))continue;
+  const nav=document.createElement('nav');
+  nav.className='mari-room-guide';
+  nav.dataset.roomGuide=page;
+  nav.setAttribute('aria-label','Навигация по комнатам');
+  const home=document.createElement('a');
+  home.href='#top';home.className='mari-room-home';home.textContent='← Главная';
+  const here=document.createElement('span');
+  here.className='mari-room-current';here.textContent=info.title;
+  const links=document.createElement('div');links.className='mari-room-links';
+  for(const [id,label] of info.links){
+   const a=document.createElement('a');a.href='#'+id;a.textContent=label;links.append(a);
+  }
+  nav.append(home,here,links);
+  first.before(nav);
+ }
 }
 function mariInitPages(){
  const search=$('#search-area'),hero=$('section.hero');
@@ -4504,8 +4548,9 @@ function mariInitPages(){
    return '<span class="mari-directory-paint" aria-hidden="true" style="--scene-x:'+x+';--scene-y:'+y+'"></span>';
   });
   const cards=links.map(([id,name,desc,type],i)=>'<a class="mari-directory-card mari-directory-'+type+'" href="#'+id+'"><span class="mari-dir-number">'+(i+1).toString().padStart(2,'0')+'</span>'+decorative[i]+'<span class="mari-dir-copy"><strong>'+name+'</strong><small>'+desc+'</small></span></a>').join('');
-  quick.insertAdjacentHTML('afterend','<section class="mari-home-directories" id="mari-home-directories"><div class="mari-directory-heading"><div class="kicker">Атлас моей библиотеки</div><h2>Куда отправимся?</h2><p>У каждой истории — своё место. Выбирай следующую главу.</p></div><div class="mari-directory-grid">'+cards+'</div></section>');
+  quick.insertAdjacentHTML('afterend','<section class="mari-home-directories" id="mari-home-directories"><div class="mari-directory-heading"><div class="kicker">Атлас моей библиотеки</div><h2>Куда отправимся?</h2><p>У каждой истории — своё место. Выбирай следующую главу.</p></div><div class="mari-directory-grid">'+cards+'</div><nav class="mari-directory-secondary" aria-label="Другие комнаты библиотеки"><a href="#favorite">Любимые истории</a><a href="#wishes">Полка желаний</a><a href="#statistics">Мои открытия в цифрах</a><a href="#history">История по годам</a></nav></section>');
  }
+ mariInitRoomGuides();
  document.addEventListener('click',e=>{
   const a=e.target.closest('a[href^="#"]');if(!a)return;
   const id=decodeURIComponent(a.getAttribute('href').slice(1));
