@@ -1,0 +1,373 @@
+/* Mari · velvet book / illuminated pages (2026-11-21)
+   One shared design layer for the main library and its impressions page.
+   No book data, routes, event handlers, or storage keys are changed here. */
+body.mari-velvet {
+  --mari-velvet:#2c1a2c;
+  --mari-wine:#513348;
+  --mari-ink:#392535;
+  --mari-paper:#f8e5ce;
+  --mari-paper-2:#edd2b6;
+  --mari-gold:#d5ab78;
+  --mari-cream:#f8e9d6;
+  --mari-border:rgba(229,186,137,.62);
+  color:var(--mari-cream);
+  background:
+    radial-gradient(ellipse 55% 45% at 7% 8%,rgba(128,73,102,.28),transparent 72%),
+    radial-gradient(ellipse 55% 50% at 95% 67%,rgba(91,64,104,.25),transparent 70%),
+    linear-gradient(155deg,#251a2c 0%,#301c32 44%,#201a2c 100%)!important;
+  background-attachment:fixed!important;
+}
+body.mari-velvet .site-layout { background:transparent!important; }
+body.mari-velvet .page { min-width:0; background:transparent!important; }
+body.mari-velvet .sidebar {
+  background:linear-gradient(172deg,#3c2639,#241e31)!important;
+  border-color:rgba(232,183,136,.38)!important;
+  box-shadow:inset -1px 0 rgba(249,219,183,.11);
+}
+body.mari-velvet .brand,
+body.mari-velvet .brand strong {color:#f8e7d2!important;}
+body.mari-velvet .brand small,
+body.mari-velvet .side-small {color:#e7be91!important;}
+body.mari-velvet .side-menu a {color:#e9d8d4!important;}
+body.mari-velvet .side-menu a.active,
+body.mari-velvet .side-menu a:hover {background:rgba(211,157,140,.18)!important;color:#fff1df!important;}
+body.mari-velvet .side-vignette {background:rgba(255,231,202,.06)!important;border-color:rgba(241,202,164,.18)!important;}
+body.mari-velvet .kicker,
+body.mari-velvet .overline {color:#ecc390!important;letter-spacing:1.45px;}
+body.mari-velvet .section-title {color:#f7e7d6!important;letter-spacing:-.45px;text-wrap:balance;}
+body.mari-velvet .section-description {color:#dfcbd0!important;font-size:clamp(14px,1.45vw,16px)!important;line-height:1.55!important;}
+body.mari-velvet .section-head {gap:12px!important;}
+body.mari-velvet .section-head .kicker {font-size:12px!important;}
+body.mari-velvet button,
+body.mari-velvet a { -webkit-tap-highlight-color:transparent; }
+body.mari-velvet a:focus-visible,
+body.mari-velvet button:focus-visible {outline:2px solid #efd0a4!important;outline-offset:3px;}
+/* Slim enamel search remains useful on every route. */
+body.mari-velvet #search-area.mari-sticky-search,
+body.mari-velvet .mari-imp-search {
+  background:radial-gradient(ellipse at 100% 0%,rgba(112,69,99,.37),transparent 68%),linear-gradient(110deg,#422638,#2a2339 80%)!important;
+  border-color:rgba(234,184,137,.68)!important;
+  box-shadow:0 12px 30px rgba(10,6,21,.42),inset 0 1px rgba(248,219,188,.13)!important;
+}
+body.mari-velvet #search-area .mari-search-title,
+body.mari-velvet .mari-imp-title {border-left-color:#d6ab7a!important;}
+body.mari-velvet #search-area .mari-search-title h2,
+body.mari-velvet .mari-imp-title h2 {color:#ffe8cf!important;}
+body.mari-velvet #search-area .search-shell,
+body.mari-velvet .mari-imp-searchbox {background:rgba(36,25,44,.68)!important;border-color:rgba(241,192,150,.45)!important;}
+body.mari-velvet #search-area .mari-search-add,
+body.mari-velvet .mari-imp-add {background:linear-gradient(120deg,#ffe3bd,#e8bdb4)!important;color:#452739!important;border-color:#ffe3c2!important;}
+body.mari-velvet #search-area #top-menu-trigger,
+body.mari-velvet .mari-imp-menu {background:#593448!important;color:#fbe5ce!important;border-color:rgba(239,196,151,.65)!important;}
+body.mari-velvet #top-menu,
+body.mari-velvet #notes-menu {background:radial-gradient(ellipse at 95% 0%,rgba(140,84,114,.22),transparent 45%),linear-gradient(145deg,#493043,#2d273b)!important;border-color:rgba(245,205,164,.64)!important;}
+body.mari-velvet #top-menu .menu-grid a,
+body.mari-velvet #notes-menu .menu-grid a {background:rgba(255,238,214,.07)!important;color:#f8e6d7!important;}
+/* Keep bottom navigation: desktop and mobile, matching the top enamel bar. */
+body.mari-velvet .floating-dock {
+  display:flex!important;
+  background:linear-gradient(118deg,rgba(63,34,54,.96),rgba(43,31,50,.97))!important;
+  border:1px solid rgba(234,189,145,.74)!important;
+  box-shadow:0 12px 36px rgba(12,7,22,.62),inset 0 1px rgba(249,213,174,.12)!important;
+}
+body.mari-velvet .floating-dock a,
+body.mari-velvet .floating-dock button {color:#f5e3d4!important;}
+body.mari-velvet .floating-dock .dock-add {background:linear-gradient(145deg,#fae0c2,#e7bdbb)!important;color:#3c2739!important;}
+body.mari-velvet .floating-dock .dock-add small,
+body.mari-velvet .floating-dock .dock-add .icon {color:#3c2739!important;}
+/* Book portal, never a static screenshot: copy, buttons, and entry remain selectable. */
+body.mari-velvet .hero {
+  min-height:clamp(285px,31vw,410px)!important;
+  border:1px solid rgba(240,192,143,.77)!important;
+  border-radius:20px!important;
+  isolation:isolate;overflow:hidden!important;
+  background:radial-gradient(circle at 79% 33%,rgba(228,161,117,.13),transparent 51%),linear-gradient(110deg,#38243d,#3b2b42 65%,#56374b)!important;
+  box-shadow:0 22px 52px rgba(12,7,25,.39),inset 0 1px rgba(255,225,178,.16);
+}
+body.mari-velvet .hero:before {
+  content:""!important;position:absolute;inset:9px!important;z-index:4!important;
+  border:1px solid rgba(243,210,165,.24)!important;border-radius:13px!important;
+  pointer-events:none;display:block!important;
+}
+body.mari-velvet .hero .hero-art {
+  position:absolute!important;z-index:0!important;right:0!important;top:0!important;
+  width:64%!important;height:100%!important;max-height:none!important;
+  object-fit:cover!important;object-position:60% center!important;
+  opacity:.95!important;mix-blend-mode:normal!important;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.70) 17%,#000 34%,#000 100%)!important;
+  mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.70) 17%,#000 34%,#000 100%)!important;
+  filter:saturate(.93) contrast(1.01)!important;
+}
+body.mari-velvet .hero .hero-shade {
+  position:absolute!important;inset:0!important;z-index:1!important;
+  background:linear-gradient(90deg,rgba(44,29,49,.86),rgba(44,29,49,.43) 49%,rgba(25,20,33,.02) 77%)!important;
+}
+body.mari-velvet .hero .hero-copy {position:relative!important;z-index:2!important;max-width:62%!important;}
+body.mari-velvet .hero h1 {color:#ffe8cf!important;font-size:clamp(36px,4.6vw,66px)!important;line-height:1.05!important;text-shadow:0 3px 18px rgba(32,17,38,.32);}
+body.mari-velvet .hero h1 em {color:#f0cdb0!important;}
+body.mari-velvet .hero p {color:#f3ddd0!important;font-size:clamp(14px,1.4vw,17px)!important;max-width:470px!important;line-height:1.6!important;}
+body.mari-velvet .hero .btn {border-color:rgba(249,221,187,.68)!important;}
+body.mari-velvet .hero .btn.primary {background:linear-gradient(120deg,#f7dfc2,#e7bbab)!important;color:#3a2537!important;}
+body.mari-velvet .hero .btn.ghost {background:rgba(57,35,55,.64)!important;color:#fbe8d5!important;}
+body.mari-velvet .prologue-trail {color:#e1bfa8!important;}
+/* The atlas is a real page spread: illustrated card left, readable paper right. */
+body.mari-velvet .mari-home-directories {
+  position:relative!important;padding:clamp(20px,3vw,36px)!important;
+  background:
+    radial-gradient(ellipse 75% 90% at 5% 0%,rgba(255,246,223,.83),transparent 72%),
+    linear-gradient(130deg,#f4ddc6 0%,#f7e7d1 52%,#eac8b1 100%)!important;
+  border:1px solid #c89170!important;border-radius:25px!important;
+  box-shadow:0 20px 45px rgba(7,6,20,.35),inset 0 1px #fff6df;
+}
+body.mari-velvet .mari-home-directories::before {border-color:rgba(144,91,82,.3)!important;}
+body.mari-velvet .mari-directory-heading .kicker {color:#96546b!important;font-size:12px!important;}
+body.mari-velvet .mari-directory-heading h2 {color:#602d42!important;font-size:clamp(32px,3.5vw,46px)!important;}
+body.mari-velvet .mari-directory-heading p {color:#70475a!important;font-size:15px!important;}
+body.mari-velvet .mari-directory-grid {grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px!important;}
+body.mari-velvet .mari-directory-grid .mari-directory-card {
+  display:flex!important;align-items:center!important;justify-content:flex-end!important;
+  min-width:0!important;min-height:174px!important;padding:13px!important;
+  background:linear-gradient(105deg,#e0b7b2 0%,#f9e7d0 48%,#f9e4cc 100%)!important;
+  border:1px solid rgba(160,93,79,.69)!important;border-radius:16px!important;
+  box-shadow:0 7px 20px rgba(73,42,54,.14),inset 0 1px rgba(255,250,234,.73)!important;
+  overflow:hidden!important;
+}
+body.mari-velvet .mari-directory-grid .mari-directory-card::before {
+  inset:5px!important;z-index:5!important;border:1px solid rgba(164,110,91,.3)!important;border-radius:11px!important;
+}
+body.mari-velvet .mari-directory-grid .mari-directory-card::after {
+  content:""!important;z-index:1!important;
+  background:linear-gradient(90deg,transparent 0%,rgba(249,229,205,.26) 36%,#f9e5ce 62%,#f9e5ce 100%)!important;
+}
+body.mari-velvet .mari-directory-grid .mari-directory-card:hover {transform:translateY(-3px)!important;border-color:#b66f62!important;}
+body.mari-velvet .mari-dir-number {
+  top:11px!important;right:15px!important;left:auto!important;
+  color:#ab735d!important;font-size:12px!important;z-index:4!important;
+}
+body.mari-velvet .mari-directory-paint {
+  position:absolute!important;left:0!important;top:0!important;right:auto!important;
+  width:62%!important;height:100%!important;z-index:0!important;
+  background-size:cover!important;background-position:center!important;
+  opacity:.96!important;filter:saturate(.78) brightness(1.04)!important;
+  -webkit-mask-image:linear-gradient(90deg,#000 0%,#000 46%,transparent 99%)!important;
+  mask-image:linear-gradient(90deg,#000 0%,#000 46%,transparent 99%)!important;
+}
+body.mari-velvet .mari-directory-card:nth-child(1) .mari-directory-paint{background-image:url('mari-atlas-01.webp')!important}
+body.mari-velvet .mari-directory-card:nth-child(2) .mari-directory-paint{background-image:url('mari-atlas-02.webp')!important}
+body.mari-velvet .mari-directory-card:nth-child(3) .mari-directory-paint{background-image:url('mari-atlas-03.webp')!important}
+body.mari-velvet .mari-directory-card:nth-child(4) .mari-directory-paint{background-image:url('mari-atlas-04.webp')!important}
+body.mari-velvet .mari-directory-card:nth-child(5) .mari-directory-paint{background-image:url('mari-atlas-05.webp')!important}
+body.mari-velvet .mari-directory-card:nth-child(6) .mari-directory-paint{background-image:url('mari-atlas-06.webp')!important}
+body.mari-velvet .mari-directory-card:nth-child(7) .mari-directory-paint{background-image:url('mari-atlas-07.webp')!important}
+body.mari-velvet .mari-directory-card:nth-child(8) .mari-directory-paint{background-image:url('mari-atlas-08.webp')!important}
+body.mari-velvet .mari-dir-copy {
+  position:relative!important;z-index:4!important;display:flex!important;flex-direction:column!important;
+  width:53%!important;min-width:0!important;margin-left:auto!important;
+  padding:13px 0 0!important;gap:7px!important;text-align:left!important;
+}
+body.mari-velvet .mari-dir-copy strong {
+  color:#512d3e!important;font:normal clamp(18px,1.65vw,24px)/1.09 Georgia,serif!important;
+  text-shadow:none!important;overflow-wrap:break-word;text-wrap:balance;
+}
+body.mari-velvet .mari-dir-copy small {
+  color:#785664!important;font:normal 12px/1.35 system-ui,sans-serif!important;
+  text-shadow:none!important;
+}
+/* Every internal route uses this same framed chapter treatment. */
+body.mari-velvet .page>.section,
+body.mari-velvet .page>.notes-section,
+body.mari-velvet .page>.quick-chapter {
+  border-color:rgba(227,185,146,.49)!important;
+  border-radius:21px!important;
+  background:radial-gradient(ellipse 70% 67% at 100% 0%,rgba(116,71,100,.22),transparent 72%),linear-gradient(135deg,#38293d,#292b41 77%,#263944)!important;
+  box-shadow:0 15px 42px rgba(10,8,24,.25)!important;
+}
+body.mari-velvet .page>.section {padding:clamp(18px,2.7vw,32px)!important;min-width:0;}
+body.mari-velvet .page>.section::before {border-color:rgba(233,201,168,.19)!important;}
+body.mari-velvet .page>.section .section-title {font-family:Georgia,serif!important;font-weight:normal!important;}
+body.mari-velvet .quick-chapter {background:linear-gradient(118deg,#493047,#393249)!important;}
+body.mari-velvet .quick-copy h2 {color:#fff0d8!important;}
+body.mari-velvet .quick-copy p {color:#e7cdd1!important;}
+body.mari-velvet .quick-icon {color:#f0c18e!important;background:rgba(255,230,199,.05)!important;}
+body.mari-velvet .btn.primary,
+body.mari-velvet .paper-btn {background:linear-gradient(120deg,#f7e3c8,#eac0af)!important;color:#462c3d!important;border:1px solid #f7e1c1!important;box-shadow:0 5px 14px rgba(20,12,31,.18)!important;}
+body.mari-velvet .btn.tonal {background:#68435b!important;color:#ffe9d1!important;border-color:#d5a37c!important;}
+body.mari-velvet .btn.ghost {border-color:rgba(235,194,155,.59)!important;color:#ffecd8!important;background:rgba(67,46,63,.33)!important;}
+body.mari-velvet .ornate-panel,
+body.mari-velvet .read-grid>.ornate-panel {
+  border:1px solid rgba(236,190,147,.53)!important;border-radius:17px!important;
+  background:linear-gradient(136deg,#563a52,#334052)!important;
+  box-shadow:inset 0 1px rgba(250,224,194,.13),0 12px 25px rgba(14,10,25,.22)!important;
+}
+body.mari-velvet .panel-heading {color:#ffe6c9!important;font-family:Georgia,serif!important;}
+body.mari-velvet .ornate-panel .subline,
+body.mari-velvet .ornate-panel .hint {color:#e6d0d1!important;}
+body.mari-velvet .loan,
+body.mari-velvet .reading-mini {border-color:rgba(236,203,168,.38)!important;background:rgba(35,31,50,.38)!important;}
+/* The statistics resemble the reference's illuminated bookplates. */
+body.mari-velvet .stats-panel,
+body.mari-velvet .monthly-story {
+  border:1px solid rgba(241,202,165,.51)!important;
+  border-radius:18px!important;
+  background:linear-gradient(140deg,#44354c,#303448)!important;
+  box-shadow:0 11px 25px rgba(14,9,26,.24)!important;
+}
+body.mari-velvet .stats-panel h3,
+body.mari-velvet .monthly-head h3 {color:#fce8d3!important;}
+body.mari-velvet .stat-item {
+  background:linear-gradient(148deg,#f8e7d0,#ebcdb5)!important;
+  border:1px solid rgba(203,156,122,.82)!important;border-radius:13px!important;
+  box-shadow:inset 0 1px #fff6e1,0 6px 14px rgba(21,15,29,.15)!important;
+}
+body.mari-velvet .stat-item span {color:#5f3e50!important;font-size:13px!important;font-weight:600;}
+body.mari-velvet .stat-item strong {color:#462c3c!important;}
+body.mari-velvet .stat-desc,
+body.mari-velvet .month-explainer {color:#e4d0d0!important;}
+body.mari-velvet .month-chart button {border-color:rgba(241,194,155,.45)!important;}
+/* Catalog: actual book covers remain untouched, cards become parchment jackets. */
+body.mari-velvet #library .book {
+  background:linear-gradient(155deg,#f5e0cc,#e8cbb6)!important;
+  border:1px solid rgba(193,136,110,.6)!important;border-radius:13px!important;
+  box-shadow:0 9px 20px rgba(12,9,21,.21),inset 0 1px rgba(255,251,238,.8)!important;
+}
+body.mari-velvet #library .book-title {color:#462e3e!important;font:normal clamp(16px,1.4vw,19px)/1.22 Georgia,serif!important;}
+body.mari-velvet #library .book-author {color:#795665!important;font-size:13px!important;}
+body.mari-velvet #library .book-tag,
+body.mari-velvet #library .format-tag {border-color:rgba(139,89,99,.25)!important;color:#5a384c!important;background:rgba(255,242,223,.65)!important;}
+body.mari-velvet #library .shelf-tools,
+body.mari-velvet #library .filters {border-color:rgba(230,195,165,.37)!important;}
+body.mari-velvet #library .book-grid:after {opacity:.32!important;}
+/* Custom worlds keep their independent watercolor images and readable captions. */
+body.mari-velvet #worlds .world,
+body.mari-velvet #worlds .custom-world {border:1px solid rgba(230,188,145,.69)!important;border-radius:17px!important;box-shadow:0 12px 25px rgba(13,9,23,.25)!important;}
+body.mari-velvet #worlds .world-text {z-index:3!important;}
+body.mari-velvet #worlds .world-text h3 {color:#ffe8d3!important;text-shadow:0 2px 7px rgba(15,10,24,.66)!important;}
+body.mari-velvet #worlds .world-text p,
+body.mari-velvet #worlds .world-counter {color:#f3dfe0!important;}
+/* Cycles look like individually bound series, with each volume on its own row. */
+body.mari-velvet #cycles .mari-cycle-card {
+  border:1px solid #c68e76!important;border-radius:17px!important;
+  background:linear-gradient(135deg,#f7dfc5,#eccdb7)!important;
+  box-shadow:0 12px 29px rgba(11,7,21,.25)!important;
+}
+body.mari-velvet #cycles .mari-cycle-top h3 {color:#553046!important;}
+body.mari-velvet #cycles .mari-cycle-top p,
+body.mari-velvet #cycles .mari-cycle-progress {color:#704d5e!important;}
+body.mari-velvet #cycles .mari-cycle-crest {color:#8e6073!important;border-color:#c6967f!important;}
+body.mari-velvet #cycles .mari-cycle-volume {background:#6a485f!important;color:#fff0dc!important;border-color:rgba(240,197,150,.62)!important;}
+body.mari-velvet #cycles .mari-cycle-volume strong {color:#fff0dc!important;}
+body.mari-velvet #cycles .mari-cycle-volume span {color:#f5d5bd!important;}
+body.mari-velvet #cycles .mari-cycle-empty {border-color:#d8ad86!important;color:#f9e5cf!important;}
+/* Keepsakes remain a light antique letter with a dreamy watercolor picture. */
+body.mari-velvet #memories .memory-page {background:linear-gradient(125deg,#f8ead5,#edcfbf)!important;border:1px solid rgba(179,119,116,.57)!important;box-shadow:0 11px 26px rgba(20,12,28,.24)!important;}
+body.mari-velvet #memories .memory-copy h2 {color:#532e42!important;}
+body.mari-velvet #memories .memory-copy p,
+body.mari-velvet #memories .memory-copy blockquote {color:#674455!important;}
+body.mari-velvet #memories .impressions-intro {border-color:rgba(235,190,146,.58)!important;background:linear-gradient(130deg,#50334b,#38364c)!important;}
+body.mari-velvet #memories .impressions-intro h3 {color:#ffe8d5!important;}
+body.mari-velvet #memories .impressions-intro p {color:#e9d3d7!important;}
+body.mari-velvet .loved-card,
+body.mari-velvet .random-card {border-color:rgba(226,189,154,.55)!important;background:linear-gradient(125deg,#46354c,#2e3850)!important;}
+body.mari-velvet .loved-card h3,
+body.mari-velvet .random-card h3 {color:#ffe5cc!important;}
+/* Archive: an aged album, date cards, and a star atlas. */
+body.mari-velvet #history .timeline {border:1px solid rgba(227,190,155,.56)!important;background:linear-gradient(145deg,#49344c,#303548)!important;border-radius:17px!important;}
+body.mari-velvet #history .timeline h3,
+body.mari-velvet #history .history-item strong {color:#ffebd6!important;}
+body.mari-velvet #history .history-item small {color:#dfcbd2!important;}
+body.mari-velvet #year .year-banner {border-color:rgba(240,193,152,.72)!important;background:linear-gradient(100deg,#57374d,#3b3b52)!important;}
+body.mari-velvet #year .year-banner h2 {color:#fce9d4!important;}
+body.mari-velvet #year .year-contents {background:linear-gradient(125deg,#3b304a,#293849)!important;border-color:rgba(228,190,153,.57)!important;}
+body.mari-velvet #year .year-book {border-color:rgba(232,188,153,.58)!important;background:linear-gradient(150deg,#f5dfc7,#e8c9b1)!important;}
+body.mari-velvet #year .year-book strong {color:#4f2b3c!important;font-size:clamp(14px,1.15vw,16px)!important;line-height:1.25!important;}
+body.mari-velvet #year .year-book small,
+body.mari-velvet #year .year-month-stamp {color:#79505c!important;font-size:12px!important;}
+body.mari-velvet #year .year-book-number {color:#9f6981!important;}
+body.mari-velvet #constellation .author-cosmos {background:radial-gradient(ellipse at 52% 22%,#51435d 0%,#303550 47%,#1b263f 100%)!important;border:1px solid #d1a67f!important;border-radius:18px!important;box-shadow:0 15px 36px rgba(12,10,26,.36)!important;}
+body.mari-velvet #constellation .cosmos-heading-bar {color:#fce6c8!important;}
+body.mari-velvet #constellation .cosmos-find {background:rgba(50,38,61,.68)!important;border-color:rgba(232,185,143,.52)!important;}
+body.mari-velvet #constellation .author-search-results {background:#352d47!important;border-color:#cfa782!important;}
+/* Data safety is an illuminated closing page, not an afterthought. */
+body.mari-velvet #safety.safety-bar {background:linear-gradient(125deg,#51334b,#303c50)!important;border:1px solid rgba(239,196,157,.7)!important;border-radius:18px!important;box-shadow:0 13px 29px rgba(11,8,22,.28)!important;}
+body.mari-velvet #safety h3 {color:#fbe5cf!important;font:normal 28px Georgia,serif!important;}
+body.mari-velvet #safety p {color:#e8ced1!important;font-size:14px!important;}
+body.mari-velvet .foot {color:#d7bdb7!important;border-color:#d0a27763!important;}
+/* Dialogs and forms: visual language travels with the user. */
+body.mari-velvet .modal-screen {background:rgba(17,12,25,.83)!important;z-index:8200!important;}
+body.mari-velvet .modal {background:linear-gradient(145deg,#49334b,#2b3145)!important;border:1px solid rgba(240,195,159,.74)!important;border-radius:19px!important;box-shadow:0 25px 80px rgba(8,5,20,.75)!important;}
+body.mari-velvet .modal-head h2 {color:#fbe4cf!important;}
+body.mari-velvet .modal label {color:#f0d6ca!important;}
+body.mari-velvet .modal input,
+body.mari-velvet .modal select,
+body.mari-velvet .modal textarea {
+  border-color:rgba(235,195,159,.43)!important;
+  background:#2d293b!important;color:#ffeddf!important;
+  border-radius:10px!important;
+}
+body.mari-velvet .modal input:focus,
+body.mari-velvet .modal textarea:focus {outline:2px solid rgba(240,203,170,.31)!important;}
+body.mari-velvet .modal .hint {color:#ddc6cb!important;}
+/* Separate impressions.html page follows the same design tokens. */
+body.mari-velvet .shell {background:transparent!important;}
+body.mari-velvet .shell>.hero {border:1px solid rgba(233,184,144,.65)!important;}
+body.mari-velvet .shell>.hero h1 {color:#ffe8d2!important;}
+body.mari-velvet .shell>.hero p {color:#efdcdd!important;}
+body.mari-velvet .shell>.toolbar,
+body.mari-velvet .shell>.meta {color:#f2d9cd!important;}
+body.mari-velvet .shell>.toolbar input,
+body.mari-velvet .shell>.toolbar button {border-color:rgba(226,185,157,.55)!important;}
+body.mari-velvet .shell .note,
+body.mari-velvet .shell .empty {background:linear-gradient(146deg,#f8e6d2,#edcfba)!important;border:1px solid rgba(191,137,112,.69)!important;border-radius:16px!important;box-shadow:0 10px 24px rgba(17,11,25,.25)!important;}
+body.mari-velvet .shell .note h3,
+body.mari-velvet .shell .empty h2 {color:#4b2d41!important;}
+body.mari-velvet .shell .note p,
+body.mari-velvet .shell .note .author,
+body.mari-velvet .shell .note time,
+body.mari-velvet .shell .empty p {color:#705064!important;}
+body.mari-velvet .shell .note a {color:#784059!important;}
+body.mari-velvet .impression-panel {background:linear-gradient(145deg,#473449,#2e3548)!important;border-color:#dbaf86!important;}
+body.mari-velvet #notes-menu {background:linear-gradient(145deg,#483049,#292b3d)!important;}
+body.mari-velvet #notes-menu .menu-panel-head {color:#ffe5cf!important;}
+@media(max-width:1120px) {
+  body.mari-velvet .mari-directory-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+}
+@media(max-width:700px) {
+  body.mari-velvet .page {padding-left:11px!important;padding-right:11px!important;}
+  body.mari-velvet .hero {min-height:430px!important;}
+  body.mari-velvet .hero .hero-art {width:100%!important;height:58%!important;top:auto!important;bottom:0!important;object-position:60% 38%!important;opacity:.95!important;
+    -webkit-mask-image:linear-gradient(0deg,#000 0%,#000 55%,transparent 100%)!important;
+    mask-image:linear-gradient(0deg,#000 0%,#000 55%,transparent 100%)!important;}
+  body.mari-velvet .hero .hero-shade {background:linear-gradient(180deg,#38283f 0%,rgba(56,40,63,.95) 39%,rgba(56,40,63,.34) 68%,transparent)!important;}
+  body.mari-velvet .hero .hero-copy {max-width:100%!important;align-self:flex-start!important;padding-bottom:105px!important;}
+  body.mari-velvet .hero h1 {font-size:clamp(30px,8vw,44px)!important;}
+  body.mari-velvet .hero p {font-size:14px!important;}
+  body.mari-velvet .mari-home-directories {padding:18px 13px!important;border-radius:17px!important;}
+  body.mari-velvet .mari-directory-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;}
+  body.mari-velvet .mari-directory-grid .mari-directory-card {
+    display:flex!important;align-items:flex-end!important;min-height:201px!important;padding:12px!important;
+    background:linear-gradient(180deg,#d4b3bd 0%,#f8e5d0 58%,#f8e2cc 100%)!important;
+  }
+  body.mari-velvet .mari-directory-paint {top:0!important;left:0!important;width:100%!important;height:67%!important;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 43%,transparent 100%)!important;
+    mask-image:linear-gradient(180deg,#000 0%,#000 43%,transparent 100%)!important;}
+  body.mari-velvet .mari-directory-grid .mari-directory-card::after {background:linear-gradient(180deg,transparent 5%,rgba(249,229,208,.24) 40%,#f8e5d0 64%,#f8e5d0 100%)!important;}
+  body.mari-velvet .mari-dir-copy {width:100%!important;margin:0!important;padding:107px 0 0!important;text-align:center!important;}
+  body.mari-velvet .mari-dir-copy strong {font-size:clamp(17px,3.7vw,20px)!important;line-height:1.08!important;}
+  body.mari-velvet .mari-dir-copy small {font-size:12px!important;line-height:1.25!important;}
+  body.mari-velvet .mari-dir-number {font-size:11px!important;}
+  body.mari-velvet .page>.section {padding:16px 13px!important;}
+  body.mari-velvet .section-description {font-size:14px!important;}
+  body.mari-velvet .book-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+  body.mari-velvet #library .book {padding:12px 10px!important;}
+  body.mari-velvet #year .year-book strong {font-size:14px!important;}
+  body.mari-velvet .floating-dock {max-width:calc(100vw - 18px)!important;}
+}
+@media(max-width:390px) {
+  body.mari-velvet .hero {min-height:450px!important;}
+  body.mari-velvet .mari-directory-grid .mari-directory-card {min-height:196px!important;}
+  body.mari-velvet .mari-dir-copy {padding-top:102px!important;}
+  body.mari-velvet .mari-dir-copy strong {font-size:17px!important;}
+}
+@media(prefers-reduced-motion:reduce) {
+  body.mari-velvet .mari-directory-card {transition:none!important;}
+}
