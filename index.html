@@ -4036,7 +4036,7 @@ document.addEventListener('click',e=>{const suggestion=e.target.closest('[data-m
  addForm({author:group.author,cycleName:group.name,cycleVolume:next,cycleTotal:group.total||''});
 },true);
 function render(){renderCycles();renderCustomWorlds();renderCurrent();renderLoans();renderBooks();renderStats();renderNotes();renderStarMap();renderWishlist();renderYear();renderWorldCounts();renderCatalogSuggestions();mariRenderCatalogControls()}
-const showModal=(heading,html)=>{$('#modal-heading').textContent=heading;$('#modal-content').innerHTML=html;$('#modal-screen').classList.add('open');$('#modal-screen .modal').scrollTop=0;document.body.style.overflow='hidden';requestAnimationFrame(()=>$('#modal-screen .close')?.focus({preventScroll:true}))};
+const showModal=(heading,html)=>{$('#modal-screen .mari-save-book-header')?.remove();$('#modal-heading').textContent=heading;$('#modal-content').innerHTML=html;$('#modal-screen').classList.add('open');$('#modal-screen .modal').scrollTop=0;document.body.style.overflow='hidden';requestAnimationFrame(()=>$('#modal-screen .close')?.focus({preventScroll:true}))};
 const closeModal=()=>{$('#modal-screen').classList.remove('open');document.body.style.overflow=''};
 const option=(v,label,selected)=>`<option value="${v}" ${selected===v?'selected':''}>${label}</option>`;
 const formField=(label,name,type='text',value='',other='')=>`<div class="field"><label for="field-${name}">${label}</label><input id="field-${name}" name="${name}" type="${type}" value="${esc(value)}" ${other}></div>`;
