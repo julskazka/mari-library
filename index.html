@@ -3550,43 +3550,52 @@ html.mari-nav-open body{overflow:hidden!important}
 #modal-screen .mari-cycle-book-actions .btn{font-size:15px;min-height:46px}
 @media(max-width:600px){#modal-screen .mari-cycle-book-numbers{grid-template-columns:1fr}#modal-screen .mari-book-cycle-editor{padding:15px!important}}
 </style><style id="mari-cycle-clarity-20261121">
-/* Cycle empty shelf: artwork reaches beyond the inset border without page overflow. */
+/* Only the approved sleeping red fox; organic watercolor-like edge, not a square sticker.
+   The outer section clips overflow without modifying page scroll geometry. */
 #cycles.mari-cycle-room{overflow:clip!important;min-width:0!important}
 #cycles .mari-cycle-empty{
-  width:100%!important;max-width:100%!important;min-width:0!important;
-  grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)!important;
-  align-items:center!important;column-gap:clamp(8px,2vw,24px)!important;
-  min-height:0!important;padding:clamp(22px,3vw,34px)!important;
-  overflow:visible!important;position:relative!important;
-  background:radial-gradient(ellipse 53% 75% at 83% 50%,rgba(137,76,78,.13),transparent 95%),
-             linear-gradient(120deg,#29243a 0%,#24283b 60%,#202c3d 100%)!important;
+ width:100%!important;max-width:100%!important;min-width:0!important;
+ grid-template-columns:minmax(0,1.06fr) minmax(0,.94fr)!important;
+ gap:clamp(10px,2vw,26px)!important;align-items:center!important;
+ min-height:0!important;padding:clamp(22px,3.2vw,38px)!important;
+ overflow:visible!important;position:relative!important;
+ background:radial-gradient(ellipse 55% 70% at 80% 51%,rgba(146,85,77,.13),transparent 93%),linear-gradient(120deg,#29243a 0%,#24283b 60%,#202c3d 100%)!important;
 }
 #cycles .mari-cycle-empty:before{z-index:0!important}
-#cycles .mari-cycle-empty-copy{position:relative!important;z-index:2!important;min-width:0!important;max-width:100%!important}
+#cycles .mari-cycle-empty-copy{min-width:0!important;position:relative!important;z-index:2!important}
 #cycles .mari-cycle-illustration{
-  position:relative!important;z-index:1!important;isolation:isolate!important;
-  display:flex!important;align-items:center!important;justify-content:center!important;
-  width:100%!important;max-width:100%!important;min-width:0!important;
-  height:clamp(315px,30vw,365px)!important;min-height:0!important;max-height:365px!important;
-  margin:0!important;overflow:visible!important;pointer-events:none!important;
+ position:relative!important;z-index:1!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ min-width:0!important;max-width:100%!important;width:100%!important;
+ height:clamp(300px,29vw,360px)!important;min-height:0!important;max-height:360px!important;
+ margin:0!important;overflow:visible!important;pointer-events:none!important;
+ background:transparent!important;
 }
 #cycles .mari-cycle-illustration:after{content:none!important}
 #cycles img.mari-cycle-paint{
-  display:block!important;position:relative!important;flex:none!important;
-  width:auto!important;height:123%!important;min-width:0!important;min-height:0!important;
-  max-width:112%!important;max-height:none!important;object-fit:contain!important;
-  object-position:center!important;transform:translate(12px,6px)!important;
-  filter:saturate(1.12) contrast(1.06) drop-shadow(0 17px 18px rgba(15,12,22,.20))!important;
-  -webkit-mask-image:radial-gradient(ellipse 88% 89% at 50% 49%,#000 68%,rgba(0,0,0,.94) 80%,rgba(0,0,0,.55) 90%,transparent 100%)!important;
-  mask-image:radial-gradient(ellipse 88% 89% at 50% 49%,#000 68%,rgba(0,0,0,.94) 80%,rgba(0,0,0,.55) 90%,transparent 100%)!important;
+ position:relative!important;display:block!important;flex:none!important;
+ width:auto!important;height:117%!important;min-width:0!important;min-height:0!important;
+ max-width:108%!important;max-height:none!important;
+ object-fit:contain!important;object-position:center!important;
+ transform:translate(7px,3px)!important;
+ filter:saturate(1.09) contrast(1.04) drop-shadow(0 12px 18px rgba(16,10,22,.16))!important;
+ -webkit-mask-image:
+  radial-gradient(ellipse 65% 68% at 48% 50%,#000 63%,rgba(0,0,0,.94) 76%,transparent 100%),
+  radial-gradient(ellipse 44% 44% at 67% 30%,#000 48%,rgba(0,0,0,.9) 73%,transparent 100%),
+  radial-gradient(ellipse 52% 32% at 51% 80%,#000 40%,rgba(0,0,0,.78) 69%,transparent 100%)!important;
+ mask-image:
+  radial-gradient(ellipse 65% 68% at 48% 50%,#000 63%,rgba(0,0,0,.94) 76%,transparent 100%),
+  radial-gradient(ellipse 44% 44% at 67% 30%,#000 48%,rgba(0,0,0,.9) 73%,transparent 100%),
+  radial-gradient(ellipse 52% 32% at 51% 80%,#000 40%,rgba(0,0,0,.78) 69%,transparent 100%)!important;
+ -webkit-mask-composite:source-over,source-over!important;mask-composite:add,add!important;
 }
 #modal-screen .mari-book-cycle-editor{margin:22px 0 18px!important;scroll-margin-block:20px}
 #modal-screen .mari-cycle-book-actions{display:flex!important;justify-content:flex-start!important}
 #modal-screen .mari-cycle-book-actions button[type=submit]{background:linear-gradient(115deg,#f1dfc7,#d9bbca)!important;color:#292435!important;border:1px solid #f8e3d2!important;font-weight:700!important}
 @media(max-width:760px){
- #cycles .mari-cycle-empty{grid-template-columns:minmax(0,1fr)!important;gap:8px!important;overflow:hidden!important}
- #cycles .mari-cycle-illustration{width:100%!important;max-width:420px!important;height:clamp(250px,74vw,340px)!important;min-height:0!important;max-height:340px!important;margin:0 auto!important;overflow:visible!important}
- #cycles img.mari-cycle-paint{height:108%!important;max-width:100%!important;transform:translateY(4px)!important}
+ #cycles .mari-cycle-empty{grid-template-columns:minmax(0,1fr)!important;gap:6px!important;overflow:hidden!important}
+ #cycles .mari-cycle-illustration{height:clamp(245px,73vw,330px)!important;max-height:330px!important;width:100%!important;max-width:420px!important;min-height:0!important;margin:0 auto!important}
+ #cycles img.mari-cycle-paint{height:105%!important;max-width:100%!important;transform:none!important}
 }
 </style><style id="mari-cycle-card-save-visibility-20261121">
 /* Series controls belong to the book itself, before the diary and notes. */
