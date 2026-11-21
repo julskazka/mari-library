@@ -3286,9 +3286,11 @@ html.mari-nav-open body{overflow:hidden!important}
 }
 #library .mari-catalog-alpha .catalog-search-box input{font-size:14px!important;color:#f9e9de!important}
 #library .mari-catalog-alpha .catalog-suggestions{
- position:relative!important;inset:auto!important;top:auto!important;
- max-height:min(280px,47dvh)!important;overflow:auto;
- margin-top:7px!important;box-sizing:border-box;
+ position:absolute!important;
+ inset:calc(100% + 7px) 0 auto 0!important;
+ z-index:60!important;
+ max-height:min(280px,47dvh)!important;overflow-y:auto;
+ margin-top:0!important;box-sizing:border-box;
 }
 #library .mari-catalog-alpha-hint{font-size:12px;color:#dbbfbd;margin:7px 2px;line-height:1.4}
 #library .mari-catalog-bottom-actions{display:flex;align-items:end;justify-content:flex-end;gap:9px;flex-wrap:wrap}
