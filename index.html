@@ -3025,41 +3025,82 @@ html.mari-nav-open body{overflow:hidden!important}
 #top-menu .menu-grid a{min-width:0;min-height:44px;padding:12px 10px;font-size:14px!important;line-height:1.28!important;display:flex;align-items:center;white-space:normal}
 #top-menu .menu-dedication{font-size:16px;margin-top:auto;padding-top:18px}
 
-/* Original fantasy watercolor scene per chapter, in the style of Collection of Discoveries. */
-.mari-home-directories{position:relative;overflow:hidden;isolation:isolate;margin:30px 0 5px!important;padding:clamp(17px,2.8vw,31px)!important;border-radius:20px!important;border:1px solid rgba(219,184,152,.53)!important;background:radial-gradient(ellipse at 90% 0%,rgba(137,92,112,.21),transparent 55%),linear-gradient(133deg,#30283e,#242d42 60%,#24404a)!important}
-.mari-home-directories::before{content:"";position:absolute;inset:9px;pointer-events:none;border:1px solid rgba(226,195,162,.17);border-radius:13px}
+/* Chapter atlas: muted parchment and square watercolor cards.
+   This replaces the previous dark card styling rather than stacking overrides. */
+.mari-home-directories{
+  position:relative;isolation:isolate;overflow:hidden;
+  margin:30px 0 8px!important;padding:clamp(18px,2.8vw,28px)!important;
+  border:1px solid rgba(125,83,89,.38)!important;border-radius:22px!important;
+  background:radial-gradient(ellipse at 93% 4%,rgba(244,227,212,.24),transparent 47%),
+             linear-gradient(145deg,#d6c7c6,#d1c5c6 58%,#c6bdc3)!important;
+  box-shadow:0 12px 28px rgba(11,16,32,.15),inset 0 1px 0 rgba(255,244,227,.23)!important;
+}
+.mari-home-directories::before{
+  content:"";position:absolute;inset:8px;pointer-events:none;
+  border:1px solid rgba(123,85,94,.16);border-radius:15px;
+}
 .mari-home-directories::after{content:none!important}
-.mari-directory-heading{margin:0 0 17px}
-.mari-directory-heading .kicker{font-size:12px!important;letter-spacing:1.5px;color:#e9c5a2}
-.mari-directory-heading h2{margin:5px 0 6px;font:normal clamp(30px,3vw,40px)/1.12 Georgia,serif;color:#f9e8d9}
-.mari-directory-heading p{font-size:14px;color:#d9c7cf}
-.mari-directory-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.mari-directory-heading{margin:0 0 19px;position:relative;z-index:1}
+.mari-directory-heading .kicker{font-size:13px!important;letter-spacing:1.5px;color:#825363!important}
+.mari-directory-heading h2{
+  margin:7px 0 7px;font:normal clamp(30px,3.4vw,43px)/1.12 Georgia,serif!important;
+  color:#573449!important;
+}
+.mari-directory-heading p{font-size:15px!important;line-height:1.45;color:#6b515e!important}
+.mari-directory-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
 .mari-directory-grid .mari-directory-card{
- position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-end;
- min-height:252px;min-width:0;box-sizing:border-box;padding:16px 16px 18px!important;overflow:hidden;
- border:1px solid rgba(236,198,157,.61)!important;border-radius:13px!important;
- background:#292a41!important;box-shadow:inset 0 1px #ffdfc31b,0 10px 24px #0c102438!important;
- text-decoration:none!important;transition:transform .2s,border-color .2s;
+  position:relative;isolation:isolate;display:block;
+  aspect-ratio:1/1;min-height:0!important;min-width:0;width:100%;
+  box-sizing:border-box;padding:0!important;overflow:hidden;
+  border:1px solid rgba(139,94,103,.46)!important;border-radius:16px!important;
+  background:#cabbc0!important;
+  box-shadow:0 9px 20px rgba(54,30,46,.12),inset 0 1px 0 rgba(255,244,231,.4)!important;
+  text-decoration:none!important;transition:transform .2s,border-color .2s,box-shadow .2s;
 }
-.mari-directory-grid .mari-directory-card::before{content:"";position:absolute;inset:7px;z-index:3;border:1px solid rgba(248,218,184,.23);border-radius:7px;pointer-events:none}
+.mari-directory-grid .mari-directory-card:hover,
+.mari-directory-grid .mari-directory-card:focus-visible{
+  transform:translateY(-3px);border-color:#89566a!important;
+  box-shadow:0 14px 25px rgba(55,26,43,.18)!important;
+}
+.mari-directory-grid .mari-directory-card::before{
+  content:"";position:absolute;inset:7px;z-index:3;
+  border:1px solid rgba(119,75,84,.23);border-radius:10px;pointer-events:none;
+}
 .mari-directory-grid .mari-directory-card::after{
- content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
- background:linear-gradient(0deg,rgba(20,22,39,.91) 0%,rgba(21,25,41,.62) 26%,rgba(24,27,43,.03) 70%);
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to bottom,
+    rgba(220,202,197,.12) 0%,rgba(220,202,197,.08) 40%,
+    rgba(229,213,205,.45) 67%,rgba(233,217,208,.84) 100%);
 }
-.mari-directory-grid .mari-directory-card:hover,.mari-directory-grid .mari-directory-card:focus-visible{transform:translateY(-3px);border-color:#f1d0aa!important}
-.mari-dir-number{position:absolute;left:18px;top:13px;z-index:4;font:italic 15px Georgia;color:#ffe3ba;text-shadow:0 2px 9px #120e22}
 .mari-directory-paint{
- position:absolute;z-index:0;inset:-1px;width:calc(100% + 2px);height:calc(100% + 2px);
- display:block!important;pointer-events:none;
- background-image:url('assets/mari-directory-scenes-20261121.avif');background-repeat:no-repeat;
- background-size:400% 200%;background-position:var(--scene-x) var(--scene-y);
- filter:saturate(.93) brightness(.96);
- -webkit-mask-image:radial-gradient(ellipse 93% 85% at 52% 39%,#000 51%,rgba(0,0,0,.86) 77%,transparent 108%);
- mask-image:radial-gradient(ellipse 93% 85% at 52% 39%,#000 51%,rgba(0,0,0,.86) 77%,transparent 108%);
+  position:absolute;inset:-1px;z-index:0;pointer-events:none;
+  width:calc(100% + 2px);height:calc(100% + 2px);display:block!important;
+  background-image:url('assets/mari-directory-scenes-20261121.avif');
+  background-repeat:no-repeat;background-size:400% 200%;
+  background-position:var(--scene-x) var(--scene-y);
+  filter:saturate(.72) brightness(.96) contrast(.94);
+  -webkit-mask-image:radial-gradient(ellipse 101% 100% at 49% 39%,#000 56%,rgba(0,0,0,.9) 77%,transparent 106%);
+  mask-image:radial-gradient(ellipse 101% 100% at 49% 39%,#000 56%,rgba(0,0,0,.9) 77%,transparent 106%);
 }
-.mari-dir-copy{position:relative;z-index:4;display:flex;flex-direction:column;gap:6px;padding-top:144px!important}
-.mari-dir-copy strong{font:normal clamp(20px,2.1vw,26px)/1.12 Georgia,serif!important;color:#fff0de!important;text-shadow:0 2px 9px #0b0b1f;overflow-wrap:anywhere}
-.mari-dir-copy small{font-size:13px!important;line-height:1.4!important;color:#f2e0d8!important;text-shadow:0 2px 8px #0d0d1a}
+.mari-dir-number{
+  position:absolute;top:13px;right:15px;left:auto;z-index:4;
+  color:#704456!important;text-shadow:0 1px 3px rgba(255,235,216,.65)!important;
+  font:italic 14px/1 Georgia,serif;
+}
+.mari-dir-copy{
+  position:absolute;z-index:4;bottom:0;left:0;right:0;
+  display:flex;flex-direction:column;gap:4px;
+  box-sizing:border-box;width:100%;padding:17px 16px 15px!important;
+  background:linear-gradient(0deg,rgba(233,218,212,.97) 0%,rgba(233,218,212,.90) 72%,rgba(233,218,212,.12) 100%);
+}
+.mari-dir-copy strong{
+  font:normal clamp(18px,1.85vw,25px)/1.13 Georgia,serif!important;
+  color:#563347!important;text-shadow:none!important;overflow-wrap:anywhere;
+}
+.mari-dir-copy small{
+  font-size:13px!important;line-height:1.35!important;
+  color:#725662!important;text-shadow:none!important;overflow-wrap:anywhere;
+}
 .mari-search-suggestions-heading{color:#efd1b0;font-size:12px;font-weight:700;letter-spacing:.45px;padding:9px 12px 10px}
 #search-area .search-foot{align-items:center}
 #search-area .search-foot a{font-size:13px;color:#f6dcbd;padding:10px 11px;text-decoration:underline;text-underline-offset:3px}
@@ -3079,18 +3120,18 @@ html.mari-nav-open body{overflow:hidden!important}
  #top-menu{top:0!important;right:0!important;bottom:0!important;left:0!important;width:100vw!important;max-height:100dvh!important;border-radius:0!important;padding:15px max(15px,env(safe-area-inset-right)) calc(20px + env(safe-area-inset-bottom)) max(15px,env(safe-area-inset-left))!important}
  #top-menu .menu-panel-head{top:-15px;padding-top:12px!important}
  #top-menu .menu-grid a{min-height:44px;font-size:14px!important}
- .mari-home-directories{padding:17px 13px!important;border-radius:16px!important}
- .mari-directory-heading h2{font-size:31px}
- .mari-directory-heading p{font-size:14px}
+ .mari-home-directories{padding:17px 13px!important;border-radius:17px!important}
+ .mari-directory-heading h2{font-size:31px!important}
+ .mari-directory-heading p{font-size:14px!important}
  .mari-directory-grid{gap:10px}
- .mari-directory-grid .mari-directory-card{min-height:206px;padding:12px 12px 14px!important}
- .mari-directory-paint{filter:saturate(.92) brightness(.94)}
- .mari-dir-number{left:13px;top:11px}
- .mari-dir-copy{padding-top:105px!important;gap:4px}
- .mari-dir-copy strong{font-size:21px!important}
- .mari-dir-copy small{font-size:12px!important}
+ .mari-directory-grid .mari-directory-card{min-height:0!important;aspect-ratio:1/1;padding:0!important;border-radius:13px!important}
+ .mari-directory-paint{filter:saturate(.72) brightness(.96) contrast(.94)}
+ .mari-dir-number{top:10px;right:11px;left:auto}
+ .mari-dir-copy{gap:3px;padding:12px 11px 11px!important}
+ .mari-dir-copy strong{font-size:clamp(17px,4.1vw,21px)!important}
+ .mari-dir-copy small{font-size:11px!important;line-height:1.25!important}
 }
-@media(max-width:390px){#search-area .mari-search-title h2{font-size:18px!important}#search-area .mari-search-actions button{font-size:11px!important}.mari-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.mari-directory-grid .mari-directory-card{min-height:183px;padding:11px!important}.mari-directory-paint{background-size:400% 200%}.mari-dir-copy{padding-top:96px!important}.mari-dir-copy strong{font-size:19px!important}}
+@media(max-width:390px){#search-area .mari-search-title h2{font-size:18px!important}#search-area .mari-search-actions button{font-size:11px!important}.mari-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mari-directory-grid .mari-directory-card{min-height:0!important;aspect-ratio:1/1;padding:0!important}.mari-directory-paint{background-size:400% 200%}.mari-dir-copy{padding:11px 9px 10px!important}.mari-dir-copy strong{font-size:16px!important}.mari-dir-copy small{font-size:10.5px!important}}
 
 
 /* Existing-book title suggestions use the same accessible menu as author suggestions. */
