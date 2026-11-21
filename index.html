@@ -3375,17 +3375,6 @@ html.mari-nav-open body{overflow:hidden!important}
  #library.shelving-room .book-grid:not(.compact-list) .book-title{font-size:14px!important}
 }
 
-</style><style>
-/* Room links are lightweight navigation, not duplicated book cards. */
-.mari-directory-secondary{display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:24px 12px 5px}
-.mari-directory-secondary a,.mari-room-links a{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:10px 15px;border:1px solid rgba(217,183,139,.4);border-radius:999px;background:rgba(38,32,47,.72);color:#f2e3d2;font-size:15px;line-height:1.3;text-align:center}
-.mari-directory-secondary a:hover,.mari-room-links a:hover,.mari-room-home:hover{background:rgba(112,80,99,.65)}
-.mari-room-guide{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;padding:16px max(20px,3vw);margin:10px auto 4px;max-width:1220px;color:#f2e3d2}
-.mari-room-guide[hidden]{display:none!important}
-.mari-room-home{font-size:15px;padding:11px 15px;border:1px solid rgba(217,183,139,.42);border-radius:12px;white-space:nowrap}
-.mari-room-current{font:normal 23px/1.2 Georgia,serif;color:#e4c395}
-.mari-room-links{display:flex;gap:8px;flex-wrap:wrap;margin-left:auto}
-@media(max-width:760px){.mari-room-guide{padding:14px 16px;gap:10px}.mari-room-current{font-size:21px}.mari-room-links{width:100%;margin-left:0;flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:thin}.mari-room-links a{flex:0 0 auto}.mari-directory-secondary{padding:17px 10px 4px}}
 </style>
 </head>
 <body>
@@ -4436,7 +4425,6 @@ function mariShowPage(page){
  }
  $$('.page-turn').forEach(el=>{el.hidden=page!=='diary';if(page==='diary')el.style.removeProperty('display');else el.style.setProperty('display','none','important');});
  document.body.dataset.mariPage=page;
- $('.mari-room-guide').forEach(el=>{el.hidden=el.dataset.roomGuide!==page;});
  document.title=mariPageLabels[page]+' · библиотека Мари';
 }
 function mariGoPage(page,anchor){
@@ -4456,37 +4444,6 @@ function mariGoPage(page,anchor){
 function mariSearchToolbarMetrics(){
  const search=$('#search-area');if(!search)return;
  document.documentElement.style.setProperty('--mari-search-height',Math.ceil(search.offsetHeight)+'px');
-}
-/* Contextual paths between rooms: one navigation model for web and a future app. */
-const mariRoomGuides={
- books:{title:'Все мои книги',links:[['worlds','Книжные миры'],['memories','Мои впечатления'],['reading','Сейчас читаю']]},
- reading:{title:'Моё чтение',links:[['library','Все книги'],['wishes','Полка желаний'],['cycles','Книжные циклы']]},
- worlds:{title:'Книжные миры',links:[['library','Все книги'],['cycles','Книжные циклы']]},
- cycles:{title:'Книжные циклы',links:[['wishes','Полка желаний'],['library','Все книги']]},
- diary:{title:'Мои впечатления',links:[['library','Найти книгу'],['favorite','Любимые истории']]},
- archive:{title:'История чтения',links:[['statistics','Истории в цифрах'],['constellation','Книжное небо']]},
- sky:{title:'Книжное небо',links:[['statistics','Истории в цифрах'],['history','История чтения']]},
- data:{title:'Сохранение библиотеки',links:[['library','Вернуться к книгам']]}
-};
-function mariInitRoomGuides(){
- for(const [page,info] of Object.entries(mariRoomGuides)){
-  const first=document.querySelector(mariPageMap[page][0]);
-  if(!first||document.querySelector('[data-room-guide="'+page+'"]'))continue;
-  const nav=document.createElement('nav');
-  nav.className='mari-room-guide';
-  nav.dataset.roomGuide=page;
-  nav.setAttribute('aria-label','Навигация по комнатам');
-  const home=document.createElement('a');
-  home.href='#top';home.className='mari-room-home';home.textContent='← Главная';
-  const here=document.createElement('span');
-  here.className='mari-room-current';here.textContent=info.title;
-  const links=document.createElement('div');links.className='mari-room-links';
-  for(const [id,label] of info.links){
-   const a=document.createElement('a');a.href='#'+id;a.textContent=label;links.append(a);
-  }
-  nav.append(home,here,links);
-  first.before(nav);
- }
 }
 function mariInitPages(){
  const search=$('#search-area'),hero=$('section.hero');
@@ -4550,7 +4507,6 @@ function mariInitPages(){
   const cards=links.map(([id,name,desc,type],i)=>'<a class="mari-directory-card mari-directory-'+type+'" href="#'+id+'"><span class="mari-dir-number">'+(i+1).toString().padStart(2,'0')+'</span>'+decorative[i]+'<span class="mari-dir-copy"><strong>'+name+'</strong><small>'+desc+'</small></span></a>').join('');
   quick.insertAdjacentHTML('afterend','<section class="mari-home-directories" id="mari-home-directories"><div class="mari-directory-heading"><div class="kicker">Атлас моей библиотеки</div><h2>Куда отправимся?</h2><p>У каждой истории — своё место. Выбирай следующую главу.</p></div><div class="mari-directory-grid">'+cards+'</div><nav class="mari-directory-secondary" aria-label="Другие комнаты библиотеки"><a href="#favorite">Любимые истории</a><a href="#wishes">Полка желаний</a><a href="#statistics">Мои открытия в цифрах</a><a href="#history">История по годам</a></nav></section>');
  }
- mariInitRoomGuides();
  document.addEventListener('click',e=>{
   const a=e.target.closest('a[href^="#"]');if(!a)return;
   const id=decodeURIComponent(a.getAttribute('href').slice(1));
