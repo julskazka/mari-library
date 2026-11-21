@@ -3069,8 +3069,8 @@ html.mari-nav-open body{overflow:hidden!important}
 .mari-directory-grid .mari-directory-card::after{
   content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(to bottom,
-    rgba(220,202,197,.12) 0%,rgba(220,202,197,.08) 40%,
-    rgba(229,213,205,.45) 67%,rgba(233,217,208,.84) 100%);
+    rgba(218,193,192,0) 0%,rgba(218,193,192,0) 45%,
+    rgba(212,185,188,.08) 72%,rgba(211,182,183,.19) 100%);
 }
 .mari-directory-paint{
   position:absolute;inset:-1px;z-index:0;pointer-events:none;
@@ -3078,9 +3078,9 @@ html.mari-nav-open body{overflow:hidden!important}
   background-image:url('assets/mari-directory-scenes-20261121.avif');
   background-repeat:no-repeat;background-size:400% 200%;
   background-position:var(--scene-x) var(--scene-y);
-  filter:saturate(.72) brightness(.96) contrast(.94);
-  -webkit-mask-image:radial-gradient(ellipse 101% 100% at 49% 39%,#000 56%,rgba(0,0,0,.9) 77%,transparent 106%);
-  mask-image:radial-gradient(ellipse 101% 100% at 49% 39%,#000 56%,rgba(0,0,0,.9) 77%,transparent 106%);
+  filter:saturate(.88) brightness(.97) contrast(1.03);
+  -webkit-mask-image:none;
+  mask-image:none;
 }
 .mari-dir-number{
   position:absolute;top:13px;right:15px;left:auto;z-index:4;
@@ -3091,15 +3091,15 @@ html.mari-nav-open body{overflow:hidden!important}
   position:absolute;z-index:4;bottom:0;left:0;right:0;
   display:flex;flex-direction:column;gap:4px;
   box-sizing:border-box;width:100%;padding:17px 16px 15px!important;
-  background:linear-gradient(0deg,rgba(233,218,212,.97) 0%,rgba(233,218,212,.90) 72%,rgba(233,218,212,.12) 100%);
+  background:linear-gradient(to top,rgba(220,195,193,.73) 0%,rgba(220,195,193,.55) 50%,rgba(220,195,193,.07) 100%);
 }
 .mari-dir-copy strong{
-  font:normal clamp(18px,1.85vw,25px)/1.13 Georgia,serif!important;
-  color:#563347!important;text-shadow:none!important;overflow-wrap:anywhere;
+  font:700 clamp(19px,1.95vw,25px)/1.13 Georgia,serif!important;
+  color:#452638!important;text-shadow:0 1px 1px rgba(255,241,230,.48)!important;overflow-wrap:anywhere;
 }
 .mari-dir-copy small{
-  font-size:13px!important;line-height:1.35!important;
-  color:#725662!important;text-shadow:none!important;overflow-wrap:anywhere;
+  font-size:13px!important;line-height:1.35!important;font-weight:650!important;
+  color:#553947!important;text-shadow:0 1px 1px rgba(255,244,235,.48)!important;overflow-wrap:anywhere;
 }
 .mari-search-suggestions-heading{color:#efd1b0;font-size:12px;font-weight:700;letter-spacing:.45px;padding:9px 12px 10px}
 #search-area .search-foot{align-items:center}
@@ -3125,10 +3125,10 @@ html.mari-nav-open body{overflow:hidden!important}
  .mari-directory-heading p{font-size:14px!important}
  .mari-directory-grid{gap:10px}
  .mari-directory-grid .mari-directory-card{min-height:0!important;aspect-ratio:1/1;padding:0!important;border-radius:13px!important}
- .mari-directory-paint{filter:saturate(.72) brightness(.96) contrast(.94)}
+ .mari-directory-paint{filter:saturate(.88) brightness(.97) contrast(1.03)}
  .mari-dir-number{top:10px;right:11px;left:auto}
  .mari-dir-copy{gap:3px;padding:12px 11px 11px!important}
- .mari-dir-copy strong{font-size:clamp(17px,4.1vw,21px)!important}
+ .mari-dir-copy strong{font-size:clamp(17px,4.1vw,21px)!important;font-weight:700!important}
  .mari-dir-copy small{font-size:11px!important;line-height:1.25!important}
 }
 @media(max-width:390px){#search-area .mari-search-title h2{font-size:18px!important}#search-area .mari-search-actions button{font-size:11px!important}.mari-directory-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.mari-directory-grid .mari-directory-card{min-height:0!important;aspect-ratio:1/1;padding:0!important}.mari-directory-paint{background-size:400% 200%}.mari-dir-copy{padding:11px 9px 10px!important}.mari-dir-copy strong{font-size:16px!important}.mari-dir-copy small{font-size:10.5px!important}}
