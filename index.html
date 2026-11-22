@@ -3578,6 +3578,25 @@ html.mari-nav-open body{overflow:hidden!important}
  filter:drop-shadow(0 15px 19px rgba(12,8,22,.21))!important;
  -webkit-mask-image:none!important;mask-image:none!important;
 }
+/* Desktop only: keep the original card height, let real painted details pass the inset frame. */
+@media (min-width:900px){
+ #cycles .mari-cycle-illustration{
+   overflow:visible!important;
+ }
+ #cycles .mari-cycle-illustration:before{
+   content:""!important;display:block!important;position:absolute!important;
+   inset:4% -5% 4% -12%!important;z-index:0!important;pointer-events:none!important;
+   background:radial-gradient(ellipse 57% 51% at 58% 55%,rgba(202,116,75,.18),transparent 94%)!important;
+   filter:blur(15px)!important;
+ }
+ #cycles img.mari-cycle-paint{
+   z-index:1!important;
+   width:133%!important;max-width:none!important;max-height:none!important;
+   right:-5%!important;top:50%!important;
+   transform:translateY(-53%)!important;
+   filter:drop-shadow(0 19px 20px rgba(11,9,24,.32)) drop-shadow(0 4px 7px rgba(30,17,24,.19))!important;
+ }
+}
 #modal-screen .mari-book-cycle-editor{margin:22px 0 18px!important;scroll-margin-block:20px}
 #modal-screen .mari-cycle-book-actions{display:flex!important;justify-content:flex-start!important}
 #modal-screen .mari-cycle-book-actions button[type=submit]{background:linear-gradient(115deg,#f1dfc7,#d9bbca)!important;color:#292435!important;border:1px solid #f8e3d2!important;font-weight:700!important}
