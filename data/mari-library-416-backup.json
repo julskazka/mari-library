@@ -2,7 +2,7 @@
   "app": "Между страницами",
   "version": 1,
   "importedFrom": "Читательский дневник Мари · Google Sheets · 19.11.2026",
-  "notes": "Данные 416 строк. Примерные даты чтения сохранены как текст. Неуказанные форматы отнесены к электронным по решению владельца. Пять книг Холли Вебб с датой октябрь 2024 временно помечены бумажными, так как читалка появилась в конце октября 2024 и по словам семьи около 2/3 Холли Вебб были бумажными. Эти пять форматов требуют подтверждения.",
+  "notes": "Данные 416 строк. Примерные даты чтения сохранены как текст. Неуказанные форматы отнесены к электронным по решению владельца. Пять книг Холли Вебб с датой октябрь 2024 временно помечены бумажными, так как читалка появилась в конце октября 2024 и по словам семьи около 2/3 Холли Вебб были бумажными. Эти пять форматов требуют подтверждения. Дополнено 22.11.2026 пятью прочитанными книгами из библиотеки Ушакова.",
   "books": [
     {
       "id": "mf6a7023732ef8",
@@ -129,6 +129,26 @@
       "formatAssumption": "",
       "impressions": [],
       "sourceRow": 7
+    },
+    {
+      "id": "mu20261122_1",
+      "status": "read",
+      "format": "paper",
+      "source": "ush",
+      "sourceOriginal": "Библиотека Ушакова",
+      "favorite": false,
+      "textbook": false,
+      "added": "2026-11-22",
+      "readPeriod": "",
+      "readingYear": "",
+      "formatInferred": false,
+      "formatAssumption": "",
+      "impressions": [],
+      "title": "Подвиг Ленинграда. 1941–1944",
+      "author": "Алексеев Сергей",
+      "genre": "other",
+      "originalGenre": "Сборник рассказов",
+      "color": "gold"
     },
     {
       "id": "m5916169fa691b",
@@ -2187,6 +2207,26 @@
       "formatAssumption": "",
       "impressions": [],
       "sourceRow": 105
+    },
+    {
+      "id": "mu20261122_4",
+      "status": "read",
+      "format": "paper",
+      "source": "ush",
+      "sourceOriginal": "Библиотека Ушакова",
+      "favorite": false,
+      "textbook": false,
+      "added": "2026-11-22",
+      "readPeriod": "",
+      "readingYear": "",
+      "formatInferred": false,
+      "formatAssumption": "",
+      "impressions": [],
+      "title": "Хранители волшебства",
+      "author": "Джонс Диана Уинн",
+      "genre": "fantasy",
+      "originalGenre": "Роман",
+      "color": "gold"
     },
     {
       "id": "m73760dea5fa7c",
@@ -6242,6 +6282,26 @@
       "sourceRow": 298
     },
     {
+      "id": "mu20261122_2",
+      "status": "read",
+      "format": "paper",
+      "source": "ush",
+      "sourceOriginal": "Библиотека Ушакова",
+      "favorite": false,
+      "textbook": false,
+      "added": "2026-11-22",
+      "readPeriod": "",
+      "readingYear": "",
+      "formatInferred": false,
+      "formatAssumption": "",
+      "impressions": [],
+      "title": "Хранительница древа. Часть 1. Исчезнувшая магия",
+      "author": "Раскольникова Ярослава",
+      "genre": "fantasy",
+      "originalGenre": "Повесть-сказка",
+      "color": "blue"
+    },
+    {
       "id": "m43d056f6b9f3a",
       "title": "Приключения барона Мюнхгаузена",
       "author": "Распе Рудольф Эрих",
@@ -6408,6 +6468,26 @@
       "formatAssumption": "",
       "impressions": [],
       "sourceRow": 306
+    },
+    {
+      "id": "mu20261122_5",
+      "status": "read",
+      "format": "paper",
+      "source": "ush",
+      "sourceOriginal": "Библиотека Ушакова",
+      "favorite": false,
+      "textbook": false,
+      "added": "2026-11-22",
+      "readPeriod": "",
+      "readingYear": "",
+      "formatInferred": false,
+      "formatAssumption": "",
+      "impressions": [],
+      "title": "Трамвай идёт на фронт. Стихи о мире и войне, о героях и подвигах",
+      "author": "Сборник авторов",
+      "genre": "other",
+      "originalGenre": "Сборник стихотворений",
+      "color": "rose"
     },
     {
       "id": "mde4a51fce6237",
@@ -7710,6 +7790,26 @@
       "formatAssumption": "",
       "impressions": [],
       "sourceRow": 368
+    },
+    {
+      "id": "mu20261122_3",
+      "status": "read",
+      "format": "paper",
+      "source": "ush",
+      "sourceOriginal": "Библиотека Ушакова",
+      "favorite": false,
+      "textbook": false,
+      "added": "2026-11-22",
+      "readPeriod": "",
+      "readingYear": "",
+      "formatInferred": false,
+      "formatAssumption": "",
+      "impressions": [],
+      "title": "Школа Тени. Призрак мальчика в пижаме",
+      "author": "Уайт Дж. Э.",
+      "genre": "fantasy",
+      "originalGenre": "Роман",
+      "color": "violet"
     },
     {
       "id": "m9eaf6bc7f7f0f",
