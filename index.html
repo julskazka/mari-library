@@ -3550,36 +3550,32 @@ html.mari-nav-open body{overflow:hidden!important}
 #modal-screen .mari-cycle-book-actions .btn{font-size:15px;min-height:46px}
 @media(max-width:600px){#modal-screen .mari-cycle-book-numbers{grid-template-columns:1fr}#modal-screen .mari-book-cycle-editor{padding:15px!important}}
 </style><style id="mari-cycle-clarity-20261121">
-/* Cutout artwork: transparent silhouette, no vignette masks or rectangular backdrop. */
+/* New transparent book illustration: no overlay masks, cropping or fixed-width overflow. */
 #cycles.mari-cycle-room{overflow:clip!important;min-width:0!important}
 #cycles .mari-cycle-empty{
  position:relative!important;width:100%!important;max-width:100%!important;min-width:0!important;
- grid-template-columns:minmax(0,1.07fr) minmax(0,.93fr)!important;gap:clamp(8px,2vw,24px)!important;
- align-items:center!important;min-height:0!important;padding:clamp(22px,3vw,34px)!important;
- overflow:visible!important;
+ grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)!important;
+ gap:clamp(8px,2vw,24px)!important;align-items:center!important;min-height:0!important;
+ padding:clamp(22px,3vw,34px)!important;overflow:visible!important;
  background:linear-gradient(120deg,#29243a 0%,#24283b 60%,#202c3d 100%)!important;
 }
 #cycles .mari-cycle-empty:before{z-index:0!important}
 #cycles .mari-cycle-empty-copy{position:relative!important;z-index:3!important;min-width:0!important;max-width:100%!important}
 #cycles .mari-cycle-illustration{
- position:relative!important;z-index:2!important;display:block!important;
+ position:relative!important;z-index:2!important;
  width:100%!important;max-width:100%!important;min-width:0!important;
- height:clamp(290px,28vw,344px)!important;min-height:0!important;max-height:344px!important;
- margin:0!important;overflow:visible!important;pointer-events:none!important;background:none!important;
- isolation:auto!important;
+ height:clamp(295px,29vw,355px)!important;min-height:0!important;max-height:355px!important;
+ margin:0!important;overflow:visible!important;pointer-events:none!important;
+ background:transparent!important;isolation:auto!important;
 }
-#cycles .mari-cycle-illustration:before{
- content:""!important;position:absolute!important;inset:10% -4% 4% 7%!important;
- background:radial-gradient(ellipse at 57% 47%,rgba(202,117,64,.12),transparent 69%)!important;
- filter:blur(20px);pointer-events:none;
-}
+#cycles .mari-cycle-illustration:before,
 #cycles .mari-cycle-illustration:after{content:none!important}
 #cycles img.mari-cycle-paint{
- display:block!important;position:relative!important;right:auto!important;top:auto!important;
- width:100%!important;height:100%!important;min-width:0!important;min-height:0!important;
- max-width:100%!important;max-height:100%!important;object-fit:contain!important;
- object-position:center!important;transform:none!important;
- filter:drop-shadow(0 17px 22px rgba(12,8,22,.26))!important;
+ display:block!important;position:absolute!important;right:-3%!important;top:50%!important;
+ width:112%!important;height:auto!important;max-width:112%!important;max-height:112%!important;
+ min-width:0!important;min-height:0!important;object-fit:contain!important;
+ object-position:center!important;transform:translateY(-50%)!important;
+ filter:drop-shadow(0 15px 19px rgba(12,8,22,.21))!important;
  -webkit-mask-image:none!important;mask-image:none!important;
 }
 #modal-screen .mari-book-cycle-editor{margin:22px 0 18px!important;scroll-margin-block:20px}
@@ -3588,7 +3584,7 @@ html.mari-nav-open body{overflow:hidden!important}
 @media(max-width:760px){
  #cycles .mari-cycle-empty{grid-template-columns:minmax(0,1fr)!important;gap:6px!important;overflow:hidden!important}
  #cycles .mari-cycle-illustration{height:clamp(235px,72vw,330px)!important;max-height:330px!important;width:100%!important;max-width:420px!important;margin:0 auto!important}
- #cycles img.mari-cycle-paint{width:110%!important;right:50%!important;top:50%!important;transform:translate(50%,-50%)!important}
+ #cycles img.mari-cycle-paint{width:110%!important;max-width:110%!important;max-height:100%!important;right:50%!important;top:50%!important;transform:translate(50%,-50%)!important}
 }
 </style><style id="mari-cycle-card-save-visibility-20261121">
 /* Series controls belong to the book itself, before the diary and notes. */
@@ -4109,7 +4105,7 @@ function renderCycles(){
   <button type="button" class="btn tonal small mari-cycle-add" data-mari-cycle-add="${index}">Добавить том №${next}</button>
  </article>`;
  }).join('');
- const empty=`<div class="mari-cycle-empty"><div class="mari-cycle-empty-copy"><span class="mari-cycle-eyebrow">Полка будущих продолжений</span><h3>У каждой истории есть продолжение…</h3><p>Здесь будут собираться книжные серии — том за томом, в правильном порядке. Добавь первую книгу и укажи название цикла и номер тома.</p><button class="btn primary" type="button" data-action="add">Добавить книгу серии</button><span class="mari-cycle-empty-hint">Следующие тома появятся на этой полке автоматически.</span></div><div class="mari-cycle-illustration" aria-hidden="true"><img class="mari-cycle-paint" src="assets/mari-cycle-fox-cutout-20261121.webp" alt="" loading="lazy" decoding="async"></div></div>`;
+ const empty=`<div class="mari-cycle-empty"><div class="mari-cycle-empty-copy"><span class="mari-cycle-eyebrow">Полка будущих продолжений</span><h3>У каждой истории есть продолжение…</h3><p>Здесь будут собираться книжные серии — том за томом, в правильном порядке. Добавь первую книгу и укажи название цикла и номер тома.</p><button class="btn primary" type="button" data-action="add">Добавить книгу серии</button><span class="mari-cycle-empty-hint">Следующие тома появятся на этой полке автоматически.</span></div><div class="mari-cycle-illustration" aria-hidden="true"><img class="mari-cycle-paint" src="assets/mari-cycle-fox-story-20261122.webp" alt="" loading="lazy" decoding="async"></div></div>`;
  const suggestions=candidates.length?`<aside class="mari-cycle-suggestions"><div><span class="mari-cycle-eyebrow">Возможные книжные циклы</span><h3>Кажется, эти истории связаны</h3><p>Нашлись совпадения названий у одного автора. Проверь, не тома ли это одной серии.</p></div><div class="mari-cycle-candidate-list">${candidates.map((g,i)=>`<div class="mari-cycle-candidate"><span><strong>${esc(g.title)}</strong><small>${esc(g.author)} · ${g.items.length} книги</small></span><button type="button" data-mari-cycle-review="${i}">Проверить книги</button></div>`).join('')}</div></aside>`:'';
  root.innerHTML=(cards||empty)+suggestions;
 }
