@@ -3578,23 +3578,36 @@ html.mari-nav-open body{overflow:hidden!important}
  filter:drop-shadow(0 15px 19px rgba(12,8,22,.21))!important;
  -webkit-mask-image:none!important;mask-image:none!important;
 }
-/* Desktop only: keep the original card height, let real painted details pass the inset frame. */
-@media (min-width:900px){
- #cycles .mari-cycle-illustration{
-   overflow:visible!important;
- }
+/* The illustrated fox stays its existing size. Separate transparent botanical
+   details cross the inset border only on desktop; the outer section still clips. */
+#cycles img.mari-cycle-extension{display:none!important;pointer-events:none!important}
+@media(min-width:900px){
+ #cycles .mari-cycle-illustration{overflow:visible!important}
  #cycles .mari-cycle-illustration:before{
    content:""!important;display:block!important;position:absolute!important;
-   inset:4% -5% 4% -12%!important;z-index:0!important;pointer-events:none!important;
-   background:radial-gradient(ellipse 57% 51% at 58% 55%,rgba(202,116,75,.18),transparent 94%)!important;
+   inset:8% -3% 7% -7%!important;z-index:0!important;pointer-events:none!important;
+   background:radial-gradient(ellipse 55% 48% at 60% 52%,rgba(193,106,64,.13),transparent 93%)!important;
    filter:blur(15px)!important;
  }
  #cycles img.mari-cycle-paint{
-   z-index:1!important;
-   width:133%!important;max-width:none!important;max-height:none!important;
-   right:-5%!important;top:50%!important;
-   transform:translateY(-53%)!important;
-   filter:drop-shadow(0 19px 20px rgba(11,9,24,.32)) drop-shadow(0 4px 7px rgba(30,17,24,.19))!important;
+   z-index:1!important;width:112%!important;max-width:112%!important;max-height:112%!important;
+   right:-3%!important;top:50%!important;transform:translateY(-50%)!important;
+   filter:drop-shadow(0 17px 19px rgba(13,10,25,.24))!important;
+ }
+ #cycles img.mari-cycle-extension{
+   display:block!important;position:absolute!important;z-index:2!important;
+   height:auto!important;min-height:0!important;max-height:none!important;
+   max-width:none!important;object-fit:contain!important;
+   -webkit-mask-image:none!important;mask-image:none!important;
+   filter:drop-shadow(0 8px 10px rgba(15,8,25,.20))!important;
+ }
+ #cycles img.mari-cycle-extension-top{
+   width:78%!important;right:-20%!important;top:-19%!important;
+   transform:rotate(-9deg)!important;
+ }
+ #cycles img.mari-cycle-extension-bottom{
+   width:51%!important;right:-15%!important;bottom:-17%!important;top:auto!important;
+   transform:rotate(11deg)!important;
  }
 }
 #modal-screen .mari-book-cycle-editor{margin:22px 0 18px!important;scroll-margin-block:20px}
@@ -4124,7 +4137,7 @@ function renderCycles(){
   <button type="button" class="btn tonal small mari-cycle-add" data-mari-cycle-add="${index}">Добавить том №${next}</button>
  </article>`;
  }).join('');
- const empty=`<div class="mari-cycle-empty"><div class="mari-cycle-empty-copy"><span class="mari-cycle-eyebrow">Полка будущих продолжений</span><h3>У каждой истории есть продолжение…</h3><p>Здесь будут собираться книжные серии — том за томом, в правильном порядке. Добавь первую книгу и укажи название цикла и номер тома.</p><button class="btn primary" type="button" data-action="add">Добавить книгу серии</button><span class="mari-cycle-empty-hint">Следующие тома появятся на этой полке автоматически.</span></div><div class="mari-cycle-illustration" aria-hidden="true"><img class="mari-cycle-paint" src="assets/mari-cycle-fox-story-20261122.webp" alt="" loading="lazy" decoding="async"></div></div>`;
+ const empty=`<div class="mari-cycle-empty"><div class="mari-cycle-empty-copy"><span class="mari-cycle-eyebrow">Полка будущих продолжений</span><h3>У каждой истории есть продолжение…</h3><p>Здесь будут собираться книжные серии — том за томом, в правильном порядке. Добавь первую книгу и укажи название цикла и номер тома.</p><button class="btn primary" type="button" data-action="add">Добавить книгу серии</button><span class="mari-cycle-empty-hint">Следующие тома появятся на этой полке автоматически.</span></div><div class="mari-cycle-illustration" aria-hidden="true"><img class="mari-cycle-paint" src="assets/mari-cycle-fox-story-20261122.webp" alt="" loading="lazy" decoding="async"><img class="mari-cycle-extension mari-cycle-extension-top" src="assets/mari-cycle-branch-extension-20261122.webp" alt="" loading="lazy" decoding="async"><img class="mari-cycle-extension mari-cycle-extension-bottom" src="assets/mari-cycle-branch-lower-20261122.webp" alt="" loading="lazy" decoding="async"></div></div>`;
  const suggestions=candidates.length?`<aside class="mari-cycle-suggestions"><div><span class="mari-cycle-eyebrow">Возможные книжные циклы</span><h3>Кажется, эти истории связаны</h3><p>Нашлись совпадения названий у одного автора. Проверь, не тома ли это одной серии.</p></div><div class="mari-cycle-candidate-list">${candidates.map((g,i)=>`<div class="mari-cycle-candidate"><span><strong>${esc(g.title)}</strong><small>${esc(g.author)} · ${g.items.length} книги</small></span><button type="button" data-mari-cycle-review="${i}">Проверить книги</button></div>`).join('')}</div></aside>`:'';
  root.innerHTML=(cards||empty)+suggestions;
 }
